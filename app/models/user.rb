@@ -34,8 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def generate_password_if_needed
-    unless self.encrypted_password
-      byebug
+    unless new_record? && self.encrypted_password.blank?
       length = [5, 10].max
       random_password(length)
     end

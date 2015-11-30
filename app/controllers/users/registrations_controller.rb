@@ -21,14 +21,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
       sign_in resource_name, resource, bypass: true
       if request.xhr?
-        byebug
+        # byebug
         render :text => 'User updated' , :status => 200
       else
         respond_with resource, location: after_update_path_for(resource)
       end
     else
       if request.xhr?
-        byebug
+        # byebug
         render :text => "User update failed #{resource.errors.full_messages.join(',') if resource.errors.any?}" , :status => 500
       else
         clean_up_passwords resource
@@ -51,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # def create
 
-  #   byebug
+    # byebug
   #   build_resource(params[:user])
 
   #   resource.save
