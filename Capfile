@@ -6,7 +6,7 @@ require 'capistrano/rvm'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 require 'capistrano/bundler'
-# require 'capistrano/rails/assets'
+require 'capistrano/rails/assets'
 # require 'capistrano/rails'
 require 'capistrano/rails/migrations'
 # require 'capistrano/whenever'
@@ -138,7 +138,18 @@ namespace :deploy do
 	task :notify_deploy do
 		`say "rooster #{fetch(:rails_env)} deploy completed, kokoreeku"`
 	end
-	
+
+	 task :clear_assets do
+	  on roles(:app), in: :sequence, wait: 5 do
+	      path = release_path.join('public/assets/*')
+	      command = "rm -rf #{path}"
+	      info "Executing command: #{command}"
+	      execute command
+	    end
+	  end
+
+  
+  	before :starting, 'deploy:clear_assets'
 	before :starting, 'deploy:check_byebug'
 	after :finishing, 'deploy:cleanup'
 	after :finishing, 'roooster:chown_root_dir'
