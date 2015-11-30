@@ -1,0 +1,234 @@
+
+apt-get install mysql-server libmysqlclient-dev git-core subversion imagemagick libmagickwand-dev libcurl4-openssl-dev
+apt-get update --fix-missing
+apt-get install mysql-server libmysqlclient-dev git-core subversion imagemagick libmagickwand-dev libcurl4-openssl-dev
+mysql -uroot -p'vbnrty456'
+curl -L https://get.rvm.io | bash -s stable --ruby=2.2.0
+source /usr/local/rvm/scripts/rvm
+echo '[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"' >> ~/.bashrc
+rvm -v
+rvm list
+gem install passenger --no-ri --no-rdoc
+passenger-install-nginx-module
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+sudo apt-get install -y apt-transport-https ca-certificates
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+apt-get install -y apt-transport-https ca-certificates
+sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main > /etc/apt/sources.list.d/passenger.list'
+apt-get install -y nginx-extras passenger
+vim /etc/nginx/nginx.conf
+service nginx restart
+rm -rf /usr/bin/passenger
+ll /usr/bin/passenger
+passenger-config validate-install
+passenger-memory-stats
+apt-get update
+service nginx status
+service nginx restart
+exit
+vim vim ~/.ssh/authorized_keys
+exit
+mkdir -p /var/www/html
+cd /var/www/html/
+ll
+chown -R .
+chown -R /var/www/html
+chown -R /var/www/html/
+chown --help
+chown -R ubuntu:ubuntu /var/www/html/
+ll
+rvm list
+touch building_app/shared/config/database.yml
+vim building_app/shared/config/database.yml
+touch building_app/shared/config/configuration.yml
+vim building_app/shared/config/configuration.yml
+touch building_app/shared/config/initializers/secret_token.rb
+vim building_app/shared/config/initializers/secret_token.rb
+vim /opt/nginx/conf/nginx.conf
+vim /etc/nginx/nginx.conf
+mv /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/building.app
+cd /etc/nginx/sites-enabled/
+ll
+mv /etc/nginx/sites-enabled/building.app /etc/nginx/sites-enabled/default
+ll
+mv /etc/nginx/sites-available/default /etc/nginx/sites-available/building.com
+ll
+cd /etc/nginx/sites-available/default
+cd /etc/nginx/sites-available/
+ll
+mv /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/building.app
+ll
+ll /etc/nginx/sites-enabled/
+cd /etc/nginx/sites-enabled/
+ll
+ln -s /etc/nginx/sites-available/building.app building.app
+rm building.app
+ln -s /etc/nginx/sites-available/building.app building.app
+ll
+vim building.app
+cd /etc/nginx/sites-available/
+ll
+cd /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/building.com default
+ll
+vim default
+cd v
+cd /etc/nginx/sites-available
+ll
+vim building.com
+cp building.com ../building.com.org
+ll ..
+vim building.com
+service nginx status
+service nginx restart
+mysql -uroot -p'vbnrty456'
+mysql -ubuilding_app -p'vbnrty456'
+cd /var/www/html/building_app/
+gem install bundle
+ll
+cd current
+chown -R www-data:www-data files log tmp public/plugin_assets config.ru
+ll
+ll public/
+cd files
+ll
+cd ..
+cd shared/
+ll
+chown -R www-data:www-data files log tmp public/plugin_assets config.ru
+chown -R www-data:www-data files log tmp
+service nginx restart
+vim /etc/nginx/nginx.conf
+tail -f /var/log/nginx/access.log
+tail -f /var/log/nginx/error.log
+cd ..
+pwd
+vim ~/.bash_rc
+ll ~/
+vim ~/.bashrc
+source ~/.bashrc
+current
+ll
+pwd
+vim /etc/nginx/sites-enabled/building.app
+vim /etc/nginx/sites-enabled/default
+ll /etc/nginx/sites-available/
+ll /etc/nginx/sites-available/building.com
+cd  /etc/nginx/sites-available/
+ll
+cd  /etc/nginx/sites-enabled/
+ll
+rm building.app
+ll
+vim default
+service nginx restsrt
+service nginx restart
+service nginx -t
+vim /etc/nginx/sites-enabled/default
+service nginx -t
+service nginx restart
+curl -v localhost
+tail -f /var/log/nginx/error.log
+current
+tail -100 log/production.log
+rake generate_secret_token RAILS_ENV=production
+rake generate_secret_token RAILS_ENV=production --trace
+bundle exe rake generate_secret_token RAILS_ENV=production --trace
+bundle exe homex:load_default_data RAILS_ENV=production --trace
+bundle exe rake homex:load_default_data RAILS_ENV=production --trace
+service nginx restart
+tail -f log/production.log
+rails c
+rails -v
+ll log
+ll log/
+vim log/redmine_helpdesk.log
+vim log/production.log
+echo "" > log/production.log
+vim log/production.log
+tail -f log/production.log
+tail -f /var/log/nginx/error.log
+echo "" > /var/log/nginx/error.log
+echo "" > /var/log/nginx/access.log
+tail -f /var/log/nginx/error.log
+echo "" > /var/log/nginx/access.log
+echo "" > /var/log/nginx/error.log
+vim /etc/nginx/sites-enabled/default
+service nginx restart
+tail -f /var/log/nginx/error.log
+passenger-config validate-install
+echo $path
+echo $PATH
+export PATH=$PATH:/usr/local/rvm/gems/ruby-2.0.0-p643/gems/passenger-5.0.21/bin
+frobnicator
+echo $PATH
+passenger-config validate-install
+service nginx restart
+tail -f /var/log/nginx/error.log
+echo "" > /var/log/nginx/error.log
+tail -f /var/log/nginx/error.log
+rails c
+gem install rails
+rails c
+rails -v
+rails c
+bundle install
+su -
+exit
+vim /etc/nginx/nginx.conf
+vim /etc/nginx/sites-enabled/default
+service nginx restart
+tail -f /var/log/nginx/error.log
+which ruby
+vim /etc/nginx/nginx.conf
+vim /etc/nginx/sites-enabled/default
+service nginx restart
+tail -f /var/log/nginx/error.log
+vim /etc/nginx/nginx.conf
+ll /usr/local/rvm/wrappers/default/passenger-config
+vim /etc/nginx/nginx.conf
+which passenger
+vim /etc/nginx/nginx.conf
+nginx -t
+
+service nginx restart
+passenger-config validate-install
+tail -f /var/log/nginx/error.log
+vim /etc/nginx/nginx.conf
+ll /usr/local/rvm/wrappers/default/
+ll /usr/local/rvm/wrappers/ruby-2.0.0-p643@global/
+ll /usr/local/rvm/wrappers/ruby-2.0.0-p643@global/ruby
+vim Installing Redmine 2.5 + Passenger + nginx + rvm on Ubuntu 12.04 LTS and 14.04 LTS
+vim  /etc/apache2/mods-available/passenger.conf
+which passenger
+/usr/local/rvm/gems/ruby-2.0.0-p643/bin/passenger/passenger.conf
+vim /usr/local/rvm/gems/ruby-2.0.0-p643/bin/passenger/passenger.conf
+sudo vim /usr/local/rvm/gems/ruby-2.0.0-p643/bin/passenger/passenger.conf
+ll /usr/local/rvm/gems/ruby-2.0.0-p643/bin/passenger/passenger.conf
+ll /usr/local/rvm/gems/ruby-2.0.0-p643/bin/passenger/passenger-config
+exit
+vim/etc/nginx/nginx.conf
+vim /etc/nginx/nginx.conf
+vim /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini
+vim /usr/lib/ruby/vendor_ruby
+ll /usr/lib/ruby/vendor_ruby
+vim /etc/nginx/nginx.conf
+ll /usr/bin/passenger_free_ruby
+vim /usr/bin/passenger_free_ruby
+vim /etc/nginx/nginx.conf
+vim /etc/nginx/sites-enabled/default
+current
+cd ..
+chown -R ubuntu:ubuntu .
+ll
+service nginx restart
+tail -f /var/log/nginx/error.log
+vim /etc/nginx/nginx.conf
+service nginx restart
+nginx -t
+tail -f /var/log/nginx/error.log
+current
+ll
+vim ~/.ssh/authorized_keys
+exit
+vim ~/.ssh/authorized_keys

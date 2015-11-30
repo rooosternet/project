@@ -1,0 +1,42 @@
+/* ------------------------------------------------------------ *\
+	Freelancers
+\* ------------------------------------------------------------ */
+
+.freelancers { list-style: none outside none; padding: 0 20px; background: #fefefe; border: 1px solid #f6f6f6; }
+
+.freelancer { position: relative; padding: 18px 15px 18px 40px; border-bottom: 1px solid #efefef; color: #36393b; font-size: 13px; list-style-type: -0.025em; transition: all .2s ease-out;  
+
+	&:last-child { border: 0; }
+	&:hover { opacity: .8; }
+	
+	.freelancer-icon { position: absolute; left: 0; top: 15px; }
+	.freelancer-name { margin: 0 0 6px; font-size: 15px; font-weight: bold; }
+	
+	.freelancer-head { margin-bottom: 13px; }
+	.freelancer-head p { margin-bottom: 0; }
+	
+	.freelancer-links { margin: 0 0 9px; padding: 0; font-size: 15px; list-style: none outside none; 
+		
+		li { display: inline; }
+		li + li:before { content: '|'; color: #b14848; }
+		a { color: #36393b; }
+	}
+
+	.freelancer-foot { font-size: 12px; }
+	.freelancer-foot-inner { overflow: hidden; }
+	
+	.freelancer-socials { float: left; margin-right: 10px; list-style: none outside none; 
+
+		li { float: left; }
+		li + li { margin-left: 6px; }
+		a { display: block; transition: all .2s ease-out; }
+		a:hover { opacity: .8; }
+		span { display: block; opacity: .3; }
+	}
+
+	@media (max-width: $screen-sm-max) {
+		& { padding: 18px 0; }
+		.freelancer-socials { float: none; margin-bottom: 10px; overflow: hidden; }
+		.freelancer-icon { display: none; }
+	}
+}

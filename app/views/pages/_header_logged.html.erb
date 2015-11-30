@@ -1,0 +1,25 @@
+<header class="header">
+	<div class="shell">
+		<a href="home.html" class="logo">roooster</a>
+
+		<span class="slogan">Collaborative Roster For Creative Leaders</span>
+
+		<div class="header-actions hidden-xs">
+			<div class="dropdown">
+				<a href="#" class="btn btn-default" data-toggle="dropdown">
+					<%= @user.firstname %> <span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
+				</a>
+
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#modal-edit-profile" data-toggle="modal">Edit</a>
+					</li>
+					
+					<li>
+						<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+					</li>
+				</ul><!-- /.dropdown-menu -->
+			</div><!-- /.dropdown -->
+		</div><!-- /.header-actions -->
+	</div><!-- /.shell -->
+</header><!-- /.header -->

@@ -1,0 +1,302 @@
+
+<div class="main">
+	<div class="shell">
+		<section class="section-search">
+			<h2 class="section-title">Need a great freelancer for your next project?</h2><!-- /.section-title -->
+
+			<div class="section-body">
+				<div class="search">
+					<div class="search-body">
+						<form action="freelancers.html" method="get">
+							<label for="q" class="hidden">Search</label>
+
+							<input type="text" class="form-control search-field">
+
+							<button type="submit" class="search-btn">
+								<i class="fa fa-search"></i>
+							</button>
+						</form>
+					</div><!-- /.search-body -->
+					
+					<div class="search-foot">
+						<span>Popular Searches:</span>
+
+						<ul>
+							<li>
+								<a href="#">Motion Graphics</a>
+							</li>
+
+							<li>
+								<a href="#">2D Animation</a>
+							</li>
+
+							<li>
+								<a href="#">Art Direction</a>
+							</li>
+
+							<li>
+								<a href="#">VFX</a>
+							</li>
+
+							<li>
+								<a href="#">Illustration</a>
+							</li>
+						</ul>
+					</div><!-- /.search-foot -->
+				</div><!-- /.search -->
+			</div><!-- /.section-body -->
+
+			<div class="section-image">
+				<!-- <img src="../images/temp/intro-image.png" height="204" width="167" alt=""> -->
+				<%=image_tag "intro-image.png", { height: "204" ,width: "167" ,alt: "" } %>
+			</div><!-- /.section-image -->
+
+			<div class="section-actions visible-xs">
+				<div class="dropdown">
+					<a href="#" class="btn btn-default" data-toggle="dropdown">
+						Jonathan <span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
+					</a>
+
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#modal-edit-profile" data-toggle="modal">Edit</a>
+						</li>
+
+						<li>
+							<a href="#">Logout</a>
+						</li>
+					</ul><!-- /.dropdown-menu -->
+				</div><!-- /.dropdown -->
+			</div><!-- /.section-actions -->
+		</section><!-- /.section-search -->
+
+		<div class="divider hidden-xs">
+			<a href="#">
+				<i class="ico-arrow-down"></i>
+			</a>
+		</div><!-- /.divider -->
+	</div><!-- /.shell -->
+</div><!-- /.main -->
+
+<div class="modal fade" id="modal-edit-profile">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<div class="form form-signup">
+					<!-- <form action="?" method="post"> -->
+					<%= form_for(@user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form', "data-parent"=>"modal-edit-profile"}) do |f| %>
+					<div class="form-inner">
+						<div class="form-head">
+							<h4 class="form-title">My Freelancer Profile</h4><!-- /.form-title -->
+
+							<p>Looking good!</p>
+						</div><!-- /.form-head -->
+
+						<div class="form-body">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-freelancer-username" class="form-label">
+												Email <em>(cannot be changed)</em>
+											</label>
+
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-freelancer-username" id="field-freelancer-username" value="" placeholder=""> -->
+												<%= f.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "", disabled: true  %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-freelancer-additional-email" class="form-label">Additional Email</label>
+
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-freelancer-additional-email" id="field-freelancer-additional-email" value="" placeholder=""> -->
+												<%= f.text_field :email2, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+								</div><!-- /.row -->
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-freelancer-first-name" class="form-label">First Name</label>
+
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-freelancer-first-name" id="field-freelancer-first-name" value="" placeholder=""> -->
+												<%= f.text_field :firstname, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-freelancer-last-name" class="form-label">Last Name</label>
+
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-freelancer-last-name" id="field-freelancer-last-name" value="" placeholder=""> -->
+												<%= f.text_field :lastname, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+								</div><!-- /.row -->
+								<%= f.fields_for :freelancer do |builder| %>	
+								<div class="form-row">
+									<label for="field-freelancer-location" class="form-label">
+										Location <em>(City, State, Country)</em>
+									</label>
+
+									<div class="form-controls">
+										<!-- <input type="text" class="form-control" name="field-freelancer-location" id="field-freelancer-location" value="" placeholder=""> -->
+										<%= builder.text_field :location, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form-group -->
+							
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-website" class="form-label">Website</label>
+
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-website" id="field-website" value="" placeholder=""> -->
+												<%= builder.text_field :online_portfolio, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-linkedin" class="form-label">LinkedIn</label>
+
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-linkedin" id="field-linkedin" value="" placeholder=""> -->
+												<%= builder.text_field :linkedin_profile, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+								</div><!-- /.row -->
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-behance" class="form-label">Behance</label>
+
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-behance" id="field-behance" value="" placeholder=""> -->
+												<%= builder.text_field :behance, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-vimeo" class="form-label">Vimeo</label>
+
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-vimeo" id="field-vimeo" value="" placeholder=""> -->
+												<%= builder.text_field :vimeo, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+								</div><!-- /.row -->
+
+								<div class="form-row">
+									<label for="field-skills" class="form-label">Skills</label>
+
+									<div class="form-controls">
+										<!-- <input type="text" class="form-control" name="field-skills" id="field-skills" value="" placeholder=""> -->
+										<%= builder.text_field :skills, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+								<% end %>
+							</div><!-- /.form-group -->
+						</div><!-- /.form-body -->
+
+						<div class="form-actions">
+							<!-- <input type="submit" value="Update" class="btn form-btn"> -->
+							<%= f.submit 'Update', :class => 'btn form-btn' %>
+
+							<button class="btn btn-light">Reset my password</button>
+						</div><!-- /.form-actions -->
+
+						<div class="form-error">
+							<p>This is where error messages go.</p>
+						</div><!-- /.form-error -->
+					</div><!-- /.form-inner -->
+
+					<div class="form-foot">
+						<p>Need help? <a href="#">drop us a line</a>.</p>
+					</div><!-- /.form-foot -->
+					<!-- </form> -->
+					<% end %>
+
+				</div><!-- /.form-signup -->
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal modal-small fade" id="modal-signin">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<div class="form form-signin">
+					<form action="?" method="post">
+						<div class="form-inner">
+							<div class="form-head">
+								<h4 class="form-title">Sign In</h4><!-- /.form-title -->
+
+								<p>Great to see you again!</p>
+							</div><!-- /.form-head -->
+							
+							<div class="form-body">
+								<div class="form-row">										
+									<div class="form-controls">
+										<input type="text" class="form-control" name="field-signin-username" id="field-freelancer-username" value="" placeholder="Username">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+								
+								<div class="form-row">										
+									<div class="form-controls">
+										<input type="password" class="form-control" name="field-signin-password" id="field-signin-password" value="" placeholder="Password">
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->	
+
+								<div class="form-row">
+									<div class="checkbox">
+										<input type="checkbox" name="field-remember-me" id="field-remember-me" checked>
+										
+										<label for="field-remember-me">Remember me on this computer</label>
+									</div><!-- /.checkbox -->
+
+									<a href="#">Forgot password?</a>
+								</div><!-- /.form-row -->
+							</div><!-- /.form-body -->
+							
+							<div class="form-actions">
+								<input type="submit" value="Sign In" class="btn form-btn">
+							</div><!-- /.form-actions -->
+							
+							<div class="form-error">
+								<p>This is where error messages go.</p>
+							</div><!-- /.form-error -->
+						</div><!-- /.form-inner -->
+					</form>
+				</div><!-- /.form-signin -->
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
