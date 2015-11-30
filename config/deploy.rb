@@ -9,7 +9,7 @@
 set :application, 'roooster'
 set :scm, :git
 set :format, :pretty
-set :repo_url, 'https://www.dropbox.com/sh/sowsag73mp6mtd8/AADbjH-YUZZhxxeSmLr5eetBa?dl=0'
+set :repo_url, 'git@github.com:rooosterteam/roooster.git'
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system files }
 set :linked_files, %w{config/database.yml config/secrets.yml config/initializers/session_store.rb } 
 
