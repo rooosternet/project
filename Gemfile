@@ -16,7 +16,7 @@ gem 'devise_invitable'
 gem 'high_voltage'
 gem 'mysql2', '~> 0.3.18'
 gem 'pundit'
-gem "whenever"
+gem 'whenever', :require => false
 
 # gem 'sidekiq' , '=3.3.1'#github: "mperham/sidekiq"
 # gem 'sinatra','>= 1.3.0', :require => false
