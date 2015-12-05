@@ -6,7 +6,7 @@ require 'capistrano/rvm'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 require 'capistrano/bundler'
-require 'capistrano/rails/assets'
+# require 'capistrano/rails/assets'
 # require 'capistrano/rails'
 require 'capistrano/rails/migrations'
 # require 'capistrano/whenever'
@@ -149,7 +149,7 @@ namespace :deploy do
 	  end
 
   
-  	before :starting, 'deploy:clear_assets'
+  	# before :starting, 'deploy:clear_assets'
 	before :starting, 'deploy:check_byebug'
 	after :finishing, 'deploy:cleanup'
 	after :finishing, 'roooster:chown_root_dir'
