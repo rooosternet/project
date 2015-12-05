@@ -54,7 +54,7 @@ def random_password(length=40)
   chars -= %w(0 O 1 l)
   _password = ''
   length.times {|i| _password << chars[SecureRandom.random_number(chars.size)] }
-  _password = "1q2w3e4r" if Rails.env.development?
+  _password = ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ? "1q2w3e4r" : _password
   puts "---------- #{self.email}  #{_password}"
   self.password = _password
   self.password_confirmation = _password
