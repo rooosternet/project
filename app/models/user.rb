@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :freelancer, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Freelancer.reject_freelancer(attributes)}
 
   def set_default_role
-    self.role ||= :pending
+    self.role ||= ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ?  :user : :pending 
   end
 
   # Include default devise modules. Others available are:
