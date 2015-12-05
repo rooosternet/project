@@ -1,0 +1,1 @@
+$(function(){$("#submit_search_form").bind("click",function(r){var e=$("#search").val();return""==e?(r.preventDefault(),$("#search").attr("placeholder","Enter search string here..."),!1):!0})});

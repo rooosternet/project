@@ -1,3 +1,70 @@
+<%= form_tag({ :controller => 'freelancers', :action => 'index'}, :method => :get, :id => 'query_form') do %>
+              <label for="q" class="hidden">Search</label>
+
+              <!-- <input type="text" class="form-control search-field"> -->
+              <%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
+
+              <button type="submit" class="search-btn" id="submit_search_form">
+                <i class="fa fa-search"></i>
+              </button>
+            <% end %>
+
+
+
+<%= form_tag({ :controller => 'freelancers', :action => 'index'}, :method => :get, :id => 'query_form') do %>
+   <h2 class="with-border">
+        <span id='scope_header' class="scope_title">
+        <%= @query.new_record? ? l(:label_contact_plural) : h(@query.name) %>
+        </span>
+
+        <span class="live_search">
+            <%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "live_search_field", :placeholder => l(:label_crm_contact_search) ) %>
+
+        </span>
+
+        <span class="tags">
+            <%= tag_links(@filter_tags) %>
+        </span>
+
+  </h2>
+    <script type="text/javascript">
+       jQuery(function($) {
+          // when the #search field changes
+          $("#search").observe_field(2, function() {
+            var form = $("#query_form"); // grab the form wrapping the search bar.
+            var url = form.attr("action");
+            form.find('[name="c[]"] option').each(function(i, elem){
+              $(elem).attr('selected', true)
+            })
+            var formData = form.serialize();
+            form.find('[name="c[]"] option').each(function(i, elem){
+              $(elem).attr('selected', false)
+            })
+            $.get(url, formData, function(data) { // perform an AJAX get, the trailing function is what happens on successful get.
+                $("#contact_list").html(data); // replace the "results" div with the result of action taken
+            });
+          });
+        });
+    </script>
+    <%= hidden_field_tag 'set_filter', '1' %>
+    <%= hidden_field_tag 'object_type', 'contact' %>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 apt-get install mysql-server libmysqlclient-dev git-core subversion imagemagick libmagickwand-dev libcurl4-openssl-dev
 apt-get update --fix-missing

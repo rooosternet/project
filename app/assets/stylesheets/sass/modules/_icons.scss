@@ -4,21 +4,23 @@
 
 [class^=ico-] { display: inline-block; vertical-align: middle; background-size: 100% 100%; background-repeat: no-repeat; background-position: 0 0; }
 
-.ico-arrow-down { width: 38px; height: 38px; background-image: url(../images/ico-arrow-down@2x.png); }
+.ico-arrow-down { width: 38px; height: 38px; background-image: url(asset-path('ico-arrow-down@2x.png')); }
 
-.ico-arrow-down-medium { width: 23px; height: 23px; background-image: url(../images/ico-arrow-down-medium@2x.png); }
+.ico-arrow-down-medium { width: 23px; height: 23px; background-image: url(asset-path('ico-arrow-down-medium@2x.png')); }
 
-.ico-arrow-down-small { width: 14px; height: 14px; background-image: url(../images/ico-arrow-down-small@2x.png); }
-.ico-arrow-right-small { width: 14px; height: 14px; background-image: url(../images/ico-arrow-right-small@2x.png); }
-.ico-arrow-left-small { width: 14px; height: 14px; background-image: url(../images/ico-arrow-left-small@2x.png); }
+.ico-arrow-down-small { width: 14px; height: 14px; background-image: url(asset-path('ico-arrow-down-small@2x.png')); }
+.ico-arrow-right-small { width: 14px; height: 14px; background-image: url(asset-path('ico-arrow-right-small@2x.png')); }
+.ico-arrow-left-small { width: 14px; height: 14px; background-image: url(asset-path('ico-arrow-left-small@2x.png')); }
 
-.ico-close { width: 25px; height: 24px; background-image: url(../images/ico-close@2x.png); }
-.ico-remove { width: 14px; height: 14px; background-image: url(../images/ico-remove@2x.png); }
+.ico-close { width: 25px; height: 24px; background-image: url(asset-path('ico-close@2x.png')); }
+.ico-remove { width: 14px; height: 14px; background-image: url(asset-path('ico-remove@2x.png')); }
 
-.ico-user { width: 17px; height: 16px; background-image: url(../images/ico-user@2x.png); }
+.ico-user { width: 17px; height: 16px; background-image: url(asset-path('ico-user@2x.png')); }
 
-.ico-linkedin { width: 25px; height: 26px; background-image: url(../images/ico-linkedin@2x.png); }
-.ico-behance { width: 26px; height: 26px; background-image: url(../images/ico-behance@2x.png); }
-.ico-vimeo { width: 26px; height: 26px; background-image: url(../images/ico-vimeo@2x.png); }
+.ico-linkedin { width: 25px; height: 26px; background-image: url(asset-path('ico-linkedin@2x.png')); }
+.ico-behance { width: 26px; height: 26px; background-image: url(asset-path('ico-behance@2x.png')); }
+.ico-vimeo { width: 26px; height: 26px; background-image: url(asset-path('ico-vimeo@2x.png')); }
 
-.ico-dots { width: 22px; height: 5px; background-image: url(../images/ico-dots@2x.png); }
+.ico-dots { width: 22px; height: 5px; background-image: url(asset-path('ico-dots@2x.png')); }
+
+

@@ -30,9 +30,14 @@
         <%= yield %>
     </main>
 
+    <% if user_signed_in? %>
+         <%= render :partial => 'pages/modals_edit' %>    
+    <% else %>
+         <%= render :partial => 'pages/modals_sign' %>    
+         <%= render :partial => 'pages/modals_alt' %>
+    <% end %>
+
     <%= render :partial => 'pages/footer' %>
-    <%= render :partial => 'pages/modals_alt' %>
-    <%= render :partial => 'pages/modals_sign' %>
     
     </div><!-- /.wrapper -->  
   </body>

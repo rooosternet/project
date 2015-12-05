@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20151121085950) do
     t.string   "behance",          limit: 255
     t.string   "vimeo",            limit: 255
     t.text     "skills",           limit: 65535
+    t.string   "email",            limit: 255
     t.string   "location",         limit: 255
     t.string   "company_name",     limit: 255
     t.string   "contact_name",     limit: 255
@@ -35,8 +36,11 @@ ActiveRecord::Schema.define(version: 20151121085950) do
     t.string   "company_name",    limit: 255
     t.string   "job_title",       limit: 255
     t.string   "company_website", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "email",           limit: 255
+    t.string   "location",        limit: 255
+    t.text     "social_links",    limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "studios", ["company_name"], name: "index_studios_on_company_name", using: :btree

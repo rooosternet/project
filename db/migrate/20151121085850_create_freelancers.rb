@@ -7,6 +7,7 @@ class CreateFreelancers < ActiveRecord::Migration
       t.string :behance
       t.string :vimeo
       t.text :skills
+      t.string :email
       t.string :location
 
       t.string :company_name

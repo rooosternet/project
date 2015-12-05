@@ -72,7 +72,7 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "a2plcpnl0237.prod.iad2.secureserver.net",
     port: 587,
     domain: Rails.application.secrets.domain_name,
     authentication: "plain",

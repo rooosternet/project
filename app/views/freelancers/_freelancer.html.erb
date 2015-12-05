@@ -1,0 +1,58 @@
+<li class="freelancer">
+	<div class="freelancer-icon">
+		<i class="ico-user"></i>
+	</div>
+
+	<div class="freelancer-head">
+		<h5 class="freelancer-name"><%= freelancer.user.name %></h5>
+
+		<p><%=freelancer.location %></p>
+	</div>
+
+	<ul class="freelancer-links">
+		<li>
+			<!-- <a href="#"><%#= freelancer.online_portfolio %></a> -->
+			<%= link_to(freelancer.online_portfolio,freelancer.online_portfolio,:target => "_blank") if freelancer.online_portfolio %>
+		</li>
+		
+		<li>
+			<a href="#"><%= freelancer.user.email %></a>
+			<%#= link_to(freelancer.user.email,freelancer.user.email,:target => "_blank") if freelancer.user.email %>
+		</li>
+		
+		<li>
+			<a href="#">Vcard</a>
+		</li>
+	</ul>
+
+	<div class="freelancer-foot">
+		<ul class="freelancer-socials">
+			<li>
+				<a href="<%=freelancer.linkedin_profile%>">
+					<i class="ico-linkedin"></i>
+				</a>
+				<%#= link_to(freelancer.linkedin_profile,freelancer.linkedin_profile , class: 'ico-linkedin',:target => "_blank") if freelancer.linkedin_profile %>
+			</li>
+			
+			<li>
+				<a href="<%=freelancer.behance%>">
+					<i class="ico-behance"></i>
+				</a>
+				<%#= link_to(freelancer.behance,freelancer.behance , class: 'ico-behance',:target => "_blank") if freelancer.behance %>
+			</li>
+			
+			<li>
+				<a href="<%=freelancer.vimeo%>">
+					<i class="ico-vimeo"></i>
+				</a>
+				<%#= link_to(freelancer.vimeo,freelancer.vimeo , class: 'ico-vimeo',:target => "_blank") if freelancer.vimeo %>
+			</li>
+		</ul>
+
+		<div class="freelancer-foot-inner">
+			<strong> Senior <%#= freelancer.job_title %></strong>
+
+			<p><%= freelancer.skills %></p>
+		</div>
+	</div>
+</li>

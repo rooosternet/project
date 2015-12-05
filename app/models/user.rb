@@ -27,6 +27,14 @@ class User < ActiveRecord::Base
   # before_destroy 
   # after_save 
 
+  def freelancer?
+    !self.freelancer.nil?
+  end
+
+  def studio?
+    !self.studio.nil?
+  end
+
   private
 
   def set_name
@@ -34,23 +42,24 @@ class User < ActiveRecord::Base
   end
 
   def generate_password_if_needed
-    unless new_record? && self.encrypted_password.blank?
+    if new_record?
       length = [5, 10].max
       random_password(length)
     end
   end
 
 # Generate and set a random password on given length
-  def random_password(length=40)
-    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-    chars -= %w(0 O 1 l)
-    _password = ''
-    length.times {|i| _password << chars[SecureRandom.random_number(chars.size)] }
-    puts "---------- #{self.email}  #{_password}"
-    self.password = _password
-    self.password_confirmation = password
-    self
-  end
+def random_password(length=40)
+  chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+  chars -= %w(0 O 1 l)
+  _password = ''
+  length.times {|i| _password << chars[SecureRandom.random_number(chars.size)] }
+  _password = "1q2w3e4r" if Rails.env.development?
+  puts "---------- #{self.email}  #{_password}"
+  self.password = _password
+  self.password_confirmation = _password
+  self
+end
 
 end
 

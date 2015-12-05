@@ -1,20 +1,31 @@
 <header class="header">
 	<div class="shell">
-		<a href="home.html" class="logo">roooster</a>
-
+		<!-- <a href="home.html" class="logo">roooster</a> -->
+		<%= link_to 'roooster', root_path, class: 'logo'  %>
 		<span class="slogan">Collaborative Roster For Creative Leaders</span>
 
 		<div class="header-actions hidden-xs">
 			<div class="dropdown">
 				<a href="#" class="btn btn-default" data-toggle="dropdown">
-					<%= @user.firstname %> <span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
+					<%= current_user.firstname %> <span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
 				</a>
 
 				<ul class="dropdown-menu">
-					<li>
+					<!-- <li>
 						<a href="#modal-edit-profile" data-toggle="modal">Edit</a>
-					</li>
-					
+					</li> -->
+					<% if current_user.studio?  %>
+							<li>
+								<a href="#modal-edit-profile-studio" data-toggle="modal">Edit <%= "Studio" if current_user.freelancer? %></a>
+							</li>
+					<% end %>
+
+					<% if current_user.freelancer?  %>
+						<li>
+							<a href="#modal-edit-profile-freelancer" data-toggle="modal">Edit <%= "Freelancer" if current_user.studio? %></a>
+						</li>
+					<% end %>
+
 					<li>
 						<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
 					</li>

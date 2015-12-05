@@ -5,7 +5,10 @@ class CreateStudios < ActiveRecord::Migration
       t.string :company_name
       t.string :job_title
       t.string :company_website
-
+      t.string :email
+      t.string :location
+      t.text :social_links
+      
       t.timestamps null: false
     end
 

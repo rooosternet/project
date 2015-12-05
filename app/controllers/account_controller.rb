@@ -19,6 +19,8 @@ class AccountController < ApplicationController
 				unless user.save
 					status = 500
 					message = user.errors.any? ? user.errors.full_messages : "fail to create user!"
+				else
+					Mailer.welcome_email(user).deliver_later #deliver_now
 				end	
 				
 			end

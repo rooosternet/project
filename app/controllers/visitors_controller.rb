@@ -6,8 +6,14 @@ class VisitorsController < ApplicationController
 			@user.studio = Studio.new
 			@user.freelancer = Freelancer.new
 		else
-			@user = current_user	
-			render :template => 'pages/search' , :layouts => true
+			if current_user.role == "pending"
+				sign_out(:user)
+				redirect_to root_path
+			else	
+				render :template => 'pages/search' , :layouts => true
+			end
 		end	
 	end
+
+	
 end

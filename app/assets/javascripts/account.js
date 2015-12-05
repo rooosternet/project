@@ -1,7 +1,6 @@
 $(function() {
 
 	$('.edit_user').bind('ajax:success',function(event, data, status, xhr){
-		debugger
 		if(status == 'success'){
 			fid = $(this).data("parent");
 			$("#"+fid).modal('hide');
@@ -13,7 +12,6 @@ $(function() {
 	});	
 
 	$('.edit_user').bind('ajax:error', function(event, data, status, xhr) {
-		debugger
 		$(".form-error").text(data.responseText);
 	});
 

@@ -48,7 +48,6 @@
 			});
 		});
 
-
 		$('.register_form').bind('ajax:success',function(event, data, status, xhr){
 			if(status == 'success'){
 				fid = $(this).data("parent");
@@ -67,8 +66,6 @@
 		$('.register_form').bind('ajax:complete', function(event, data, status, xhr) {
 		    
 		});
-
-		
 
 	});
 })(jQuery, window, document);

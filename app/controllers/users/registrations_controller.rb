@@ -22,14 +22,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_in resource_name, resource, bypass: true
       if request.xhr?
         # byebug
-        render :text => 'User updated' , :status => 200
+        # render :text => 'User updated' , :status => 200
+        render :json => { :responseText => "User updated" }.to_json , :status => 200
       else
         respond_with resource, location: after_update_path_for(resource)
       end
     else
       if request.xhr?
         # byebug
-        render :text => "User update failed #{resource.errors.full_messages.join(',') if resource.errors.any?}" , :status => 500
+        # render :text => "User update failed #{resource.errors.full_messages.join(',') if resource.errors.any?}" , :status => 500
+        render :text => { :responseText => "User update failed #{resource.errors.full_messages.join(',') if resource.errors.any?}" }.to_json , :status => 500
       else
         clean_up_passwords resource
         respond_with resource
