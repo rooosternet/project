@@ -3,7 +3,7 @@ class Freelancer < ActiveRecord::Base
 	
 	delegate :name ,:firstname,:lastname,:email , :to => :user, :allow_nil => true
 
-
+	scope :active ,lambda { joins(:user).where("#{User.table_name}.role IN (1,2)")}
 	scope :live_search, lambda {|search| joins(:user).where("(LOWER(#{User.table_name}.firstname) LIKE LOWER(:p) OR
                                                LOWER(#{User.table_name}.lastname) LIKE LOWER(:p) OR
                                                LOWER(#{Freelancer.table_name}.location) LIKE LOWER(:p) OR

@@ -4,7 +4,7 @@ class FreelancersController < ApplicationController
   def index
   	@freelancers_count = 'No'
     @freelancers = []
-    scope = Freelancer.where({})
+    scope = Freelancer.active
   	params[:search].split(' ').collect{ |search_string| scope = scope.live_search(search_string) } if !params[:search].blank?
     
     unless scope.blank?
