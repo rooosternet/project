@@ -1,0 +1,57 @@
+/* ------------------------------------------------------------ *\
+	Header
+\* ------------------------------------------------------------ */
+
+.header { position: relative; z-index: 1000; height: 56px; background: #ffffff; border-bottom: 1px solid #eeeeee; text-align: center; 
+
+	&:before { content: ''; position: absolute; left: 0; top: 30px; width: 100%; height: 1px; background: #f5f5f5; }
+	
+	.shell { position: relative; }
+
+	.header-actions { position: absolute; z-index: 10; right: 0; top: 13px; padding: 0 10px; background: #fff; }
+	.header-actions .btn { width: 100px; padding: 0 5px; }
+	.header-actions .btn-icon { position: absolute; left: 50%; bottom: -8px; margin-left: -7px; line-height: 1; border-radius: 50%; background: #fff; }
+	.header-actions .btn-icon i { vertical-align: top; opacity: .4; transition: all .2s ease-out; }
+
+	@media (max-width: $screen-md-max) {
+		.shell { position: static; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Dropdown
+\* ------------------------------------------------------------ */
+
+.dropdown { display: inline-block; vertical-align: top; width: 100px; 
+	.btn { width: 100px; padding: 0 5px; }
+	.btn-icon { position: absolute; left: 50%; bottom: -8px; margin-left: -7px; line-height: 1; border-radius: 50%; background: #fff; }
+	.btn-icon i { vertical-align: top; opacity: .4; transition: all .2s ease-out; }
+
+	.dropdown-menu { display: block; min-width: 0; width: 100px; padding: 0; margin-top: 15px; border: 1px solid #e1e9ee; border-radius: 0; box-shadow: none; visibility: hidden; opacity: 0; transition: all .2s ease-out; 
+		
+		li + li:before { content: ''; display: block; width: 68px; height: 1px; margin: 0 auto; background: #efefef; }
+		a { padding: 0; text-align: center; line-height: 24px; font-size: 11px; color: #6c727a; font-weight: bold; text-transform: uppercase; transition: all .2s ease-out; }
+		a:hover { color: #000; background: transparent; }
+	}
+	&.open .btn-icon i { transform: rotate(-180deg); }
+	&.open .dropdown-menu { visibility: visible; opacity: 1; }
+}
+
+/* ------------------------------------------------------------ *\
+	Logo
+\* ------------------------------------------------------------ */
+
+.logo { position: relative; z-index: 5; display: inline-block; vertical-align: top; padding: 0 60px; margin: 3px 0 2px; background: #fff; font-size: 28px; color: #231f20; letter-spacing: 0.1em; }
+.logo:hover,
+.logo:focus { text-decoration: none; color: #231f20; }
+
+/* ------------------------------------------------------------ *\
+	Slogan
+\* ------------------------------------------------------------ */
+
+.slogan { display: block; color: #484848; font-size: 11px; line-height: 1; text-transform: uppercase; letter-spacing: 0.17em; 
+
+	@media (max-width: 479px) {
+		& { font-size: 10px; letter-spacing: .15em; }
+	}
+}

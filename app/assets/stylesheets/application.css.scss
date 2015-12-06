@@ -14,11 +14,6 @@
  * require_tree .
  * require_self
 
- *require stylesheets/_bootstrap
- *require css/font-awesome.min
+ *=require style
  *=require fastselect.min
- *=require style.scss
  */
-
-@import "font-awesome-sprockets";
-@import "font-awesome";

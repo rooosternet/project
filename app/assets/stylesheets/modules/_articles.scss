@@ -1,0 +1,47 @@
+/* ------------------------------------------------------------ *\
+	Articles
+\* ------------------------------------------------------------ */
+
+.articles { margin: 0; padding: 0; list-style: none outside none; }
+
+.article { padding: 5px 0; font-weight: 300; 
+
+	& + & { margin-top: 22px; }
+
+	.article-title { margin: 0 0 .5em; color: #36393b; font-weight: 500; 
+
+		a { color: #36393b; }
+		a:hover { color: #ab3939; text-decoration: none; }
+	}
+	
+	.article-actions { position: relative; padding-top: 7px; line-height: 24px; text-align: right; letter-spacing: -0.025em; 
+
+		&:before { content: ''; position: absolute; left: 0; bottom: 6px; width: 100%; height: 1px; background: #e1e1e1; }
+		a { position: relative; display: inline-block; vertical-align: top; padding-left: 10px; padding-right: 5px; background: #fbfbfb; font-size: 14px; color: #7b7b7b; }
+		a:hover,
+		a:focus { color: #538787; text-decoration: none; }
+		a i { margin-left: 3px; }
+	}
+
+	@media (max-width: $screen-xs-max) {
+		.article-title,
+		.article-entry { font-size: 17px; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Single Article
+\* ------------------------------------------------------------ */
+
+.article-single {
+
+	.article-meta { margin-bottom: 10px; font-size: 12px; color: #7b7b7b; }
+	.article-entry { font-weight: 300;
+
+		p { margin-bottom: 27px; }
+	}
+	@media (max-width: $screen-xs-max) {
+		.article-entry { font-size: 17px; }
+		.article-entry p { margin-bottom: 15px; }
+	}
+}
