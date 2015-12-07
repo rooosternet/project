@@ -14,7 +14,7 @@
 //= require jquery_ujs
 // require bootstrap-sprockets
 //= require javascripts/bootstrap.min
-//= require fastselect.standalone.min
+//= require fastselect.standalone
 //= require turbolinks
 // require bootstrap-sprockets
 //= require_tree .
