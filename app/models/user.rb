@@ -24,8 +24,19 @@ class User < ActiveRecord::Base
   validates_length_of :firstname, :lastname, :maximum => 30
   before_validation  :generate_password_if_needed
   before_create :set_name
+  after_create :send_welcome_mail 
   # before_destroy 
   # after_save 
+
+  def send_welcome_mail
+    begin
+      Mailer.welcome_email(self).deliver_now unless self.role.eql?("admin")
+    rescue Exception => e 
+      return false
+    end
+    true
+    #deliver_later 
+  end
 
   def freelancer?
     !self.freelancer.nil?
