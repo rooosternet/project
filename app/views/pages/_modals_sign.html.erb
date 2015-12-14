@@ -40,7 +40,7 @@
 								
 								<div class="form-controls">
 									<!-- <input type="text" class="form-control" name="field-studio-work-email" id="field-studio-work-email" value="" placeholder=""> -->
-									<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+									<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => ""  , :type=>"email"%>
 								</div><!-- /.form-controls -->
 							</div><!-- /.form-row -->
 							
@@ -51,7 +51,7 @@
 								
 								<div class="form-controls">
 									<!-- <input type="text" class="form-control" name="field-studio-job-title" id="field-studio-job-title" value="" placeholder=""> -->
-									<%= builder.text_field :job_title, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+									<%= builder.text_field :job_title, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
 								</div><!-- /.form-controls -->
 							</div><!-- /.form-row -->
 							
@@ -69,20 +69,20 @@
 								
 								<div class="form-controls">
 									<!-- <input type="text" class="form-control" name="field-studio-company-webiste" id="field-studio-company-webiste" value="" placeholder=""> -->
-									<%= builder.text_field :company_website, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+									<%= builder.text_field :company_website, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url" %>
 								</div><!-- /.form-controls -->
 							</div><!-- /.form-row -->
 							<% end %>
 							<div class="form-row form-row-alt">
 								<div class="checkbox">
-									<input type="checkbox" name="field-studio-terms" id="field-studio-terms" checked>
-									
+									<!-- <input type="checkbox" name="field-studio-terms" id="field-studio-terms"> -->
+									<%= check_box_tag("field-studio-terms", value = "1", checked = false, :required => true) %>
 									<label for="field-studio-terms">I agree to <a href="#">Roooster terms</a>.</label>
 								</div><!-- /.checkbox -->
 
 								<div class="checkbox">
-									<input type="checkbox" name="field-studio-subscribe" id="field-studio-subscribe" checked>
-									
+									<!-- <input type="checkbox" name="field-studio-subscribe" id="field-studio-subscribe"> -->
+									<%= check_box_tag("field-studio-subscribe", value = "1", checked = false, :required => true) %>
 									<label for="field-studio-subscribe">Get the latest news from Roooster.</label>
 								</div><!-- /.checkbox -->
 							</div><!-- /.form-row -->
@@ -155,7 +155,7 @@
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-freelancer-work-email" id="field-freelancer-work-email" value="" placeholder=""> -->
-												<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+												<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email" %>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
@@ -168,7 +168,7 @@
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-freelancer-additional-email" id="field-freelancer-additional-email" value="" placeholder=""> -->
-												<%= builder.text_field :online_portfolio, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+												<%= builder.text_field :online_portfolio, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "", :type=>"url" %>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
@@ -179,7 +179,7 @@
 
 									<div class="form-controls">
 										<!-- <input type="text" class="form-control" name="field-freelancer-linkedin-profile" id="field-freelancer-linkedin-profile" value="" placeholder=""> -->
-										<%= builder.text_field :linkedin_profile, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+										<%= builder.text_field :linkedin_profile, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-row -->
 							</div><!-- /.form-group -->
@@ -190,46 +190,46 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-row">
-											<label for="field-company" class="form-label">Company<span class="form-asterisk">*</span></label>
+											<label for="field-company" class="form-label">Company</label>
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-company" id="field-company" value="" placeholder=""> -->
-												<%= builder.text_field :company_name, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+												<%= builder.text_field :company_name, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
 
 									<div class="col-sm-6">
 										<div class="form-row">
-											<label for="field-contact-name" class="form-label">Contact Name<span class="form-asterisk">*</span></label>
+											<label for="field-contact-name" class="form-label">Contact Name</label>
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-contact-name" id="field-contact-name" value="" placeholder=""> -->
-												<%= builder.text_field :contact_name, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+												<%= builder.text_field :contact_name, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
 								</div><!-- /.row -->
 
 								<div class="form-row">
-									<label for="field-contact-email" class="form-label">Contact Email<span class="form-asterisk">*</span></label>
+									<label for="field-contact-email" class="form-label">Contact Email</label>
 
 									<div class="form-controls">
 										<!-- <input type="text" class="form-control" name="field-contact-email" id="field-contact-email" value="" placeholder=""> -->
-										<%= builder.text_field :contact_email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+										<%= builder.text_field :contact_email, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email"%>
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-row -->
 								<% end %>
 								<div class="form-row form-row-alt">
 									<div class="checkbox">
-										<input type="checkbox" name="field-freelance-terms" id="field-freelance-terms" checked>
-
+										<!-- <input type="checkbox" name="field-freelance-terms" id="field-freelance-terms" checked> -->
+										<%= check_box_tag("field-freelance-terms", value = "1", checked = false, :required => true) %>
 										<label for="field-freelance-terms">I agree to <a href="#">Roooster terms</a>.</label>
 									</div><!-- /.checkbox -->
 
 									<div class="checkbox">
-										<input type="checkbox" name="field-freelance-subscribe" id="field-freelance-subscribe" checked>
-
+										<!-- <input type="checkbox" name="field-freelance-subscribe" id="field-freelance-subscribe" checked> -->
+										<%= check_box_tag("field-freelance-subscribe", value = "1", checked = false, :required => true) %>
 										<label for="field-freelance-subscribe">Get the latest news from Roooster.</label>
 									</div><!-- /.checkbox -->
 								</div><!-- /.form-row -->
@@ -280,7 +280,7 @@
 							<div class="form-row">										
 								<div class="form-controls">
 									<!-- <input type="text" class="form-control" name="field-signin-username" id="field-freelancer-username" value="" placeholder="Username"> -->
-									<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email" %>
+									<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
 								</div><!-- /.form-controls -->
 							</div><!-- /.form-row -->
 
