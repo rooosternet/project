@@ -1,0 +1,346 @@
+/* ------------------------------------------------------------ *\
+	Section
+\* ------------------------------------------------------------ */
+/* line 6, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section {
+  max-width: 648px;
+  margin: 0 auto;
+  padding: 10px 0 0;
+}
+/* line 8, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section .section-title {
+  margin-bottom: .7em;
+  color: #aa3939;
+  letter-spacing: -0.025em;
+}
+/* line 9, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section .section-body {
+  padding-left: 18px;
+}
+/* line 10, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section .section-entry {
+  font-weight: 300;
+}
+/* line 11, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section .section-entry p {
+  margin-bottom: 1.3em;
+}
+/* line 12, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section .section-entry p:last-child {
+  margin-bottom: 0;
+}
+/* line 13, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section .section-image {
+  margin: 32px 0 15px;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  /* line 16, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section .section-title {
+    font-size: 29px;
+  }
+  /* line 17, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section .section-body {
+    padding-left: 0;
+  }
+  /* line 18, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section .section-entry {
+    font-size: 17px;
+  }
+}
+
+/* ------------------------------------------------------------ *\
+	Section About
+\* ------------------------------------------------------------ */
+/* line 26, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-about {
+  position: relative;
+  height: calc(100vh - 45px);
+  min-height: 700px;
+}
+/* line 28, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-about .section-inner {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+/* line 30, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-about .section-foot {
+  max-width: 278px;
+  margin: 0 auto;
+  text-align: center;
+}
+/* line 32, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-about .section-foot-alt {
+  margin-bottom: 25px;
+}
+/* line 34, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-about .section-foot .btn {
+  width: 100%;
+  margin-bottom: 8px;
+}
+/* line 35, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-about .section-foot p {
+  color: #9b9b9b;
+  font-size: 13px;
+  letter-spacing: 0.025em;
+}
+/* line 36, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-about .section-foot p a {
+  color: #9b9b9b;
+  text-decoration: underline;
+}
+/* line 37, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-about .section-foot p a:hover {
+  text-decoration: none;
+}
+@media (max-width: 767px) {
+  /* line 41, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-about {
+    height: auto;
+    min-height: 0;
+  }
+  /* line 42, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-about .section-inner {
+    position: static;
+    transform: translateY(0%);
+  }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Blog
+\* ------------------------------------------------------------ */
+/* line 50, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog {
+  padding: 15px 0 87px;
+}
+/* line 52, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog .section-foot {
+  text-align: left;
+  padding: 0 18px;
+  margin-top: 40px;
+  letter-spacing: -0.025em;
+}
+/* line 54, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog .section-foot a {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  color: #7b7b7b;
+}
+/* line 55, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog .section-foot a:hover,
+.section-blog .section-foot a:focus {
+  color: #538787;
+  text-decoration: none;
+}
+/* line 57, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog .section-foot a i {
+  margin-left: 4px;
+}
+/* line 60, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog-alt {
+  padding: 101px 0 80px;
+}
+/* line 62, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog-alt .section-title {
+  margin-bottom: 10px;
+}
+/* line 63, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog-alt .section-foot a i {
+  margin-right: 4px;
+  margin-left: 0;
+}
+/* line 64, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog-alt .section-foot a + a {
+  float: right;
+}
+/* line 65, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-blog-alt .section-foot a + a i {
+  margin-left: 4px;
+  margin-right: 0;
+}
+@media (max-width: 767px) {
+  /* line 69, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-blog {
+    padding-bottom: 50px;
+  }
+  /* line 71, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-blog .section-foot {
+    padding: 0;
+    margin-top: 30px;
+  }
+  /* line 73, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-blog-alt {
+    padding: 30px 0 50px;
+  }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Search
+\* ------------------------------------------------------------ */
+/* line 81, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-search {
+  padding: 95px 0 160px;
+}
+/* line 83, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-search .section-title {
+  margin: 0 0 34px;
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: -0.025em;
+}
+/* line 84, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-search .section-image {
+  margin-top: 65px;
+  padding-right: 30px;
+  text-align: center;
+}
+/* line 86, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-search .section-actions {
+  text-align: center;
+  margin-top: 10px;
+}
+@media (max-width: 991px) {
+  /* line 89, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-search {
+    padding: 20px 0 120px;
+  }
+  /* line 90, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-search .section-title {
+    margin-bottom: 25px;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+  }
+  /* line 91, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-search .section-image {
+    margin: 20px auto 10px;
+  }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Freelancers
+\* ------------------------------------------------------------ */
+/* line 99, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-freelancers {
+  padding: 92px 7px 0;
+}
+/* line 101, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-freelancers .section-head {
+  margin-bottom: 5px;
+  letter-spacing: -0.025em;
+}
+/* line 102, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-freelancers .section-head span {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+  font-size: 12px;
+  color: #7b7b7b;
+}
+/* line 103, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-freelancers .section-head span strong {
+  color: #ab3939;
+}
+/* line 104, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-freelancers .section-title {
+  display: inline-block;
+  margin: 0;
+  color: #ab3939;
+}
+@media (max-width: 1199px) {
+  /* line 107, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-freelancers {
+    margin: 0 -50px;
+  }
+}
+@media (max-width: 991px) {
+  /* line 111, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-freelancers {
+    margin: 0;
+    padding: 40px 0;
+  }
+  /* line 113, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-freelancers .section-title {
+    display: block;
+  }
+  /* line 114, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-freelancers .search-alt {
+    max-width: none;
+  }
+  /* line 115, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .section-freelancers .section-head {
+    margin-bottom: 20px;
+  }
+}
+
+/* ------------------------------------------------------------ *\
+	Section Suggest
+\* ------------------------------------------------------------ */
+/* line 123, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-suggest {
+  padding-bottom: 100px;
+}
+/* line 125, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-suggest .section-icon {
+  padding: 30px 0;
+  text-align: center;
+}
+/* line 126, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-suggest .section-head {
+  text-align: center;
+}
+/* line 128, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-suggest .section-body {
+  max-width: 996px;
+  margin: 0 auto;
+}
+/* line 130, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.section-suggest .btn-collapse-form {
+  transition: none;
+}
+
+/* ------------------------------------------------------------ *\
+	Divider
+\* ------------------------------------------------------------ */
+/* line 139, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.divider {
+  position: relative;
+  text-align: center;
+  margin-bottom: 35px;
+}
+/* line 141, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.divider:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: #e6e6e6;
+}
+/* line 143, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+.divider a {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  z-index: 5;
+  padding: 0 18px;
+  background: #fbfbfb;
+}
+@media (max-width: 767px) {
+  /* line 146, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .divider {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 479px) {
+  /* line 150, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_sections.scss */
+  .divider {
+    margin-bottom: 10px;
+  }
+}

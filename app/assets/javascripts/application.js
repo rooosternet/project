@@ -13,8 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 // require bootstrap-sprockets
-//= require javascripts/bootstrap.min
+//= require bootstrap.min
 //= require fastselect.standalone
 //= require turbolinks
-// require bootstrap-sprockets
+// require javascripts/bootstrap-sprockets
 //= require_tree .
+
+
+function setupAjaxIndicator() {
+  $(document).bind('ajaxSend', function(event, xhr, settings) {
+    if ($('.ajax-loading').length === 0 && settings.contentType != 'application/octet-stream') {
+      $('#ajax-indicator').show();
+    }
+  });
+  $(document).bind('ajaxStop', function() {
+    $('#ajax-indicator').hide();
+  });
+}
+
+$(document).ready(setupAjaxIndicator);

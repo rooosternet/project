@@ -1,0 +1,121 @@
+/* ------------------------------------------------------------ *\
+	Freelancers
+\* ------------------------------------------------------------ */
+/* line 6, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancers {
+  list-style: none outside none;
+  padding: 0 20px;
+  background: #fefefe;
+  border: 1px solid #f6f6f6;
+}
+
+/* line 8, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer {
+  position: relative;
+  padding: 18px 15px 18px 40px;
+  border-bottom: 1px solid #efefef;
+  color: #36393b;
+  font-size: 13px;
+  list-style-type: -0.025em;
+  transition: all .2s ease-out;
+}
+/* line 10, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer:last-child {
+  border: 0;
+}
+/* line 11, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer:hover {
+  opacity: .8;
+}
+/* line 13, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-icon {
+  position: absolute;
+  left: 0;
+  top: 15px;
+}
+/* line 14, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-name {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: bold;
+}
+/* line 16, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-head {
+  margin-bottom: 13px;
+}
+/* line 17, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-head p {
+  margin-bottom: 0;
+}
+/* line 19, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-links {
+  margin: 0 0 9px;
+  padding: 0;
+  font-size: 15px;
+  list-style: none outside none;
+}
+/* line 21, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-links li {
+  display: inline;
+}
+/* line 22, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-links li + li:before {
+  content: '|';
+  color: #b14848;
+}
+/* line 23, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-links a {
+  color: #36393b;
+}
+/* line 26, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-foot {
+  font-size: 12px;
+}
+/* line 27, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-foot-inner {
+  overflow: hidden;
+}
+/* line 29, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-socials {
+  float: left;
+  margin-right: 10px;
+  list-style: none outside none;
+}
+/* line 31, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-socials li {
+  float: left;
+}
+/* line 32, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-socials li + li {
+  margin-left: 6px;
+}
+/* line 33, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-socials a {
+  display: block;
+  transition: all .2s ease-out;
+}
+/* line 34, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-socials a:hover {
+  opacity: .8;
+}
+/* line 35, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+.freelancer .freelancer-socials span {
+  display: block;
+  opacity: .3;
+}
+@media (max-width: 991px) {
+  /* line 39, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+  .freelancer {
+    padding: 18px 0;
+  }
+  /* line 40, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+  .freelancer .freelancer-socials {
+    float: none;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  /* line 41, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_freelancer.scss */
+  .freelancer .freelancer-icon {
+    display: none;
+  }
+}

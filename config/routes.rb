@@ -14,4 +14,11 @@ Rails.application.routes.draw do
   resources :users
   match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
 
+
+  get 'info/about', :as => "about"
+  get 'info/blog', :as => "blog"
+  get 'info/faq', :as => "faq"
+  get 'info/privacy', :as => "privacy"
+  get 'info/terms', :as => "terms"
+    
 end

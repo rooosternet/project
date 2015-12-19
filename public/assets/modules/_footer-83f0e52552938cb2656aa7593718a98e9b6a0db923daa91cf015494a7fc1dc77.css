@@ -1,0 +1,95 @@
+/* ------------------------------------------------------------ *\
+	Footer
+\* ------------------------------------------------------------ */
+/* line 6, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0 0;
+  background: #464646;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+/* line 8, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-nav {
+  padding: 9px 0 6px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+/* line 10, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-nav ul {
+  list-style: none outside none;
+  padding-bottom: 13px;
+}
+/* line 11, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-nav li {
+  display: inline;
+}
+/* line 12, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-nav li + li:before {
+  content: '|';
+  color: #868585;
+}
+/* line 13, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-nav a {
+  color: #fff;
+}
+/* line 16, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-socials {
+  padding-bottom: 35px;
+  font-size: 0;
+}
+/* line 18, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-socials ul {
+  list-style: none outside none;
+  text-align: center;
+}
+/* line 19, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-socials li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 2px;
+}
+/* line 20, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-socials a {
+  display: block;
+  width: 25px;
+  height: 25px;
+  line-height: 22px;
+  border-radius: 50%;
+  border: 2px solid #818181;
+  background: #818181;
+  color: #464646;
+  font-size: 16px;
+  transition: all .2s ease-out;
+}
+/* line 21, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-socials a:hover {
+  background: #464646;
+  color: #818181;
+}
+/* line 24, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-bar {
+  padding: 13px 0;
+  background: #fbfbfb;
+  color: #8a8a8a;
+  font-size: 13px;
+}
+/* line 26, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+.footer .footer-bar p {
+  margin: 0;
+}
+@media (max-width: 479px) {
+  /* line 30, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+  .footer .shell {
+    padding: 0 5px;
+  }
+  /* line 31, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_footer.scss */
+  .footer .footer-nav {
+    font-size: 13px;
+  }
+}

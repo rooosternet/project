@@ -1,0 +1,185 @@
+/* ------------------------------------------------------------ *\
+	Header
+\* ------------------------------------------------------------ */
+/* line 6, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.header {
+  position: relative;
+  z-index: 1000;
+  height: 56px;
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+  text-align: center;
+}
+/* line 8, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.header:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 100%;
+  height: 1px;
+  background: #f5f5f5;
+}
+/* line 10, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.header .shell {
+  position: relative;
+}
+/* line 12, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.header .header-actions {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  top: 13px;
+  padding: 0 10px;
+  background: #fff;
+}
+/* line 13, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.header .header-actions .btn {
+  width: 100px;
+  padding: 0 5px;
+}
+/* line 14, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.header .header-actions .btn-icon {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  margin-left: -7px;
+  line-height: 1;
+  border-radius: 50%;
+  background: #fff;
+}
+/* line 15, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.header .header-actions .btn-icon i {
+  vertical-align: top;
+  opacity: .4;
+  transition: all .2s ease-out;
+}
+@media (max-width: 1199px) {
+  /* line 18, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+  .header .shell {
+    position: static;
+  }
+}
+
+/* ------------------------------------------------------------ *\
+	Dropdown
+\* ------------------------------------------------------------ */
+/* line 26, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown {
+  display: inline-block;
+  vertical-align: top;
+  width: 100px;
+}
+/* line 27, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown .btn {
+  width: 100px;
+  padding: 0 5px;
+}
+/* line 28, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown .btn-icon {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  margin-left: -7px;
+  line-height: 1;
+  border-radius: 50%;
+  background: #fff;
+}
+/* line 29, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown .btn-icon i {
+  vertical-align: top;
+  opacity: .4;
+  transition: all .2s ease-out;
+}
+/* line 31, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown .dropdown-menu {
+  display: block;
+  min-width: 0;
+  width: 100px;
+  padding: 0;
+  margin-top: 15px;
+  border: 1px solid #e1e9ee;
+  border-radius: 0;
+  box-shadow: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .2s ease-out;
+}
+/* line 33, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown .dropdown-menu li + li:before {
+  content: '';
+  display: block;
+  width: 68px;
+  height: 1px;
+  margin: 0 auto;
+  background: #efefef;
+}
+/* line 34, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown .dropdown-menu a {
+  padding: 0;
+  text-align: center;
+  line-height: 24px;
+  font-size: 11px;
+  color: #6c727a;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all .2s ease-out;
+}
+/* line 35, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown .dropdown-menu a:hover {
+  color: #000;
+  background: transparent;
+}
+/* line 37, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown.open .btn-icon i {
+  transform: rotate(-180deg);
+}
+/* line 38, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.dropdown.open .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------ *\
+	Logo
+\* ------------------------------------------------------------ */
+/* line 45, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.logo {
+  position: relative;
+  z-index: 5;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 60px;
+  margin: 3px 0 2px;
+  background: #fff;
+  font-size: 28px;
+  color: #231f20;
+  letter-spacing: 0.1em;
+}
+
+/* line 46, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.logo:hover,
+.logo:focus {
+  text-decoration: none;
+  color: #231f20;
+}
+
+/* ------------------------------------------------------------ *\
+	Slogan
+\* ------------------------------------------------------------ */
+/* line 53, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+.slogan {
+  display: block;
+  color: #484848;
+  font-size: 11px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+}
+@media (max-width: 479px) {
+  /* line 56, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_header.scss */
+  .slogan {
+    font-size: 10px;
+    letter-spacing: .15em;
+  }
+}

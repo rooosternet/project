@@ -1,0 +1,115 @@
+/* ------------------------------------------------------------ *\
+	Search
+\* ------------------------------------------------------------ */
+/* line 6, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search {
+  position: relative;
+  max-width: 648px;
+  margin: 0 auto;
+}
+/* line 8, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-field {
+  height: 35px;
+  padding: 0 50px 0 13px;
+  background: #fff;
+  border-radius: 0;
+  border: 1px solid #dae4eb;
+  box-shadow: inset 2px 2px 5px 0 rgba(193, 207, 217, 0.35);
+  font-size: 13px;
+  color: #cfcfcf;
+  transition: all .2s ease-out;
+}
+/* line 9, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-btn {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 40px;
+  height: 33px;
+  padding: 0 0 3px;
+  border: 0;
+  background: transparent;
+  color: #666666;
+  font-size: 18px;
+  transition: all .2s ease-out;
+}
+/* line 10, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-btn:hover {
+  color: #fff;
+  background: #2e3641;
+}
+/* line 12, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-body {
+  margin-bottom: 13px;
+}
+/* line 13, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-foot {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 300;
+  color: #bababa;
+}
+/* line 15, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-foot ul {
+  display: inline;
+  list-style: none outside none;
+}
+/* line 16, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-foot li {
+  display: inline;
+}
+/* line 17, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-foot li + li:before {
+  content: '\2022';
+}
+/* line 18, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-foot a {
+  text-decoration: underline;
+  color: #bababa;
+}
+/* line 19, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .search-foot a:hover {
+  color: #aa3939;
+}
+/* line 22, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .fstElement {
+  height: 35px;
+  padding: 0 50px 0 8px;
+  background: #fff;
+  border-radius: 0;
+  border: 1px solid #dae4eb;
+  box-shadow: inset 2px 2px 5px 0 rgba(193, 207, 217, 0.35);
+  font-size: 13px;
+  color: #cfcfcf;
+}
+/* line 23, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .fstMultipleMode .fstQueryInput {
+  height: 35px;
+}
+/* line 24, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search .fstChoiceItem {
+  height: 33px;
+  line-height: 33px;
+}
+/* line 26, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search-alt {
+  max-width: 266px;
+  margin: 7px 0 0 auto;
+}
+/* line 28, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search-alt .search-field {
+  height: 27px;
+  padding-right: 40px;
+}
+/* line 29, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+.search-alt .search-btn {
+  height: 25px;
+  width: 30px;
+  font-size: 15px;
+}
+@media (max-width: 991px) {
+  /* line 33, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_search.scss */
+  .search .search-foot {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,81 @@
+/* ------------------------------------------------------------ *\
+	Button
+\* ------------------------------------------------------------ */
+/* line 6, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_btn.scss */
+.btn {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 20px;
+  background: #000;
+  color: #fff;
+  border-radius: 0;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-align: center;
+  transition: all .2s ease-out;
+}
+
+/* line 7, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_btn.scss */
+.btn:hover,
+.btn:active,
+.btn:focus,
+.btn:active:focus {
+  background: #333;
+  color: #fff;
+  outline: none;
+}
+
+/*  Button Light  */
+/* line 14, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_btn.scss */
+.btn-light {
+  background: #b2b2b2;
+}
+
+/* line 15, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_btn.scss */
+.btn-light:hover,
+.btn-light:active,
+.btn-light:focus,
+.btn-light:active:focus {
+  background: #a2a2a2;
+  color: #fff;
+}
+
+/*  Button Default  */
+/* line 23, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_btn.scss */
+.btn-default {
+  background: #fff;
+  color: #6c727a;
+  border: 1px solid #e1e9ef;
+}
+
+/* line 24, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_btn.scss */
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:active:focus {
+  box-shadow: none;
+  background: #fff;
+  border-color: #e1e9ef;
+  color: #000000;
+}
+
+/*  Button Large  */
+/* line 32, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_btn.scss */
+.btn-large {
+  position: relative;
+  height: auto;
+  padding: 10px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #030303;
+}
+
+/* line 33, /Users/yossie/projects/roooster/app/assets/stylesheets/modules/_btn.scss */
+.btn-large i {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}

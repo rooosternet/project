@@ -15,26 +15,37 @@
   <body>
     <div class="wrapper">
 
-    <% if user_signed_in? && current_user.admin? %>
-        <%= render 'layouts/admin_navigation' %>  
-    <% elsif user_signed_in? %>
-        <%= render :partial => 'pages/header_logged' %>
-    <% else %>    
-        <%= render :partial => 'pages/header' %>
-    <% end %>
+    <%# if user_signed_in? && current_user.admin? %>
+        <%#= render 'layouts/admin_navigation' %>  
+    <%# elsif user_signed_in? %>
+        <%#= render :partial => 'pages/header_logged' %>
+    <%# else %>    
+        <%#= render :partial => 'pages/header' %>
+    <%# end %>
+
+    <header class="header">
+      <div class="shell">
+        <%= link_to 'roooster', root_path, class: 'logo'  %>
+        <span class="slogan">Collaborative Roster For Creative Leaders</span>
+
+        <div class="header-actions hidden-xs">
+        
+        </div>
+      </div>
+    </header>
    
     <main role="main">
         <div id="ajax-indicator" style="display:none;"><span>moment...</span></div>
-        <%= render 'layouts/messages' %>
+        <%#= render 'layouts/messages' %>
         <%= yield %>
     </main>
 
-    <% if user_signed_in? %>
-         <%= render :partial => 'pages/modals_edit' %>    
-    <% else %>
-         <%= render :partial => 'pages/modals_sign' %>    
-         <%= render :partial => 'pages/modals_alt' %>
-    <% end %>
+    <%# if user_signed_in? %>
+         <%#= render :partial => 'pages/modals_edit' %>    
+    <%# else %>
+         <%#= render :partial => 'pages/modals_sign' %>    
+         <%#= render :partial => 'pages/modals_alt' %>
+    <%# end %>
 
     <%= render :partial => 'pages/footer' %>
     
