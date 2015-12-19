@@ -1,1 +1,0 @@
-$(function(){$(".edit_user").bind("ajax:success",function(e,r,t,i){"success"==t?(fid=$(this).data("parent"),$("#"+fid).modal("hide")):$(".form-error").text(r.responseText)}),$(".edit_user").bind("ajax:error",function(e,r,t,i){$(".form-error").text(r.responseText)}),$(".edit_user").bind("ajax:complete",function(e,r,t,i){})});
