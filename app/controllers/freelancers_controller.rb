@@ -1,16 +1,21 @@
 class FreelancersController < ApplicationController
   before_action :authenticate_user!
   # after_action :verify_authorized
+
+  # {"search"=>"", "skiles"=>"Motion Graphics"}
   def index
   	@freelancers_count = 'No'
     @freelancers = []
     scope = Freelancer.active
-  	params[:search].split(' ').collect{ |search_string| scope = scope.live_search(search_string) } if !params[:search].blank?
-    
+    params[:search].split(' ').collect{ |search_string| scope = scope.live_search(search_string) } if !params[:search].blank?
+    scope.skill_search(params[:skiles]) if !params[:skiles].blank?
+
     unless scope.blank?
     	@freelancers_count = scope.count
     	@freelancers = scope
-	end
+    end
+
+    render :template => 'pages/search' if params[:skiles].blank? && params[:search].blank?
   end
 
   def invite

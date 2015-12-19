@@ -10,6 +10,8 @@ class Freelancer < ActiveRecord::Base
                                                LOWER(#{Freelancer.table_name}.skills) LIKE LOWER(:p))",
                                                {:p => "%" + search.downcase + "%"})}
 
+	scope :skill_search, lambda {|search| joins(:user).where("LOWER(#{Freelancer.table_name}.skills) LIKE LOWER(:p))",
+                                               {:p => "%" + search.downcase + "%"})}
 
 	def self.reject_freelancer(attributes)
 		exists = attributes['id'].present?
