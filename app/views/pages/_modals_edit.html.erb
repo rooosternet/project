@@ -27,7 +27,7 @@
 												
 												<div class="form-controls">
 													<!-- <input type="text" class="form-control" name="field-username" id="field-username" value="" placeholder=""> -->
-													<%= f.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "", disabled: true  %>
+													<%= f.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "", disabled: true , :type=>"email" %>
 												</div><!-- /.form-controls -->
 											</div><!-- /.form-row -->
 										</div><!-- /.col-sm-6 -->
@@ -38,7 +38,7 @@
 												<%= f.fields_for :studio do |builder| %>
 												<div class="form-controls">
 													<!-- <input type="text" class="form-control" name="field-additional-email" id="field-additional-email" value="" placeholder=""> -->
-													<%= builder.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => ""  %>
+													<%= builder.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email" %>
 												</div><!-- /.form-controls -->
 												<% end %>
 											</div><!-- /.form-row -->
@@ -101,7 +101,7 @@
 												
 												<div class="form-controls">
 													<!-- <input type="text" class="form-control" name="field-website" id="field-website" value="" placeholder=""> -->
-													<%= builder.text_field :company_website, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+													<%= builder.text_field :company_website, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
 												</div><!-- /.form-controls -->
 											</div><!-- /.form-row -->
 										</div><!-- /.col-sm-6 -->
@@ -123,7 +123,7 @@
 										
 										<div class="form-controls">
 											<!-- <input type="text" class="form-control" name="field-social-links" id="field-social-links" value="" placeholder=""> -->
-											<%= builder.text_field :social_links, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											<%= builder.text_field :social_links, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
 
@@ -146,7 +146,7 @@
 						</div><!-- /.form-inner -->
 
 						<div class="form-foot">
-							<p>Need help? <a href="#">drop us a line</a>.</p>
+							<p>Need help? <a href="mailto:info@roooster.net">drop us a line</a>.</p>
 						</div><!-- /.form-foot -->
 					<!-- </form> -->
 					<% end %>
@@ -185,7 +185,7 @@
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-freelancer-username" id="field-freelancer-username" value="" placeholder=""> -->
-												<%= f.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "", disabled: true  %>
+												<%= f.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "", disabled: true , :type=>"email" %>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
@@ -197,7 +197,7 @@
 											<%= f.fields_for :freelancer do |builder| %>
 												<div class="form-controls">
 													<!-- <input type="text" class="form-control" name="field-additional-email" id="field-additional-email" value="" placeholder=""> -->
-													<%= builder.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => ""  %>
+													<%= builder.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => ""  , :type=>"email"%>
 												</div><!-- /.form-controls -->
 											<% end %>
 										</div><!-- /.form-row -->
@@ -248,7 +248,7 @@
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-website" id="field-website" value="" placeholder=""> -->
-												<%= builder.text_field :online_portfolio, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+												<%= builder.text_field :online_portfolio, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
@@ -259,7 +259,7 @@
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-linkedin" id="field-linkedin" value="" placeholder=""> -->
-												<%= builder.text_field :linkedin_profile, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+												<%= builder.text_field :linkedin_profile, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
@@ -272,7 +272,7 @@
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-behance" id="field-behance" value="" placeholder=""> -->
-												<%= builder.text_field :behance, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+												<%= builder.text_field :behance, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
@@ -283,7 +283,7 @@
 
 											<div class="form-controls">
 												<!-- <input type="text" class="form-control" name="field-vimeo" id="field-vimeo" value="" placeholder=""> -->
-												<%= builder.text_field :vimeo, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+												<%= builder.text_field :vimeo, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
@@ -314,7 +314,7 @@
 					</div><!-- /.form-inner -->
 
 					<div class="form-foot">
-						<p>Need help? <a href="#">drop us a line</a>.</p>
+						<p>Need help? <a href="mailto:info@roooster.net">drop us a line</a>.</p>
 					</div><!-- /.form-foot -->
 					<!-- </form> -->
 					<% end %>

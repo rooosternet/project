@@ -14,14 +14,7 @@
   </head>
   <body>
     <div class="wrapper">
-
-    <% if user_signed_in? && current_user.admin? %>
-        <%= render 'layouts/admin_navigation' %>  
-    <% elsif user_signed_in? %>
-        <%= render :partial => 'pages/header_logged' %>
-    <% else %>    
-        <%= render :partial => 'pages/header' %>
-    <% end %>
+    <%= render 'layouts/admin_navigation' %> 
    
     <main role="main">
         <div id="ajax-indicator" style="display:none;"><span>moment...</span></div>
@@ -29,15 +22,7 @@
         <%= yield %>
     </main>
 
-    <% if user_signed_in? %>
-         <%= render :partial => 'pages/modals_edit' %>    
-    <% else %>
-         <%= render :partial => 'pages/modals_sign' %>    
-         <%= render :partial => 'pages/modals_alt' %>
-    <% end %>
-
-    <%= render :partial => 'pages/footer' %>
-    
-    </div><!-- /.wrapper -->  
+   
+    </div>
   </body>
 </html>

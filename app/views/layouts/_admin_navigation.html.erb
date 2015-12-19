@@ -2,58 +2,26 @@
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-      <div class="navbar-header">
+  <!--     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
+          <s  pan class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">Project name</a>
-      </div>
+      </div> -->
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+          <li><%= link_to 'Users', users_path %></li>
+          <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+          <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+          <!-- <li class="active"><a href="#">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Contact</a></li> -->
         </ul>
       </div><!--/.nav-collapse -->
     </div>
   </nav>
 
 </header><!-- /.header -->
-
-<div class="header shell">
-  <!-- <a href="home.html" class="logo">roooster</a> -->
-  <%= link_to 'roooster', root_path, class: 'logo'  %>
-  <span class="slogan">Collaborative Roster For Creative Leaders</span>
-
-  <div class="header-actions hidden-xs">
-    <div class="dropdown">
-      <a href="#" class="btn btn-default" data-toggle="dropdown">
-        <%= current_user.firstname %> <span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
-      </a>
-
-      <ul class="dropdown-menu">
-          <!-- <li>
-            <a href="#modal-edit-profile" data-toggle="modal">Edit</a>
-          </li> -->
-          <% if current_user.studio?  %>
-          <li>
-            <a href="#modal-edit-profile-studio" data-toggle="modal">Edit <%= "Studio" if current_user.freelancer? %></a>
-          </li>
-          <% end %>
-
-          <% if current_user.freelancer?  %>
-          <li>
-            <a href="#modal-edit-profile-freelancer" data-toggle="modal">Edit <%= "Freelancer" if current_user.studio? %></a>
-          </li>
-          <% end %>
-
-          <li>
-            <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
-          </li>
-        </ul><!-- /.dropdown-menu -->
-      </div><!-- /.dropdown -->
-    </div><!-- /.header-actions -->
-  </div><!-- /.shell -->
