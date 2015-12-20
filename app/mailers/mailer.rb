@@ -7,6 +7,11 @@ class Mailer < ApplicationMailer
 	end
 
 	def invite_email(inviter,invitee)
-		mail(to: invitee[:email] ,subject: "#{inviter.name} has invite you to roooster!")
+		@inviter = inviter
+		@invitee = invitee
+		mail(to: invitee[:email] ,subject: "You have been invited to join Roooster by #{inviter.name}")
 	end
 end
+
+
+

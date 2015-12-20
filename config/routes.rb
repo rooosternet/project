@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'freelancers/index'
   post 'freelancers/invite'
 
+  get 'visitors/home', :as => "home"
+
   root to: 'visitors#home'
   # devise_for :users
 

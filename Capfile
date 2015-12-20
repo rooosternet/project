@@ -136,7 +136,7 @@ namespace :deploy do
 	end
 
 	task :notify_deploy do
-		`say "rooster #{fetch(:rails_env)} deploy completed, kokoreeku"`
+		`say "rooster #{fetch(:rails_env)} deploy completed, kokoureeku"`
 	end
 
 	 task :clear_assets do
