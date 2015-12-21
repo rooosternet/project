@@ -30,7 +30,14 @@ class User < ActiveRecord::Base
 
   def send_welcome_mail
     begin
-      Mailer.welcome_email(self).deliver_now unless self.role.eql?("admin")
+      return true if self.role.eql?("admin")
+      
+      if self.studio?
+        Mailer.welcome_email(self).deliver_now 
+      elsif self.freelancer?
+        Mailer.welcome_email_freelancer(self).deliver_now 
+      end  
+            
     rescue Exception => e 
       return false
     end
@@ -44,6 +51,10 @@ class User < ActiveRecord::Base
 
   def studio?
     !self.studio.nil?
+  end
+
+  def pending?
+    self.role.eql?("pending")
   end
 
   private

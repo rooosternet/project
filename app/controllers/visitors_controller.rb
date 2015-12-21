@@ -6,7 +6,7 @@ class VisitorsController < ApplicationController
 			@user.studio = Studio.new
 			@user.freelancer = Freelancer.new
 		else
-			if current_user.role == "pending"
+			if current_user.pending?
 				sign_out(:user)
 				redirect_to root_path
 			else	

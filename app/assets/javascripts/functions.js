@@ -1,9 +1,29 @@
+function trigger_signin_form(){
+	$('.signin_form').bind('ajax:success',function(event, data, status, xhr){
+		fid = $(this).data("parent");
+		$("#"+fid).modal('hide');
+		window.location.href = "/";
+	});	
+
+	$('.signin_form').bind('ajax:error', function(event, data, status, xhr) {
+		var msg = "Sign-in resolved in error!!";
+		if(data.responseText=="Your account is pending approval!"){
+			$("#modal-signin").modal('hide');
+			$("#modal-signin-pending-alt").modal('show');
+		}else if(data.responseText=="Invalid email or password."){
+			msg = "Invalid email or password.";
+		}
+		$("#sign-in-form-error").text(msg);	
+	});
+};
+
+
 ;(function($, window, document, undefined) {
 	var $win = $(window);
 	var $doc = $(document);
 
 	$doc.ready(function() {
-		
+
 		// Scroll To
 		$('[data-scroll-to]').on('click', function(event) {
 			event.preventDefault();
@@ -49,22 +69,38 @@
 		});
 
 		$('.register_form').bind('ajax:success',function(event, data, status, xhr){
-			if(status == 'success'){
-				fid = $(this).data("parent");
-				$("#"+fid).modal('hide');
-				$("#"+fid+"-alt").modal('show');
-			}else{
-				$(".form-error").text(data.responseText);
-			}
-			
+			fid = $(this).data("parent");
+			$("#"+fid).modal('hide');
+			$("#"+fid+"-alt").modal('show');
 		});	
 
 		$('.register_form').bind('ajax:error', function(event, data, status, xhr) {
-		    $(".form-error").text(data.responseText);
+			fid = $(this).data("error-id");
+			$(fid).text(data.responseText);
 		});
 
 		$('.register_form').bind('ajax:complete', function(event, data, status, xhr) {
-		    
+
+		});
+
+		// modal-signin-link click to sign-in
+		$('#modal-signin-link').on('click', function(event) {
+			event.preventDefault();
+			var url = $(this).data('url');
+			$.ajax({
+				url: url,
+				type: 'get',
+				success: function(sign_in_form){
+					$("#signin_form_id").replaceWith(sign_in_form);
+					$("#modal-signin").modal('show');
+				},
+				error: function(data){ 
+					console.log(data);
+				},
+				complete: function(){ 
+					trigger_signin_form();
+				}
+			});	
 		});
 
 	});

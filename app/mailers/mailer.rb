@@ -6,6 +6,11 @@ class Mailer < ApplicationMailer
 		mail(to: @user.email,subject: "Welcome to Roooster!")
 	end
 
+	def welcome_email_freelancer(user)
+		@user = user
+		mail(to: @user.email,subject: "Welcome to Roooster!")
+	end
+
 	def invite_email(inviter,invitee)
 		@inviter = inviter
 		@invitee = invitee
