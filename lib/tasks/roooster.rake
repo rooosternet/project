@@ -124,7 +124,6 @@ namespace :roooster do
                 puts _user.inspect
 
             rescue Exception => e
-                byebug
                 puts e.message
             end
         end 
