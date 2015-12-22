@@ -2,12 +2,18 @@ namespace :roooster do
 	desc <<-END_DESC
 	this rake populate fake freelancers
 	Examples:
-	rake roooster:populate_freelancer RAILS_ENV="production" 
+	rake roooster:populate_freelancer RAILS_ENV="production"
+    rake roooster:import_users_from_file RAILS_ENV="production" 
 	END_DESC
 
 	task :populate_freelancer, [] => :environment do |t , args| 
         # include Redmine::I18n
         populate
+    end
+
+    task :import_users_from_file, [] => :environment do |t , args| 
+        # include Redmine::I18n
+        import_users
     end
 
     private
@@ -49,5 +55,81 @@ namespace :roooster do
 
     end
 
+
+    def import_users
+       start = Time.now
+       puts "import users: #{start}"
+       puts "populating users..."
+       
+        users = []
+        begin
+            workbook = Roo::Spreadsheet.open("#{Rails.root}/doc/Users_2015_12_18.xlsx", extension: :xlsx)
+            workbook.default_sheet = workbook.sheets[0]
+            
+            freelancers = 0
+            workbook.each do |row|
+                # ["First", "Last", "Experience", "Website", "Email", "Location", "Linkedin", "Behance", "Vimeo", "Skills"] 
+                user = {
+                    "firstname" => row[0],
+                    "lastname" => row[1],
+                    "email" => row[4],
+                    "freelancer_attributes"=>{
+                        "email" => row[4],
+                        "location" => row[5],
+                        "online_portfolio" => row[3],
+                        "linkedin_profile" => row[6],
+                        "behance" => row[7],
+                        "vimeo" => row[8],
+                        "skills" => row[9]
+                    }
+                }
+                users << user unless freelancers == 0
+                # puts "freelancer: #{user.inspect}" unless freelancers == 0
+                freelancers+=1
+            end 
+
+            workbook.default_sheet = workbook.sheets[1]
+            studios = 0
+            workbook.each do |row|
+                # ["First", "Last", "Company Name", "Title", "Website", "Email", "Location"]
+                user = {
+                    "firstname" => row[0],
+                    "lastname" => row[1],
+                    "email" => row[5],
+                    "studio_attributes"=>{
+                        "email" => row[5],
+                        "location" => row[6],
+                        "company_name" => row[2],
+                        "job_title" => row[6],
+                        "company_website" => row[4]                    
+                    }
+                }
+                users << user  unless  studios == 0
+                # puts "studio: #{user.inspect}" unless  studios == 0
+                studios +=1
+            end 
+        rescue Exception => e
+            puts e.message
+        end
+        
+        puts "Importing #{freelancers} freelancers and #{studios} studios total:#{users.count}"
+        
+        users.each do |user|
+            begin
+                unless _user = User.where(email: user["email"]).first 
+                 _user = User.create!(user.dup.except("freelancer_attributes","studio_attributes")) 
+                end 
+                Freelancer.create!(user["freelancer_attributes"].merge!({user_id: _user.id})) unless user["freelancer_attributes"].blank?
+                Studio.create!(user["studio_attributes"].merge!({user_id: _user.id})) unless user["studio_attributes"].blank?
+                puts _user.inspect
+
+            rescue Exception => e
+                byebug
+                puts e.message
+            end
+        end 
+        end_time = Time.now
+        puts "done populating users: #{end_time}   #{end_time-start}"
+    end
 
 end

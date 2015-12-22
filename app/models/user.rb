@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable, :validatable
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
   
-  validates_presence_of :firstname,:lastname,:email
+  # validates_presence_of :firstname,:lastname,:email
+  validates_presence_of :firstname,:email
   validates_length_of :firstname, :lastname, :maximum => 30
   before_validation  :generate_password_if_needed
   before_create :set_name

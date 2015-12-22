@@ -12,14 +12,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-group :production do
-  gem 'devise'
-end
 
-group :development do
-  gem 'devise', path: "vendor/devise"
-end  
-
+gem 'devise'
+# gem 'devise', path: "vendor/devise"
 gem 'devise_invitable'
 gem 'high_voltage'
 gem 'mysql2', '~> 0.3.18'
@@ -57,6 +52,7 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
   gem 'spring-commands-rspec'
+  gem 'roo'
 end
 
 group :development, :test do
