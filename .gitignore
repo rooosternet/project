@@ -15,6 +15,7 @@
 /vendor/bundle/
 /vendor/ruby/
 /vendor/devise/
+/public/assets/
 
 # minimal Rails specific artifacts
 db/*.sqlite3

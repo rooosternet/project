@@ -20,7 +20,7 @@ gem 'high_voltage'
 gem 'mysql2', '~> 0.3.18'
 gem 'pundit'
 gem 'whenever', :require => false
-
+gem 'roo'
 # gem 'sidekiq' , '=3.3.1'#github: "mperham/sidekiq"
 # gem 'sinatra','>= 1.3.0', :require => false
 # gem 'sprockets'
@@ -52,7 +52,6 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
   gem 'spring-commands-rspec'
-  gem 'roo'
 end
 
 group :development, :test do
