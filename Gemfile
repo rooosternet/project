@@ -12,10 +12,14 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
+group :production do
+  gem 'devise'
+end
 
+group :development do
+  gem 'devise', path: "vendor/devise"
+end  
 
-
-gem 'devise'
 gem 'devise_invitable'
 gem 'high_voltage'
 gem 'mysql2', '~> 0.3.18'

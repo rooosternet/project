@@ -1,21 +1,21 @@
-function trigger_signin_form(){
-	$('.signin_form').bind('ajax:success',function(event, data, status, xhr){
-		fid = $(this).data("parent");
-		$("#"+fid).modal('hide');
-		window.location.href = "/";
-	});	
+// function trigger_signin_form(){
+// 	$('.signin_form').bind('ajax:success',function(event, data, status, xhr){
+// 		fid = $(this).data("parent");
+// 		$("#"+fid).modal('hide');
+// 		window.location.href = "/";
+// 	});	
 
-	$('.signin_form').bind('ajax:error', function(event, data, status, xhr) {
-		var msg = "Sign-in resolved in error!!";
-		if(data.responseText=="Your account is pending approval!"){
-			$("#modal-signin").modal('hide');
-			$("#modal-signin-pending-alt").modal('show');
-		}else if(data.responseText=="Invalid email or password."){
-			msg = "Invalid email or password.";
-		}
-		$("#sign-in-form-error").text(msg);	
-	});
-};
+// 	$('.signin_form').bind('ajax:error', function(event, data, status, xhr) {
+// 		var msg = "Sign-in resolved in error!!";
+// 		if(data.responseText=="Your account is pending approval!"){
+// 			$("#modal-signin").modal('hide');
+// 			$("#modal-signin-pending-alt").modal('show');
+// 		}else if(data.responseText=="Invalid email or password."){
+// 			msg = "Invalid email or password.";
+// 		}
+// 		$("#sign-in-form-error").text(msg);	
+// 	});
+// };
 
 
 ;(function($, window, document, undefined) {
@@ -83,25 +83,58 @@ function trigger_signin_form(){
 
 		});
 
-		// modal-signin-link click to sign-in
-		$('#modal-signin-link').on('click', function(event) {
-			event.preventDefault();
-			var url = $(this).data('url');
-			$.ajax({
-				url: url,
-				type: 'get',
-				success: function(sign_in_form){
-					$("#signin_form_id").replaceWith(sign_in_form);
-					$("#modal-signin").modal('show');
-				},
-				error: function(data){ 
-					console.log(data);
-				},
-				complete: function(){ 
-					trigger_signin_form();
-				}
-			});	
+
+		$('.signin_form').bind('ajax:success',function(event, data, status, xhr){
+			fid = $(this).data("parent");
+			$("#"+fid).modal('hide');
+			window.location.href = "/";
+		});	
+
+		$('.signin_form').bind('ajax:error', function(event, data, status, xhr) {
+			var msg = "Sign-in resolved in error!!";
+			if(data.responseText=="Your account is pending approval!"){
+				$("#modal-signin").modal('hide');
+				$("#modal-signin-pending-alt").modal('show');
+			}else if(data.responseText=="Invalid email or password."){
+				msg = "Invalid email or password.";
+			}
+			$("#sign-in-form-error").text(msg);	
 		});
+
+
+		$('#change_password_form_id').bind('ajax:success',function(event, data, status, xhr){
+			$("#modal-change-password").modal('hide');
+			$("#modal-reset-password-alt").modal('show');
+		});	
+
+		$('#change_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
+			$(".form-change-password-error").text(data.responseText);
+		});
+
+		$('.modal').on('show.bs.modal', function (e) {
+  			$(this).find(".form-error").html("");
+		})
+
+
+		// modal-signin-link click to sign-in
+		// $('#modal-signin-link').on('click', function(event) {
+		// 	event.preventDefault();
+		// 	var url = $(this).data('url');
+		// 	$.ajax({
+		// 		url: url,
+		// 		type: 'get',
+		// 		success: function(sign_in_form){
+		// 			$("#signin_form_id").replaceWith(sign_in_form);
+		// 			$("#modal-signin").modal('show');
+		// 		},
+		// 		error: function(data){ 
+		// 			console.log(data);
+		// 		},
+		// 		complete: function(){ 
+		// 			trigger_signin_form();
+		// 		}
+		// 	});	
+		// });
 
 	});
 })(jQuery, window, document);

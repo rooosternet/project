@@ -7,12 +7,12 @@ skip_before_filter :verify_authenticity_token, :only => [:create]
   #   super
   # end
 
-  def new
-    self.resource = resource_class.new(sign_in_params)
-    clean_up_passwords(resource)
-    yield resource if block_given?
-    respond_with(resource, serialize_options(resource), :layout => !request.xhr? )
-  end
+  # def new
+  #   self.resource = resource_class.new(sign_in_params)
+  #   clean_up_passwords(resource)
+  #   yield resource if block_given?
+  #   respond_with(resource, serialize_options(resource), :layout => !request.xhr? )
+  # end
 
   # POST /resource/sign_in
   # def create

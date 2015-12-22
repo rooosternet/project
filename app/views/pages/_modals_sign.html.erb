@@ -7,102 +7,96 @@
 
 			<div class="modal-body">
 				<div class="form form-signup">
-					<!-- <form action="?" method="post"> -->
+
 					<%= form_for(@user, :as => :user, :url => register_path(:user,studio: true),:remote => true , :html => { "data-error-id" => "studio_register_form" , :class => "register_form" ,:role => 'form', "data-parent" => "modal-signup"}) do |f| %>
 					<div class="form-inner-alt">
 						<div class="form-head">
-							<h4 class="form-title">Studio Sign Up</h4><!-- /.form-title -->
-							
+							<h4 class="form-title">Studio Sign Up</h4>
+
 							<p>We just need a few deatils. Boring, we know :)</p>
-						</div><!-- /.form-head -->
-						
+						</div>
+
 						<div class="form-body">
 							<div class="form-row">
 								<label for="field-studio-first-name" class="form-label">First Name<span class="form-asterisk">*</span></label>
-								
+
 								<div class="form-controls">
-									<!-- <input type="text" class="form-control" name="field-studio-first-name" id="field-studio-first-name" value="" placeholder=""> -->
 									<%= f.text_field :firstname, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-								</div><!-- /.form-controls -->
-							</div><!-- /.form-row -->
-							
+								</div>
+							</div>
+
 							<div class="form-row">
 								<label for="field-studio-last-name" class="form-label">Last Name<span class="form-asterisk">*</span></label>
-								
+
 								<div class="form-controls">
-									<!-- <input type="text" class="form-control" name="field-studio-last-name" id="field-studio-last-name" value="" placeholder=""> -->
 									<%= f.text_field :lastname, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-								</div><!-- /.form-controls -->
-							</div><!-- /.form-row -->
-							
+								</div>
+							</div>
+
 							<div class="form-row">
 								<label for="field-studio-work-email" class="form-label">Work Email<span class="form-asterisk">*</span></label>
-								
+
 								<div class="form-controls">
-									<!-- <input type="text" class="form-control" name="field-studio-work-email" id="field-studio-work-email" value="" placeholder=""> -->
 									<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => ""  , :type=>"email"%>
-								</div><!-- /.form-controls -->
-							</div><!-- /.form-row -->
-							
+								</div>
+							</div>
+
 							<%= f.fields_for :studio do |builder| %>
-							
+
 							<div class="form-row">
 								<label for="field-studio-job-title" class="form-label">Job Title</label>
-								
+
 								<div class="form-controls">
-									<!-- <input type="text" class="form-control" name="field-studio-job-title" id="field-studio-job-title" value="" placeholder=""> -->
 									<%= builder.text_field :job_title, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-								</div><!-- /.form-controls -->
-							</div><!-- /.form-row -->
-							
+								</div>
+							</div>
+
 							<div class="form-row">
 								<label for="field-studio-company" class="form-label">Company Name<span class="form-asterisk">*</span></label>
-								
+
 								<div class="form-controls">
-									<!-- <input type="text" class="form-control" name="field-studio-company" id="field-studio-company" value="" placeholder=""> -->
 									<%= builder.text_field :company_name, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-								</div><!-- /.form-controls -->
-							</div><!-- /.form-row -->
-							
+								</div>
+							</div>
+
 							<div class="form-row">
 								<label for="field-studio-company-webiste" class="form-label">Company Website</label>
-								
+
 								<div class="form-controls">
-									<!-- <input type="text" class="form-control" name="field-studio-company-webiste" id="field-studio-company-webiste" value="" placeholder=""> -->
 									<%= builder.text_field :company_website, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url" %>
-								</div><!-- /.form-controls -->
-							</div><!-- /.form-row -->
+								</div>
+							</div>
 							<% end %>
 							<div class="form-row form-row-alt">
 								<div class="checkbox">
-									<!-- <input type="checkbox" name="field-studio-terms" id="field-studio-terms"> -->
+
 									<%= check_box_tag("field-studio-terms", value = "1", checked = false, :required => true) %>
 									<label for="field-studio-terms">I agree to <a href="#">Roooster terms</a>.</label>
-								</div><!-- /.checkbox -->
+								</div>
 
 								<div class="checkbox">
-									<!-- <input type="checkbox" name="field-studio-subscribe" id="field-studio-subscribe"> -->
+
 									<%= check_box_tag("field-studio-subscribe", value = "1", checked = false, :required => false) %>
 									<label for="field-studio-subscribe">Get the latest news from Roooster.</label>
-								</div><!-- /.checkbox -->
-							</div><!-- /.form-row -->
-						</div><!-- /.form-body -->
-						
+								</div>
+							</div>
+						</div>
+
 						<div class="form-actions">
 							<input type="submit" value="Join Us" class="btn form-btn">
-						</div><!-- /.form-actions -->
-						
+						</div>
+
 						<div class="form-error" id="studio_register_form">
 							<p></p>
-						</div><!-- /.form-error -->
-					</div><!-- /.form-inner-alt -->
-					<!-- </form> -->
+						</div>
+					</div>
+
 					<% end %>
-				</div><!-- /.form-signup -->
+				</div>
 			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+		</div>
+	</div>
+</div>
 
 <div class="modal fade" id="modal-signup-freelancer">
 	<div class="modal-dialog">
@@ -113,14 +107,14 @@
 
 			<div class="modal-body">
 				<div class="form form-signup form-signup-alt">
-					<!-- <form action="?" method="post"> -->
+
 					<%= form_for(@user, :as => :user, :url => register_path(:user,studio: true),:remote => true , :html => {   "data-error-id" => "freelance_register_form" , :class => "register_form" ,:role => 'form' , "data-parent" => "modal-signup-freelancer"}) do |f| %>
 					<div class="form-inner">
 						<div class="form-head">
-							<h4 class="form-title">Freelance sign up</h4><!-- /.form-title -->
+							<h4 class="form-title">Freelance sign up</h4>
 
 							<p>Becoming a member of Working Not Working is not easy. We only accept about 10% of the portfolios that we review. Our obsessively-curated community is trusted by hundreds of companies like Apple, Google, Airbnb, Facebook, Droga5, Wieden+Kennedy, Kickstarter, IDEO, Psyop and The New York Times. All companies with very high standards that require our members to live up to the same </p>
-						</div><!-- /.form-head -->
+						</div>
 
 						<div class="form-body">
 							<div class="form-group">
@@ -130,23 +124,21 @@
 											<label for="field-freelancer-first-name" class="form-label">First Name<span class="form-asterisk">*</span></label>
 
 											<div class="form-controls">
-												<!-- <input type="text" class="form-control" name="field-freelancer-first-name" id="field-freelancer-first-name" value="" placeholder=""> -->
 												<%= f.text_field :firstname, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col-sm-6 -->
+											</div>
+										</div>
+									</div>
 
 									<div class="col-sm-6">
 										<div class="form-row">
 											<label for="field-freelancer-last-name" class="form-label">Last Name<span class="form-asterisk">*</span></label>
 
 											<div class="form-controls">
-												<!-- <input type="text" class="form-control" name="field-freelancer-last-name" id="field-freelancer-last-name" value="" placeholder=""> -->
 												<%= f.text_field :lastname, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col-sm-6 -->
-								</div><!-- /.row -->
+											</div>
+										</div>
+									</div>
+								</div>
 
 								<div class="row">
 									<div class="col-sm-6">
@@ -154,12 +146,11 @@
 											<label for="field-freelancer-work-email" class="form-label">Work Email<span class="form-asterisk">*</span></label>
 
 											<div class="form-controls">
-												<!-- <input type="text" class="form-control" name="field-freelancer-work-email" id="field-freelancer-work-email" value="" placeholder=""> -->
 												<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col-sm-6 -->
-									
+											</div>
+										</div>
+									</div>
+
 									<%= f.fields_for :freelancer do |builder| %>	
 
 									<div class="col-sm-6">
@@ -167,62 +158,59 @@
 											<label for="field-freelancer-additional-email" class="form-label">Online Portfolio<span class="form-asterisk">*</span></label>
 
 											<div class="form-controls">
-												<!-- <input type="text" class="form-control" name="field-freelancer-additional-email" id="field-freelancer-additional-email" value="" placeholder=""> -->
 												<%= builder.text_field :online_portfolio, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "", :type=>"url" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col-sm-6 -->
-								</div><!-- /.row -->
+											</div>
+										</div>
+									</div>
+								</div>
 
 								<div class="form-row">
 									<label for="field-freelancer-linkedin-profile" class="form-label">LinkedIn Profile</label>
 
 									<div class="form-controls">
-										<!-- <input type="text" class="form-control" name="field-freelancer-linkedin-profile" id="field-freelancer-linkedin-profile" value="" placeholder=""> -->
 										<%= builder.text_field :linkedin_profile, :required => false, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->
-							</div><!-- /.form-group -->
+									</div>
+								</div>
+							</div>
 							<% end %>
 
-							<!-- <div class="form-group"> -->
+
 							<div class="form-row form-row-alt">
 								<div class="checkbox">
-									<!-- <input type="checkbox" name="field-freelance-terms" id="field-freelance-terms" checked> -->
+
 									<%= check_box_tag("field-freelance-terms", value = "1", checked = false, :required => true) %>
 									<label for="field-freelance-terms">I agree to <a href="#">Roooster terms</a>.</label>
-								</div><!-- /.checkbox -->
+								</div>
 
 								<div class="checkbox">
-									<!-- <input type="checkbox" name="field-freelance-subscribe" id="field-freelance-subscribe" checked> -->
 									<%= check_box_tag("field-freelance-subscribe", value = "1", checked = false, :required => false) %>
 									<label for="field-freelance-subscribe">Get the latest news from Roooster.</label>
-								</div><!-- /.checkbox -->
-							</div><!-- /.form-row -->
-							<!-- </div>/.form-group -->
+								</div>
+							</div>
 
 
-						</div><!-- /.form-body -->
+
+						</div>
 
 						<div class="form-actions">
 							<input type="submit" value="Apply for an invite" class="btn form-btn">
-						</div><!-- /.form-actions -->
+						</div>
 
 						<div class="form-error" id="freelance_register_form">
 							<p></p>
-						</div><!-- /.form-error -->
-					</div><!-- /.form-inner -->
+						</div>
+					</div>
 
 					<div class="form-foot">
 						<p>Need help? <a href="#">drop us a line</a>.</p>
-					</div><!-- /.form-foot -->
-					<!-- </form> -->
+					</div>
+
 					<% end %>
-				</div><!-- /.form-signup -->
+				</div>
 			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+		</div>
+	</div>
+</div>
 
 
 <div class="modal modal-small fade" id="modal-signin">
@@ -245,109 +233,87 @@
 						<div class="form-body">
 							<div class="form-row">										
 								<div class="form-controls">
-							
+
 									<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
 								</div>
 							</div>
 
 							<div class="form-row">										
 								<div class="form-controls">
-									
+
 									<%= f.password_field :password,:required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Password" %>
 								</div>
 							</div>
 
 							<div class="form-row">
-									
-									<div class="checkbox">
-										<%= f.check_box :remember_me %>
-										<%= f.label :remember_me, "Remember me on this computer" %>
-									</div>
 
-									
-									<%= link_to "Forgot password?", new_password_path(:user) %>
+								<div class="checkbox">
+									<%= f.check_box :remember_me %>
+									<%= f.label :remember_me, "Remember me on this computer" %>
 								</div>
-							</div>
-							
-							<div class="form-actions">
-								
-								<%= f.submit 'Sign in', :class => 'btn form-bt' %>
-							</div>
-							
-							<div class="form-error" id="sign-in-form-error">
-								<p></p>
+
+								<%#= link_to "Forgot password?", new_password_path(:user) %>
+								<%#= link_to "Forgot password?", "#modal-change-password"  %>
+								<a data-dismiss="modal" data-toggle="modal" href="#modal-change-password">Forgot password?</a>
 							</div>
 						</div>
-						
-						<% end %>
+
+						<div class="form-actions">
+
+							<%= f.submit 'Sign in', :class => 'btn form-bt' %>
+						</div>
+
+						<div class="form-error" id="sign-in-form-error">
+							<p></p>
+						</div>
 					</div>
+
+					<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 
 
-	<div class="modal modal-small fade" id="modal-change-password">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
-					<i class="ico-close"></i>
-				</button>
+<div class="modal modal-small fade" id="modal-change-password">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
 
-				<div class="modal-body">
-					<div class="form form-signin">
+			<div class="modal-body">
+				<div class="form form-signin">
 
-						<%= form_for(@user, :as => :user, :url => session_path(:user), :html => { :role => 'form'}) do |f| %>
-						<div class="form-inner">
-							<div class="form-head">
-								<h4 class="form-title">Change Password</h4><!-- /.form-title -->
-							</div><!-- /.form-head -->
+					<%= form_for(@user, :as => :user, :url => password_path(:user), :remote => true , :html => { :method => :post,:role => 'form',"data-parent" => "modal-change-password" , :id => "change_password_form_id" }) do |f| %>
+					<div class="form-inner">
+						<div class="form-head">
+							<h4 class="form-title">Forgot your password?</h4>
+							<p>We'll send password reset instructions.</p>
+						</div>
 
-							<div class="form-body">
-								<div class="form-row">										
-									<div class="form-controls">
-										<!-- <input type="text" class="form-control" name="field-signin-username" id="field-freelancer-username" value="" placeholder="Username"> -->
-										<%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->
+						<div class="form-body">
+							<div class="form-row">										
+								<div class="form-controls">
+									<%= f.text_field :email, :autofocus => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+								</div>
+							</div>
+						</div>
 
-								<div class="form-row">										
-									<div class="form-controls">
-										<!-- <input type="password" class="form-control" name="field-signin-password" id="field-signin-password" value="" placeholder="Password"> -->
-										<%= f.password_field :password,:required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Password" %>
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->	
+						<div class="form-actions">
+							<%= f.submit 'Reset Password', :class => 'btn form-bt' %>
+						</div>
 
-								<div class="form-row">
-									<!-- <div class="checkbox">
-										<input type="checkbox" name="field-remember-me" id="field-remember-me" checked>
-										<label for="field-remember-me">Remember me on this computer</label>
-									</div> -->
-									
-									<div class="checkbox">
-										<%= f.check_box :remember_me %>
-										<%= f.label :remember_me, "Remember me on this computer" %>
-									</div>
+						<div class="form-error form-change-password-error">
+							<p></p>
+						</div>
+					</div>
 
-									<!-- <a href="#">Forgot password?</a> -->
-									<%= link_to "Forgot password?", new_password_path(:user) %>
-								</div><!-- /.form-row -->
-							</div><!-- /.form-body -->
-							
-							<div class="form-actions">
-								<!-- <input type="submit" value="Sign In" class="btn form-btn"> -->
-								<%= f.submit 'Sign in', :class => 'btn form-bt' %>
-							</div><!-- /.form-actions -->
-							
-							<div class="form-error">
-								<p></p>
-							</div><!-- /.form-error -->
-						</div><!-- /.form-inner -->
-						<!-- </form> -->
-						<% end %>
-					</div><!-- /.form-signin -->
+					<% end %>
 				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+			</div>
+		</div>
+	</div>
+</div>

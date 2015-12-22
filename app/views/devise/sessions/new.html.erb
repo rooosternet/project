@@ -1,4 +1,4 @@
-<!-- <div class="authform">
+<div class="authform">
   <%#= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
     <h3>Sign in</h3>
     <%#= devise_error_messages! %>
@@ -38,7 +38,12 @@
 
       <div class="modal-body">
         <div class="form form-signin"> -->
-          <%= form_for(User.new, :as => :user, :url => session_path(:user) , :remote => true , :html => { :class => "signin_form" ,:role => 'form', "data-parent" => "modal-signin"}) do |f| %>
+
+
+
+
+
+       <!--  <%#= form_for(User.new, :as => :user, :url => session_path(:user) , :remote => true , :html => { :class => "signin_form" ,:role => 'form', "data-parent" => "modal-signin"}) do |f| %>
             <div class="form-inner">
               <div class="form-head">
                 <h4 class="form-title">Sign In</h4>
@@ -49,42 +54,47 @@
               <div class="form-body">
                 <div class="form-row">                    
                   <div class="form-controls">
-                    
-                    <%= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+
+                    <%#= f.text_field :email, :required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
                   </div>
                 </div>
 
                 <div class="form-row">                    
                   <div class="form-controls">
-                    
-                    <%= f.password_field :password,:required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Password" %>
+
+                    <%#= f.password_field :password,:required => true, :no_label => true , :class =>"form-control" ,:placeholder => "Password" %>
                   </div>
                 </div>
 
                 <div class="form-row">
-                  
+
                   <div class="checkbox">
-                    <%= f.check_box :remember_me %>
-                    <%= f.label :remember_me, "Remember me on this computer" %>
+                    <%#= f.check_box :remember_me %>
+                    <%#= f.label :remember_me, "Remember me on this computer" %>
                   </div>
 
-                  
-                  <%= link_to "Forgot password?", new_password_path(:user) %>
+
+                  <%#= link_to "Forgot password?", new_password_path(:user) %>
                 </div>
               </div>
-              
+
               <div class="form-actions">
-                
-                <%= f.submit 'Sign in', :class => 'btn form-bt' %>
+
+                <%#= f.submit 'Sign in', :class => 'btn form-bt' %>
               </div>
-              
+
               <div class="form-error" id="sign-in-form-error">
                 <p></p>
               </div>
             </div>
-          <% end %>
+          <%# end %>
+ -->
+
+
+
+
          <!--  </div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
