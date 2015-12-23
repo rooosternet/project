@@ -1,12 +1,9 @@
+<section class="section-search">
+	<h2 class="section-title">Need a great freelancer for your next project?</h2><!-- /.section-title -->
 
-<div class="main">
-	<div class="shell">
-		<section class="section-search">
-			<h2 class="section-title">Need a great freelancer for your next project?</h2><!-- /.section-title -->
-
-			<div class="section-body">
-				<div class="search">
-					<div class="search-body">
+	<div class="section-body">
+		<div class="search">
+			<div class="search-body">
 						<!-- <form action="freelancers.html" method="get">
 							<label for="q" class="hidden">Search</label>
 
@@ -18,13 +15,13 @@
 						</form> -->
 
 						<%= form_tag({ :controller => 'freelancers', :action => 'index'}, :method => :get, :id => 'query_form') do %>
-							<label for="q" class="hidden">Search</label>
-							<!-- <input type="text" class="form-control search-field"> -->
-							<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
+						<label for="q" class="hidden">Search</label>
+						<!-- <input type="text" class="form-control search-field"> -->
+						<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
 
-							<button type="submit" class="search-btn" id="submit_search_form">
-								<i class="fa fa-search"></i>
-							</button>
+						<button type="submit" class="search-btn" id="submit_search_form">
+							<i class="fa fa-search"></i>
+						</button>
 						<% end %>
 
 
@@ -85,10 +82,9 @@
 			</div> -->
 		</section><!-- /.section-search -->
 
-		<div class="divider hidden-xs">
+		<!-- <div class="divider hidden-xs">
 			<a href="#">
 				<i class="ico-arrow-down"></i>
 			</a>
-		</div><!-- /.divider -->
-	</div><!-- /.shell -->
-</div><!-- /.main -->
+		</div> -->
+		<!-- /.divider -->

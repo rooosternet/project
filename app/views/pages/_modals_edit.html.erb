@@ -1,3 +1,110 @@
+<div class="modal fade" id="modal-edit-profile-admin">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<div class="form form-signup">
+					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form', "data-parent"=>"modal-edit-profile-admin"}) do |f| %>
+					<div class="form-inner">
+						<div class="form-head">
+							<h4 class="form-title">Admin Profile</h4>
+						</div>
+
+						<div class="form-body">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-email" class="form-label">
+												Email
+											</label>
+
+											<div class="form-controls">
+												<%= f.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "", :type=>"email" %>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-email2" class="form-label">Additional Email</label>
+											
+											<div class="form-controls">
+												<%= f.text_field :email2, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email" %>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-first-name" class="form-label">First Name</label>
+
+											<div class="form-controls">
+												<%= f.text_field :firstname, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-last-name" class="form-label">Last Name</label>
+
+											<div class="form-controls">
+												<%= f.text_field :lastname, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<%= f.label :password , class: 'form-label'%>
+											<div class="form-controls">
+												<%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<%= f.label :password_confirmation , class: 'form-label'%>
+											<div class="form-controls">
+												<%= f.password_field :password_confirmation, class: 'form-control' %>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="form-actions">
+							<input type="submit" value="Update" class="btn form-btn">
+							<!-- <button class="btn btn-light">Reset my password</button> -->
+						</div>
+
+						<div class="form-error">
+							<p></p>
+						</div>
+					</div>
+
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
 <div class="modal fade" id="modal-edit-profile-studio">
 	<div class="modal-dialog">
 		<div class="modal-content">

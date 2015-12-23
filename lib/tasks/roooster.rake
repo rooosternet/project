@@ -4,19 +4,51 @@ namespace :roooster do
 	Examples:
 	rake roooster:populate_freelancer RAILS_ENV="production"
     rake roooster:import_users_from_file RAILS_ENV="production" 
+    rake roooster:populate_admins RAILS_ENV="production" 
 	END_DESC
+    
+
+    task :populate_admins, [] => :environment do |t , args| 
+        populate_admin_users
+    end
 
 	task :populate_freelancer, [] => :environment do |t , args| 
-        # include Redmine::I18n
         populate
     end
 
     task :import_users_from_file, [] => :environment do |t , args| 
-        # include Redmine::I18n
         import_users
     end
 
     private
+
+    def populate_admin_users
+        emails = ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"]
+        users = [
+            {"firstname"=>"yossi", "lastname"=>"edri", "email"=>"yossi@roooster.net"},
+            {"firstname"=>"sam", "lastname"=>"miller", "email"=>"sam@roooster.net"},
+            {"firstname"=>"rotem", "lastname"=>"nahlieli", "email"=>"rotem@roooster.net"}
+            ]
+            
+        start = Time.now
+        puts "populate_admin_users: #{start}"
+        User.where(email: emails).collect(&:destroy)
+        
+        ActiveRecord::Base.transaction do
+            begin
+                users.each do |user|
+                    _user = User.create!(user)
+                    puts _user.inspect
+                end 
+            rescue Exception => e
+                puts e.message
+            end
+        end
+
+        end_time = Time.now
+        puts "done: #{end_time}   #{end_time-start}"
+
+    end
 
     def populate
     	emails = ["tonyzagoraios@hotmail.com","nejc@twistedpoly.com","hello@iamgraphicartist.com","piero.desopo@gmail.com","mony@hotmail.com","lopa@twistedpoly.com","loni@iamgraphicartist.com","ra@gmail.com"]

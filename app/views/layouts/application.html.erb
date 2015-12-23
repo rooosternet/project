@@ -15,9 +15,9 @@
   <body>
     <div class="wrapper">
 
-    <% if user_signed_in? && current_user.admin? %>
-        <%= render 'layouts/admin_navigation' %>  
-    <% elsif user_signed_in? %>
+    <%# if user_signed_in? && current_user.admin? %>
+        <%#= render 'layouts/admin_navigation' %>  
+    <% if user_signed_in? %>
         <%= render :partial => 'pages/header_logged' %>
     <% else %>    
         <%= render :partial => 'pages/header' %>

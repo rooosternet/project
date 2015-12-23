@@ -9,8 +9,8 @@ class VisitorsController < ApplicationController
 			if current_user.pending?
 				sign_out(:user)
 				redirect_to root_path
-			else	
-				render :template => 'pages/search' , :layouts => true
+			# else	
+				# render :template => 'pages/search' , :layouts => true
 			end
 		end	
 	end

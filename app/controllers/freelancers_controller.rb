@@ -15,7 +15,7 @@ class FreelancersController < ApplicationController
     	@freelancers = scope
     end
 
-    render :template => 'pages/search' if params[:skiles].blank? && params[:search].blank?
+    render :template => 'visitors/home' if params[:skiles].blank? && params[:search].blank?
   end
 
   def invite
