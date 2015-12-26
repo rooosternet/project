@@ -16,6 +16,7 @@
 /vendor/ruby/
 /vendor/devise/
 /public/assets/
+/zz-work/*
 
 # minimal Rails specific artifacts
 db/*.sqlite3

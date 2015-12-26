@@ -102,19 +102,27 @@
 		});
 
 
+		$('#forget_password_form_id').bind('ajax:success',function(event, data, status, xhr){
+			$("#modal-forget-password").modal('hide');
+			$("#modal-reset-password-alt").modal('show');
+		});	
+
+		$('#forget_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
+			$(".form-forget-password-error").text(data.responseText);
+		});
+
+		$('.modal').on('show.bs.modal', function (e) {
+  			$(this).find(".form-error").html("");
+		});
+
 		$('#change_password_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$("#modal-change-password").modal('hide');
-			$("#modal-reset-password-alt").modal('show');
+			window.location.href = "/";
 		});	
 
 		$('#change_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
 			$(".form-change-password-error").text(data.responseText);
 		});
-
-		$('.modal').on('show.bs.modal', function (e) {
-  			$(this).find(".form-error").html("");
-		})
-
 
 		// modal-signin-link click to sign-in
 		// $('#modal-signin-link').on('click', function(event) {

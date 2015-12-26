@@ -253,8 +253,8 @@
 								</div>
 
 								<%#= link_to "Forgot password?", new_password_path(:user) %>
-								<%#= link_to "Forgot password?", "#modal-change-password"  %>
-								<a data-dismiss="modal" data-toggle="modal" href="#modal-change-password">Forgot password?</a>
+								<%#= link_to "Forgot password?", "#modal-forget-password"  %>
+								<a data-dismiss="modal" data-toggle="modal" href="#modal-forget-password">Forgot password?</a>
 							</div>
 						</div>
 
@@ -277,7 +277,7 @@
 
 
 
-<div class="modal modal-small fade" id="modal-change-password">
+<div class="modal modal-small fade" id="modal-forget-password">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
@@ -287,7 +287,7 @@
 			<div class="modal-body">
 				<div class="form form-signin">
 
-					<%= form_for(@user, :as => :user, :url => password_path(:user), :remote => true , :html => { :method => :post,:role => 'form',"data-parent" => "modal-change-password" , :id => "change_password_form_id" }) do |f| %>
+					<%= form_for(@user, :as => :user, :url => password_path(:user), :remote => true , :html => { :method => :post,:role => 'form',"data-parent" => "modal-forget-password" , :id => "forget_password_form_id" }) do |f| %>
 					<div class="form-inner">
 						<div class="form-head">
 							<h4 class="form-title">Forgot your password?</h4>
@@ -297,7 +297,7 @@
 						<div class="form-body">
 							<div class="form-row">										
 								<div class="form-controls">
-									<%= f.text_field :email, :autofocus => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+									<%= f.text_field :email, :required => true , :autofocus => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
 								</div>
 							</div>
 						</div>
@@ -306,7 +306,7 @@
 							<%= f.submit 'Reset Password', :class => 'btn form-bt' %>
 						</div>
 
-						<div class="form-error form-change-password-error">
+						<div class="form-error form-forget-password-error">
 							<p></p>
 						</div>
 					</div>
@@ -317,3 +317,46 @@
 		</div>
 	</div>
 </div>
+
+
+<!-- <div class="modal modal-small fade" id="modal-change-password">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<div class="form form-signin">
+
+					<%#= form_for(@user, :as => :user, :url => password_path(:user), :remote => true , :html => { :method => :post,:role => 'form',"data-parent" => "modal-change-password" , :id => "change_password_form_id" }) do |f| %>
+					<div class="form-inner">
+						<div class="form-head">
+							<h4 class="form-title">Forgot your password?</h4>
+							<p>We'll send password reset instructions.</p>
+						</div>
+
+						<div class="form-body">
+							<div class="form-row">										
+								<div class="form-controls">
+									<%#= f.text_field :email, :required => true ,  :autofocus => true, :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-actions">
+							<%#= f.submit 'Reset Password', :class => 'btn form-bt' %>
+						</div>
+
+						<div class="form-error form-change-password-error">
+							<p></p>
+						</div>
+					</div>
+
+					<%# end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ -->
