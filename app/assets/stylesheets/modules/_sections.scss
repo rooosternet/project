@@ -10,6 +10,7 @@
 	.section-entry p { margin-bottom: 1.3em; }
 	.section-entry p:last-child { margin-bottom: 0; }
 	.section-image { margin: 32px 0 15px; text-align: center; }
+	.section-image-error { margin: 80px 0 15px; text-align: center; }
 
 	@media (max-width: $screen-xs-max) {
 		.section-title { font-size: 29px; }
@@ -81,6 +82,7 @@
 
 	.section-title { margin: 0 0 34px; font-size: 28px; text-align: center; font-weight: bold; letter-spacing: -0.025em; }
 	.section-image { margin-top: 65px; padding-right: 30px; text-align: center; }
+	.section-image-error { margin-top: 65px; padding-right: 30px; text-align: center; }
 	
 	.section-actions { text-align: center; margin-top: 10px; }
 
@@ -88,6 +90,7 @@
 		& { padding: 20px 0 120px; }
 		.section-title { margin-bottom: 25px; font-size: 22px; letter-spacing: -0.03em; }
 		.section-image { margin: 20px auto 10px; }
+		.section-image-error { margin: 20px auto 10px; }
 	}
 }
 
