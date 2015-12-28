@@ -18,12 +18,29 @@
 // };
 
 
-;(function($, window, document, undefined) {
-	var $win = $(window);
-	var $doc = $(document);
+// ;(function($, window, document, undefined) {
+// 	var $win = $(window);
+// 	var $doc = $(document);
 
-	$doc.ready(function() {
+// 	$doc.ready(function() {
 
+function setupAjaxIndicator() {
+  $(document).bind('ajaxSend', function(event, xhr, settings) {
+    if ($('.ajax-loading').length === 0 && settings.contentType != 'application/octet-stream') {
+      $('#ajax-indicator').show();
+    }
+  });
+  $(document).bind('ajaxStop', function() {
+    $('#ajax-indicator').hide();
+  });
+};
+
+$(document).ready(setupAjaxIndicator);
+
+
+$(function() {
+
+		console.log("--- ready");	
 		// Scroll To
 		$('[data-scroll-to]').on('click', function(event) {
 			event.preventDefault();
@@ -36,7 +53,8 @@
 		});
 
 		// Button Collapse Form
-		$('.btn-collapse-form').on('click', function(event) {
+		$('.btn-collapse-form').bind('click', function(event) {
+			console.log("--- .btn-collapse-form");
 			event.preventDefault();
 			
 			$(this).hide();
@@ -144,5 +162,5 @@
 		// 	});	
 		// });
 
-	});
-})(jQuery, window, document);
+});
+// })(jQuery, window, document);

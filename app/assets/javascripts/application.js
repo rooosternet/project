@@ -15,20 +15,6 @@
 // require bootstrap-sprockets
 //= require bootstrap.min
 //= require fastselect.standalone
-//= require turbolinks
+// require turbolinks
 // require javascripts/bootstrap-sprockets
 //= require_tree .
-
-
-function setupAjaxIndicator() {
-  $(document).bind('ajaxSend', function(event, xhr, settings) {
-    if ($('.ajax-loading').length === 0 && settings.contentType != 'application/octet-stream') {
-      $('#ajax-indicator').show();
-    }
-  });
-  $(document).bind('ajaxStop', function() {
-    $('#ajax-indicator').hide();
-  });
-}
-
-$(document).ready(setupAjaxIndicator);

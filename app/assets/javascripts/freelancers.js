@@ -1,5 +1,7 @@
 $(function() {
 
+	// $('#form-suggest').modal();
+
 	// $('#submit_search_form').bind('click', function (event) {
 		
 	// 	var value = $("#search").val();

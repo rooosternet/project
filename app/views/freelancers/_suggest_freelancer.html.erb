@@ -3,8 +3,8 @@
 		<div class="section-icon">
 			<i class="ico-dots"></i>
 		</div>
-
-		<a href="#form-suggest" class="btn btn-default btn-large btn-collapse-form" data-toggle="collapse">
+		<!-- href="#form-suggest" -->
+		<a data-target="#form-suggest" class="btn btn-default btn-large btn-collapse-form" data-toggle="collapse">
 			Suggest a Freelancer
 
 			<i class="ico-arrow-down-medium"></i>
@@ -31,7 +31,7 @@
 							<div class="col-lg-3">
 								<div class="form-row">
 									<div class="form-controls">
-										<input required type="text" class="form-control" name="field-suggest-first-name" id="field-suggest-first-name" value="" placeholder="First">
+										<input required type="text" class="form-control" name="field-suggest-first-name" id="field-suggest-first-name" value="" placeholder="First" pattern="[a-zA-Z]+">
 									</div>
 								</div>
 							</div>
@@ -39,7 +39,7 @@
 							<div class="col-lg-3">
 								<div class="form-row">
 									<div class="form-controls">
-										<input required type="text" class="form-control" name="field-suggest-last-name" id="field-suggest-last-name" value="" placeholder="Last">
+										<input required type="text" class="form-control" name="field-suggest-last-name" id="field-suggest-last-name" value="" placeholder="Last" pattern="[a-zA-Z]+">
 									</div>
 								</div>
 							</div>
@@ -47,7 +47,7 @@
 							<div class="col-lg-6">
 								<div class="form-row">
 									<div class="form-controls">
-										<input type="email" class="form-control" name="field-suggest-email" id="field-suggest-email" value="" placeholder="Email" >
+										<input type="email" class="form-control" name="field-suggest-email" id="field-suggest-email" value="" placeholder="Email" pattern="[a-zA-Z]+">
 									</div>
 								</div>
 							</div>
