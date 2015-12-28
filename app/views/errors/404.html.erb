@@ -4,18 +4,20 @@
     <div class="section-inner">
 
       <div class="section-image-error">
-        <%=image_tag "retina/404.jpg" %>
+        <%=image_tag "retina/404.jpg",  :style => "width: 25%;" %>
       </div>
 
       <h3 class="section-title error_subject">Oops. The page you are looking for doesn't exist.</h3>
 
       <div class="section-body">
-        <div class="error_subject">
-          <%= link_to 'Back to the home page', root_path , :class => 'gray' %>
+        <div class="error_subject intro-foot">
+          <p>
+            <%= link_to 'Back to the home page', root_path , :class => 'gray' %>
+          </p>
         </div>
 
         <div class="section-image">
-          <%=image_tag "line.jpg" %>
+          <%=image_tag "retina/line.jpg" %>
         </div>
       </div>
     </div>

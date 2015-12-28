@@ -3,6 +3,7 @@ class Mailer < ApplicationMailer
 
 	def welcome_email(user)
 		@user = user
+		@subject = "Welcome to Roooster!"
 		mail(to: @user.email,subject: "Welcome to Roooster!")
 	end
 

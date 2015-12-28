@@ -94,7 +94,7 @@ $(function() {
 
 		$('.register_form').bind('ajax:error', function(event, data, status, xhr) {
 			fid = $(this).data("error-id");
-			$(fid).text(data.responseText);
+			$("#"+fid).text(data.responseText);
 		});
 
 		$('.register_form').bind('ajax:complete', function(event, data, status, xhr) {
