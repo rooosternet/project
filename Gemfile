@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 # gem 'devise', path: "vendor/devise"
 gem 'devise_invitable'
+# gem 'devise_invitable', path: "vendor/devise_invitable"
 gem 'high_voltage'
 gem 'mysql2', '~> 0.3.18'
 gem 'pundit'

@@ -13,8 +13,7 @@
 
 	<div class="section-body">
 		<div class="form form-suggest collapse" id="form-suggest">
-			<%= form_tag(freelancers_invite_path, :method => :post,:remote => true , :id => 'invite_form') do %>
-			<%#= form_for(User.new, :url => freelancers_invite_path , :html => { :method => :post, :role => 'form'}) do |f| %>
+			<%= form_for(User.new, :url => user_invitation_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
 				<div class="form-inner">
 					<div class="form-head">
 						<h4 class="form-title">Suggest a Freelancer</h4>
@@ -31,7 +30,7 @@
 							<div class="col-lg-3">
 								<div class="form-row">
 									<div class="form-controls">
-										<input required type="text" class="form-control" name="field-suggest-first-name" id="field-suggest-first-name" value="" placeholder="First" pattern="[a-zA-Z]+">
+										<%= f.text_field :firstname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "",:pattern => "[a-zA-Z]+" %>
 									</div>
 								</div>
 							</div>
@@ -39,7 +38,7 @@
 							<div class="col-lg-3">
 								<div class="form-row">
 									<div class="form-controls">
-										<input required type="text" class="form-control" name="field-suggest-last-name" id="field-suggest-last-name" value="" placeholder="Last" pattern="[a-zA-Z]+">
+									<%= f.text_field :lastname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "",:pattern => "[a-zA-Z]+" %>
 									</div>
 								</div>
 							</div>
@@ -47,7 +46,7 @@
 							<div class="col-lg-6">
 								<div class="form-row">
 									<div class="form-controls">
-										<input type="email" class="form-control" name="field-suggest-email" id="field-suggest-email" value="" placeholder="Email" >
+										<%= f.text_field :email, :no_label => true ,:required => true , :class =>"form-control" ,:placeholder => "", :type=>"email" %>
 									</div>
 								</div>
 							</div>

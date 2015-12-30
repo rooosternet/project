@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  
+  attr_reader :raw_invitation_token
+  
   enum role: [:pending ,:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -7,7 +10,6 @@ class User < ActiveRecord::Base
 
   delegate :job_title ,:company_name ,:company_website , :to => :studio, :allow_nil => true
   delegate :online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location , :to => :freelancer, :allow_nil => true
-
 
   accepts_nested_attributes_for :studio, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Studio.reject_studio(attributes)}
   accepts_nested_attributes_for :freelancer, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Freelancer.reject_freelancer(attributes)}
@@ -28,6 +30,12 @@ class User < ActiveRecord::Base
   after_create :send_welcome_mail 
   # before_destroy 
   # after_save 
+
+  def send_invite_mail(inviter)
+     generate_invitation_token! unless @raw_invitation_token
+     self.update_attribute :invitation_sent_at, Time.now.utc unless self.invitation_sent_at
+     email = Mailer.invite_email(inviter,self,@raw_invitation_token).deliver_now  
+  end
 
   def send_welcome_mail
     begin

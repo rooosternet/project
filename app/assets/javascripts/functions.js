@@ -37,10 +37,31 @@ function setupAjaxIndicator() {
 
 $(document).ready(setupAjaxIndicator);
 
+function validatePassword(){
+	var password = document.getElementById("user_password")
+		, confirm_password = document.getElementById("user_password_confirmation");
+	
+	if(password.value != confirm_password.value) {
+		confirm_password.setCustomValidity("Passwords Don't Match");
+	} else {	
+		confirm_password.setCustomValidity('');
+	}
+};
 
 $(function() {
 
-		console.log("--- ready");	
+		// console.log("--- ready");	
+		$('#user_password').on('change', function(event) {
+			event.preventDefault();
+			validatePassword();
+		});
+
+		$('#user_password_confirmation').on('keyup', function(event) {
+			event.preventDefault();
+			validatePassword();
+		});
+
+
 		// Scroll To
 		$('[data-scroll-to]').on('click', function(event) {
 			event.preventDefault();
@@ -140,6 +161,16 @@ $(function() {
 
 		$('#change_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
 			$(".form-change-password-error").text(data.responseText);
+		});
+
+
+		$('#create_password_form_id').bind('ajax:success',function(event, data, status, xhr){
+			$("#modal-create-password").modal('hide');
+			window.location.href = "/";
+		});	
+
+		$('#create_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
+			$(".form-create-password-error").text(data.responseText);
 		});
 
 		// modal-signin-link click to sign-in

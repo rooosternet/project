@@ -10,4 +10,15 @@ class ApplicationController < ActionController::Base
   # 	end
   # end
 
+
+  # before_filter :permitted_parameter, if: :devise_controller?
+
+  # protected
+
+  # def permitted_parameter
+  # 	devise_parameter_sanitizer.for(:invite).concat [:firstname,:lastname,:email]
+  # 	devise_parameter_sanitizer.for(:invite) do |u|
+  # 		u.permit(:firstname,:lastname,:email)
+  # 	end
+  # end
 end

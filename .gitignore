@@ -15,6 +15,7 @@
 /vendor/bundle/
 /vendor/ruby/
 /vendor/devise/
+/vendor/devise_invitable/
 /public/assets/
 /zz-work/*
 
