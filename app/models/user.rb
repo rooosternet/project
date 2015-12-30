@@ -66,6 +66,24 @@ class User < ActiveRecord::Base
     self.role.eql?("pending")
   end
 
+  def user_need_to_edit_profile?
+      !self.edit_profile
+  end
+
+  def user_type_str
+   
+    if self.role.eql?("admin")
+      "modal-edit-profile-admin"
+    elsif studio
+      "modal-edit-profile-studio"
+    elsif freelancer
+      "modal-edit-profile-freelancer"
+    else
+      ""
+    end      
+          
+  end
+
   private
 
   def set_name

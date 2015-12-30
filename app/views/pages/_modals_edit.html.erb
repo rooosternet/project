@@ -8,6 +8,7 @@
 			<div class="modal-body">
 				<div class="form form-signup">
 					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form', "data-parent"=>"modal-edit-profile-admin"}) do |f| %>
+					<%= f.hidden_field :edit_profile , :value => true %>
 					<div class="form-inner">
 						<div class="form-head">
 							<h4 class="form-title">Admin Profile</h4>
@@ -116,6 +117,7 @@
 				<div class="form form-signup">
 					<!-- <form action="?" method="post"> -->
 					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form', "data-parent"=>"modal-edit-profile-studio"}) do |f| %>
+					<%= f.hidden_field :edit_profile , :value => true %>
 						<div class="form-inner">
 							<div class="form-head">
 								<h4 class="form-title">My Studio Profile</h4><!-- /.form-title -->
@@ -274,6 +276,7 @@
 				<div class="form form-signup">
 					<!-- <form action="?" method="post"> -->
 					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form', "data-parent"=>"modal-edit-profile-freelancer"}) do |f| %>
+					<%= f.hidden_field :edit_profile , :value => true %>
 					<div class="form-inner">
 						<div class="form-head">
 							<h4 class="form-title">My Freelancer Profile</h4><!-- /.form-title -->

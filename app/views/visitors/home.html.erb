@@ -26,3 +26,12 @@
 
 	</div><!-- /.shell -->
 </div><!-- /.main -->
+
+
+<% if user_signed_in? && current_user.user_need_to_edit_profile? %>
+	<%= javascript_tag do %>
+		$(function(){
+	        $('#<%= current_user.user_type_str %>').modal();
+	    });
+	<% end %>	
+<% end %>
