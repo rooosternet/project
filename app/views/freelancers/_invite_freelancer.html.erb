@@ -14,46 +14,46 @@
 	<div class="section-body">
 		<div class="form form-suggest collapse" id="form-suggest">
 			<%= form_for(User.new, :url => user_invitation_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
-				<div class="form-inner">
-					<div class="form-head">
-						<h4 class="form-title">Suggest a Freelancer</h4>
+			<div class="form-inner">
+				<div class="form-head">
+					<h4 class="form-title">Recommend a Freelancer</h4>
 
-						<p>Adding a freelancer to Roooster is the same as recommending them to your peers.</p>
+					<p>Adding a freelancer to Roooster is the same as recommending them to your peers.</p>
+				</div>
+
+				<div class="form-body">
+					<div class="row">
+						<div class="row-icon visible-lg">
+							<i class="ico-user"></i>
+						</div>
+
+						<div class="col-lg-3">
+							<div class="form-row">
+								<div class="form-controls">
+								<%= f.text_field :firstname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "First Name",:pattern => "[a-zA-Z]+" %>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-3">
+							<div class="form-row">
+								<div class="form-controls">
+									<%= f.text_field :lastname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "Last Name",:pattern => "[a-zA-Z]+" %>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<div class="form-row">
+								<div class="form-controls">
+									<%= f.text_field :email, :no_label => true ,:required => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+								</div>
+							</div>
+						</div>
 					</div>
-					
-					<div class="form-body">
-						<div class="row">
-							<div class="row-icon visible-lg">
-								<i class="ico-user"></i>
-							</div>
-
-							<div class="col-lg-3">
-								<div class="form-row">
-									<div class="form-controls">
-										<%= f.text_field :firstname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "",:pattern => "[a-zA-Z]+" %>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-lg-3">
-								<div class="form-row">
-									<div class="form-controls">
-									<%= f.text_field :lastname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "",:pattern => "[a-zA-Z]+" %>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-lg-6">
-								<div class="form-row">
-									<div class="form-controls">
-										<%= f.text_field :email, :no_label => true ,:required => true , :class =>"form-control" ,:placeholder => "", :type=>"email" %>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-error">
-							<p></p>
-						</div>
+					<div class="form-error">
+						<p></p>
+					</div>
 						<!-- <div class="form-group collapse" id="form-suggest-more">
 							<div class="form-group-row">
 								<div class="form-group-aside">
@@ -173,7 +173,7 @@
 						<input type="submit" value="Submit" class="btn">
 					</div>
 				</div>
-			<% end %>
+				<% end %>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
