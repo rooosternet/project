@@ -5,6 +5,7 @@ class Users::InvitationsController < Devise::InvitationsController
       u.skip_invitation = true
       u.firstname = params[:user][:firstname]
       u.lastname = params[:user][:lastname]
+      u.freelancer = Freelancer.new
       u.save!
     end
 
