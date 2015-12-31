@@ -32,6 +32,6 @@ class AccountController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:name,:email,:email2,:firstname,:lastname, studio_attributes: [:id, :job_title ,:company_name ,:company_website] ,  freelancer_attributes: [:id,:online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location] )
+		params.require(:user).permit(:name,:email,:email2,:firstname,:lastname,:password, :password_confirmation, studio_attributes: [:id, :job_title ,:company_name ,:company_website] ,  freelancer_attributes: [:id,:online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location] )
 	end
 end

@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
-
+before_filter :configure_permitted_parameters
 
 # PUT /resource
   # We need to use a copy of the resource because we don't want to change
@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource_updated
       if is_flashing_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-          :update_needs_confirmation : :updated
+        :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
       sign_in resource_name, resource, bypass: true
@@ -46,10 +46,47 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    begin
+      byebug
+      build_resource(sign_up_params)
+      
+      if User.find_by_email(resource.email)
+        render :text => "User already registered" , :status => 500
+      else  
 
+        resource.save
+        yield resource if block_given?
+        if resource.persisted?
+          if resource.active_for_authentication?
+            set_flash_message :notice, :signed_up if is_flashing_format?
+            sign_up(resource_name, resource)
+            # respond_with resource, location: after_sign_up_path_for(resource)
+          else
+            set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+            expire_data_after_sign_in!
+            # respond_with resource, location: after_inactive_sign_up_path_for(resource)
+          end
+          render :text => "User registered successfully" , :status => 200
+        else
+          clean_up_passwords resource
+          set_minimum_password_length
+          # respond_with resource
+          message = resource.errors.any? ? resource.errors.full_messages : "fail to create user!"          
+          render :text => "fail to create user!" , :status => 500
+        end
+      end
+  rescue Exception => e
+    message = resource.errors.any? ? resource.errors.full_messages : "fail to create user!"
+    render :text => message , :status => 500
+  end
+end
+
+protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up).push(:name, :firstname, :lastname)
+  end
 
   # def create
 

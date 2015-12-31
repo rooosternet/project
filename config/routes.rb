@@ -13,7 +13,8 @@ Rails.application.routes.draw do
         registrations: "users/registrations",
         sessions: "users/sessions",
         passwords: "users/passwords",
-        invitations: "users/invitations"
+        invitations: "users/invitations",
+        confirmations: "users/confirmations"
   }, 
   :path_names => { :sign_up => "account/register" }
   

@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
-before_filter :check_user_role , only: [:create]
+# before_filter :check_user_role , only: [:create]
 skip_before_filter :verify_authenticity_token, :only => [:create]
   # GET /resource/sign_in
   # def new
@@ -32,13 +32,13 @@ skip_before_filter :verify_authenticity_token, :only => [:create]
   # end
 
 
-  def check_user_role
-    if current_user && current_user.pending?
-      sign_out(:user)
-      message = "Your account is pending approval!"     
-      render :text => message , :status => 500
-    end 
-    true
-  end
+  # def check_user_role
+  #   if current_user && current_user.pending?
+  #     sign_out(:user)
+  #     message = "Your account is pending approval!"     
+  #     render :text => message , :status => 500
+  #   end 
+  #   true
+  # end
 
 end
