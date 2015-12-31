@@ -48,7 +48,7 @@ before_filter :configure_permitted_parameters
   # POST /resource
   def create
     begin
-      byebug
+      
       build_resource(sign_up_params)
       
       if User.find_by_email(resource.email)
