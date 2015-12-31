@@ -29,7 +29,6 @@ class Mailer < Devise::Mailer
 		@user = record
 		@token = token
 		@subject = "Welcome to Roooster!"
-		byebug
 		# mail(to: @user.email,subject: "Welcome to Roooster!")
 		super
 	end
