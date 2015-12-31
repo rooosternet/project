@@ -15,12 +15,11 @@ Rails.application.routes.draw do
         passwords: "users/passwords",
         invitations: "users/invitations",
         confirmations: "users/confirmations"
-  }, 
-  :path_names => { :sign_up => "account/register" }
+  }#,:path_names => { :sign_up => "account/register" }
   
 
   resources :users
-  match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
+  # match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
 
 
   get 'info/about', :as => "about"

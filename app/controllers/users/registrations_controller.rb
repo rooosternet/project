@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
-before_filter :configure_permitted_parameters
+# before_filter :configure_permitted_parameters
 
 # PUT /resource
   # We need to use a copy of the resource because we don't want to change
@@ -84,11 +84,9 @@ before_filter :configure_permitted_parameters
 
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:name, :firstname, :lastname)
-  end
-
-
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.for(:sign_up).push(:name, :firstname, :lastname,:edit_profile, :email2)
+  # end
 
   def after_sign_up_path_for(resource)
     signed_in_root_path(resource)
