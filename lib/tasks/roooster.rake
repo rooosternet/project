@@ -25,9 +25,9 @@ namespace :roooster do
     def populate_admin_users
         emails = ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"]
         users = [
-            {"firstname"=>"yossi", "lastname"=>"edri", "email"=>"yossi@roooster.net"},
-            {"firstname"=>"sam", "lastname"=>"miller", "email"=>"sam@roooster.net"},
-            {"firstname"=>"rotem", "lastname"=>"nahlieli", "email"=>"rotem@roooster.net"}
+            {"firstname"=>"yossi", "lastname"=>"edri", "email"=>"yossi@roooster.net" , "password" => '1q2w3e4r'},
+            {"firstname"=>"sam", "lastname"=>"miller", "email"=>"sam@roooster.net", "password" => '1q2w3e4r'},
+            {"firstname"=>"rotem", "lastname"=>"nahlieli", "email"=>"rotem@roooster.net", "password" => '1q2w3e4r'}
             ]
             
         start = Time.now

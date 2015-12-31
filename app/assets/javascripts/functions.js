@@ -136,7 +136,10 @@ $(function() {
 				$("#modal-signin-pending-alt").modal('show');
 			}else if(data.responseText=="Invalid email or password."){
 				msg = "Invalid email or password.";
+			}else if( xhr == "Unauthorized"){
+				msg = data.responseText;
 			}
+
 			$("#sign-in-form-error").text(msg);	
 		});
 

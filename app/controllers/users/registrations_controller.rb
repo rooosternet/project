@@ -21,7 +21,7 @@ before_filter :configure_permitted_parameters
       end
       sign_in resource_name, resource, bypass: true
       if request.xhr?
-        # byebug
+        
         # render :text => 'User updated' , :status => 200
         render :json => { :responseText => "User updated" }.to_json , :status => 200
       else
@@ -29,7 +29,7 @@ before_filter :configure_permitted_parameters
       end
     else
       if request.xhr?
-        # byebug
+        
         # render :text => "User update failed #{resource.errors.full_messages.join(',') if resource.errors.any?}" , :status => 500
         render :text => { :responseText => "User update failed #{resource.errors.full_messages.join(',') if resource.errors.any?}" }.to_json , :status => 500
       else
@@ -48,7 +48,7 @@ before_filter :configure_permitted_parameters
   # POST /resource
   def create
     begin
-      
+
       build_resource(sign_up_params)
       
       if User.find_by_email(resource.email)
@@ -76,21 +76,32 @@ before_filter :configure_permitted_parameters
           render :text => "fail to create user!" , :status => 500
         end
       end
-  rescue Exception => e
-    message = resource.errors.any? ? resource.errors.full_messages : "fail to create user!"
-    render :text => message , :status => 500
+    rescue Exception => e
+      message = resource.errors.any? ? resource.errors.full_messages : "fail to create user!"
+      render :text => message , :status => 500
+    end
   end
-end
 
-protected
+  protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:name, :firstname, :lastname)
   end
 
+
+
+  def after_sign_up_path_for(resource)
+    signed_in_root_path(resource)
+  end
+
+  def after_update_path_for(resource)
+    signed_in_root_path(resource)
+  end
+
+
   # def create
 
-    # byebug
+    
   #   build_resource(params[:user])
 
   #   resource.save
