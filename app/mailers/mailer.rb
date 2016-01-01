@@ -42,7 +42,7 @@ class Mailer < Devise::Mailer
       @inviter = record.invited_by
       @subject = "You have been invited to join Roooster by #{@inviter.name}"
       if (_to = record.email).blank?
-       _to= unconfirmed_email 
+       _to= record.unconfirmed_email 
    	  end
       opts.merge!(to: _to, subject: @subject)
       devise_mail(record, :invitation_instructions, opts)
