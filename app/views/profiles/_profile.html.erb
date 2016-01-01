@@ -11,11 +11,17 @@
 
 	<ul class="freelancer-links">
 		<li>
-			<%= link_to(profile.online_portfolio,profile.online_portfolio,:target => "_blank") if profile.online_portfolio %>
+			<%
+				url = profile.online_portfolio.blank? ? "#" : profile.online_portfolio
+				unless url =~ /\A#{URI::regexp(['http', 'https'])}\z/
+					url = "http://#{url}"
+				end	
+			%>
+			<a href="<%=url%>" target="_blank"> <%=profile.online_portfolio%></a>
 		</li>
 		
 		<li>
-			<a href="#"><%= profile.user.email %></a>
+			<a href="mailto:<%= profile.user.email %>" target="_blank"><%= profile.user.email %></a>
 		</li>
 		
 		<!-- <li>
@@ -26,19 +32,19 @@
 	<div class="freelancer-foot">
 		<ul class="freelancer-socials">
 			<li>
-				<a href="<%=profile.linkedin_profile%>">
+				<a href="<%=profile.linkedin_profile%>" target="_blank">
 					<i class="ico-linkedin"></i>
 				</a>
 			</li>
 			
 			<li>
-				<a href="<%=profile.behance%>">
+				<a href="<%=profile.behance%>" target="_blank">
 					<i class="ico-behance"></i>
 				</a>
 			</li>
 			
 			<li>
-				<a href="<%=profile.vimeo%>">
+				<a href="<%=profile.vimeo%>" target="_blank">
 					<i class="ico-vimeo"></i>
 				</a>
 			</li>
