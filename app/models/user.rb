@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   # after_create :send_welcome_mail 
   # before_destroy 
   # after_save 
-  after_create :create_profile , :if => lambda{|user| user.user?}
+  after_create :create_profile , :if => lambda{|user| user.user? && user.profile.nil?}
 
   def create_profile
     self.profile = Profile.new

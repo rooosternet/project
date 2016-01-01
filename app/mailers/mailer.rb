@@ -36,7 +36,7 @@ class Mailer < Devise::Mailer
 
 	def invitation_instructions(record, token, opts={})
       @token = token
-      @invitee = record
+      @user = record
       @inviter = record.invited_by
       @subject = "You have been invited to join Roooster by #{@inviter.name}"
       if (_to = record.email).blank?

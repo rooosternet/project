@@ -3,9 +3,10 @@ class Users::SessionsController < Devise::SessionsController
 # before_filter :check_user_role , only: [:create]
 skip_before_filter :verify_authenticity_token, :only => [:create]
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    # super
+    redirect_to root_path
+  end
 
   # def new
   #   self.resource = resource_class.new(sign_in_params)
