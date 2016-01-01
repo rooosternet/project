@@ -13,6 +13,8 @@ class Mailer < Devise::Mailer
 
     def reset_password_instructions(record, token, opts={})
       @token = token
+      @subject = "Your Roooster password reset instructions"
+      opts.merge!(subject: @subject)
       devise_mail(record, :reset_password_instructions, opts)
     end
 

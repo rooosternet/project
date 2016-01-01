@@ -10,7 +10,7 @@ class Users::PasswordsController < Devise::PasswordsController
     self.resource = resource_class.send_reset_password_instructions(resource_params)
     yield resource if block_given?
     if successfully_sent?(resource)
-      render :json => { :responseText => "Reset passowrd mail was send to user." }.to_json , :status => 200
+      render :json => { :responseText => "Your account password has been reset." }.to_json , :status => 200
     else
       render :text => "Reset passowrd failed!" , :status => 500
     end
