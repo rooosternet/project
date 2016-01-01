@@ -1,0 +1,179 @@
+<section class="section-suggest">
+	<header class="section-head">
+		<div class="section-icon">
+			<i class="ico-dots"></i>
+		</div>
+		<!-- href="#form-suggest" -->
+		<a data-target="#form-suggest" class="btn btn-default btn-large btn-collapse-form" data-toggle="collapse">
+			RECOMMEND A FREELANCER
+
+			<i class="ico-arrow-down-medium"></i>
+		</a>
+	</header>
+
+	<div class="section-body">
+		<div class="form form-suggest collapse" id="form-suggest">
+			<%= form_for(User.new, :url => user_invitation_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
+			<div class="form-inner">
+				<div class="form-head">
+					<h4 class="form-title">Recommend a Freelancer</h4>
+
+					<p>Adding a freelancer to Roooster is the same as recommending them to your peers.</p>
+				</div>
+
+				<div class="form-body">
+					<div class="row">
+						<div class="row-icon visible-lg">
+							<i class="ico-user"></i>
+						</div>
+
+						<div class="col-lg-3">
+							<div class="form-row">
+								<div class="form-controls">
+								<%= f.text_field :firstname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "First Name",:pattern => "[a-zA-Z]+" %>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-3">
+							<div class="form-row">
+								<div class="form-controls">
+									<%= f.text_field :lastname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "Last Name",:pattern => "[a-zA-Z]+" %>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<div class="form-row">
+								<div class="form-controls">
+									<%= f.text_field :email, :no_label => true ,:required => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-error">
+						<p></p>
+					</div>
+						<!-- <div class="form-group collapse" id="form-suggest-more">
+							<div class="form-group-row">
+								<div class="form-group-aside">
+									<ul class="list-radios">
+										<li>
+											<div class="radio">
+												<input type="radio" name="suggest-title" id="field-senior">
+												
+												<label class="form-label" for="field-senior">Senior</label>
+											</div>
+										</li>
+										
+										<li>
+											<div class="radio">
+												<input type="radio" name="suggest-title" id="field-mid">
+												
+												<label class="form-label" for="field-mid">Mid</label>
+											</div>
+										</li>
+										
+										<li>
+											<div class="radio">
+												<input type="radio" name="suggest-title" id="field-junior">
+												
+												<label class="form-label" for="field-junior">Junior</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+
+								<div class="form-group-inner">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-row">
+												<div class="form-controls">
+													<input type="text" class="form-control" name="field-suggest-website" id="field-suggest-website" value="" placeholder="Website">
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-lg-6">
+											<div class="form-row">
+												<div class="form-controls">
+													<input type="text" class="form-control" name="field-suggest-location" id="field-suggest-location" value="" placeholder="Location">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="form-row">
+										<i class="ico-linkedin form-row-icon"></i>
+
+										<div class="form-controls">
+											<input type="text" class="form-control" name="field-suggest-linkedin" id="field-suggest-linkedin" value="" placeholder="LinkedIn">
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-lg-4">
+									<div class="form-row">
+										<i class="ico-behance form-row-icon"></i>
+
+										<div class="form-controls">
+											<input type="text" class="form-control" name="field-suggest-behance" id="field-suggest-behance" value="" placeholder="Behance">
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-lg-4">
+									<div class="form-row">
+										<i class="ico-vimeo form-row-icon"></i>
+
+										<div class="form-controls">
+											<input type="text" class="form-control" name="field-suggest-vimeo" id="field-suggest-vimeo" value="" placeholder="Vimeo">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-row">
+								<div class="form-controls">
+									<select name="field-suggest-skills" id="field-suggest-skills" class="select-autocomplete" multiple data-placeholder="Skills">
+										<option value="director">Director</option>
+										
+										<option value="motion-graphics">Motion Graphics</option>
+										
+										<option value="animation">Animation</option>
+										
+										<option value="art-direction">Art Direction</option>
+										
+										<option value="design">Design</option>
+										
+										<option value="illustrator">Illustrator</option>
+										
+										<option value="after-effects">After Effects</option>
+									</select>
+								</div>
+							</div>
+						</div> -->
+					</div>
+
+					<div class="form-inner-actions">
+						<a href="#form-suggest-more" class="collapsed" data-toggle="collapse">
+							<!-- <i class="ico-arrow-down-medium"></i> -->
+						</a>
+					</div>
+				</div>
+
+				<div class="form-foot">
+					<p>Want to send us a whole list? great! <a href="mailto:info@roooster.net?subject=I would like to send you contacts">click here</a> to attach a file.</p>
+
+					<div class="form-actions">
+						<input type="submit" value="Submit" class="btn">
+					</div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</section>

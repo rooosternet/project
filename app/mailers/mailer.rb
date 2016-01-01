@@ -29,23 +29,35 @@ class Mailer < Devise::Mailer
 		@user = record
 		@token = token
 		@subject = "Welcome to Roooster!"
-		# mail(to: @user.email,subject: "Welcome to Roooster!")
-		super
+		opts.merge!(subject: @subject)
+      	devise_mail(record, :confirmation_instructions, opts)
 	end
 	# alias_method :confirmation_instructions, :welcome_email
 
-	def welcome_email_freelancer(user)
-		@user = user
-		mail(to: @user.email,subject: "Welcome to Roooster!")
-	end
+	def invitation_instructions(record, token, opts={})
+      @token = token
+      @invitee = record
+      @inviter = record.invited_by
+      @subject = "You have been invited to join Roooster by #{@inviter.name}"
+      if (_to = record.email).blank?
+       _to= unconfirmed_email 
+   	  end
+      opts.merge!(to: _to, subject: @subject)
+      devise_mail(record, :invitation_instructions, opts)
+    end
 
-	def invite_email(inviter,invitee,token)
-		@inviter = inviter 
-		@invitee = invitee
+	# def welcome_email_freelancer(user)
+	# 	@user = user
+	# 	mail(to: @user.email,subject: "Welcome to Roooster!")
+	# end
+
+	# def invite_email(inviter,invitee,token)
+	# 	@inviter = inviter 
+	# 	@invitee = invitee
 		
-		@invitation_link = accept_user_invitation_url(:invitation_token => token)
-		mail(to: @invitee.email ,subject: "You have been invited to join Roooster by #{@inviter.name}")
-	end
+	# 	@invitation_link = accept_user_invitation_url(:invitation_token => token)
+	# 	mail(to: @invitee.email ,subject: "You have been invited to join Roooster by #{@inviter.name}")
+	# end
 
 
 	# def invite_message(user, venue, from, subject, content)

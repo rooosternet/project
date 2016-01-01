@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230135115) do
+ActiveRecord::Schema.define(version: 20160101105925) do
 
   create_table "freelancers", force: :cascade do |t|
     t.integer  "user_id",          limit: 4
@@ -30,6 +30,26 @@ ActiveRecord::Schema.define(version: 20151230135115) do
   end
 
   add_index "freelancers", ["user_id"], name: "index_freelancers_on_user_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id",          limit: 4
+    t.boolean  "searchable",                     default: false, null: false
+    t.string   "public_email",     limit: 255
+    t.string   "location",         limit: 255
+    t.string   "job_title",        limit: 255
+    t.string   "company_name",     limit: 255
+    t.string   "company_website",  limit: 255
+    t.string   "online_portfolio", limit: 255
+    t.string   "linkedin_profile", limit: 255
+    t.string   "behance",          limit: 255
+    t.string   "vimeo",            limit: 255
+    t.text     "social_links",     limit: 65535
+    t.text     "skills",           limit: 65535
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "studios", force: :cascade do |t|
     t.integer  "user_id",         limit: 4

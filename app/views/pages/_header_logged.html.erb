@@ -14,15 +14,20 @@
 					<!-- <li>
 						<a href="#modal-edit-profile" data-toggle="modal">Edit</a>
 					</li> -->
-					<% if current_user.studio?  %>
-						<li>
-							<a href="#modal-edit-profile-studio" data-toggle="modal">Edit <%= "Studio" if current_user.freelancer? %></a>
-						</li>
-					<% end %>
+					<%# if current_user.studio?  %>
+						<!-- <li>
+							<a href="#modal-edit-profile-studio" data-toggle="modal">Edit <%#= "Studio" if current_user.freelancer? %></a>
+						</li> -->
+					<%# end %>
+					<%# if current_user.freelancer?  %>
+						<!-- <li>
+							<a href="#modal-edit-profile-freelancer" data-toggle="modal">Edit <%#= "Freelancer" if current_user.studio? %></a>
+						</li> -->
+					<%# end %>
 
-					<% if current_user.freelancer?  %>
+					<% if current_user.profile?  %>
 						<li>
-							<a href="#modal-edit-profile-freelancer" data-toggle="modal">Edit <%= "Freelancer" if current_user.studio? %></a>
+							<a href="#modal-edit-profile" data-toggle="modal">Edit Profile</a>
 						</li>
 					<% end %>
 

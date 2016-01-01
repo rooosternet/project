@@ -1,0 +1,53 @@
+<li class="freelancer">
+	<div class="freelancer-icon">
+		<i class="ico-user"></i>
+	</div>
+
+	<div class="freelancer-head">
+		<h5 class="freelancer-name"><%= profile.user.name %></h5>
+
+		<p><%=profile.location %></p>
+	</div>
+
+	<ul class="freelancer-links">
+		<li>
+			<%= link_to(profile.online_portfolio,profile.online_portfolio,:target => "_blank") if profile.online_portfolio %>
+		</li>
+		
+		<li>
+			<a href="#"><%= profile.user.email %></a>
+		</li>
+		
+		<!-- <li>
+			<a href="#">Vcard</a>
+		</li> -->
+	</ul>
+
+	<div class="freelancer-foot">
+		<ul class="freelancer-socials">
+			<li>
+				<a href="<%=profile.linkedin_profile%>">
+					<i class="ico-linkedin"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="<%=profile.behance%>">
+					<i class="ico-behance"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="<%=profile.vimeo%>">
+					<i class="ico-vimeo"></i>
+				</a>
+			</li>
+		</ul>
+
+		<div class="freelancer-foot-inner">
+			<strong> Senior <%#= profile.job_title %></strong>
+
+			<p><%= profile.skills %></p>
+		</div>
+	</div>
+</li>

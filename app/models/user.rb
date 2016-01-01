@@ -5,14 +5,17 @@ class User < ActiveRecord::Base
   enum role: [:pending ,:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
-  has_one :studio
-  has_one :freelancer
+  # has_one :studio
+  # has_one :freelancer
 
-  delegate :job_title ,:company_name ,:company_website , :to => :studio, :allow_nil => true
-  delegate :online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location , :to => :freelancer, :allow_nil => true
+  has_one :profile
+  delegate :searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills , :to => :profile, :allow_nil => true
 
-  accepts_nested_attributes_for :studio, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Studio.reject_studio(attributes)}
-  accepts_nested_attributes_for :freelancer, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Freelancer.reject_freelancer(attributes)}
+  # delegate :job_title ,:company_name ,:company_website , :to => :studio, :allow_nil => true
+  # delegate :online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location , :to => :freelancer, :allow_nil => true
+  # accepts_nested_attributes_for :studio, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Studio.reject_studio(attributes)}
+  # accepts_nested_attributes_for :freelancer, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Freelancer.reject_freelancer(attributes)}
+  accepts_nested_attributes_for :profile, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Profile.reject_profile(attributes)}
 
   def set_default_role
     self.role ||= ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ?  :admin : :user 
@@ -30,12 +33,18 @@ class User < ActiveRecord::Base
   # after_create :send_welcome_mail 
   # before_destroy 
   # after_save 
+  after_create :create_profile , :if => lambda{|user| user.user?}
 
-  def send_invite_mail(inviter)
-     generate_invitation_token! unless @raw_invitation_token
-     self.update_attribute :invitation_sent_at, Time.now.utc unless self.invitation_sent_at
-     email = Mailer.invite_email(inviter,self,@raw_invitation_token).deliver_now  
+  def create_profile
+    self.profile = Profile.new
+    self.save!
   end
+
+  # def send_invite_mail(inviter)
+  #    generate_invitation_token! unless @raw_invitation_token
+  #    self.update_attribute :invitation_sent_at, Time.now.utc unless self.invitation_sent_at
+  #    email = Mailer.invite_email(inviter,self,@raw_invitation_token).deliver_now  
+  # end
 
   # def send_welcome_mail
   #   begin
@@ -54,16 +63,16 @@ class User < ActiveRecord::Base
   #   #deliver_later 
   # end
 
-  def freelancer?
-    !self.freelancer.nil?
+  def profile?
+    !self.profile.nil?
   end
 
-  def studio?
-    !self.studio.nil?
+  def admin?
+    self.role.eql?("admin")
   end
 
-  def pending?
-    self.role.eql?("pending")
+  def user?
+    self.role.eql?("user")
   end
 
   def user_need_to_edit_profile?
@@ -74,10 +83,12 @@ class User < ActiveRecord::Base
    
     if self.role.eql?("admin")
       "modal-edit-profile-admin"
-    elsif studio
-      "modal-edit-profile-studio"
-    elsif freelancer
-      "modal-edit-profile-freelancer"
+    elsif profile
+      "modal-edit-profile"  
+    # elsif studio
+    #   "modal-edit-profile-studio"
+    # elsif freelancer
+    #   "modal-edit-profile-freelancer"
     else
       ""
     end      

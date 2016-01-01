@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get 'errors/show'
 
-  get 'freelancers/index'
-  post 'freelancers/invite'
+  get 'profiles/index'
+  post 'profiles/invite'
 
   get 'visitors/home', :as => "home"
 

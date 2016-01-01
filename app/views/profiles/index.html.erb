@@ -1,0 +1,43 @@
+<div class="main">
+	<div class="shell">
+		<section class="section-freelancers">
+			<header class="section-head">
+				<div class="row">
+					<div class="col-lg-6 col-md-8">
+						<h2 class="section-title">The Roooster</h2>
+
+						<span>found <strong><%= @profiles_count %> results</strong> that match your search</span>
+					</div>
+					
+					<div class="col-lg-6 col-md-4">
+						<div class="search search-alt">
+
+							<%= form_tag({ :controller => 'profiles', :action => 'index'}, :method => :get, :id => 'query_form') do %>
+				              <label for="q" class="hidden">Search</label>
+				              
+				              <%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
+
+				              <button type="submit" class="search-btn" id="submit_search_form">
+				                <i class="fa fa-search"></i>
+				              </button>
+				            <% end %>
+
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<div class="section-body">
+				<ul class="freelancers">
+					<% @profiles.each do |profile| %>
+						<tr>
+							<%= render :partial => 'profile' , :locals =>  { profile: profile }%>
+						</tr>
+					<% end %>
+				</ul>
+			</div>
+		</section>
+
+		<%= render :partial => 'invite_freelancer' %>
+	</div>
+</div>
