@@ -5,7 +5,7 @@
 		</div>
 		<!-- href="#form-suggest" -->
 		<a data-target="#form-suggest" class="btn btn-default btn-large btn-collapse-form" data-toggle="collapse">
-			RECOMMEND A FREELANCER
+			RECOMMEND A CREATIVE
 
 			<i class="ico-arrow-down-medium"></i>
 		</a>
@@ -16,7 +16,7 @@
 			<%= form_for(User.new, :url => user_invitation_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
 			<div class="form-inner">
 				<div class="form-head">
-					<h4 class="form-title">Recommend a Freelancer</h4>
+					<h4 class="form-title">Recommend a Creative</h4>
 
 					<p>Adding a freelancer to Roooster is the same as recommending them to your peers.</p>
 				</div>

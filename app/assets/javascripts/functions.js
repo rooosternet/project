@@ -75,9 +75,7 @@ $(function() {
 
 		// Button Collapse Form
 		$('.btn-collapse-form').bind('click', function(event) {
-			console.log("--- .btn-collapse-form");
 			event.preventDefault();
-			
 			$(this).hide();
 		});
 
@@ -174,6 +172,11 @@ $(function() {
 
 		$('#create_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
 			$(".form-create-password-error").text(data.responseText);
+		});
+
+
+		$('.form-controls').on('change', function (e) {
+  			$(".form-error").html("");
 		});
 
 		// modal-signin-link click to sign-in
