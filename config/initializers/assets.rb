@@ -13,6 +13,6 @@ Rails.application.config.assets.paths << Rails.root.join("app", "assets", "image
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "bootstrap")
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "fastselect")
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "font-awesome")
-
+Rails.application.config.assets.precompile  += ['*.png','*.ico','*.jpg','*.jpeg','*.gif','*.woff2']
 # Rails.application.config.assets.precompile  = ['*.js', '*.scss' , '*.css','*.png','*.ico','*.jpg','*.jpeg','*.gif','*.woff2']
 Rails.application.config.assets.precompile  << /\.(?:svg|eot|woff|ttf)\z/

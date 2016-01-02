@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get 'info/about', :as => "about"
   get 'info/blog', :as => "blog"
+  # get 'info/post/:name', :controller => :info , :action => :post , :as => "post"
   get 'info/faq', :as => "faq"
   get 'info/privacy', :as => "privacy"
   get 'info/terms', :as => "terms"

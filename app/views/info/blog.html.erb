@@ -1,2 +1,36 @@
-<iframe src="https://roooster.net/blog" style="border: 0; width: 100%; height:500px;">
-</iframe>
+<!-- <iframe src="https://roooster.net/blog" style="border: 0; width: 100%; height:500px;">
+</iframe> -->
+
+<section class="section section-blog">
+	<h2 class="section-title">Blog</h2><!-- /.section-title -->
+
+	<div class="section-body">
+		<ul class="articles">
+
+		<% @normalize_blog_posts.each_with_index do |post,index| %>
+			
+			<li class="article">
+				<h3 class="article-title">
+					<a href='<%=post[:link]%>'><%=post[:title].html_safe %></a>
+				</h3><!-- /.article-title -->
+
+				<div class="article-entry">
+					<p><%=post[:intro].html_safe %>...</p>
+				</div><!-- /.article-entry -->
+
+				<div class="article-actions">
+					<a href='<%=post[:link]%>'>
+						Read more <i class="ico-arrow-down-small"></i>
+					</a>
+				</div><!-- /.article-actions -->
+			</li><!-- /.article -->
+
+		<% end %>	
+
+		</ul><!-- /.articles -->
+	</div><!-- /.section-body -->
+
+	<footer class="section-foot">
+		<%= will_paginate @blog_posts, page_links: false%>
+	</footer><!-- /.section-foot -->
+</section><!-- /.section section-blog -->

@@ -8,9 +8,9 @@
 			<div class="modal-body">
 				<div class="form form-signup">
 
-					<%#= form_for(@user, :as => :user, :url => register_path(:user,studio: true),:remote => true , :html => { "data-error-id" => "studio_register_form" , :class => "register_form" ,:role => 'form', "data-parent" => "modal-signup"}) do |f| %>
+					<%#= form_for(@user  || User.new, :as => :user, :url => register_path(:user,studio: true),:remote => true , :html => { "data-error-id" => "studio_register_form" , :class => "register_form" ,:role => 'form', "data-parent" => "modal-signup"}) do |f| %>
 
-					<%= form_for(@user, :as => :user, :url => user_registration_path(:user),:remote => true , :html => { "data-error-id" => "studio_register_form" , :class => "register_form" ,:role => 'form', "data-parent" => "modal-signup"}) do |f| %>
+					<%= form_for(@user || User.new, :as => :user, :url => user_registration_path(:user),:remote => true , :html => { "data-error-id" => "studio_register_form" , :class => "register_form" ,:role => 'form', "data-parent" => "modal-signup"}) do |f| %>
 
 					<div class="form-inner-alt">
 						<div class="form-head">
@@ -103,7 +103,7 @@
 
 			<div class="modal-body">
 				<div class="form form-signin">
-					<%= form_for(@user, :as => :user, :url => session_path(:user) , :remote => true , :html => { :id => "signin_form_id",:class => "signin_form" ,:role => 'form', "data-parent" => "modal-signin"}) do |f| %>
+					<%= form_for(@user  || User.new, :as => :user, :url => session_path(:user) , :remote => true , :html => { :id => "signin_form_id",:class => "signin_form" ,:role => 'form', "data-parent" => "modal-signin"}) do |f| %>
 					<div class="form-inner">
 						<div class="form-head">
 							<h4 class="form-title">Sign In</h4>
@@ -164,7 +164,7 @@
 			<div class="modal-body">
 				<div class="form form-signin">
 
-					<%= form_for(@user, :as => :user, :url => password_path(:user), :remote => true , :html => { :method => :post,:role => 'form',"data-parent" => "modal-forget-password" , :id => "forget_password_form_id" }) do |f| %>
+					<%= form_for(@user  || User.new, :as => :user, :url => password_path(:user), :remote => true , :html => { :method => :post,:role => 'form',"data-parent" => "modal-forget-password" , :id => "forget_password_form_id" }) do |f| %>
 					<div class="form-inner">
 						<div class="form-head">
 							<h4 class="form-title">Forgot your password?</h4>

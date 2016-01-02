@@ -3,53 +3,27 @@
 
 	<div class="section-body">
 		<ul class="articles">
-			<li class="article">
-				<h3 class="article-title">
-					<a href="blog-page.html">As an owner of a design studio</a>
-				</h3><!-- /.article-title -->
 
-				<div class="article-entry">
-					<p>in London, I have just a few in-house employees and like many of you, heavily depended on freelances to help with ongoing projects. We are all used to waste days, browsing through hundreds of...</p>
-				</div><!-- /.article-entry -->
-
-				<div class="article-actions">
-					<a href="blog-page.html">
-						Read more <i class="ico-arrow-down-small"></i>
-					</a>
-				</div><!-- /.article-actions -->
-			</li><!-- /.article -->
+		<% @blog_intro.each_with_index do |post,index| %>
 			
 			<li class="article">
 				<h3 class="article-title">
-					<a href="blog-page.html">Therefore, I came up with</a>
+					<a href='<%=post[:link]%>'><%=post[:title].html_safe %></a>
 				</h3><!-- /.article-title -->
 
 				<div class="article-entry">
-					<p>the idea of sharing the best freelance contacts with my fellow creative leaders, in hope that others would contribute and together we can build tmate list to help ev help everyone...</p>
+					<p><%=post[:intro].html_safe %>...</p>
 				</div><!-- /.article-entry -->
 
 				<div class="article-actions">
-					<a href="blog-page.html">
+					<a href='<%=post[:link]%>'>
 						Read more <i class="ico-arrow-down-small"></i>
 					</a>
 				</div><!-- /.article-actions -->
 			</li><!-- /.article -->
-			
-			<li class="article">
-				<h3 class="article-title">
-					<a href="blog-page.html">You must all agree</a>
-				</h3><!-- /.article-title -->
 
-				<div class="article-entry">
-					<p>That finding good, reliable reative leaders, in hope that otfreel Fances for a project is every creative leader’s worst mate list to help evnightmare...</p>
-				</div><!-- /.article-entry -->
+		<% end %>	
 
-				<div class="article-actions">
-					<a href="blog-page.html">
-						Read more <i class="ico-arrow-down-small"></i>
-					</a>
-				</div><!-- /.article-actions -->
-			</li><!-- /.article -->
 		</ul><!-- /.articles -->
 	</div><!-- /.section-body -->
 
