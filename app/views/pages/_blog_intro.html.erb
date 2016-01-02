@@ -4,7 +4,7 @@
 	<div class="section-body">
 		<ul class="articles">
 
-		<% @blog_intro.each_with_index do |post,index| %>
+		<% (@blog_intro || []).each do |post| %>
 			
 			<li class="article">
 				<h3 class="article-title">

@@ -9,7 +9,7 @@ class Profile < ActiveRecord::Base
                                                LOWER(#{Profile.table_name}.skills) LIKE LOWER(:p))",
                                                {:p => "%" + search.downcase + "%"})}
 
-	scope :skill_search, lambda {|search| joins(:user).where("LOWER(#{Profile.table_name}.skills) LIKE LOWER(:p))",
+	scope :skill_search, lambda {|search| joins(:user).where("LOWER(#{Profile.table_name}.skills) LIKE LOWER(:p)",
                                                {:p => "%" + search.downcase + "%"})}
 
 	def self.reject_profile(attributes)

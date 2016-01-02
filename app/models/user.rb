@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   def set_default_role
     self.role ||= ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ?  :admin : :user 
+    byebug
+    self.profile = Profile.new unless self.profile
   end
 
   # Include default devise modules. Others available are:
@@ -35,9 +37,14 @@ class User < ActiveRecord::Base
   # after_save 
   after_create :create_profile , :if => lambda{|user| user.user? && user.profile.nil?}
 
-  def create_profile
-    self.profile = Profile.new
-    self.save!
+  # def create_profile
+  #   self.profile = Profile.new
+  #   self.save!
+  # end
+
+  def send_devise_notification(notification, *args)
+    byebug
+    devise_mailer.send(notification, self, *args).deliver_later
   end
 
   # def send_invite_mail(inviter)

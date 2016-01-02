@@ -7,7 +7,7 @@
 	<div class="section-body">
 		<ul class="articles">
 
-		<% @normalize_blog_posts.each_with_index do |post,index| %>
+		<% (@normalize_blog_posts || []).each do |post| %>
 			
 			<li class="article">
 				<h3 class="article-title">
