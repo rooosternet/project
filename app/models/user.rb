@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
 
   def set_default_role
     self.role ||= ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ?  :admin : :user 
-    byebug
     self.profile = Profile.new unless self.profile
   end
 
@@ -43,7 +42,6 @@ class User < ActiveRecord::Base
   # end
 
   def send_devise_notification(notification, *args)
-    byebug
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
