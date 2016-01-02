@@ -286,11 +286,24 @@
 									<label for="field-skills" class="form-label">Skills</label>
 
 									<div class="form-controls">
-										<%= builder.text_field :skills, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+				<%#= builder.text_field :skills, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+				<select name="user[profile_attributes][skills]" id="user_profile_attributes_skills" class="select-autocomplete" multiple data-placeholder="Skills">
+											<option value="director">Director</option>
+
+											<option value="motion-graphics">Motion Graphics</option>
+
+											<option value="animation">Animation</option>
+
+											<option value="art-direction">Art Direction</option>
+
+											<option value="design">Design</option>
+
+											<option value="illustrator">Illustrator</option>
+
+											<option value="after-effects">After Effects</option>
+										</select>
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-row -->
-
-
 								<% end %>
 								
 							</div><!-- /.form-group -->
