@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101175842) do
+ActiveRecord::Schema.define(version: 20160103181927) do
 
   create_table "freelancers", force: :cascade do |t|
     t.integer  "user_id",          limit: 4
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160101175842) do
     t.string   "invited_by_type",        limit: 255
     t.integer  "invitations_count",      limit: 4,   default: 0
     t.boolean  "edit_profile",                       default: false, null: false
+    t.boolean  "subscribe",                          default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

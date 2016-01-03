@@ -62,15 +62,16 @@
 
 							<div class="form-row form-row-alt">
 								<div class="checkbox">
-
-									<%= check_box_tag("field-studio-terms", value = "1", checked = false, :required => true) %>
-									<label for="field-studio-terms">I agree to <a href="#">Roooster terms</a>.</label>
+									<%= f.check_box(:terms_of_service) %>
+									<%= f.label(:terms_of_service,"I agree to #{link_to('Roooster terms','#')}".html_safe) %>
+									<!-- <label for="field-studio-terms">I agree to <a href="#">Roooster terms</a>.</label> -->
 								</div>
 
 								<div class="checkbox">
-
-									<%= check_box_tag("field-studio-subscribe", value = "1", checked = false, :required => false) %>
-									<label for="field-studio-subscribe">Get the latest news from Roooster.</label>
+									<%= f.check_box(:subscribe) %>
+									<%= f.label(:subscribe,"Get the latest news from Roooster.") %>
+									<%#= check_box_tag("field-studio-subscribe", checked = false) %>
+									<!-- <label for="field-studio-subscribe">Get the latest news from Roooster.</label> -->
 								</div>
 							</div>
 						</div>

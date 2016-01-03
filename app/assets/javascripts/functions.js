@@ -24,6 +24,46 @@
 
 // 	$doc.ready(function() {
 
+
+// function validate_terms()
+// {
+//     if( $('#field-studio-terms').attr('checked')){
+//       alert("you have to accept the terms first");
+//     }
+// }
+
+
+ // document.addEventListener("DOMContentLoaded", function() {
+
+ //    var myForm = document.getElementById("new_user");
+ //    var checkForm = function(e) {
+ //    	alert("");
+ //      if(!this.field_studio_terms.checked) {
+ //        alert("Please indicate that you accept the Terms and Conditions");
+ //        this.field_studio_terms.focus();
+ //        e.preventDefault(); // equivalent to return false
+ //        return;
+ //      }
+ //    };
+
+ //    // attach the form submit handler
+ //    myForm.addEventListener("submit", checkForm, true);
+
+ //    var myCheckbox = document.getElementById("field_studio_terms");
+ //    var myCheckboxMsg = "Please indicate that you accept the Terms and Conditions";
+
+ //    // set the starting error message
+ //    myCheckbox.setCustomValidity(myCheckboxMsg);
+
+ //    // attach checkbox handler to toggle error message
+ //    myCheckbox.addEventListener("change", function() {
+ //      this.setCustomValidity(this.validity.valueMissing ? myCheckboxMsg : "");
+ //    }, false);
+
+ //  }, false);
+
+
+
 function setupAjaxIndicator() {
   $(document).bind('ajaxSend', function(event, xhr, settings) {
     if ($('.ajax-loading').length === 0 && settings.contentType != 'application/octet-stream') {

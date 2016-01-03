@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   
   attr_reader :raw_invitation_token
+  attr_accessor :terms_of_service
   
   enum role: [:pending ,:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
@@ -29,6 +30,7 @@ class User < ActiveRecord::Base
   validates_presence_of :firstname,:lastname,:email
   # validates_presence_of :firstname,:email
   validates_length_of :firstname, :lastname, :maximum => 30
+  validates :terms_of_service, :acceptance => true
   # before_validation  :generate_password_if_needed
   before_create :set_name
   # after_create :send_welcome_mail 

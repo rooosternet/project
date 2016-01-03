@@ -72,12 +72,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
           clean_up_passwords resource
           set_minimum_password_length
           # respond_with resource
-          message = resource.errors.any? ? resource.errors.full_messages : "fail to create user!"          
-          render :text => "fail to create user!" , :status => 500
+          message = resource.errors.any? ? resource.errors.full_messages.join('<br>') : "fail to create user!"          
+          render :text => message , :status => 500
         end
       end
     rescue Exception => e
-      message = resource.errors.any? ? resource.errors.full_messages : "fail to create user!"
+      message = resource.errors.any? ? resource.errors.full_messages.join('<br>') : "fail to create user!"
       render :text => message , :status => 500
     end
   end
