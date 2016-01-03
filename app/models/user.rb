@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   validates_length_of :firstname, :lastname, :maximum => 30
   validates :terms_of_service, :acceptance => true
   # before_validation  :generate_password_if_needed
-  before_create :set_name
+  # before_create :set_name
   # after_create :send_welcome_mail 
   # before_destroy 
   # after_save 
@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
   #   #deliver_later 
   # end
 
+  def name
+    "#{firstname} #{lastname}"
+  end
+
   def profile?
     !self.profile.nil?
   end
@@ -104,9 +108,9 @@ class User < ActiveRecord::Base
 
   private
 
-  def set_name
-  	self.name = "#{firstname} #{lastname}"	if self.name.blank?
-  end
+  # def set_name
+  # 	self.name = "#{firstname} #{lastname}"	if self.name.blank?
+  # end
 
 #   def generate_password_if_needed
 #     if new_record?
