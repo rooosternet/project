@@ -65,21 +65,21 @@
 
 
 function setupAjaxIndicator() {
-  $(document).bind('ajaxSend', function(event, xhr, settings) {
-    if ($('.ajax-loading').length === 0 && settings.contentType != 'application/octet-stream') {
-      $('#ajax-indicator').show();
-    }
-  });
-  $(document).bind('ajaxStop', function() {
-    $('#ajax-indicator').hide();
-  });
+	$(document).bind('ajaxSend', function(event, xhr, settings) {
+		if ($('.ajax-loading').length === 0 && settings.contentType != 'application/octet-stream') {
+			$('#ajax-indicator').show();
+		}
+	});
+	$(document).bind('ajaxStop', function() {
+		$('#ajax-indicator').hide();
+	});
 };
 
 $(document).ready(setupAjaxIndicator);
 
 function validatePassword(){
 	var password = document.getElementById("user_password")
-		, confirm_password = document.getElementById("user_password_confirmation");
+	, confirm_password = document.getElementById("user_password_confirmation");
 	
 	if(password.value != confirm_password.value) {
 		confirm_password.setCustomValidity("Passwords Don't Match");
@@ -192,7 +192,7 @@ $(function() {
 		});
 
 		$('.modal').on('show.bs.modal', function (e) {
-  			$(this).find(".form-error").html("");
+			$(this).find(".form-error").html("");
 		});
 
 		$('#change_password_form_id').bind('ajax:success',function(event, data, status, xhr){
@@ -216,7 +216,22 @@ $(function() {
 
 
 		$('.form-controls').on('change', function (e) {
-  			$(".form-error").html("");
+			$(".form-error").html("");
+		});
+
+
+		$('.radio-btn').on('click', function(e){
+			e.preventDefault();
+		    $('.radio-btn').removeClass('active active-btn');
+		    $(this).addClass('active-btn');        
+		    var id = this.id;
+		    if(id == "is_company"){ 
+		    	$("#user_profile_attributes_is_company").attr('value',true);	
+		    	$("#user_profile_attributes_is_freelancer").attr('value',false);
+		    }else{
+		        $("#user_profile_attributes_is_company").attr('value',false);	
+		    	$("#user_profile_attributes_is_freelancer").attr('value',true);
+		    }
 		});
 
 		// modal-signin-link click to sign-in

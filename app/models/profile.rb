@@ -17,4 +17,13 @@ class Profile < ActiveRecord::Base
 		empty = %w(searchable public_email location job_title company_name company_website online_portfolio linkedin_profile behance vimeo social_links skills).map{|name| attributes[name].blank?}.all?
 		return empty.nil?
 	end
+
+	def is_freelancer?
+		!!is_freelancer
+	end
+
+	def is_company?
+		!!is_company
+	end
+
 end
