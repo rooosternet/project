@@ -51,9 +51,9 @@
 		</ul>
 
 		<div class="freelancer-foot-inner">
-			<strong> Senior <%#= profile.job_title %></strong>
+			<strong> Skills <%#= profile.job_title %></strong>
 
-			<p><%= profile.skills %></p>
+			<p><%= profile.skills.split(',').join(', ') %></p>
 		</div>
 	</div>
 </li>

@@ -11,7 +11,7 @@ class Users::InvitationsController < Devise::InvitationsController
         set_flash_message :notice, :send_instructions, :email => self.resource.email
       end
       # respond_with resource, :location => after_invite_path_for(current_inviter)
-      render :json => { :responseText => "Invitation sent to #{@user.name}.." }.to_json , :status => 200
+      render :json => { :responseText => "Invitation sent to #{@user.name}." }.to_json , :status => 200
     else
       # respond_with_navigational(resource) { render :new }
       render :json => { :responseText => "Fail to sent invitation: #{resource.errors.full_messages.join(',')}" }.to_json , :status => 500

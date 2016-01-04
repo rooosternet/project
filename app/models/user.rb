@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   # delegate :online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location , :to => :freelancer, :allow_nil => true
   # accepts_nested_attributes_for :studio, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Studio.reject_studio(attributes)}
   # accepts_nested_attributes_for :freelancer, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Freelancer.reject_freelancer(attributes)}
-  accepts_nested_attributes_for :profile, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Profile.reject_profile(attributes)}
+  accepts_nested_attributes_for :profile, :allow_destroy => true #, :update_only => true, :reject_if => proc {|attributes| Profile.reject_profile(attributes)}
 
   def set_default_role
     self.role ||= ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ?  :admin : :user 

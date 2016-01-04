@@ -81,7 +81,7 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-row">
-                <label for="field-public-email" class="form-label">Public Email</label>
+                <label for="field-public-email" class="form-label">Contact</label>
 
                 <div class="form-controls">
                   <%= builder.text_field :public_email, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email"%>
@@ -91,10 +91,10 @@
 
             <div class="col-sm-6">
               <div class="form-row">
-                <label for="field-job-title" class="form-label">Job Title</label>
+                <label for="field-job-title" class="form-label">Title</label>
 
                 <div class="form-controls">
-                  <%= builder.text_field :job_title, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+                  <%= builder.text_field :job_title, :no_label => true , :class =>"form-control" ,:placeholder => "Ex. Creative Director" %>
                 </div><!-- /.form-controls -->
               </div><!-- /.form-row -->
             </div><!-- /.col-sm-6 -->
@@ -113,18 +113,6 @@
 
             <div class="col-sm-6">
               <div class="form-row">
-                <label for="field-linkedin" class="form-label">LinkedIn</label>
-
-                <div class="form-controls">
-                  <%= builder.text_field :linkedin_profile, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
-                </div><!-- /.form-controls -->
-              </div><!-- /.form-row -->
-            </div><!-- /.col-sm-6 -->
-          </div><!-- /.row -->
-
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-row">
                 <label for="field-company-name" class="form-label">Company Name</label>
 
                 <div class="form-controls">
@@ -132,18 +120,7 @@
                 </div><!-- /.form-controls -->
               </div><!-- /.form-row -->
             </div><!-- /.col-sm-6 -->
-
-            <div class="col-sm-6">
-              <div class="form-row">
-                <label for="field-website" class="form-label">Company Website</label>
-
-                <div class="form-controls">
-                  <%= builder.text_field :company_website, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
-                </div><!-- /.form-controls -->
-              </div><!-- /.form-row -->
-            </div><!-- /.col-sm-6 -->
           </div><!-- /.row -->
-
 
           <div class="row">
             <div class="col-sm-6">
@@ -168,7 +145,15 @@
           </div><!-- /.row -->
 
           <div class="form-row">
-            <label for="field-social-links" class="form-label">Social Links</label>
+            <label for="field-linkedin" class="form-label">LinkedIn</label>
+
+            <div class="form-controls">
+              <%= builder.text_field :linkedin_profile, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
+            </div><!-- /.form-controls -->
+          </div><!-- /.form-row -->
+
+          <div class="form-row">
+            <label for="field-social-links" class="form-label">Other Social Links</label>
 
             <div class="form-controls">
               <%= builder.text_field :social_links, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"url"%>
@@ -179,7 +164,7 @@
             <label for="field-skills" class="form-label">Skills</label>
 
             <div class="form-controls">
-              <%= builder.text_field :skills, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+              <%= builder.select :skills, skills_options_for_select(builder.object.skills) , {} , {:multiple => true ,:no_label => true, :class => "select-autocomplete" ,:placeholder => "Skills"} %>
             </div><!-- /.form-controls -->
           </div><!-- /.form-row -->
 

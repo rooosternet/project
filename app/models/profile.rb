@@ -11,6 +11,8 @@ class Profile < ActiveRecord::Base
 
 	scope :skill_search, lambda {|search| joins(:user).where("LOWER(#{Profile.table_name}.skills) LIKE LOWER(:p)",
                                                {:p => "%" + search.downcase + "%"})}
+	serialize :skills, Array 
+
 
 	def self.reject_profile(attributes)
 		exists = attributes['id'].present?
@@ -26,4 +28,14 @@ class Profile < ActiveRecord::Base
 		!!is_company
 	end
 
+	def skills=(arg)
+    if arg.is_a?(Array)
+      values = arg.compact.map {|a| a.to_s.strip}.reject(&:blank?)
+      write_attribute(:skills, values)
+    else
+      self.skills = arg.to_s.split(/[\n\r]+/)
+    end
+  end
+	
 end
+
