@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
 
     unless scope.blank?
     	@profiles_count = scope.count
-    	@profiles = scope
+    	@profiles = scope.paginate(page: params[:page], per_page: 10)
     end
 
     render :template => 'visitors/home' if params[:skills].blank? && params[:search].blank?

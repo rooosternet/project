@@ -21,3 +21,6 @@
 
 en:
   label_loading: loading...
+  will_paginate:
+    previous_label: <i class="ico-arrowl"></i>
+    next_label: <i class="ico-arrowr"></i>
