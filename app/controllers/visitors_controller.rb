@@ -2,6 +2,7 @@ class VisitorsController < ApplicationController
 	include ApplicationHelper
 	helper :application
 	def home
+		@confirmation = true if params[:confirmation] == "true"
 		unless user_signed_in?
 			@user = User.new
 			@user.profile = Profile.new
@@ -10,6 +11,7 @@ class VisitorsController < ApplicationController
 				sign_out(:user)
 				redirect_to root_path
 			end
+
 		end	
 
 		@blog_intro = generate_blog_posts_intro

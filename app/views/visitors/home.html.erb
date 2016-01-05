@@ -28,10 +28,15 @@
 </div><!-- /.main -->
 
 
-<% if user_signed_in? && current_user.user_need_to_edit_profile? %>
-	<%= javascript_tag do %>
-		$(function(){
-	        $('#<%= current_user.user_type_str %>').modal();
-	    });
-	<% end %>	
+
+<%= javascript_tag do %>
+	$(function(){
+		<% if user_signed_in? && current_user.user_need_to_edit_profile? %>
+		    $('#<%= current_user.user_type_str %>').modal();
+		<% elsif @confirmation %>	
+		    $('#confirmation_thanks').modal();
+		<% end %>	
+	});
 <% end %>
+
+@confirmation
