@@ -205,10 +205,12 @@
 
 							<%= builder.hidden_field(:is_company) %>
 					        <%= builder.hidden_field(:is_freelancer) %>
-
+					        <hr>
 					        <div data-toggle="buttons-radio" class="header-actions edit-profile">
+					        <center>
 					          <button id="is_company" class="radio-btn btn btn-default <%='active' if builder.object.is_company? %>">Company</button>
 					          <button id="is_freelancer" class="radio-btn btn btn-default <%='active' if builder.object.is_freelancer? %>">Freelancer</button>
+					          </center>
 					        </div>
 
 							

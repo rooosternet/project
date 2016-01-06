@@ -18,10 +18,11 @@
 }
 
 .edit-profile{
-	padding-top: 8px;
-    padding-bottom: 8px;
-	padding-left: 28%;
-    padding-right: 28%;
+	position: relative;
+    top: -41px;
+}
+.radio-btn{
+	width: 110px;
 }
 /* ------------------------------------------------------------ *\
 	Dropdown

@@ -38,8 +38,7 @@
 		position: absolute;
 		z-index: 100000;
 		opacity: 4;
-		top:35%;
-		left:50%;
+		top: 0;
 	}
 	
 	#ajax-indicator span {
@@ -49,7 +48,8 @@
 		height: 32px;
 		display: block;
 		position: relative;
-		/*margin: auto;*/
+		top: 12%;
+	    left: 48%;
 	}
 	.error_subject{
 		text-align: center;
