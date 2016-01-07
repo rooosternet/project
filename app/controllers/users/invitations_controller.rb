@@ -14,7 +14,12 @@ class Users::InvitationsController < Devise::InvitationsController
       render :json => { :responseText => "Invitation sent to #{@user.name}." }.to_json , :status => 200
     else
       # respond_with_navigational(resource) { render :new }
-      render :json => { :responseText => "Fail to sent invitation: #{resource.errors.full_messages.join(',')}" }.to_json , :status => 500
+      if resource.errors.full_messages.include?("Email has already been taken")
+        message = "Great! have already heard about #{resource.name} from other users."
+      else
+        message = "Fail to sent invitation: #{resource.errors.full_messages.join(',')}" 
+      end  
+      render :json => { :responseText => message }.to_json , :status => 500
     end
   end
 
