@@ -4,18 +4,13 @@ class ProfilesController < ApplicationController
 
   # {"search"=>"", "skills"=>"Motion Graphics"}
   def index
-    
   	@profiles_count = 'No'
     @profiles = []
     scope = Profile.active
     params[:search].split(' ').collect{ |search_string| scope = scope.live_search(search_string) } if !params[:search].blank?
     scope = scope.skill_search(params[:skills]) if !params[:skills].blank?
-
-    unless scope.blank?
-    	@profiles_count = scope.count
-    	@profiles = scope.paginate(page: params[:page], per_page: 10)
-    end
-
+    @profiles_count = scope.count
+    @profiles = scope.paginate(page: params[:page], per_page: 10)
     render :template => 'visitors/home' if params[:skills].blank? && params[:search].blank?
   end
 
