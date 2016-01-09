@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   has_one :profile
   delegate :searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills , :to => :profile, :allow_nil => true
 
+  has_many :outgoing_messages , :class_name => 'InMessage' , :foreign_key => 'from_id'
+  has_many :incoming_messages , :class_name => 'InMessage' , :foreign_key => 'to_id'
+
+
   # delegate :job_title ,:company_name ,:company_website , :to => :studio, :allow_nil => true
   # delegate :online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location , :to => :freelancer, :allow_nil => true
   # accepts_nested_attributes_for :studio, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Studio.reject_studio(attributes)}
@@ -36,7 +40,7 @@ class User < ActiveRecord::Base
   # after_create :send_welcome_mail 
   # before_destroy 
   # after_save 
-  after_create :create_profile , :if => lambda{|user| user.user? && user.profile.nil?}
+  # after_create :create_profile , :if => lambda{|user| user.user? && user.profile.nil?}
 
   # def create_profile
   #   self.profile = Profile.new

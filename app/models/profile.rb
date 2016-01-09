@@ -20,6 +20,10 @@ class Profile < ActiveRecord::Base
 		return empty.nil?
 	end
 
+	def link_class(attr_name)
+		self.respond_to?(attr_name) && self.send(attr_name).blank? ? "class=not-active" : ""
+	end
+
 	def is_freelancer?
 		!!is_freelancer
 	end

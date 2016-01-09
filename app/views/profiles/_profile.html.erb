@@ -21,7 +21,8 @@
 		</li>
 		
 		<li>
-			<a href="mailto:<%= profile.user.email %>" target="_blank"><%= profile.user.email %></a>
+			<!-- <a href="mailto:<%#= profile.user.email %>" target="_blank"><%#= profile.user.email %></a> -->
+			<a href="#" class="toggler" data-toggler='<%="#{profile.id}_message"%>' >Contact</a>
 		</li>
 		
 		<!-- <li>
@@ -32,19 +33,19 @@
 	<div class="freelancer-foot">
 		<ul class="freelancer-socials">
 			<li>
-				<a href="<%=profile.linkedin_profile%>" target="_blank">
+				<a href="<%=profile.linkedin_profile%>" target="_blank" <%=profile.link_class('linkedin_profile')%>>
 					<i class="ico-linkedin"></i>
 				</a>
 			</li>
 			
 			<li>
-				<a href="<%=profile.behance%>" target="_blank">
+				<a href="<%=profile.behance%>" target="_blank" <%=profile.link_class('behance')%>>
 					<i class="ico-behance"></i>
 				</a>
 			</li>
 			
 			<li>
-				<a href="<%=profile.vimeo%>" target="_blank">
+				<a href="<%=profile.vimeo%>" target="_blank" <%=profile.link_class('vimeo')%> >
 					<i class="ico-vimeo"></i>
 				</a>
 			</li>
@@ -55,5 +56,18 @@
 
 			<p><%= profile.skills.split(',').join(', ') %></p>
 		</div>
+	</div>
+	<div style="display: none" id='<%="#{profile.id}_message" %>'>
+		<%= form_for(InMessage.new,:url => in_messages_path ,:remote => true ,:html => { :method => :post, :class => "message-to" ,:role => 'form'}) do |f| %>
+			 <%= f.hidden_field(:from_id,value: current_user.id) %>
+        	 <%= f.hidden_field(:to_id,value: profile.user_id) %>
+        	 <div class="form-controls">
+              <%= f.text_area :note, :no_label => true ,:rows => 6, :class =>"form-control in-message" ,:placeholder => "Write something" %>
+            </div>
+            <div class="form-controls message-btn">
+            	<%= f.submit 'Send' , class: 'btn' ,  width: "100px" %>
+            </div>
+            <div style="height:20px"></div>
+		<% end %>
 	</div>
 </li>

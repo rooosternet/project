@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'profiles/index'
   post 'profiles/invite'
+  post "profiles/:id/contact",:controller => :profiles, :action => :contact,:as => :contact
 
   get 'visitors/home', :as => "home"
 
@@ -20,7 +21,8 @@ Rails.application.routes.draw do
 
   resources :users
   # match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
-
+  resources :in_messages
+  get 'in_messages/:token', :controller => :in_messages , :action => :show , :as => "message_show"
 
   get 'info/about', :as => "about"
   get 'info/blog', :as => "blog"

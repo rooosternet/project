@@ -48,6 +48,17 @@ class Mailer < Devise::Mailer
       devise_mail(record, :invitation_instructions, opts)
     end
 
+
+    def in_mail(from,to,token,note)
+      @token_url = message_show_url(token: token)
+      @message = note
+      @from = from
+      @to = to
+      @subject = "You got a message from #{from.name}"
+      mail(to: to.email ,from: from.email, subject: @subject)
+      # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
+    end
+
 	# def welcome_email_freelancer(user)
 	# 	@user = user
 	# 	mail(to: @user.email,subject: "Welcome to Roooster!")
