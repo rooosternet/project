@@ -17,7 +17,7 @@ class InMessagesController < ApplicationController
       puts "MessagesController::create: #{msg}"
       status = 503
     end
-    render :nothing => true, :status => status
+    render :text => "#{message.to_id}_message", :status => status
   end
 
   def edit

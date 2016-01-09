@@ -30,7 +30,15 @@ $(function() {
 	});
 	
 	$('.message-to').bind('ajax:complete', function(event, data, status, xhr) {
-		$(this.in_message_note).val("");
+		$("#"+ data.responseText +" [id=in_message_note]").css('text-align' , 'center');
+		$("#"+ data.responseText +" [id=in_message_note]").val("");
+		$("#"+ data.responseText +" [id=in_message_note]").attr('placeholder' , 'Thanks! your message was sent.');
+
+		setTimeout(function () {
+			$("#"+ data.responseText +" [id=in_message_note]").css('text-align' , 'left');
+   			$("#"+ data.responseText +" [id=in_message_note]").attr('placeholder' , 'Your message');
+       		$("#"+data.responseText).hide();
+   		}, 4000);
 	});
 
 	// $('.message-to')

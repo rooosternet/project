@@ -22,7 +22,7 @@
 		
 		<li>
 			<!-- <a href="mailto:<%#= profile.user.email %>" target="_blank"><%#= profile.user.email %></a> -->
-			<a href="#" class="toggler" data-toggler='<%="#{profile.id}_message"%>' >Contact</a>
+			<a href="#" class="toggler" data-toggler='<%="#{profile.user_id}_message"%>' >Send a Message</a>
 		</li>
 		
 		<!-- <li>
@@ -57,17 +57,17 @@
 			<p><%= profile.skills.split(',').join(', ') %></p>
 		</div>
 	</div>
-	<div style="display: none" id='<%="#{profile.id}_message" %>'>
+	<div style="display: none" id='<%="#{profile.user_id}_message" %>'>
 		<%= form_for(InMessage.new,:url => in_messages_path ,:remote => true ,:html => { :method => :post, :class => "message-to" ,:role => 'form'}) do |f| %>
 			 <%= f.hidden_field(:from_id,value: current_user.id) %>
         	 <%= f.hidden_field(:to_id,value: profile.user_id) %>
         	 <div class="form-controls">
-              <%= f.text_area :note, :no_label => true ,:rows => 6, :class =>"form-control in-message" ,:placeholder => "Write something" %>
+              <%= f.text_area :note, :no_label => true ,:rows => 6, :class =>"form-control in-message" ,:placeholder => "Your message" %>
             </div>
             <div class="form-controls message-btn">
-            	<%= f.submit 'Send' , class: 'btn' ,  width: "100px" %>
+            	<%= f.submit 'Send' , class: 'btn' ,  width: "120px" %>
             </div>
-            <div style="height:20px"></div>
+            <div style="height:25px"></div>
 		<% end %>
 	</div>
 </li>

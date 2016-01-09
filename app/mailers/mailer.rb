@@ -54,7 +54,7 @@ class Mailer < Devise::Mailer
       @message = note
       @from = from
       @to = to
-      @subject = "You got a message from #{from.name}"
+      @subject = "#{@from.name} sent you a message via Roooster."
       mail(to: to.email ,from: from.email, subject: @subject)
       # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
     end
