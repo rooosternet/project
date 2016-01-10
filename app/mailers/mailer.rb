@@ -59,10 +59,12 @@ class Mailer < Devise::Mailer
       # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
     end
 
-	# def welcome_email_freelancer(user)
-	# 	@user = user
-	# 	mail(to: @user.email,subject: "Welcome to Roooster!")
-	# end
+
+
+	def notification_mail(user)
+		@user = user
+		mail(to: "info@roooster.net",subject: "New user registered!")
+	end
 
 	# def invite_email(inviter,invitee,token)
 	# 	@inviter = inviter 

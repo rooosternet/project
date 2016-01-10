@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validates :terms_of_service, :acceptance => true
   # before_validation  :generate_password_if_needed
   # before_create :set_name
-  # after_create :send_welcome_mail 
+  after_create :send_notification_mail 
   # before_destroy 
   # after_save 
   # after_create :create_profile , :if => lambda{|user| user.user? && user.profile.nil?}
@@ -51,11 +51,9 @@ class User < ActiveRecord::Base
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
-  # def send_invite_mail(inviter)
-  #    generate_invitation_token! unless @raw_invitation_token
-  #    self.update_attribute :invitation_sent_at, Time.now.utc unless self.invitation_sent_at
-  #    email = Mailer.invite_email(inviter,self,@raw_invitation_token).deliver_now  
-  # end
+  def send_notification_mail
+     email = Mailer.notification_mail(self).deliver_later  
+  end
 
   # def send_welcome_mail
   #   begin

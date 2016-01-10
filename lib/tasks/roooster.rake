@@ -127,7 +127,7 @@ namespace :roooster do
                             "linkedin_profile" => row[6],
                             "behance" => row[7],
                             "vimeo" => row[8],
-                            "skills" => row[9]
+                            "skills" => row[9].try(:split,',')
                             }
                         }
                 users << user unless freelancers == 0
@@ -152,7 +152,7 @@ namespace :roooster do
                             "profile_attributes"=>{ 
                             "is_company" => true,
                             "is_freelancer" => false,  
-                            "searchable" => true,
+                            "searchable" => false,
                             "public_email"=> row[5],
                             "location" => row[6],
                             "job_title" => row[3],
@@ -181,8 +181,8 @@ namespace :roooster do
                 unless _user = User.where(email: user["email"]).first 
                  _user = User.create!(user.dup.except("freelancer_attributes","studio_attributes")) 
                 end 
-                Freelancer.create!(user["freelancer_attributes"].merge!({user_id: _user.id})) unless user["freelancer_attributes"].blank?
-                Studio.create!(user["studio_attributes"].merge!({user_id: _user.id})) unless user["studio_attributes"].blank?
+                # Freelancer.create!(user["freelancer_attributes"].merge!({user_id: _user.id})) unless user["freelancer_attributes"].blank?
+                # Studio.create!(user["studio_attributes"].merge!({user_id: _user.id})) unless user["studio_attributes"].blank?
                 puts _user.inspect
 
             rescue Exception => e

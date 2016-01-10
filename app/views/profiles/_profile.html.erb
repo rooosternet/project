@@ -32,23 +32,27 @@
 
 	<div class="freelancer-foot">
 		<ul class="freelancer-socials">
+			<% unless profile.linkedin_profile.blank? -%>
 			<li>
 				<a href="<%=profile.linkedin_profile%>" target="_blank" <%=profile.link_class('linkedin_profile')%>>
 					<i class="ico-linkedin"></i>
 				</a>
 			</li>
-			
+			<% end -%>
+			<% unless profile.behance.blank? -%>
 			<li>
 				<a href="<%=profile.behance%>" target="_blank" <%=profile.link_class('behance')%>>
 					<i class="ico-behance"></i>
 				</a>
 			</li>
-			
+			<% end -%>
+			<% unless profile.vimeo.blank? -%>
 			<li>
 				<a href="<%=profile.vimeo%>" target="_blank" <%=profile.link_class('vimeo')%> >
 					<i class="ico-vimeo"></i>
 				</a>
 			</li>
+			<% end -%>
 		</ul>
 
 		<div class="freelancer-foot-inner">

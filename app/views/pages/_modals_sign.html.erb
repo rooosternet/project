@@ -63,7 +63,7 @@
 							<div class="form-row form-row-alt">
 								<div class="checkbox">
 									<%= f.check_box(:terms_of_service) %>
-									<%= f.label(:terms_of_service,"I agree to #{link_to('Roooster terms','#')}".html_safe) %>
+									<%= f.label(:terms_of_service,"I agree to #{link_to('Roooster terms',terms_path,target: "_blank")}".html_safe) %>
 									<!-- <label for="field-studio-terms">I agree to <a href="#">Roooster terms</a>.</label> -->
 								</div>
 

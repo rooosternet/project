@@ -11,25 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108051132) do
-
-  create_table "freelancers", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4
-    t.string   "online_portfolio", limit: 255
-    t.string   "linkedin_profile", limit: 255
-    t.string   "behance",          limit: 255
-    t.string   "vimeo",            limit: 255
-    t.text     "skills",           limit: 65535
-    t.string   "email",            limit: 255
-    t.string   "location",         limit: 255
-    t.string   "company_name",     limit: 255
-    t.string   "contact_name",     limit: 255
-    t.string   "contact_email",    limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "freelancers", ["user_id"], name: "index_freelancers_on_user_id", using: :btree
+ActiveRecord::Schema.define(version: 20160110203538) do
 
   create_table "in_messages", force: :cascade do |t|
     t.integer  "from_id",    limit: 4,     default: 0,     null: false
@@ -63,21 +45,6 @@ ActiveRecord::Schema.define(version: 20160108051132) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
-
-  create_table "studios", force: :cascade do |t|
-    t.integer  "user_id",         limit: 4
-    t.string   "company_name",    limit: 255
-    t.string   "job_title",       limit: 255
-    t.string   "company_website", limit: 255
-    t.string   "email",           limit: 255
-    t.string   "location",        limit: 255
-    t.text     "social_links",    limit: 65535
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  add_index "studios", ["company_name"], name: "index_studios_on_company_name", using: :btree
-  add_index "studios", ["user_id"], name: "index_studios_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false
