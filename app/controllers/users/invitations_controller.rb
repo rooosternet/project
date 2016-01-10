@@ -1,5 +1,5 @@
 class Users::InvitationsController < Devise::InvitationsController
-  
+
   def create
     self.resource = invite_resource
     resource_invited = resource.errors.empty?
@@ -23,21 +23,19 @@ class Users::InvitationsController < Devise::InvitationsController
     end
   end
 
-  #  def create
-  #   begin
-  #   @user = User.invite!({email: params[:user][:email]}, current_user) do |u|
-  #     u.skip_invitation = true
-  #     u.firstname = params[:user][:firstname]
-  #     u.lastname = params[:user][:lastname]
-  #     u.profile = Profile.new
-  #     u.save!
-  #   end
+  # def edit
+  #   set_minimum_password_length if respond_to? :set_minimum_password_length
+  #   resource.invitation_token = params[:invitation_token]
+  #   render :edit
+  # end
 
-  #   @user.send_invite_mail(current_user)
-  #   # email = Mailer.invite_email(current_user,@user).deliver_now
-  #   render :json => { :responseText => "Invitation sent to #{@user.name}.." }.to_json , :status => 200
-  #   rescue Exception => e
-  #     render :json => { :responseText => "Fail to sent invitation: #{e.message}" }.to_json , :status => 500
+  protected
+
+  # def resource_from_invitation_token
+  #   unless params[:invitation_token] && self.resource = resource_class.find_by_invitation_token(params[:invitation_token], true)
+  #     set_flash_message(:alert, :invitation_token_invalid) if is_flashing_format?
+  #     redirect_to after_sign_out_path_for(resource_name)
   #   end
   # end
+
 end
