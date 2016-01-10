@@ -176,6 +176,7 @@ namespace :roooster do
         
         puts "Importing #{freelancers} freelancers and #{studios} studios total:#{users.count}"
         
+        User.skip_callback :create, :after  , :send_notification_mail
         users.each do |user|
             begin
                 unless _user = User.where(email: user["email"]).first 
@@ -189,6 +190,7 @@ namespace :roooster do
                 puts e.message
             end
         end 
+        User.set_callback :create, :after  , :send_notification_mail
         end_time = Time.now
         puts "done populating users: #{end_time}   #{end_time-start}"
     end
