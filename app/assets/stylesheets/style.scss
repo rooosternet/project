@@ -37,18 +37,19 @@
 		height: 100%;
 		position: absolute;
 		z-index: 100000;
-		opacity: 4;
+		opacity: 0.4;
 		top: 0;
+		background-color: #eef;
 	}
 	
 	#ajax-indicator span {
 		background-repeat: no-repeat;
-		background-image: image-url('loading.gif');
+		background-image: image-url('ajax-loader.gif');
 		width: 32px;
 		height: 32px;
 		display: block;
-		position: relative;
-		top: 12%;
+		position: fixed;
+    	bottom: 50%;
 		left: 48%;
 	}
 	.error_subject{
