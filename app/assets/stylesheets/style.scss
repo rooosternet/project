@@ -89,9 +89,6 @@
 		float: right;
 		margin-top: 5px;
 	}
-	.in-message{
-		font-size: 13px;
-	}
 	
 	.not-active {
 		pointer-events: none;
@@ -102,4 +99,16 @@
 		font-size: 15px;
 		color: #535353;
 		font-weight: normal;
+	}
+
+	.in-message{
+		border: 1px solid #dae4eb;
+		background: #fff;
+		font-size: 13px;
+		font-family: arial;
+		padding: 5px 8px;
+		line-height: 22px;
+		box-sizing: border-box;
+		resize: none;
+		border-radius: 0;
 	}
