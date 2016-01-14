@@ -1,7 +1,9 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   # after_action :verify_authorized
-
+  include ApplicationHelper
+  helper :application
+  
   # {"search"=>"", "skills"=>"Motion Graphics"}
   def index
   	@profiles_count = 'No'

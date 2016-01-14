@@ -5,7 +5,15 @@ module ApplicationHelper
 	end
 
 	def google_analytics
-		 render :partial => 'layouts/google_analytics'
+		render :partial => 'layouts/google_analytics'
+	end
+
+	def toggle_url_protocole(url = "#")
+		unless url =~ /\A#{URI::regexp(['http', 'https'])}\z/
+			url = "http://#{url}"
+		end	
+		# puts "URL: #{url}" if Rails.env.development?
+		url
 	end
 
 	def generate_blog_posts_intro

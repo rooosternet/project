@@ -11,13 +11,7 @@
 
 	<ul class="freelancer-links">
 		<li>
-			<%
-				url = profile.online_portfolio.blank? ? "#" : profile.online_portfolio
-				unless url =~ /\A#{URI::regexp(['http', 'https'])}\z/
-					url = "http://#{url}"
-				end	
-			%>
-			<a href="<%=url%>" target="_blank"> <%=profile.online_portfolio%></a>
+			<a href="<%=toggle_url_protocole(profile.online_portfolio)%>" target="_blank"> <%=profile.online_portfolio%></a>
 		</li>
 		
 		<li>
@@ -34,21 +28,21 @@
 		<ul class="freelancer-socials">
 			<% unless profile.linkedin_profile.blank? -%>
 			<li>
-				<a href="<%=profile.linkedin_profile%>" target="_blank" <%=profile.link_class('linkedin_profile')%>>
+				<a href="<%=toggle_url_protocole(profile.linkedin_profile)%>" target="_blank" <%=profile.link_class('linkedin_profile')%>>
 					<i class="ico-linkedin"></i>
 				</a>
 			</li>
 			<% end -%>
 			<% unless profile.behance.blank? -%>
 			<li>
-				<a href="<%=profile.behance%>" target="_blank" <%=profile.link_class('behance')%>>
+				<a href="<%=toggle_url_protocole(profile.behance)%>" target="_blank" <%=profile.link_class('behance')%>>
 					<i class="ico-behance"></i>
 				</a>
 			</li>
 			<% end -%>
 			<% unless profile.vimeo.blank? -%>
 			<li>
-				<a href="<%=profile.vimeo%>" target="_blank" <%=profile.link_class('vimeo')%> >
+				<a href="<%=toggle_url_protocole(profile.vimeo)%>" target="_blank" <%=profile.link_class('vimeo')%> >
 					<i class="ico-vimeo"></i>
 				</a>
 			</li>
