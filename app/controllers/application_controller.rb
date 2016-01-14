@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
   # 		render :layout => false
   # 	end
   # end
+  
+  before_filter :set_current_user
+
+  def set_current_user
+    User.current = current_user
+    msg = "  Current user: " + (user_signed_in? ? "#{User.current.email} (id=#{User.current.id})" : "anonymous")
+    logger.info(msg) if logger
+  end
 
 
   # before_filter :permitted_parameter, if: :devise_controller?

@@ -61,9 +61,9 @@ class Mailer < Devise::Mailer
 
 
 
-	def notification_mail(user)
+	def notification_mail(user,subject = "New user registered!")
 		@user = user
-		mail(to: "info@roooster.net",subject: "New user registered!")
+		mail(to: "info@roooster.net",subject: subject)
 	end
 
 	# def invite_email(inviter,invitee,token)

@@ -52,7 +52,24 @@ class User < ActiveRecord::Base
   end
 
   def send_notification_mail
-     email = Mailer.notification_mail(self).deliver_later  
+    subject = nil
+    unless User.current.nil?
+      subject = "#{User.current.name} (#{User.current.email}) recommended #{self.name} (#{self.email})"
+      Mailer.notification_mail(self,subject).deliver_later  
+    else
+      Mailer.notification_mail(self).deliver_later    
+    end  
+  end
+
+
+  class << self
+    def current=(user)
+      Thread.current[:current_user] = user
+    end
+
+    def current
+      Thread.current[:current_user]
+    end
   end
 
   # def send_welcome_mail
