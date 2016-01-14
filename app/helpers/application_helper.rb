@@ -4,6 +4,10 @@ module ApplicationHelper
 		"<link rel='shortcut icon' type='image/x-icon' href='#{image_path('favicon.ico')}' />".html_safe
 	end
 
+	def google_analytics
+		 render :partial => 'layouts/google_analytics'
+	end
+
 	def generate_blog_posts_intro
 		fetch_blog_posts[0..2]		
 	end
