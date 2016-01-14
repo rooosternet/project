@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   layout 'admin'
 
   def index
-    @users = User.includes(:profile)
+    @users = User.includes(:profile).paginate(page: params[:page], per_page: 25)
+    @pagecount =  @users.count / 25
     authorize User
   end
   

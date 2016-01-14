@@ -1,5 +1,8 @@
 <%= form_for(user) do |f| %>
 	<td>
+		<%="#{user.id}. "%><%= link_to user.name, user %>
+	</td>
+	<td>
 		<%= link_to user.email, user %>
 	</td>
 	<td>
@@ -11,8 +14,11 @@
 		<% end %>
 	</td>
 	<td>
+		<%= user.created_at.strftime("%b %d,%Y") %>
+	</td>
+	<td>
 		<%= f.submit 'Save', :class => 'btn btn-default btn-xs' %>
 		<%= link_to("Edit", edit_user_path(user), :class => 'btn btn-default btn-xs') %>
-		<%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-xs') unless user == current_user %>
+		<%= link_to("Delete", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-xs') unless user == current_user %>
 	</td>
 <% end %>

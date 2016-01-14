@@ -16,6 +16,7 @@
 /vendor/ruby/
 /vendor/devise/
 /vendor/devise_invitable/
+/vendor/will_paginate/
 /public/assets/
 /zz-work/*
 

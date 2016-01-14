@@ -4,9 +4,11 @@
     <div class="column">
       <table class="table">
         <thead>
+          <th>Name</th>
           <th>Email</th>
           <th>Role</th>
           <th>Searchable</th>
+          <th>Created</th>
           <th>Actions</th>
         </thead>
         <tbody>
@@ -17,6 +19,9 @@
           <% end %>
         </tbody>
       </table>
+      <footer class="section-foot">
+        <%= will_paginate @users %> <%="(page #{params[:page]} of #{@pagecount} - total: #{@users.count})"%>
+      </footer><!-- /.section-foot -->
     </div>
   </div>
 </div>
