@@ -59,13 +59,15 @@ class Mailer < Devise::Mailer
       # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
     end
 
-
-
 	def notification_mail(user,subject = "New user registered!")
 		@user = user
 		mail(to: "info@roooster.net",subject: subject)
 	end
 
+	def directory_activation(user)
+		@user = user
+		mail(to: @user.email , subject: "Congratulations, you now appear on the Roooster listings board")
+	end
 	# def invite_email(inviter,invitee,token)
 	# 	@inviter = inviter 
 	# 	@invitee = invitee

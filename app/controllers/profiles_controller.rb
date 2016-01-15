@@ -16,6 +16,9 @@ class ProfilesController < ApplicationController
     render :template => 'visitors/home' if params[:skills].blank? && params[:search].blank?
   end
 
+  def edit
+    
+  end
 
   # def invite
   #   # "field-suggest-first-name"=>"yossi",
