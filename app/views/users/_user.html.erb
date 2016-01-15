@@ -1,5 +1,8 @@
 <%= form_for(user) do |f| %>
 	<td>
+		<%=image_tag "true.png" if user.edit_profile %>
+	</td>
+	<td>
 		<%="#{user.id}. "%><%= link_to user.name, user %>
 	</td>
 	<td>
