@@ -193,6 +193,7 @@ $(function() {
 
 		$('.modal').on('show.bs.modal', function (e) {
 			$(this).find(".form-error").html("");
+			// $(this).modal({ backdrop: 'static' });	
 		});
 
 		$('#change_password_form_id').bind('ajax:success',function(event, data, status, xhr){
