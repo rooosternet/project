@@ -12,7 +12,8 @@ class ProfilesController < ApplicationController
     params[:search].split(' ').collect{ |search_string| scope = scope.live_search(search_string) } if !params[:search].blank?
     scope = scope.skill_search(params[:skills]) if !params[:skills].blank?
     @profiles_count = scope.count
-    @profiles = scope.paginate(page: params[:page], per_page: 10)
+
+    @profiles = scope.order("users.firstname,users.lastname asc").paginate(page: params[:page], per_page: 10)
     render :template => 'visitors/home' if params[:skills].blank? && params[:search].blank?
   end
 
