@@ -9,8 +9,8 @@
 	.shell { position: relative; }
 
 	.header-actions { position: absolute; z-index: 10; right: 0; top: 13px; padding: 0 10px; background: #fff; }
-	.header-actions .btn { width: 100px; padding: 0 5px; }
-	.header-actions .btn-icon { position: absolute; left: 50%; bottom: -8px; margin-left: -7px; line-height: 1; border-radius: 50%; background: #fff; }
+	.header-actions .btn { width: 150px; padding: 0 5px; }
+	.header-actions .btn-icon { position: absolute; left: 75%; bottom: -8px; margin-left: -7px; line-height: 1; border-radius: 50%; background: #fff; }
 	.header-actions .btn-icon i { vertical-align: top; opacity: .4; transition: all .2s ease-out; }
 	@media (max-width: $screen-md-max) {
 		.shell { position: static; }
@@ -33,9 +33,9 @@
 	.btn-icon { position: absolute; left: 50%; bottom: -8px; margin-left: -7px; line-height: 1; border-radius: 50%; background: #fff; }
 	.btn-icon i { vertical-align: top; opacity: .4; transition: all .2s ease-out; }
 
-	.dropdown-menu { display: block; min-width: 0; width: 100px; padding: 0; margin-top: 15px; border: 1px solid #e1e9ee; border-radius: 0; box-shadow: none; visibility: hidden; opacity: 0; transition: all .2s ease-out; 
+	.dropdown-menu { display: block; min-width: 0; width: 150px; padding: 0; margin-top: 15px; border: 1px solid #e1e9ee; border-radius: 0; box-shadow: none; visibility: hidden; opacity: 0; transition: all .2s ease-out; 
 		
-		li + li:before { content: ''; display: block; width: 68px; height: 1px; margin: 0 auto; background: #efefef; }
+		li + li:before { content: ''; display: block; width: 50px; height: 1px; margin: 0 auto; background: #efefef; }
 		a { padding: 0; text-align: center; line-height: 24px; font-size: 11px; color: #6c727a; font-weight: bold; text-transform: uppercase; transition: all .2s ease-out; }
 		a:hover { color: #000; background: transparent; }
 	}

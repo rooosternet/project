@@ -10,7 +10,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
     
-    resource_updated = resource.update_attributes(account_update_params) #update_resource(resource, account_update_params)
+    # resource_updated = resource.update_attributes(account_update_params)
+    resource_updated = update_resource(resource, account_update_params)
 
     yield resource if block_given?
     
@@ -88,6 +89,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def configure_permitted_parameters
   #   devise_parameter_sanitizer.for(:sign_up).push(:name, :firstname, :lastname,:edit_profile, :email2)
   # end
+
+  def update_resource(resource, _params)
+    if params[:chpass].try(:eql?,"true")
+      resource.update_with_password(_params)
+    else
+      resource.update_without_password(_params)
+    end  
+  end
 
   def after_sign_up_path_for(resource)
     signed_in_root_path(resource)

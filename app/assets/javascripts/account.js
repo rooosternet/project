@@ -6,13 +6,19 @@ $(function() {
 			$("#"+fid).modal('hide');
 			// $("#"+fid+"-alt").modal('show');
 		}else{
-			$(".form-error").text(data.responseText);
+			fid = $(this).data("error-id");
+			$("#"+fid).text(data.responseText);
 		}
 
 	});	
 
 	$('.edit_user').bind('ajax:error', function(event, data, status, xhr) {
-		$(".form-error").text(data.responseText);
+		fid = $(this).data("error-id");
+		var text = JSON.parse(data.responseText).responseText;
+		if(text === undefined || text == ""){
+			text = data.responseText;	
+		}
+		$("#"+fid).text(text);
 	});
 
 	$('.edit_user').bind('ajax:complete', function(event, data, status, xhr) {
