@@ -1,4 +1,54 @@
 /* ------------------------------------------------------------ *\
+	Section Contact Us
+\* ------------------------------------------------------------ */
+
+.section-contact { max-width: 648px; margin: 0 auto; padding: 10px 0 0; 
+
+	.section-title { margin-bottom: .7em;margin-top: 2em; color: #aa3939; letter-spacing: -0.025em; }
+	.section-body { padding-left: 18px; }
+	.section-entry { font-weight: 300; }
+	.section-entry p { margin-bottom: 1.3em; }
+	.section-entry p:last-child { margin-bottom: 0; }
+	.section-image { margin: 32px 0 15px; text-align: center; }
+	.section-image-error { margin: 80px 0 15px; text-align: center; }
+	div .form-control{padding: 0 50px 0 13px; background: #fff; border-radius: 0; border: 1px solid #dae4eb; box-shadow: inset 2px 2px 5px 0 rgba(193, 207, 217, .35); font-size: 13px; color: #cfcfcf; transition: all .2s ease-out; }	
+	div textarea{padding: 0 50px 0 13px; background: #fff; border-radius: 0; border: 1px solid #dae4eb; box-shadow: inset 2px 2px 5px 0 rgba(193, 207, 217, .35); font-size: 13px; color: #cfcfcf; transition: all .2s ease-out; }	
+	.form p{
+		font-size: 17px;
+    	color: #5b5b5b;
+	}
+
+	@media (max-width: $screen-xs-max) {
+		.section-title { font-size: 29px; }
+		.section-body { padding-left: 0; }
+		.section-entry { font-size: 17px; }
+	}
+	.section-dot { padding-bottom: 30px; padding-top: 30px; 
+	
+		.section-icon { text-align: center; }
+		.section-head { text-align: center; }
+		
+		.section-body { max-width: 996px; margin: 0 auto; }
+
+		.btn-collapse-form { transition: none; }
+	}
+
+	.note{
+		border: 1px solid #dae4eb;
+		background: #fff;
+		font-size: 13px;
+		font-family: arial;
+		padding: 5px 8px;
+		line-height: 22px;
+		box-sizing: border-box;
+		resize: none;
+		border-radius: 0;
+		width: 100%;
+	}
+
+}
+
+/* ------------------------------------------------------------ *\
 	Section
 \* ------------------------------------------------------------ */
 

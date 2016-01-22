@@ -20,4 +20,11 @@ class InfoController < ApplicationController
 		
 	end
 
+	def contact_us
+		unless request.get?
+		  email = Mailer.contact_us(params[:message]).deliver_later if params[:message].is_a?(Hash)
+	      redirect_to root_path
+	    end	
+	end
+
 end

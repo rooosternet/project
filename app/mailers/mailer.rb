@@ -68,6 +68,18 @@ class Mailer < Devise::Mailer
 		@user = user
 		mail(to: @user.email , subject: "Congratulations, you now appear on the Roooster listings board")
 	end
+		 
+	 # message = {"name"=>"yossi", "email"=>"yedri@mellanox.com", "subject"=>"subject", "note"=>"message"}
+	def contact_us(message)
+      @message = message["note"]
+      @from = message["email"]
+      @to = "info@roooster.net"
+      @subject = message["subject"]
+      @name =  message["name"]
+      mail(to: @to ,from: @from, subject: @subject)
+    end
+
+
 	# def invite_email(inviter,invitee,token)
 	# 	@inviter = inviter 
 	# 	@invitee = invitee
