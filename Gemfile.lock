@@ -196,6 +196,7 @@ GEM
     omniauth-vimeo (2.0.0)
       omniauth-oauth2
     orm_adapter (0.5.0)
+    pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -347,6 +348,7 @@ DEPENDENCIES
   omniauth-behance!
   omniauth-linkedin
   omniauth-vimeo
+  pg
   pundit
   quiet_assets
   rails (= 4.2.4)
