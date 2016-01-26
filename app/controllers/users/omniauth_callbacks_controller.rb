@@ -35,14 +35,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
   
   def vimeo
-    byebug
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
     redirect_to root_path(profile: true)
   end
   
   def behance
-    byebug
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
     redirect_to root_path(profile: true)
@@ -53,7 +51,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    byebug
     set_flash_message :alert, :failure, kind: OmniAuth::Utils.camelize(failed_strategy.name), reason: failure_message
     redirect_to after_omniauth_failure_path_for(resource_name)
   end

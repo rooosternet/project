@@ -41,7 +41,6 @@ gem 'omniauth-behance', path: "vendor/omniauth_behance"
 
 group :production do
   # gem 'unicorn'
-  gem 'pg'
 end
 
 group :development do
