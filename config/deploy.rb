@@ -6,7 +6,7 @@
 # set :pty, true
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-set :application, 'roooster'
+# set :application, 'roooster'
 set :scm, :git
 set :format, :pretty
 set :repo_url, 'git@github.com:rooosterteam/roooster.git'
