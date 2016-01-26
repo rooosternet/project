@@ -28,7 +28,8 @@ gem "omniauth-vimeo"
 # gem 'omniauth-vimeo-oauth2'
 gem 'omniauth-linkedin'
 #gem 'omniauth-behance'
- gem 'omniauth-behance', path: "vendor/omniauth_behance"
+gem 'omniauth-behance', path: "vendor/omniauth_behance"
+
 
 # gem 'sidekiq' , '=3.3.1'#github: "mperham/sidekiq"
 # gem 'sinatra','>= 1.3.0', :require => false
@@ -40,6 +41,7 @@ gem 'omniauth-linkedin'
 
 group :production do
   # gem 'unicorn'
+  gem 'pg'
 end
 
 group :development do
