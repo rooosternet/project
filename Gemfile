@@ -22,6 +22,14 @@ gem 'mysql2', '~> 0.3.18'
 gem 'pundit'
 gem 'whenever', :require => false
 gem 'roo'
+
+gem 'omniauth'
+gem "omniauth-vimeo"
+# gem 'omniauth-vimeo-oauth2'
+gem 'omniauth-linkedin'
+#gem 'omniauth-behance'
+ gem 'omniauth-behance', path: "vendor/omniauth_behance"
+
 # gem 'sidekiq' , '=3.3.1'#github: "mperham/sidekiq"
 # gem 'sinatra','>= 1.3.0', :require => false
 # gem 'sprockets'

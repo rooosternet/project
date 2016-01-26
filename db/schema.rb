@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110203538) do
+ActiveRecord::Schema.define(version: 20160123074228) do
 
   create_table "in_messages", force: :cascade do |t|
     t.integer  "from_id",    limit: 4,     default: 0,     null: false
@@ -22,6 +22,29 @@ ActiveRecord::Schema.define(version: 20160110203538) do
     t.boolean  "private",                  default: false, null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+  end
+
+  create_table "profile_connects", force: :cascade do |t|
+    t.integer  "profile_id",       limit: 4
+    t.string   "provider",         limit: 255
+    t.string   "uid",              limit: 255
+    t.string   "name",             limit: 255
+    t.string   "email",            limit: 255
+    t.string   "nickname",         limit: 255
+    t.string   "first_name",       limit: 255
+    t.string   "last_name",        limit: 255
+    t.string   "location",         limit: 255
+    t.string   "description",      limit: 255
+    t.string   "image",            limit: 255
+    t.string   "phone",            limit: 255
+    t.string   "headline",         limit: 255
+    t.string   "industry",         limit: 255
+    t.string   "urls",             limit: 255
+    t.string   "secret",           limit: 255
+    t.string   "oauth_token",      limit: 255
+    t.datetime "oauth_expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "profiles", force: :cascade do |t|

@@ -1,0 +1,62 @@
+defaults: &defaults
+ linkedin:
+  apikey: 754fbd0byls092
+  apisecret: unZzaZTJ9ZsAw6fY
+ vimeo:
+  apikey: 165c55d648f9887dc72a171048abe7ed63840dc9
+  apisecret: xVKkYN9lIqQvMjhwEBceOxEbOrBS/LHkLn4TEdT/3C8AIAi7U7j8hc/o7NBfsGSn+xBaiZMLenCAs8zoGKET5a6E7opDMc4qXwu96X0qrkJsXPxhWfNHOhIWnHJzr9th
+ # vimeo:
+ #  apikey: 7f94bad9ea925708648f68ae293174961a9eda77
+ #  apisecret: uLNecJ93cXNY8YDccQlmTywat6RwoXpI66OQHKIC2hfMfx0ta6WXsWHBReDfYrSwBIo99R79I5TGhINfGpA32JB5PnYYi3wUJyFPzCI8ywqZJYG0CJPH2RscjtkG9t7H 
+ # angellist:
+ #  apikey: da1cfb1b8ec4f9a267bd124d87fb249a1033f76c5f1b6c99
+ #  apisecret: 2d1936977427afa41e82f8d0f2c109c90f9beb42f7a94470
+ # hotmail:
+ #  apikey:	0000000044135AD1
+ #  apisecret: UvevpgA8SSEp3a6C4xhQxmjdFElcYsLs
+ # gmail:
+ #  apikey: 214049932738-p0d59gi19rnjp0abf00rnslcas5rjqir.apps.googleusercontent.com
+ #  apisecret: 4xTJdkBPVSv3M3qA0CQS_B5S
+ # yahoo:
+ #  apikey:	dj0yJmk9ZWlPMEV6Z3B6NlNwJmQ9WVdrOVNUZFhRblkzTXpJbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02MQ--
+ #  apisecret: df734bdee9680ace8df38b0626d840f7ecd5098c
+
+production:
+ linkedin:
+  apikey: 758xulwsqhv3tl
+  apisecret: 1uJJexrY70ZMNN61
+ # angellist:
+ #  apikey:	b573eb46691ded079b056028af4c6d3f754e82fa942e309b
+ #  apisecret: 57ee90ccaf1c58c112db451219fca2a934c3d91a894d672a
+ # hotmail:
+ #  apikey: 0000000044135EAA
+ #  apisecret: 5N5W7eeMXhSYZTZI9bjXZERYsfwTtBYS
+ # gmail:
+ #  apikey: 214049932738-nnb0oarq08jjeeegjo7bci1i5am1app0.apps.googleusercontent.com
+ #  apisecret: KZmsNRdXZKTHoA27l-u8B3R-
+ # yahoo:
+ #  apikey: dj0yJmk9TTRTUWRKYlhsUGhOJmQ9WVdrOU9XRk5Sa1JpTm1zbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0wMA--
+ #  apisecret: 9956c1783ab4727d1b7478205c64bea073e4e51f
+
+staging:
+ linkedin:
+  apikey: 75y93le5ckbhyb
+  apisecret: i9RuXRy5jk1bdCDC
+ # angellist:
+ #  apikey: a82fc528f55a43ae550f90d0a7673b5551ed3a96cc2913af
+ #  apisecret: 2780411dc0f0d37ba4e7a446ca003bdceb6e4c45e2cedf6d
+ # hotmail:
+ #  apikey: 000000004C136139
+ #  apisecret: c68bMbUIQcisoE5qWHSYIdcFwuJZcCyK
+ # gmail:
+ #  apikey: 214049932738-vmnl3cqppu9timvcp9l8254abj1kf7kp.apps.googleusercontent.com
+ #  apisecret: gO6c-uCdlcdXQU-RC6EYIyum
+ # yahoo:
+ #  apikey: dj0yJmk9VmU2WW1iVXp0YVdSJmQ9WVdrOWJYbGthMUZtTTJVbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD03Nw--
+ #  apisecret: af720c1e981307e81476914db6878c78a6b8c376
+
+development:
+ <<: *defaults
+
+test:
+ <<: *defaults

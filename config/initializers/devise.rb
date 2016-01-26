@@ -1,3 +1,4 @@
+OMNI_CONFIG = YAML.load(File.open("#{Rails.root}/config/omniauth.yml")).with_indifferent_access[Rails.env]
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -16,7 +17,6 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'Mailer'
-
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
@@ -332,6 +332,16 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
+  config.omniauth :linkedin , OMNI_CONFIG["linkedin"]["apikey"],OMNI_CONFIG["linkedin"]["apisecret"] ,
+  :scope => 'r_basicprofile r_emailaddress', 
+  :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location","phone-numbers"]
+  # r_fullprofile r_contactinfo
+
+  config.omniauth :vimeo, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] #, scope: 'public private'
+  # config.omniauth OmniAuth::Strategies::Vimeo2, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] ,scope: 'public private'
+  config.omniauth :behance, "yossi@roooster.net", "qwQW12!@", { scope: 'collection_read|wip_read|project_read' }
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

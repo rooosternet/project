@@ -7,11 +7,18 @@
 		<div class="header-actions">
 		<!-- hidden-xs -->
 			<div class="dropdown">
+
 				<a href="#" class="btn btn-default" data-toggle="dropdown">
 					<%= current_user.firstname %> <span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
 				</a>
 
 				<ul class="dropdown-menu">
+				<!-- <li> -->
+				<%#= link_to('linkedin', user_omniauth_authorize_path(:linkedin), target: '_blank', class: 'btn-sign-up', data: {platform: 'linkedin'}) %>
+					<!-- <div class="btn linkedin">
+				        <%#= link_to(raw('<i class="icon-s-linkedin"></i>'), user_omniauth_authorize_path(:linkedin), target: '_blank', class: 'btn-sign-up', data: {platform: 'linkedin'}) %>
+				    </div> -->
+				<!-- </li> -->
 					<!-- <li>
 						<a href="#modal-edit-profile" data-toggle="modal">Edit</a>
 					</li> -->

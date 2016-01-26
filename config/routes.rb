@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'errors/show'
 
+  get 'errors/show'
   get 'profiles/index'
   post 'profiles/invite'
   post "profiles/:id/contact",:controller => :profiles, :action => :contact,:as => :contact
@@ -15,11 +15,13 @@ Rails.application.routes.draw do
         sessions: "users/sessions",
         passwords: "users/passwords",
         invitations: "users/invitations",
-        confirmations: "users/confirmations"
+        confirmations: "users/confirmations",
+        omniauth_callbacks: "users/omniauth_callbacks"
   }#,:path_names => { :sign_up => "account/register" }
   
-
   resources :users
+  resources :profile_connects
+  
   # match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
   resources :in_messages
   get 'in_messages/:token', :controller => :in_messages , :action => :show , :as => "message_show"

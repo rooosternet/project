@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :outgoing_messages , :class_name => 'InMessage' , :foreign_key => 'from_id'
   has_many :incoming_messages , :class_name => 'InMessage' , :foreign_key => 'to_id'
-
+  has_many :profile_connects , :through => :profile
 
   # delegate :job_title ,:company_name ,:company_website , :to => :studio, :allow_nil => true
   # delegate :online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location , :to => :freelancer, :allow_nil => true
@@ -29,8 +29,9 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable, :validatable
-  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable , :confirmable, :validatable
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable , :confirmable, :validatable ,:omniauthable, omniauth_providers: [:linkedin,:vimeo,:behance]
   
+
   validates_presence_of :firstname,:lastname,:email
   # validates_presence_of :firstname,:email
   validates_length_of :firstname, :lastname, :maximum => 30

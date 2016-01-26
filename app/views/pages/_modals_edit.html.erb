@@ -191,6 +191,17 @@
 							<div class="form-group">
 
 								<div class="row">
+									
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-website" class="form-label">Portfolio/Website</label>
+
+											<div class="form-controls">
+												<%= builder.text_field :online_portfolio, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
 									<div class="col-sm-6">
 										<div class="form-row">
 											<label for="field-job-title" class="form-label">Title</label>
@@ -201,92 +212,9 @@
 										</div><!-- /.form-row -->
 									</div><!-- /.col-sm-6 -->
 
-									<div class="col-sm-6">
-										
-										<div class="form-row">
-											<label for="field-company-name" class="form-label">Company Name</label>
-
-											<div class="form-controls">
-												<%= builder.text_field :company_name, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col-sm-6 -->
-
 								</div><!-- /.row -->
 
-								<div class="row">
-
-									<div class="col-sm-6">
-										<div class="form-row">
-											<label for="field-location" class="form-label">
-												Location
-											</label>
-
-											<div class="form-controls">
-												<%= builder.text_field :location, :no_label => true , :class =>"form-control" ,:placeholder => "City, State, Country" %>
-											</div>
-										</div>
-									</div><!-- /.col-sm-6 -->
-
-									<div class="col-sm-6">
-										<div class="form-row">
-											<label for="field-website" class="form-label">Website</label>
-
-											<div class="form-controls">
-												<%= builder.text_field :online_portfolio, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col-sm-6 -->
-									
-								</div><!-- /.row -->
-
-
-								<div class="row">
-									
-									<div class="col-sm-6">
-										<div class="form-row">
-											<label for="field-vimeo" class="form-label">Vimeo</label>
-
-											<div class="form-controls">
-												<%= builder.text_field :vimeo, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col-sm-6 -->
-
-									<div class="col-sm-6">
-										<div class="form-row">
-											<label for="field-behance" class="form-label">Behance</label>
-
-											<div class="form-controls">
-												<%= builder.text_field :behance, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col-sm-6 -->
-
-
-								</div><!-- /.row -->
-
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-row">
-											<label for="field-linkedin" class="form-label">LinkedIn</label>
-
-											<div class="form-controls">
-												<%= builder.text_field :linkedin_profile, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.form-row -->
-									<div class="col-sm-6">
-										<div class="form-row">
-											<label for="field-social-links" class="form-label">Other Social Links</label>
-
-											<div class="form-controls">
-												<%= builder.text_field :social_links, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->	
-									</div><!-- /.form-row -->
-								</div><!-- /.row -->
-								<hr>
+								
 								<div class="form-row">
 									<label for="field-skills" class="form-label">Skills</label>
 
@@ -294,27 +222,31 @@
 										<%= builder.select :skills, skills_options_for_select(builder.object.skills) , {} , {:multiple => true ,:no_label => true, :class => "select-autocomplete" ,:placeholder => "Skills"} %>
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-row -->
-								<!-- <hr>
-								<div class="form-row"><label>Change your password</label></div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-row">
-											<%#= f.label :password , class: 'form-label'%>
-											<div class="form-controls">
-												<%#= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
-											</div>
-										</div>
-									</div>
+								
 
-									<div class="col-sm-6">
-										<div class="form-row">
-											<%#= f.label :password_confirmation , class: 'form-label'%>
-											<div class="form-controls">
-												<%#= f.password_field :password_confirmation, class: 'form-control' %>
-											</div>
-										</div>
-									</div>
-								</div> -->
+								<hr>
+								
+								<div class="form-row">
+									<label class="form-label"><i class="ico-linkedin"></i> Linkedin</label>
+									<%= profile_connect_btn("linkedin",current_user.profile) %>
+								</div><!-- /.form-row -->
+								
+								<hr>
+								
+								<div class="form-row">
+									<label class="form-label"><i class="ico-vimeo"></i> Vimeo</label>
+									<%= profile_connect_btn("vimeo",current_user.profile) %>
+									<%#= link_to('vimeo', user_omniauth_authorize_path(:vimeo), target: '_blank', class: 'btn #{current_user.profile.connected_class(:vimeo)}') %>
+								</div><!-- /.form-row -->
+								
+								<hr>
+								
+								<div class="form-row">
+									<label class="form-label"><i class="ico-behance"></i> Behance</label>
+									<%= profile_connect_btn("behance",current_user.profile) %>
+									<%#= link_to('behance', user_omniauth_authorize_path(:behance), target: '_blank', class: 'btn #{current_user.profile.connected_class(:behance)}') %>
+								</div><!-- /.form-row -->
+
 								<% end %>
 								
 							</div><!-- /.form-group -->

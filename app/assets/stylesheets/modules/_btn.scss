@@ -30,3 +30,19 @@
 
 .btn-large { position: relative; height: auto; padding: 10px 40px; font-size: 18px; font-weight: bold; color: #030303; }
 .btn-large i { position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); }
+
+
+ .btn-connected{
+    float: right;
+    margin-top: -30px;
+    font-size: 15px;
+    /*font-weight: bold;*/
+    background-color: transparent;
+}
+
+.btn-not-connected{
+    float: right;
+    margin-top: -30px;
+    /*color: gray;*/
+    /*background-color: transparent;*/
+}
