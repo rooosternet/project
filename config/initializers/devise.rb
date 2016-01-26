@@ -340,7 +340,7 @@ Devise.setup do |config|
 
   config.omniauth :vimeo, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] #, scope: 'public private'
   # config.omniauth OmniAuth::Strategies::Vimeo2, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] ,scope: 'public private'
-  config.omniauth :behance, "yossi@roooster.net", "qwQW12!@", { scope: 'collection_read|wip_read|project_read' }
+  config.omniauth :behance, OMNI_CONFIG["behance"]["apikey"],OMNI_CONFIG["behance"]["apisecret"], { scope: 'collection_read|wip_read|project_read' }
 
 
   # ==> Warden configuration
