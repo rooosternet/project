@@ -35,7 +35,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.smtp_settings = {
-    address: "a2plcpnl0237.prod.iad2.secureserver.net",
+    address: Rails.application.secrets.email_server,
     port: 587,
     domain: Rails.application.secrets.domain_name,
     authentication: "plain",

@@ -38,8 +38,10 @@ config/database.yml
 .sass-cache
 /config/config.yml
 /config/secrets.yml
-/config/initializers/session_store.rb
 config/secrets.yml
+/config/omniauth.yml
+config/omniauth.yml
+/config/initializers/session_store.rb
 config/initializers/session_store.rb
 /coverage.data
 /coverage/
@@ -67,6 +69,8 @@ work.txt
 .byebug_history
 /config/deploy/production.rb
 config/deploy/production.rb
+/config/deploy/staging.rb
+config/deploy/staging.rb
 
 app/assets/stylesheets/style.css.bak
 
