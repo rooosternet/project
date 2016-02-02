@@ -31,6 +31,36 @@ class Profile < ActiveRecord::Base
 		self.respond_to?(attr_name) && self.send(attr_name).blank? ? "class=not-active" : ""
 	end
 
+	def linkedin_profile_url
+		unless (url = self.connected(:linkedin).first.try(:urls)).blank?	
+	      return url
+	    end
+	    unless (url = self.linkedin_profile).blank?
+	      return url
+	    end
+	     ""
+	end
+
+	def vimeo_profile_url
+		unless (url = self.connected(:vimeo).first.try(:urls)).blank?	
+	      return url
+	    end
+	    unless (url = self.vimeo).blank?
+	      return url
+	    end
+	     ""
+	end
+
+	def behance_profile_url
+		unless (url = self.connected(:behance).first.try(:urls)).blank?	
+	      return url
+	    end
+	    unless (url = self.behance).blank?
+	      return url
+	    end
+	     ""
+	end
+
 	def is_freelancer?
 		!!is_freelancer
 	end

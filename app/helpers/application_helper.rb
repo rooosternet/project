@@ -26,6 +26,14 @@ module ApplicationHelper
 		end
 	end
 
+	def link_active_class(attribute,element=nil)
+		if element
+			element.respond_to?(attribute) && element.send(attribute).blank? ? "class=not-active" : ""
+		else
+			attribute.blank? ? "class=not-active" : ""
+		end
+	end
+
 	def profile_connect_btn(provider,profile)
 		if profile.connected_class(provider) == "btn-connected"
 			link_to("Unlink", profile_connect_path(profile.connected(provider).first),method: :delete, target: '_blank', class: "btn btn-connected")

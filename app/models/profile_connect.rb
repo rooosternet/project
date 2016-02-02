@@ -20,7 +20,8 @@ class ProfileConnect < ActiveRecord::Base
 			phone: auth_hash['info']['phone'] ,
 			headline: auth_hash['info']['headline'] ,
 			industry: auth_hash['info']['industry'] ,
-			urls: auth_hash['info']['urls']["public_profile"] 
+			urls: auth_hash['provider'].eql?("twitter") ? auth_hash['info']['urls']["Twitter"] : auth_hash['info']['urls']["public_profile"], 
+			website: auth_hash['provider'].eql?("twitter") ? auth_hash['info']['urls']["Website"] : ""
 		}
 	end
 

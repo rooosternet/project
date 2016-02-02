@@ -337,11 +337,12 @@ Devise.setup do |config|
   :scope => 'r_basicprofile r_emailaddress', 
   :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location","phone-numbers"]
   # r_fullprofile r_contactinfo
-
+  config.omniauth :twitter, OMNI_CONFIG["twitter"]["apikey"],OMNI_CONFIG["twitter"]["apisecret"]
+  
   config.omniauth :vimeo, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] #, scope: 'public private'
   # config.omniauth OmniAuth::Strategies::Vimeo2, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] ,scope: 'public private'
   config.omniauth :behance, OMNI_CONFIG["behance"]["apikey"],OMNI_CONFIG["behance"]["apisecret"], { scope: 'collection_read|wip_read|project_read' }
-
+  config.omniauth :dribbble, OMNI_CONFIG["dribbble"]["apikey"],OMNI_CONFIG["dribbble"]["apisecret"], scope: 'public write'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

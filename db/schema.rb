@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123074228) do
+ActiveRecord::Schema.define(version: 20160203077228) do
 
   create_table "in_messages", force: :cascade do |t|
     t.integer  "from_id",    limit: 4,     default: 0,     null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160123074228) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "website",          limit: 255
   end
 
   create_table "profiles", force: :cascade do |t|

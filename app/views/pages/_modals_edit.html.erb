@@ -228,23 +228,33 @@
 								<div class="form-row">
 									<label class="form-label"><i class="ico-linkedin"></i> Linkedin</label>
 									<%= profile_connect_btn("linkedin",current_user.profile) %>
-								</div><!-- /.form-row -->
+								</div>
 								
 								<hr>
-								
+								<div class="form-row">
+									<label class="form-label"><i class="ico-twitter"></i> Twitter</label>
+									<%= profile_connect_btn("twitter",current_user.profile) %>
+								</div>
+
+								<!-- <hr>
 								<div class="form-row">
 									<label class="form-label"><i class="ico-vimeo"></i> Vimeo</label>
-									<%= profile_connect_btn("vimeo",current_user.profile) %>
-									<%#= link_to('vimeo', user_omniauth_authorize_path(:vimeo), target: '_blank', class: 'btn #{current_user.profile.connected_class(:vimeo)}') %>
-								</div><!-- /.form-row -->
+									<%#= profile_connect_btn("vimeo",current_user.profile) %>
+								</div>
 								
 								<hr>
 								
 								<div class="form-row">
 									<label class="form-label"><i class="ico-behance"></i> Behance</label>
-									<%= profile_connect_btn("behance",current_user.profile) %>
-									<%#= link_to('behance', user_omniauth_authorize_path(:behance), target: '_blank', class: 'btn #{current_user.profile.connected_class(:behance)}') %>
-								</div><!-- /.form-row -->
+									<%#= profile_connect_btn("behance",current_user.profile) %>
+								</div>
+
+								<hr>
+								
+								<div class="form-row">
+									<label class="form-label"><i class="ico-dribbble"></i> Dribbble</label>
+									<%#= profile_connect_btn("dribbble",current_user.profile) %>
+								</div> -->
 
 								<% end %>
 								

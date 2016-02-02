@@ -24,11 +24,13 @@ gem 'whenever', :require => false
 gem 'roo'
 
 gem 'omniauth'
+gem 'omniauth-twitter'
 gem "omniauth-vimeo"
 # gem 'omniauth-vimeo-oauth2'
 gem 'omniauth-linkedin'
 #gem 'omniauth-behance'
 gem 'omniauth-behance', path: "vendor/omniauth_behance"
+gem 'omniauth-dribbble', '~> 0.0.1'
 
 
 # gem 'sidekiq' , '=3.3.1'#github: "mperham/sidekiq"

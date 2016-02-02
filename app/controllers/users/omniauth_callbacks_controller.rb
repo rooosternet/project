@@ -34,6 +34,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path(profile: true)
   end
   
+  def twitter
+    auth_hash = request.env['omniauth.auth']
+    ProfileConnect.create_with_auth_hash(auth_hash)
+    redirect_to root_path(profile: true)
+  end
+
   def vimeo
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
@@ -41,6 +47,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
   
   def behance
+    auth_hash = request.env['omniauth.auth']
+    ProfileConnect.create_with_auth_hash(auth_hash)
+    redirect_to root_path(profile: true)
+  end
+
+  def dribbble
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
     redirect_to root_path(profile: true)

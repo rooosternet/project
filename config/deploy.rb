@@ -11,7 +11,7 @@ set :scm, :git
 set :format, :pretty
 set :repo_url, 'git@github.com:rooosterteam/roooster.git'
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system files }
-set :linked_files, %w{config/database.yml config/secrets.yml config/initializers/session_store.rb } 
+set :linked_files, %w{config/database.yml config/secrets.yml config/initializers/session_store.rb config/omniauth.yml} 
 
 # set :bundle_bins, fetch(:bundle_bins, []).push('my_new_binary')
 # set :bundle_roles, :all                                         # this is default
