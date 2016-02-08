@@ -17,6 +17,9 @@ class Profile < ActiveRecord::Base
 
 	before_update { |profile| profile.send_directory_activation_mail if !profile.new_record? and profile.searchable_changed? and profile.searchable.eql?(true)}
 
+	acts_as_avatarable
+	validates_attachment_content_type :logo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]                  
+	
 	def send_directory_activation_mail
 		Mailer.directory_activation(self.user).deliver_later  
 	end

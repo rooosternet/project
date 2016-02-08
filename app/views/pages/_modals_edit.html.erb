@@ -113,8 +113,10 @@
 			<div class="modal-body">
 				<div class="form form-signup">
 					<!-- <form action="?" method="post"> -->
+					<%= render partial: 'avatars/form',object: current_user,as: :avatarable %>
 					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form',"data-error-id" => "edit_user_form_err", "data-parent"=>"modal-edit-profile"}) do |f| %>
 					<%= f.hidden_field :edit_profile , :value => true %>
+					
 					<div class="form-inner">
 						<div class="form-head">
 							<h4 class="form-title">My Profile</h4><!-- /.form-title -->	

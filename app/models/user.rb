@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
 
   # has_one :studio
   # has_one :freelancer
-
+  acts_as_avatarable
+  validates_attachment_content_type :logo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]                  
+  
   has_one :profile
   delegate :searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills , :to => :profile, :allow_nil => true
 

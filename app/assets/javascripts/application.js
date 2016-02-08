@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 // require bootstrap-sprockets
 //= require bootstrap.min
 //= require fastselect.standalone
 // require turbolinks
 // require javascripts/bootstrap-sprockets
+//= require avatars_for_rails
 //= require_tree .

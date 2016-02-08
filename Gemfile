@@ -9,6 +9,7 @@ gem 'susy'
 gem 'uglifier', '>= 1.3.0'
 # gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
@@ -32,6 +33,7 @@ gem 'omniauth-linkedin'
 gem 'omniauth-behance', path: "vendor/omniauth_behance"
 gem 'omniauth-dribbble', '~> 0.0.1'
 
+gem 'avatars_for_rails', path: "vendor/avatars_for_rails"
 
 # gem 'sidekiq' , '=3.3.1'#github: "mperham/sidekiq"
 # gem 'sinatra','>= 1.3.0', :require => false
