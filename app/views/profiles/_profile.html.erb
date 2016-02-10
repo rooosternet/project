@@ -6,7 +6,8 @@
 	<div class="freelancer-head">
 		<h5 class="freelancer-name"><%= profile.user.name %></h5>
 
-		<p><%=profile.location %></p>
+		<!-- <p><%#=profile.location %></p> -->
+		<p><a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.location) %>"><%=profile.location%></a></p>
 	</div>
 
 	<ul class="freelancer-links">
@@ -52,7 +53,12 @@
 		<div class="freelancer-foot-inner">
 			<strong> <%= "Skills" unless profile.skills.blank? -%>  <%#= profile.job_title %></strong>
 
-			<p><%= profile.skills.split(',').join(', ') %></p>
+			<p><%#= profile.skills.split(',').join(', ') %>
+				<% profile.skills.map do |skill| %>
+					<a href="<%=profiles_index_path(:search=>params[:search],:search_by=>params[:search_by],:location=>params[:location],:skills => skill) %>"><%=skill%></a>
+				<% end.join(', ') %>
+			</p>
+
 		</div>
 	</div>
 	<div style="display: none" id='<%="#{profile.user_id}_message" %>'>

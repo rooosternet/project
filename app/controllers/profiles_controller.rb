@@ -9,12 +9,25 @@ class ProfilesController < ApplicationController
   	@profiles_count = 'No'
     @profiles = []
     scope = Profile.active
+
+    @search_by = params[:search_by].blank? ?  'All' : params[:search_by]
+
+    case @search_by
+    when "Location"
+      params[:search].split(' ').collect{ |search_string| scope = scope.location_search(search_string) } if !params[:search].blank?
+    when "People"
+       params[:search].split(' ').collect{ |search_string| scope = scope.people_search(search_string) } if !params[:search].blank?
+    when "Skill"  
+      params[:search].split(' ').collect{ |search_string| scope = scope.skill_search(search_string) } if !params[:search].blank?
+    end
+    
     params[:search].split(' ').collect{ |search_string| scope = scope.live_search(search_string) } if !params[:search].blank?
     scope = scope.skill_search(params[:skills]) if !params[:skills].blank?
+    scope = scope.location_search(params[:location]) if !params[:location].blank?
+    
     @profiles_count = scope.count
-
     @profiles = scope.order("users.firstname,users.lastname asc").paginate(page: params[:page], per_page: 10)
-    render :template => 'visitors/home' if params[:skills].blank? && params[:search].blank?
+    render :template => 'visitors/home' if params[:location].blank? && params[:skills].blank? && params[:search].blank?
   end
 
   def edit

@@ -13,10 +13,17 @@
 						<div class="search search-alt">
 
 							<%= form_tag({ :controller => 'profiles', :action => 'index'}, :method => :get, :id => 'query_form') do %>
-							<label for="q" class="hidden">Search</label>
 							
-							<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
-
+							<%= hidden_field_tag 'skills', params[:skills] %>
+							<%= hidden_field_tag 'location', params[:location] %>
+							
+							<label for="q" class="hidden">Search</label>
+							<div style="float:left">
+								<%= select_tag('search_by', options_for_select([["All","All"],["Location","Location"],["People","People"],["Skill","Skill"]],@search_by), :onchange => '',:class => "form-control search-field live_search_field")%>
+							</div>
+							<div style="float:right;">
+								<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
+							</div>
 							<button type="submit" class="search-btn" id="submit_search_form">
 								<i class="fa fa-search"></i>
 							</button>
