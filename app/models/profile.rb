@@ -1,6 +1,9 @@
 class Profile < ActiveRecord::Base
 	belongs_to :user
 	has_many :profile_connects
+	
+	has_many :team_profiles
+  	has_many :teams, through: :team_profiles
 
 	delegate :name ,:firstname,:lastname,:email , :to => :user, :allow_nil => true
 	# :searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills

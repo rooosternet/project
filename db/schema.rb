@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203077228) do
+ActiveRecord::Schema.define(version: 20160214195310) do
 
   create_table "in_messages", force: :cascade do |t|
     t.integer  "from_id",    limit: 4,     default: 0,     null: false
@@ -49,26 +49,50 @@ ActiveRecord::Schema.define(version: 20160203077228) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4
-    t.boolean  "searchable",                     default: false, null: false
-    t.string   "public_email",     limit: 255
-    t.string   "location",         limit: 255
-    t.string   "job_title",        limit: 255
-    t.string   "company_name",     limit: 255
-    t.string   "company_website",  limit: 255
-    t.string   "online_portfolio", limit: 255
-    t.string   "linkedin_profile", limit: 255
-    t.string   "behance",          limit: 255
-    t.string   "vimeo",            limit: 255
-    t.text     "social_links",     limit: 65535
-    t.text     "skills",           limit: 65535
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.boolean  "is_company",                     default: false, null: false
-    t.boolean  "is_freelancer",                  default: false, null: false
+    t.integer  "user_id",           limit: 4
+    t.boolean  "searchable",                      default: false, null: false
+    t.string   "public_email",      limit: 255
+    t.string   "location",          limit: 255
+    t.string   "job_title",         limit: 255
+    t.string   "company_name",      limit: 255
+    t.string   "company_website",   limit: 255
+    t.string   "online_portfolio",  limit: 255
+    t.string   "linkedin_profile",  limit: 255
+    t.string   "behance",           limit: 255
+    t.string   "vimeo",             limit: 255
+    t.text     "social_links",      limit: 65535
+    t.text     "skills",            limit: 65535
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.boolean  "is_company",                      default: false, null: false
+    t.boolean  "is_freelancer",                   default: false, null: false
+    t.string   "logo_file_name",    limit: 255
+    t.string   "logo_content_type", limit: 255
+    t.integer  "logo_file_size",    limit: 4
+    t.datetime "logo_updated_at"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "team_profiles", force: :cascade do |t|
+    t.integer  "team_id",    limit: 4
+    t.integer  "profile_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "team_profiles", ["profile_id"], name: "index_team_profiles_on_profile_id", using: :btree
+  add_index "team_profiles", ["team_id"], name: "index_team_profiles_on_team_id", using: :btree
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "subject",     limit: 255
+    t.text     "description", limit: 65535
+    t.integer  "owner_id",    limit: 4
+    t.boolean  "public",      default: false, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false
@@ -101,6 +125,10 @@ ActiveRecord::Schema.define(version: 20160203077228) do
     t.integer  "invitations_count",      limit: 4,   default: 0
     t.boolean  "edit_profile",                       default: false, null: false
     t.boolean  "subscribe",                          default: false, null: false
+    t.string   "logo_file_name",         limit: 255
+    t.string   "logo_content_type",      limit: 255
+    t.integer  "logo_file_size",         limit: 4
+    t.datetime "logo_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -109,4 +137,6 @@ ActiveRecord::Schema.define(version: 20160203077228) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "team_profiles", "profiles"
+  add_foreign_key "team_profiles", "teams"
 end
