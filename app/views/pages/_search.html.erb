@@ -1,90 +1,130 @@
-<section class="section-search">
-	<h2 class="section-title">Need a great freelancer for your next project?</h2><!-- /.section-title -->
+<section class="section-search section-search-alt">
+	<h2 class="section-title">Need a great freelancer for your team?</h2><!-- /.section-title -->
 
 	<div class="section-body">
 		<div class="search">
 			<div class="search-body">
-						<!-- <form action="freelancers.html" method="get">
-							<label for="q" class="hidden">Search</label>
-
-							<input type="text" class="form-control search-field">
-
-							<button type="submit" class="search-btn">
-								<i class="fa fa-search"></i>
-							</button>
-						</form> -->
-
-						<%= form_tag({ :controller => 'profiles', :action => 'index'}, :method => :get, :id => 'query_form') do %>
-						<label for="q" class="hidden">Search</label>
-						<!-- <input type="text" class="form-control search-field"> -->
-						<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
-
-						<button type="submit" class="search-btn" id="submit_search_form">
-							<i class="fa fa-search"></i>
-						</button>
-						<% end %>
+				<%= form_tag({ :controller => 'profiles', :action => 'index'}, :method => :get, :id => 'query_form') do %>
+					<label for="q" class="hidden">Search</label>
+					<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
+					<button type="submit" class="search-btn" id="submit_search_form">
+						<i class="fa fa-search"></i>
+					</button>
+				<% end %>
 
 
-
-					</div><!-- /.search-body -->
-					
-					<div class="search-foot">
-						<span>Popular Searches:</span>
-
-						<ul>
-							<li>
-								<a href="<%=profiles_index_path(:search=>'',:skills => 'Motion Graphics') %>"> Motion Graphics</a>
-							</li>
-
-							<li>
-								<a href="<%=profiles_index_path(:search=>'',:skills => '2D Animation') %>">2D Animation</a>
-							</li>
-
-							<li>
-								<a href="<%=profiles_index_path(:search=>'',:skills => 'Art Direction') %>">Art Direction</a>
-							</li>
-
-							<li>
-								<a href="<%=profiles_index_path(:search=>'',:skills => 'VFX') %>">VFX</a>
-							</li>
-
-							<li>
-								<a href="<%=profiles_index_path(:search=>'',:skills => 'Illustration') %>">Illustration</a>
-							</li>
-						</ul>
-					</div><!-- /.search-foot -->
-				</div><!-- /.search -->
-			</div><!-- /.section-body -->
-
-			<div class="section-image">
-				<!-- <img src="../images/temp/intro-image.png" height="204" width="167" alt=""> -->
-				<%=image_tag "intro-image.png", { height: "204" ,width: "167" ,alt: "" } %>
-			</div><!-- /.section-image -->
-
-			<!-- <div class="section-actions visible-xs">
 				<div class="dropdown">
-					<a href="#" class="btn btn-default" data-toggle="dropdown">
-						Jonathan <span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
+					<a href="#" class="dropdown-btn" data-toggle="dropdown">
+						<span class="btn-icon">
+							<i class="ico-arrow-right-small"></i>
+
+							<span class="btn-icon-alt">
+								<i id="search-icon"></i>
+							</span>
+						</span>
 					</a>
 
 					<ul class="dropdown-menu">
 						<li>
-							<a href="#modal-edit-profile-studio" data-toggle="modal">Edit Studio</a>
+							<a href="#search-icon" data-change-class="">All</a>
 						</li>
-						<li>
-							<a href="#modal-edit-profile-freelancer" data-toggle="modal">Edit Freelancer</a>
-						</li>
-						<li>
-							<a href="#">Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div> -->
-		</section><!-- /.section-search -->
 
-		<!-- <div class="divider hidden-xs">
-			<a href="#">
-				<i class="ico-arrow-down"></i>
-			</a>
-		</div> -->
-		<!-- /.divider -->
+						<li>
+							<a href="#search-icon" data-change-class="ico-location">Location</a>
+						</li>
+
+						<li>
+							<a href="#search-icon" data-change-class="ico-people">People</a>
+						</li>
+
+						<li>
+							<a href="#search-icon" data-change-class="ico-skills">Skill</a>
+						</li>
+					</ul><!-- /.dropdown-menu -->
+				</div><!-- /.dropdown -->
+			</div><!-- /.search-body -->
+
+			<div class="search-foot">
+				<span>Popular Searches:</span>
+
+				<ul>
+					<li>
+						<a href="<%=profiles_index_path(:search=>'',:skills => 'Motion Graphics') %>"> Motion Graphics</a>
+					</li>
+
+					<li>
+						<a href="<%=profiles_index_path(:search=>'',:skills => '2D Animation') %>">2D Animation</a>
+					</li>
+
+					<li>
+						<a href="<%=profiles_index_path(:search=>'',:skills => 'Art Direction') %>">Art Direction</a>
+					</li>
+
+					<li>
+						<a href="<%=profiles_index_path(:search=>'',:skills => 'VFX') %>">VFX</a>
+					</li>
+
+					<li>
+						<a href="<%=profiles_index_path(:search=>'',:skills => 'Illustration') %>">Illustration</a>
+					</li>
+				</ul>
+			</div><!-- /.search-foot -->
+		</div><!-- /.search -->
+	</div><!-- /.section-body -->
+</section><!-- /.section-search -->
+
+<section class="section-team">
+	<header class="section-head">
+		<h4 class="section-title">
+			<span>My Teams</span>
+		</h4><!-- /.section-title -->
+	</header><!-- /.section-head -->
+
+	<div class="section-body">
+		<ul class="teams teams-sortable">
+			<li class="team team-highlighted">
+				<a href="#" class="team-inner">
+					<div class="team-image">
+						<%=image_tag "temp/team1.jpg", { alt: "" } %>
+						<div class="team-actions">
+							<span class="team-count">101</span>
+						</div><!-- /.team-actions -->
+					</div><!-- /.team-image -->
+
+					<div class="team-title">My Contacts</div><!-- /.team-title -->
+				</a>
+			</li><!-- /.team -->
+
+			<li class="team">
+				<a href="#template-team" class="team-inner team-create">
+					<div class="team-image">
+						<%=image_tag "temp/team-default.jpg", { alt: "" } %>
+						<div class="team-actions">
+							<span class="team-add">
+								<i class="ico-plus"></i>
+							</span>
+						</div><!-- /.team-actions -->
+					</div><!-- /.team-image -->
+
+					<div class="team-title">Create a team</div><!-- /.team-title -->
+				</a>
+			</li><!-- /.team -->
+		</ul><!-- /.teams -->
+
+		<script type="text/template" id="template-team">
+			<li class="team team-sortable">
+				<a href="#" class="team-inner">
+					<div class="team-image">
+						<!-- <img src="../images/temp/team{{image}}.jpg" alt=""> -->
+						<%=image_tag "temp/team{{image}}.jpg", { alt: "" } %>
+						<div class="team-actions">
+							<span class="team-count">0</span>
+						</div><!-- /.team-actions -->
+					</div><!-- /.team-image -->
+
+					<div class="team-title" contentEditable></div><!-- /.team-title -->
+				</a>
+			</li><!-- /.team -->
+		</script>
+	</div><!-- /.section-body -->
+</section><!-- /.section-team -->

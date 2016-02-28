@@ -102,48 +102,48 @@ $(function() {
 		});
 
 
-		// Scroll To
-		$('[data-scroll-to]').on('click', function(event) {
-			event.preventDefault();
+		// // Scroll To
+		// $('[data-scroll-to]').on('click', function(event) {
+		// 	event.preventDefault();
 			
-			var target = $(this).data('scroll-to');
+		// 	var target = $(this).data('scroll-to');
 
-			$('html, body').animate({
-				scrollTop: $(target).offset().top
-			}, 500);
-		});
+		// 	$('html, body').animate({
+		// 		scrollTop: $(target).offset().top
+		// 	}, 500);
+		// });
 
-		// Button Collapse Form
-		$('.btn-collapse-form').bind('click', function(event) {
-			event.preventDefault();
-			$(this).hide();
-		});
+		// // Button Collapse Form
+		// $('.btn-collapse-form').bind('click', function(event) {
+		// 	event.preventDefault();
+		// 	$(this).hide();
+		// });
 
-		// Modal Fix
-		$('.header [data-toggle="modal-alt"]').on('click', function(event) {
-			event.preventDefault();
+		// // Modal Fix
+		// $('.header [data-toggle="modal-alt"]').on('click', function(event) {
+		// 	event.preventDefault();
 
-			var target = $(this).attr('href');
+		// 	var target = $(this).attr('href');
 
-			if(!$('.modal-backdrop').length) {
-				$(target).modal('show');
-				return;
-			}
+		// 	if(!$('.modal-backdrop').length) {
+		// 		$(target).modal('show');
+		// 		return;
+		// 	}
 
-			$('.modal').modal('hide');
-			setTimeout(function() {
-				$(target).modal('show');
-			}, 400);
-		});
+		// 	$('.modal').modal('hide');
+		// 	setTimeout(function() {
+		// 		$(target).modal('show');
+		// 	}, 400);
+		// });
 
-		// Autocomplete
-		$('.select-autocomplete').each(function(index, el) {
-			var placeholderText = $(this).data('placeholder');
-			$(this).fastselect({
-				choiceRemoveClass: 'ico-remove btn-remove',
-				placeholder: placeholderText
-			});
-		});
+		// // Autocomplete
+		// $('.select-autocomplete').each(function(index, el) {
+		// 	var placeholderText = $(this).data('placeholder');
+		// 	$(this).fastselect({
+		// 		choiceRemoveClass: 'ico-remove btn-remove',
+		// 		placeholder: placeholderText
+		// 	});
+		// });
 
 		$('.register_form').bind('ajax:success',function(event, data, status, xhr){
 			fid = $(this).data("parent");

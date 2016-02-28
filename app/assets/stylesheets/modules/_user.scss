@@ -1,0 +1,204 @@
+/* ------------------------------------------------------------ *\
+	User
+\* ------------------------------------------------------------ */
+
+.user { position: relative; width: 78px;
+
+	.user-image { display: block; width: 78px; height: 78px; padding: 4px; background: #fff; border: 1px solid #dae4eb; border-radius: 50%; overflow: hidden; box-shadow: -8px -15px 0 0 #fff, 8px -15px 0 0 #fff; text-decoration: none; transition: all .2s ease-out; }
+	.user-image img { border-radius: 50%; }
+	.user-image:hover { border-color: #a4a4a2; }
+
+	.user-btn { position: absolute; left: 100%; top: 29px; margin-left: 5px; color: #dae4eb;
+
+		.user-btn-icon { display: block; text-align: center; width: 32px; height: 32px; line-height: 30px; background: #fff; border-radius: 50%; border: 1px solid #e4eaf0; font-size: 15px; transition: all .2s ease-out; }
+		.user-btn-label { position: absolute; left: 50%; top: 100%; margin-top: 8px; font-size: 11px; font-weight: bold; color: #bcbcbe; text-transform: uppercase; visibility: hidden; opacity: 0; -webkit-transform: translateX(-50%); transform: translateX(-50%); transition: all .2s ease-out; }
+
+		&:hover .user-btn-icon { color: #bac3ca; }
+		&:hover .user-btn-label { visibility: visible; opacity: 1; }
+
+		.ico-new-message { left: -2px; bottom: -5px; }
+	}
+
+	.dropdown { position: absolute; left: 0; top: 100%; width: 100%;
+
+		.dropdown-btn { position: absolute; left: 50%; top: 100%; width: 22px; height: 22px; margin: -11px 0 0 -11px; padding: 4px; border-radius: 50%; background: #fbfbfb; }
+		.dropdown-btn .btn-icon { display: inline-block; vertical-align: top; position: static; margin: 0; }
+		.dropdown-menu { margin-left: -11px; }
+	}
+
+	@media (max-width: $screen-xs-max) {
+		& { width: 48px; margin-left: 5px; }
+		.user-image { width: 48px; height: 48px; padding: 2px; box-shadow: 0 -8px 0 0 #fff, 0 -8px 0 0 #fff; }
+		.user-btn { display: none; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	User Alt
+\* ------------------------------------------------------------ */
+
+.user-alt {
+
+	.user-main { position: relative; padding: 33px 22px; border: 1px solid transparent; text-align: center; font-size: 14px; color: #36393b; transition: all .2s ease-out; }
+	&:hover .user-main,
+	&.user-touch .user-main { border-color: #e6ecf1; background: #fcfdfd; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, .35); }
+
+	.user-expand { display: none; }
+
+	.user-head { position: relative; display: inline-block; vertical-align: top; width: 186px; height: 186px; margin-bottom: 6px; }
+
+	.user-head-placeholder { position: absolute; z-index: 5; left: 0; top: 0; width: 100%; height: 100%; background: #fff; border: 1px dashed #dee7ed; border-radius: 50%; color: #abafb3; font-size: 11px; text-transform: uppercase; font-weight: bold; }
+	.user-head-placeholder span { position: absolute; left: 0; top: 50%; width: 100%; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
+
+	.user-image { position: relative; z-index: 10; display: inline-block; vertical-align: top; border-radius: 50%; overflow: hidden; border: 1px dashed #dee7ed; transition: -webkit-transform .3s ease-out; transition: transform .3s ease-out; transition: transform .3s ease-out, -webkit-transform .3s ease-out; -webkit-transition: -webkit-transform .3s ease-out; }
+	.user-image.ui-draggable-dragging { z-index: 200; }
+	.user-image img { border: 8px solid #fff; border-radius: 50%; }
+
+	.user-draggable-over { -webkit-transform: scale(.42); transform: scale(.42); }
+	.user-dropped { z-index: 200; -webkit-animation: .8s dropped; animation: .8s dropped; }
+
+	.user-name { margin-bottom: 4px; font-size: 14px; font-weight: bold; }
+
+	.user-title { margin-bottom: 8px; font-size: 11px; }
+	.user-title a { color: #36393b; }
+
+	.user-location { max-width: 90px; margin: 0 auto 8px; padding-top: 5px; border-top: 1px solid #d1d1d2; color: #707274; font-size: 11px; }
+	.user-location a { color: #707274; }
+
+	.user-socials { list-style: none outside none; text-align: center; font-size: 0; }
+	.user-socials li { display: inline-block; vertical-align: top; margin: 0 3px; }
+	.user-socials a { display: block; opacity: .6; transition: all .2s ease-out; }
+	.user-socials a:hover { opacity: 1; }
+
+	.user-actions { position: absolute; left: 0; top: -10px; width: 100%; }
+	.user-actions ul { list-style: none outside none; text-align: center; font-size: 0; }
+	.user-actions li { display: inline-block; vertical-align: top; margin: 0 2px; }
+	.user-actions a { text-decoration: none; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
+	.user-actions span { position: absolute; z-index: 200; left: 0; top: 26px; width: 100%; font-size: 11px; color: #a7abb1; text-transform: uppercase; font-weight: bold; text-align: center; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
+	.user-actions a:hover span { visibility: visible; opacity: 1; }
+
+	.user-actions .dropdown { position: static; display: inline-block; width: auto; }
+
+	&:hover .user-actions a,
+	&.user-touch .user-actions a { visibility: visible; opacity: 1; }
+
+	.user-groups { width: auto; top: 100%; left: 5px; right: 5px; padding: 4px 0; margin-top: 22px; list-style: none outside none; }
+	.user-groups li { position: relative; display: block; margin: 0; padding: 1px 5px; }
+	.user-groups li + li:before { content: none; }
+
+	.user-groups label,
+	.user-groups button { display: block; width: 100%; padding: 0 5px; min-height: 20px; font-weight: bold; outline: none; word-wrap: break-word; transition: all .2s ease-out; }
+
+
+	.user-groups .checkbox,
+	.user-groups button { margin: 0; font-size: 11px; font-weight: bold; text-transform: uppercase; color: #abafb3; line-height: 1.85; background: transparent; border: 0; border-radius: 0; -webkit-appearance: none; font-size: 11px; }
+
+	.user-groups input { position: absolute; left: -2000px; top: 0; opacity: 0; }
+
+	.user-groups input:checked + label { background: #f3f3f3; }
+
+	.user-groups label:hover,
+	.user-groups button:hover { color: #000; }
+
+	.checkbox-select { position: absolute; right: 10px; top: 10px; }
+
+	@media (max-width: $screen-sm-max) {
+		.user-head,
+		.user-body { display: inline-block; vertical-align: middle; }
+
+		.user-head { margin: 0 auto; }
+		.user-body { min-width: 120px; margin-left: 20px; }
+
+		.user-main { padding: 25px 10px; }
+	}
+
+	@media (max-width: $screen-mobile-portrait) {
+		.user-head,
+		.user-body { display: block; }
+
+		.user-body { margin: 8px 0 0; }
+	}
+}
+
+@-webkit-keyframes dropped {
+	0% { -webkit-transform: scale(.42); transform: scale(.42); }
+	30% { -webkit-transform: scale(0); transform: scale(0); }
+	70% { -webkit-transform: scale(0); transform: scale(0); }
+	100% { -webkit-transform: scale(1); transform: scale(1); }
+}
+
+@keyframes dropped {
+	0% { -webkit-transform: scale(.42); transform: scale(.42); }
+	30% { -webkit-transform: scale(0); transform: scale(0); }
+	70% { -webkit-transform: scale(0); transform: scale(0); }
+	100% { -webkit-transform: scale(1); transform: scale(1); }
+}
+
+/* ------------------------------------------------------------ *\
+	Users
+\* ------------------------------------------------------------ */
+
+.users { position: relative; list-style: none outside none; font-size: 0;
+
+	.user-alt { display: inline-block; vertical-align: bottom; width: 25%; margin-bottom: 10px; font-size: 14px; }
+
+	@media (max-width: $screen-md-max) {
+		.user-alt { width: 33.333%; }
+	}
+
+	@media (max-width: $screen-xs-max) {
+		.user-alt { width: 100%; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Users Flex
+\* ------------------------------------------------------------ */
+
+.users-flex {
+	.user-alt:nth-child(4n+1) {
+		.user-expand { margin: 0 -300% 0 0; }
+		.messages .messages-arrow { left: 0%; }
+	}
+
+	.user-alt:nth-child(4n+2) {
+		.user-expand { margin: 0 -200% 0 -100%; }
+		.messages .messages-arrow { left: 25%; }
+	}
+
+	.user-alt:nth-child(4n+3) {
+		.user-expand { margin: 0 -100% 0 -200%; }
+		.messages .messages-arrow { left: 50%; }
+	}
+
+	.user-alt:nth-child(4n+4) {
+		.user-expand { margin: 0 0 0 -300%; }
+		.messages .messages-arrow { left: 75%; }
+	}
+
+	@media (max-width: $screen-md-max) {
+		.user-expand { padding: 0 20px; }
+
+		.user-alt:nth-child(3n+1) {
+			.user-expand { margin: 0 -200% 0 0; }
+			.messages .messages-arrow { left: 0%; }
+		}
+
+		.user-alt:nth-child(3n+2) {
+			.user-expand { margin: 0 -100% 0 -100%; }
+			.messages .messages-arrow { left: 33.333%; }
+		}
+
+		.user-alt:nth-child(3n+3) {
+			.user-expand { margin: 0 -0 0 -200%; }
+			.messages .messages-arrow { left: 66.667%; }
+		}
+	}
+
+	@media (max-width: $screen-xs-max) {
+		.user-alt:nth-child(n) {
+			.user-expand { margin: 0; padding: 0; }
+			.messages .messages-arrow { left: 0%; }
+		}
+	}
+}

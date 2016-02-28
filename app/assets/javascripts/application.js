@@ -15,6 +15,7 @@
 // require bootstrap-sprockets
 //= require bootstrap.min
 //= require fastselect.standalone
+//= require owl.carousel.min
 // require turbolinks
 // require javascripts/bootstrap-sprockets
 //= require_tree .

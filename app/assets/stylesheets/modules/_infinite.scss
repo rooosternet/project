@@ -1,0 +1,7 @@
+/* ------------------------------------------------------------ *\
+	Infinite Scroll
+\* ------------------------------------------------------------ */
+
+.infinite-scroll { position: relative; }
+.infinite-loader { height: 0; text-align: center; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
+.infinite-loading + .infinite-loader { height: 32px; visibility: visible; opacity: 1; }

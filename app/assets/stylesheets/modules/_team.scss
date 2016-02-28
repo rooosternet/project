@@ -1,0 +1,195 @@
+/* ------------------------------------------------------------ *\
+	Teams
+\* ------------------------------------------------------------ */
+
+@-webkit-keyframes bounce {
+	0% { -webkit-transform: translateY(0%); transform: translateY(0%); }
+	30% { -webkit-transform: translateY(-10%); transform: translateY(-10%); }
+	60% { -webkit-transform: translateY(5%); transform: translateY(5%); }
+	80% { -webkit-transform: translateY(-5%); transform: translateY(-5%); }
+	100% { -webkit-transform: translateY(0%); transform: translateY(0%); }
+}
+
+@keyframes bounce {
+	0% { -webkit-transform: translateY(0%); transform: translateY(0%); }
+	30% { -webkit-transform: translateY(-10%); transform: translateY(-10%); }
+	60% { -webkit-transform: translateY(5%); transform: translateY(5%); }
+	80% { -webkit-transform: translateY(-5%); transform: translateY(-5%); }
+	100% { -webkit-transform: translateY(0%); transform: translateY(0%); }
+}
+
+.teams { list-style: none outside none; text-align: center; font-size: 0; }
+
+.team { display: inline-block; vertical-align: top; width: 124px; margin: 0 3px 11px;
+
+	.team-inner,
+	.team-inner:hover { text-decoration: none; }
+
+	.team-inner { display: block; }
+
+	.team-image { position: relative; width: 124px; height: 124px; margin-bottom: 8px; border: 1px dashed #dae4eb; border-radius: 50%; transition: all .2s ease-out; }
+	.team-image img { width: 100%; height: 100%; border-radius: 50%; border: 6px solid #fff; }
+
+	.team-image input { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; }
+	.team-image label { position: absolute; left: 0; top: 0; width: 100%; height: 100%; cursor: pointer; color: #888; font-weight: bold; text-transform: uppercase; font-size: 10px; }
+
+	.team-image-change { position: absolute; left: 5px; top: 5px; right: 5px; bottom: 5px; border-radius: 50%; overflow: hidden; }
+	.team-image-change span { position: absolute; left: 0; bottom: 0; width: 100%; padding: 10px 0 15px; background: transparent; font-size: 9px; font-weight: bold; text-transform: uppercase; color: transparent; text-align: center; line-height: 1.3; transition: all .2s ease-out; }
+
+	.team-actions { position: absolute; z-index: 5; left: 0; bottom: 0; width: 35px; height: 35px; padding: 5px; border-radius: 50%; background: #fbfbfb; }
+
+	.team-count { display: block; line-height: 25px; border-radius: 50%; background: #d8d8d8; color: #fff; text-align: center; font-size: 12px; font-weight: bold; }
+	.team-inbox { display: block; width: 25px; height: 25px; padding: 4px; border-radius: 50%; border: 1px solid #dddddd; background: #fff; }
+	.team-inbox:before { content: ''; display: block; width: 100%; height: 100%; background: #f00; border-radius: 50%; }
+	.team-add { display: block; width: 25px; height: 25px; line-height: 20px; border-radius: 50%; border: 2px solid #d9dadb; text-align: center; }
+
+	.team-title { min-height: 26px; font-size: 12px; color: #646464; font-weight: bold; text-transform: uppercase; line-height: 1.15; word-wrap: break-word; overflow: hidden; transition: all .2s ease-out; }
+	.team-title:focus { color: #000; outline: 0; }
+
+	&:hover .team-image { border-color: #787878; }
+	&:hover .team-image-change span { color: #868a90; background: #f1f1f1; }
+	&:hover .team-title { color: #000; }
+
+	&-highlighted .team-image { border-style: solid; }
+	&-highlighted .team-image:after { content: ''; position: absolute; left: 2px; right: 2px; top: 2px; bottom: 2px; border-radius: 50%; border: 1px solid #dae4eb; }
+	&-highlighted .team-title { color: #000; }
+}
+
+/* ------------------------------------------------------------ *\
+	Teams Menu
+\* ------------------------------------------------------------ */
+
+.teams-menu { font-size: 0; text-align: center; white-space: nowrap;
+
+	.teams-menu-inner { padding: 15px 0; }
+
+	.teams-default,
+	.teams-slider,
+	.teams-create { display: inline-block; vertical-align: top; }
+
+	.teams-slider { position: relative; width: 468px; padding: 0 15px; border-width: 0 1px; border-style: solid; border-color: #dbdbdb; margin: 0 17px;
+
+		.teams-slides { padding: 40px 0 0; margin: -40px 0 0; overflow: hidden; }
+
+		.owl-stage-outer { overflow: visible; }
+
+		.owl-carousel { position: static; }
+
+		.owl-nav { position: absolute; left: 0; top: 28px; width: 100%; }
+
+		.owl-prev,
+		.owl-next { position: absolute; top: 0; border-radius: 50%; background: #fff; transition: all .2s ease-out; }
+
+		.owl-prev i,
+		.owl-next i { opacity: .35; transition: all .2s ease-out; }
+
+		.owl-prev:hover i,
+		.owl-next:hover i { opacity: 1; }
+
+		.owl-prev.disabled,
+		.owl-next.disabled { visibility: hidden; opacity: 0; }
+
+		.owl-prev { left: -12px; }
+		.owl-next { right: -12px; }
+
+		.team { margin: 0; }
+
+		.team-dropped { -webkit-animation: bounce .6s ease-out; animation: bounce .6s ease-out; }
+
+		.team .team-image { margin: 0; }
+
+		.team .team-title { position: absolute; left: 50%; bottom: 100%; min-height: 0; width: 84px; margin: 0 0 5px -42px; text-align: center; color: #979797; visibility: hidden; opacity: 0; }
+		.team:hover .team-title,
+		.team-new .team-title { visibility: visible; opacity: 1; }
+
+		.team .team-count { color: transparent; }
+
+		@media (max-width: $screen-md-max) {
+			& { width: 386px; }
+		}
+
+		@media (max-width: $screen-xs-max) {
+			& { width: 272px; margin: 0 8px; padding: 0 8px; }
+
+			.owl-prev,
+			.owl-next { transform: scale(.75); }
+
+			.owl-prev { left: -9px; transform-origin: 0% center; }
+			.owl-next { right: -9px; transform-origin: 100% center; }
+		}
+
+		@media (max-width: $screen-mobile-portrait) {
+			& { width: 110px; }
+		}
+	}
+
+	.teams-default .team .team-title { color: #000; }
+	.teams-default .team .team-image { margin-bottom: 5px; }
+	.teams-default .team .team-image:after { content: ''; position: absolute; left: 1px; right: 1px; top: 1px; bottom: 1px; border-radius: 50%; border: 1px solid #dae4eb; }
+
+	.teams-create {
+		.team { position: relative; }
+		.team .team-image { border-style: dashed; }
+		.team .team-title { position: absolute; bottom: 100%; width: 100%; margin-bottom: 5px; color: #979797; min-height: 0; visibility: hidden; opacity: 0; }
+		.team:hover .team-title { visibility: visible; opacity: 1; }
+	}
+
+	.team { width: 78px; white-space: normal;
+
+		.team-image { width: 78px; height: 78px; margin: 0 0 2px; border-style: solid; }
+		.team-image img { border-width: 4px; }
+
+		&-highlighted .team-image { border-color: #787878; }
+		&-highlighted .team-title.team-title.team-title { visibility: visible; opacity: 1; }
+
+		.team-actions { width: 22px; height: 22px; padding: 3px; }
+		.team-count { line-height: 16px; font-size: 7px; }
+
+		.team-title { font-size: 10px; }
+		.team-add { width: 16px; height: 16px; line-height: 14px; border-width: 1px; }
+		.team-add i { width: 8px; height: 8px; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Team Page
+\* ------------------------------------------------------------ */
+
+.team-page {
+
+	.team { display: inline-block; vertical-align: top; margin: 0 7px 0 0;
+
+		.team-image { margin: 0; border-style: solid; }
+		.team-inner:focus { outline: 0; }
+	}
+
+	.team-page-content { display: inline-block; vertical-align: top; width: 205px; padding: 24px 0 0; word-wrap: break-word; }
+	.team-page-name { padding: 4px 0; margin-bottom: 7px; border-bottom: 1px solid #d3d3d3; font-size: 18px; font-weight: bold; text-transform: uppercase; color: #000; outline: 0; }
+	.team-page-description { font-size: 14px; color: #818181; outline: 0; }
+	.team-page-description:empty:before { content: attr(data-placeholder); }
+	.team-page-description:focus:before { content: ''; }
+
+	@media (max-width: $screen-mobile-portrait) {
+		.team { display: block; margin: 0 auto; }
+		.team-page-content { display: block; width: auto; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	List Avatars
+\* ------------------------------------------------------------ */
+
+.list-avatars { list-style: none outside none; text-align: center; font-size: 0;
+
+	li { display: inline-block; vertical-align: middle; }
+
+	.team { width: 78px; margin: 0 2px; }
+	.team .team-image { width: 78px; height: 78px; border-style: solid; }
+	.team .team-image img { border-width: 4px; }
+	.team .team-image label { line-height: 78px; }
+	.team .team-actions { width: 24px; height: 24px; padding: 3px; background: #ffffff; }
+	.team .team-add { width: 18px; height: 18px; line-height: 16px; border-width: 1px; }
+	.team .team-add i { width: 8px; height: 8px; }
+
+	.team-alt .team-image { border-style: dashed; }
+}

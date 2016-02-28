@@ -1,59 +1,70 @@
-<header class="header">
+<header class="header header-alt">
 	<div class="shell">
+		<div class="header-logged">
+			<div class="user">
+				<div class="dropdown">
+					<a href="#" class="user-image" data-toggle="dropdown">
+						<%=image_tag("temp/logged-user.jpg",:alt=>current_user.firstname)%>
+					</a><!-- /.user-image -->
+
+					<a href="inbox.html" class="user-btn">
+						<span class="user-btn-icon">
+							<i class="fa fa-envelope"></i>
+
+							<i class="ico-new-message"></i>
+						</span>
+
+						<span class="user-btn-label">Inbox</span>
+					</a>
+
+					<a href="#" class="dropdown-btn" data-toggle="dropdown">
+						<span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
+					</a>
+
+					<ul class="dropdown-menu">
+						<% if current_user.admin?  %>
+						<li><%= link_to 'Users', users_path %></li>
+						<li>
+							<a href="#modal-edit-profile-admin" data-toggle="modal">Edit</a>
+						</li>
+						<% elsif current_user.profile?  %>
+						<li>
+							<a href="#modal-edit-profile" data-toggle="modal">Edit Profile</a>
+						</li>
+						<% end %>
+
+						<li>
+							<a href="##modal-edit-profile-passowrd" data-toggle="modal">Password</a>
+						</li>
+						
+						<li>
+							<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+						</li>
+					</ul><!-- /.dropdown-menu -->
+				</div><!-- /.dropdown -->
+			</div><!-- /.user -->
+		</div><!-- /.header-logged -->
+
 		<!-- <a href="home.html" class="logo">roooster</a> -->
 		<%= link_to 'roooster', root_path, class: 'logo'  %>
 		<span class="slogan">Collaborative Roster For Creative Leaders</span>
 
-		<div class="header-actions">
-		<!-- hidden-xs -->
-			<div class="dropdown">
+		<div class="header-actions visible-xs">
+			<ul>
+				<li>
+					<a href="#">
+						<i class="fa fa-envelope"></i>
 
-				<a href="#" class="btn btn-default" data-toggle="dropdown">
-					<%= current_user.firstname %> <span class="btn-icon"><i class="ico-arrow-down-small"></i></span>
-				</a>
+						<i class="ico-new-message"></i>
+					</a>
+				</li>
 
-				<ul class="dropdown-menu">
-				<!-- <li> -->
-				<%#= link_to('linkedin', user_omniauth_authorize_path(:linkedin), target: '_blank', class: 'btn-sign-up', data: {platform: 'linkedin'}) %>
-					<!-- <div class="btn linkedin">
-				        <%#= link_to(raw('<i class="icon-s-linkedin"></i>'), user_omniauth_authorize_path(:linkedin), target: '_blank', class: 'btn-sign-up', data: {platform: 'linkedin'}) %>
-				    </div> -->
-				<!-- </li> -->
-					<!-- <li>
-						<a href="#modal-edit-profile" data-toggle="modal">Edit</a>
-					</li> -->
-					<%# if current_user.studio?  %>
-						<!-- <li>
-							<a href="#modal-edit-profile-studio" data-toggle="modal">Edit <%#= "Studio" if current_user.freelancer? %></a>
-						</li> -->
-					<%# end %>
-					<%# if current_user.freelancer?  %>
-						<!-- <li>
-							<a href="#modal-edit-profile-freelancer" data-toggle="modal">Edit <%#= "Freelancer" if current_user.studio? %></a>
-						</li> -->
-					<%# end %>
-					<% if current_user.admin?  %>
-						<li><%= link_to 'Users', users_path %></li>
-						<li>
-							<%#= link_to 'Edit account', edit_user_registration_path %>
-							<a href="#modal-edit-profile-admin" data-toggle="modal">Edit</a>
-						</li>
-						<!-- <li><%#= link_to 'Edit account', edit_user_registration_path %></li> -->
-					<% elsif current_user.profile?  %>
-						<li>
-							<a href="#modal-edit-profile" data-toggle="modal">Edit Profile</a>
-						</li>
-					<% end %>
-
-					<li>
-						<a href="##modal-edit-profile-passowrd" data-toggle="modal">Password</a>
-					</li>
-						
-					<li>
-						<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
-					</li>
-				</ul><!-- /.dropdown-menu -->
-			</div><!-- /.dropdown -->
+				<li>
+					<a href="#modal-search" data-toggle="modal">
+						<i class="fa fa-search"></i>
+					</a>
+				</li>
+			</ul>
 		</div><!-- /.header-actions -->
 	</div><!-- /.shell -->
 </header><!-- /.header -->
