@@ -10,7 +10,6 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "images")
-Rails.application.config.assets.paths << Rails.root.join("app", "assets", "images","temp")
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "bootstrap")
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "fastselect")
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "font-awesome")

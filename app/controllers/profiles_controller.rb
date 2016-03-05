@@ -6,6 +6,9 @@ class ProfilesController < ApplicationController
   
   # {"search"=>"", "skills"=>"Motion Graphics"}
   def index
+    @hide_footer = true
+    @top_search = true
+    
   	@profiles_count = 'No'
     @profiles = []
     scope = Profile.active

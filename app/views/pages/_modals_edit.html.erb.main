@@ -1,0 +1,341 @@
+<div class="modal fade" id="modal-edit-profile-admin" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<div class="form form-signup">
+					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin"}) do |f| %>
+					<%= f.hidden_field :edit_profile , :value => true %>
+					<div class="form-inner">
+						<div class="form-head">
+							<h4 class="form-title">Admin Profile</h4>
+						</div>
+
+						<div class="form-body">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-email" class="form-label">
+												Email
+											</label>
+
+											<div class="form-controls">
+												<%= f.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "", :type=>"email" %>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-email2" class="form-label">Additional Email</label>
+											
+											<div class="form-controls">
+												<%= f.text_field :email2, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email" %>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-first-name" class="form-label">First Name</label>
+
+											<div class="form-controls">
+												<%= f.text_field :firstname, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-last-name" class="form-label">Last Name</label>
+
+											<div class="form-controls">
+												<%= f.text_field :lastname, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- <div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<%#= f.label :password , class: 'form-label'%>
+											<div class="form-controls">
+												<%#= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<%#= f.label :password_confirmation , class: 'form-label'%>
+											<div class="form-controls">
+												<%#= f.password_field :password_confirmation, class: 'form-control' %>
+											</div>
+										</div>
+									</div>
+								</div>
+							-->
+						</div>
+					</div>
+
+					<div class="form-actions">
+						<input type="submit" value="Update" class="btn form-btn">
+						<!-- <button class="btn btn-light">Reset my password</button> -->
+					</div>
+
+					<div class="form-error" id="edit_admin_form_err">
+						<p></p>
+					</div>
+				</div>
+
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="modal fade" id="modal-edit-profile" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<div class="form form-signup">
+					<!-- <form action="?" method="post"> -->
+					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form',"data-error-id" => "edit_user_form_err", "data-parent"=>"modal-edit-profile"}) do |f| %>
+					<%= f.hidden_field :edit_profile , :value => true %>
+					<div class="form-inner">
+						<div class="form-head">
+							<h4 class="form-title">My Profile</h4><!-- /.form-title -->	
+							<p>Please add as many details as possible. Our team reviews all profiles before approving them to appear on our search for recommended creatives.If you are already up there, make sure your details are up to date.</p>
+						</div><!-- /.form-head -->
+
+						<div class="form-body">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-username" class="form-label">
+												Username <em>(cannot be changed)</em>
+											</label>
+
+											<div class="form-controls">
+												<%= f.text_field :email, :no_label => true , :class =>"form-control" ,:placeholder => "", disabled: true , :type=>"email" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-additional-email" class="form-label">Additional Email</label>
+											<%#= f.fields_for :profile do |builder| %>
+											<div class="form-controls">
+												<%= f.text_field :email2, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email" %>
+											</div><!-- /.form-controls -->
+											<%# end %>
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+								</div><!-- /.row -->
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-first-name" class="form-label">First Name</label>
+
+											<div class="form-controls">
+												<%= f.text_field :firstname, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-last-name" class="form-label">Last Name</label>
+
+											<div class="form-controls">
+												<%= f.text_field :lastname, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+								</div><!-- /.row -->
+
+							</div>
+
+							<%= f.fields_for :profile do |builder| %>
+
+
+							<%= builder.hidden_field(:is_company) %>
+							<%= builder.hidden_field(:is_freelancer) %>
+							<hr>
+							<div data-toggle="buttons-radio" class="header-actions edit-profile">
+								<center>
+									<button id="is_company" class="radio-btn btn btn-default <%='active' if builder.object.is_company? %>">Company</button>
+									<button id="is_freelancer" class="radio-btn btn btn-default <%='active' if builder.object.is_freelancer? %>">Freelancer</button>
+								</center>
+							</div>
+
+
+							
+							<div class="form-group">
+
+								<div class="row">
+									
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-website" class="form-label">Portfolio/Website</label>
+
+											<div class="form-controls">
+												<%= builder.text_field :online_portfolio, :no_label => true , :class =>"form-control" ,:placeholder => "" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
+									<div class="col-sm-6">
+										<div class="form-row">
+											<label for="field-job-title" class="form-label">Title</label>
+
+											<div class="form-controls">
+												<%= builder.text_field :job_title, :no_label => true , :class =>"form-control" ,:placeholder => "Ex. Creative Director" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col-sm-6 -->
+
+								</div><!-- /.row -->
+
+								
+								<div class="form-row">
+									<label for="field-skills" class="form-label">Skills</label>
+
+									<div class="form-controls">
+										<%= builder.select :skills, skills_options_for_select(builder.object.skills) , {} , {:multiple => true ,:no_label => true, :class => "select-autocomplete" ,:placeholder => "Skills"} %>
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+								
+
+								<hr>
+								
+								<div class="form-row">
+									<label class="form-label"><i class="ico-linkedin"></i> Linkedin</label>
+									<%= profile_connect_btn("linkedin",current_user.profile) %>
+								</div>
+								
+								<hr>
+								<div class="form-row">
+									<label class="form-label"><i class="ico-twitter"></i> Twitter</label>
+									<%= profile_connect_btn("twitter",current_user.profile) %>
+								</div>
+
+								<!-- <hr>
+								<div class="form-row">
+									<label class="form-label"><i class="ico-vimeo"></i> Vimeo</label>
+									<%#= profile_connect_btn("vimeo",current_user.profile) %>
+								</div>
+								
+								<hr>
+								
+								<div class="form-row">
+									<label class="form-label"><i class="ico-behance"></i> Behance</label>
+									<%#= profile_connect_btn("behance",current_user.profile) %>
+								</div>
+
+								<hr>
+								
+								<div class="form-row">
+									<label class="form-label"><i class="ico-dribbble"></i> Dribbble</label>
+									<%#= profile_connect_btn("dribbble",current_user.profile) %>
+								</div> -->
+
+								<% end %>
+								
+							</div><!-- /.form-group -->
+						</div><!-- /.form-body -->
+
+						<div class="form-actions">
+							<input type="submit" value="Update" class="btn form-btn">
+						</div><!-- /.form-actions -->
+
+						<div class="form-error" id="edit_user_form_err">
+							<p></p>
+						</div><!-- /.form-error -->
+					</div><!-- /.form-inner -->
+
+					<div class="form-foot">
+						<p>Need help? <a href="mailto:info@roooster.net">drop us a line</a>.</p>
+					</div><!-- /.form-foot -->
+					<!-- </form> -->
+					<% end %>
+				</div><!-- /.form-signup -->
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal modal-small fade" id="modal-edit-profile-passowrd" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<div class="form form-signup">
+
+					<%= form_for(current_user, :as => :user, :url => registration_path(:user,chpass: true),:remote => true , :html => { :method => :put, :role => 'form',:id => "edit_password_form_id" ,"data-error-id" => "edit_password_form_err" , "data-parent"=>"modal-edit-profile-passowrd"}) do |f| %>
+
+					<div class="form-inner-alt">
+						<div class="form-head">
+							<h4 class="form-title">Change Password</h4>
+							<p></p>
+						</div>
+
+						<div class="form-body">
+							<div class="form-row">
+								<%= f.label :current_password , class: 'form-label'%>
+								<div class="form-controls">
+									<%= f.password_field :current_password,value: '' ,:required => true , :autocomplete => 'off', class: 'form-control' %>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<%#= f.label :password , class: 'form-label'%>
+								<label class="form-label" for="user_password">New Password</label>
+								<div class="form-controls">
+									<%= f.password_field :password,value: '' ,:required => true , :autocomplete => 'off', class: 'form-control' %>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<%= f.label :password_confirmation , class: 'form-label'%>
+								<div class="form-controls">
+									<%= f.password_field :password_confirmation,value: '',  :required => true , class: 'form-control' %>
+								</div>
+							</div>
+							
+						</div>
+
+						<div class="form-actions">
+							<input type="submit" value="Update" class="btn form-btn">
+						</div>
+
+						<div class="form-error" id="edit_password_form_err">
+							<p></p>
+						</div>
+					</div>
+
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

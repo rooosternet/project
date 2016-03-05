@@ -42,6 +42,16 @@ module ApplicationHelper
 		end
 	end	
 
+	def profile_connect(provider,profile)
+		if profile.connected_class(provider) == "btn-connected"
+			check_box_tag "field-connect-#{provider}",'', true , class: "btn-connected" , :"data-url" => profile_connect_path(profile.connected(provider).first),:"date-method" => :delete
+			# link_to("Unlink", profile_connect_path(profile.connected(provider).first),method: :delete, target: '_blank', class: "btn btn-connected")
+		else
+			check_box_tag "field-connect-#{provider}",'', false , class: "btn-not-connected", :"data-url" => user_omniauth_authorize_path(provider),:"date-method" => :get
+			# link_to("Link", user_omniauth_authorize_path(provider), target: '_blank', class: "btn btn-not-connected")
+		end
+	end	
+
 	def normalize_posts(posts)
 		posts.inject([]) do |memo,post|
 			memo ||=[]

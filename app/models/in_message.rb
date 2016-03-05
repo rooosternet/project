@@ -6,6 +6,9 @@ class InMessage < ActiveRecord::Base
 	validates_presence_of :from_id,:to_id,:note
 	validates_presence_of :token , :if => lambda{|msg| !msg.new_record?}
 
+	scope :inbox ,lambda { where("#{InMessage.table_name}.to_id = User.current.id")}
+	scope :outbox ,lambda { where("#{InMessage.table_name}.from_id = User.current.id")}
+
 	before_create do
 		self.token = Devise.friendly_token if @token.blank?
 	end

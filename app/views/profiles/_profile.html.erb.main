@@ -1,0 +1,77 @@
+<li class="freelancer">
+	<div class="freelancer-icon">
+		<i class="ico-user"></i>
+	</div>
+
+	<div class="freelancer-head">
+		<h5 class="freelancer-name"><%= profile.user.name %></h5>
+
+		<!-- <p><%#=profile.location %></p> -->
+		<p><a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.location) %>"><%=profile.location%></a></p>
+	</div>
+
+	<ul class="freelancer-links">
+		<li>
+			<a href="<%=toggle_url_protocole(profile.online_portfolio)%>" target="_blank"> <%=profile.online_portfolio%></a>
+		</li>
+		
+		<li>
+			<!-- <a href="mailto:<%#= profile.user.email %>" target="_blank"><%#= profile.user.email %></a> -->
+			<a href="#" class="toggler" data-toggler='<%="#{profile.user_id}_message"%>' >Send a Message</a>
+		</li>
+		
+		<!-- <li>
+			<a href="#">Vcard</a>
+		</li> -->
+	</ul>
+
+	<div class="freelancer-foot">
+		<ul class="freelancer-socials">
+			<% unless profile.linkedin_profile_url.blank? -%>
+			<li>
+				<a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
+					<i class="ico-linkedin"></i>
+				</a>
+			</li>
+			<% end -%>
+			<% unless profile.behance_profile_url.blank? -%>
+			<li>
+				<a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
+					<i class="ico-behance"></i>
+				</a>
+			</li>
+			<% end -%>
+			<% unless profile.vimeo_profile_url.blank? -%>
+			<li>
+				<a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
+					<i class="ico-vimeo"></i>
+				</a>
+			</li>
+			<% end -%>
+		</ul>
+
+		<div class="freelancer-foot-inner">
+			<strong> <%= "Skills" unless profile.skills.blank? -%>  <%#= profile.job_title %></strong>
+
+			<p><%#= profile.skills.split(',').join(', ') %>
+				<% profile.skills.map do |skill| %>
+					<a href="<%=profiles_index_path(:search=>params[:search],:search_by=>params[:search_by],:location=>params[:location],:skills => skill) %>"><%=skill%></a>
+				<% end.join(', ') %>
+			</p>
+
+		</div>
+	</div>
+	<div style="display: none" id='<%="#{profile.user_id}_message" %>'>
+		<%= form_for(InMessage.new,:url => in_messages_path ,:remote => true ,:html => { :method => :post, :class => "message-to" ,:role => 'form'}) do |f| %>
+			 <%= f.hidden_field(:from_id,value: current_user.id) %>
+        	 <%= f.hidden_field(:to_id,value: profile.user_id) %>
+        	 <div class="form-controls">
+              <%= f.text_area :note, :no_label => true ,:rows => 6, :class =>"form-control in-message message-msg" ,:placeholder => "Your message" %>
+            </div>
+            <div class="form-controls message-btn">
+            	<%= f.submit 'Send' , class: 'btn' ,  width: "120px" %>
+            </div>
+            <div style="height:35px"></div>
+		<% end %>
+	</div>
+</li>

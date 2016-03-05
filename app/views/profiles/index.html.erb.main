@@ -1,0 +1,53 @@
+<div class="main">
+	<div class="shell">
+		<section class="section-freelancers">
+			<header class="section-head">
+				<div class="row">
+					<div class="col-lg-6 col-md-8">
+						<h2 class="section-title">The Roooster</h2>
+
+						<span>found <strong><%= @profiles_count %> results</strong> that match your search</span>
+					</div>
+					
+					<div class="col-lg-6 col-md-4">
+						<div class="search search-alt">
+
+							<%= form_tag({ :controller => 'profiles', :action => 'index'}, :method => :get, :id => 'query_form') do %>
+							
+							<%= hidden_field_tag 'skills', params[:skills] %>
+							<%= hidden_field_tag 'location', params[:location] %>
+							
+							<label for="q" class="hidden">Search</label>
+							<div style="float:left">
+								<%= select_tag('search_by', options_for_select([["All","All"],["Location","Location"],["People","People"],["Skill","Skill"]],@search_by), :onchange => '',:class => "form-control search-field live_search_field")%>
+							</div>
+							<div style="float:right;">
+								<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
+							</div>
+							<button type="submit" class="search-btn" id="submit_search_form">
+								<i class="fa fa-search"></i>
+							</button>
+							<% end %>
+
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<div class="section-body">
+				<ul class="freelancers">
+					<% @profiles.each do |profile| %>
+					<tr>
+						<%= render :partial => 'profile' , :locals =>  { profile: profile }%>
+					</tr>
+					<% end %>
+				</ul>
+			</div>
+			<footer class="section-foot pagninate-ex">
+				<%= will_paginate @profiles %>
+			</footer><!-- /.section-foot -->
+		</section>
+
+		<%= render :partial => 'invite_freelancer' %>
+	</div>
+</div>

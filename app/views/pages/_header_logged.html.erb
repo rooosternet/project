@@ -7,7 +7,7 @@
 						<%=image_tag("temp/logged-user.jpg",:alt=>current_user.firstname)%>
 					</a><!-- /.user-image -->
 
-					<a href="inbox.html" class="user-btn">
+					<a href="<%= inbox_path %>" class="user-btn">
 						<span class="user-btn-icon">
 							<i class="fa fa-envelope"></i>
 
@@ -48,6 +48,62 @@
 		<!-- <a href="home.html" class="logo">roooster</a> -->
 		<%= link_to 'roooster', root_path, class: 'logo'  %>
 		<span class="slogan">Collaborative Roster For Creative Leaders</span>
+
+		<%- if @top_search -%>
+		<div class="header-actions hidden-xs">
+				<div class="search search-alt">
+					<!-- <form action="?" method="get">
+						<label for="q" class="hidden">Search</label>
+
+						<input type="search" name="q" id="q" value="" placeholder="" class="form-control search-field">
+
+						<button type="submit" class="search-btn">
+							<i class="fa fa-search"></i>
+						</button>
+					</form> -->
+
+					<%= form_tag({ :controller => 'profiles', :action => 'index'}, :method => :get, :id => 'query_form') do %>
+						<label for="q" class="hidden">Search</label>
+						<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
+						<button type="submit" class="search-btn" id="submit_search_form">
+							<i class="fa fa-search"></i>
+						</button>
+					<% end %>
+
+
+
+					<div class="dropdown">
+						<a href="#" class="dropdown-btn" data-toggle="dropdown">
+							<span class="btn-icon">
+								<i class="ico-arrow-right-small"></i>
+
+								<span class="btn-icon-alt">
+									<i id="search-icon"></i>
+								</span>
+							</span>
+						</a>
+
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#search-icon" data-change-class="">All</a>
+							</li>
+
+							<li>
+								<a href="#search-icon" data-change-class="ico-location">Location</a>
+							</li>
+
+							<li>
+								<a href="#search-icon" data-change-class="ico-people">People</a>
+							</li>
+
+							<li>
+								<a href="#search-icon" data-change-class="ico-skills">Skill</a>
+							</li>
+						</ul><!-- /.dropdown-menu -->
+					</div><!-- /.dropdown -->
+				</div><!-- /.search search-alt -->
+			</div><!-- /.header-actions -->
+		<%- end -%>
 
 		<div class="header-actions visible-xs">
 			<ul>

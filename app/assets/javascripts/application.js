@@ -15,6 +15,8 @@
 // require bootstrap-sprockets
 //= require bootstrap.min
 //= require fastselect.standalone
+//= require jquery-ui/jquery-ui.min
+//= require jquery-ui/jquery.ui.touch-punch.min
 //= require owl.carousel.min
 // require turbolinks
 // require javascripts/bootstrap-sprockets

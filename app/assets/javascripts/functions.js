@@ -222,11 +222,11 @@ $(function() {
 
 
 		$('.radio-btn').on('click', function(e){
-			e.preventDefault();
-		    $('.radio-btn').removeClass('active active-btn');
-		    $(this).addClass('active-btn');        
+			// e.preventDefault();
+		    // $('.radio-btn').removeClass('active active-btn');
+		    // $(this).addClass('active-btn');        
 		    var id = this.id;
-		    if(id == "is_company"){ 
+		    if(id == "field-company"){ 
 		    	$("#user_profile_attributes_is_company").attr('value',true);	
 		    	$("#user_profile_attributes_is_freelancer").attr('value',false);
 		    }else{

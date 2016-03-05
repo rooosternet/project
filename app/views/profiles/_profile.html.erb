@@ -1,77 +1,285 @@
-<li class="freelancer">
-	<div class="freelancer-icon">
-		<i class="ico-user"></i>
-	</div>
+<li class="user-alt">
+	<div class="user-expand">
+		<div class="messages">
+			<a href="#" class="messages-close">
+				<i class="ico-close"></i>
+			</a>
 
-	<div class="freelancer-head">
-		<h5 class="freelancer-name"><%= profile.user.name %></h5>
+			<div class="messages-inner">
+				<div class="messages-wrapper" id="messages-user0">
+					<div class="message">
+						<div class="message-avatar">
+							<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69"> -->
+							<%=image_tag "form-avatar.jpg", { alt: "" ,width: "69" , height: "69"} %>
+						</div><!-- /.message-avatar -->
 
-		<!-- <p><%#=profile.location %></p> -->
-		<p><a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.location) %>"><%=profile.location%></a></p>
-	</div>
+						<div class="message-head clearfix">
+							<div class="message-actions">
+								<ul>
+									<li>
+										<a href="#modal-delete" data-toggle="modal">
+											<i class="ico-delete"></i>
 
-	<ul class="freelancer-links">
-		<li>
-			<a href="<%=toggle_url_protocole(profile.online_portfolio)%>" target="_blank"> <%=profile.online_portfolio%></a>
-		</li>
-		
-		<li>
-			<!-- <a href="mailto:<%#= profile.user.email %>" target="_blank"><%#= profile.user.email %></a> -->
-			<a href="#" class="toggler" data-toggler='<%="#{profile.user_id}_message"%>' >Send a Message</a>
-		</li>
-		
-		<!-- <li>
-			<a href="#">Vcard</a>
-		</li> -->
-	</ul>
+											<span>Delete message</span>
+										</a>
+									</li>
+								</ul>
+							</div><!-- /.message-actions -->
 
-	<div class="freelancer-foot">
-		<ul class="freelancer-socials">
-			<% unless profile.linkedin_profile_url.blank? -%>
-			<li>
-				<a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
-					<i class="ico-linkedin"></i>
-				</a>
-			</li>
-			<% end -%>
-			<% unless profile.behance_profile_url.blank? -%>
-			<li>
-				<a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
-					<i class="ico-behance"></i>
-				</a>
-			</li>
-			<% end -%>
-			<% unless profile.vimeo_profile_url.blank? -%>
-			<li>
-				<a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
-					<i class="ico-vimeo"></i>
-				</a>
-			</li>
-			<% end -%>
-		</ul>
+							<div class="message-head-inner">
+								<div class="message-author">Rotem Nahlieli</div><!-- /.message-author -->
 
-		<div class="freelancer-foot-inner">
-			<strong> <%= "Skills" unless profile.skills.blank? -%>  <%#= profile.job_title %></strong>
+								<div class="message-date">November 26, 2015 &bull; 11:23pm</div><!-- /.message-date -->
+							</div><!-- /.message-head-inner -->
+						</div><!-- /.message-head -->
 
-			<p><%#= profile.skills.split(',').join(', ') %>
-				<% profile.skills.map do |skill| %>
-					<a href="<%=profiles_index_path(:search=>params[:search],:search_by=>params[:search_by],:location=>params[:location],:skills => skill) %>"><%=skill%></a>
-				<% end.join(', ') %>
-			</p>
+						<div class="message-entry">
+							<p>Hi Tony,</p>
 
-		</div>
-	</div>
-	<div style="display: none" id='<%="#{profile.user_id}_message" %>'>
-		<%= form_for(InMessage.new,:url => in_messages_path ,:remote => true ,:html => { :method => :post, :class => "message-to" ,:role => 'form'}) do |f| %>
-			 <%= f.hidden_field(:from_id,value: current_user.id) %>
-        	 <%= f.hidden_field(:to_id,value: profile.user_id) %>
-        	 <div class="form-controls">
-              <%= f.text_area :note, :no_label => true ,:rows => 6, :class =>"form-control in-message message-msg" ,:placeholder => "Your message" %>
-            </div>
-            <div class="form-controls message-btn">
-            	<%= f.submit 'Send' , class: 'btn' ,  width: "120px" %>
-            </div>
-            <div style="height:35px"></div>
-		<% end %>
-	</div>
-</li>
+							<p>My name is Rotem and I am the creative director at Kazoo - a London based VFX and animation boutique, where we create cinematics and trailers for games as well as CGI for films and TV.</p>
+
+							<p>We are looking for a 2D artist to join our remote team for work on a gaming project where we produce isometric props / mini environments. Work will be remotley and start immediately. We ask new artists to take a quick test, on the first environment.</p>
+
+							<p>Please let me know if you are interested and I will send an NDA and a full brief and breakdown of required work.</p>
+
+							<p>
+								Best, <br>
+								Rotem
+							</p>
+
+							<p>
+								<a href="#">www.kazoo-creative.com</a>
+							</p>
+						</div><!-- /.message-entry -->
+					</div><!-- /.message -->
+
+					<div class="message">
+						<div class="message-avatar">
+							<!-- <img src="../images/temp/user2.jpg" alt="" width="69" height="69"> -->
+							<%=image_tag "user2.jpg", { alt: "" ,width: "69" , height: "69"} %>
+						</div><!-- /.message-avatar -->
+
+						<div class="message-head clearfix">
+							<div class="message-actions">
+								<ul>
+									<li>
+										<a href="#modal-delete" data-toggle="modal">
+											<i class="ico-delete"></i>
+
+											<span>Delete message</span>
+										</a>
+									</li>
+
+									<li>
+										<a href="#modal-report" data-toggle="modal">
+											<i class="ico-report"></i>
+
+											<span>report spam</span>
+										</a>
+									</li>
+
+									<li>
+										<a href="#modal-ignore" data-toggle="modal">
+											<i class="ico-ignore"></i>
+
+											<span>ignore user</span>
+										</a>
+									</li>
+								</ul>
+							</div><!-- /.message-actions -->
+
+							<div class="message-head-inner">
+								<div class="message-author">Tony Zagoraios</div><!-- /.message-author -->
+
+								<div class="message-date">November 27, 2015 &bull; 12:45am</div><!-- /.message-date -->
+							</div><!-- /.message-head-inner -->
+						</div><!-- /.message-head -->
+
+						<div class="message-entry">
+							<p>Hi Rotem,</p>
+
+							<p>If it is actual now, I'm interested in Your proposition. </p>
+
+							<p>Thanks.</p>
+						</div><!-- /.message-entry -->
+					</div><!-- /.message -->
+				</div><!-- /.messages-wrapper -->
+
+				<div class="form-message">
+					<form action="#messages-user0" method="post">
+						<div class="form-body">
+							<div class="form-avatar">
+								<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69"> -->
+								<%=image_tag "form-avatar.jpg", { alt: "" ,width: "69" , height: "69" } %>
+
+								<input type="hidden" class="field-message-avatar" name="message-avatar" value="../images/temp/form-avatar.jpg">
+							</div><!-- /.form-avatar -->
+
+							<div class="form-row">
+								<label class="form-label">Rotem Nahlieli</label>
+
+								<input type="hidden" class="field-message-author" name="message-author" value="Rotem Nahlieli">
+
+								<div class="form-controls">
+									<textarea class="form-control field-message-content" name="message-content" placeholder="Your message to Tony Zagoraios"></textarea>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+						</div><!-- /.form-body -->
+
+						<div class="form-actions">
+							<button type="submit" class="btn">Send Message</button>
+						</div><!-- /.form-actions -->
+					</form>
+
+				</div><!-- /.form-message -->
+			</div><!-- /.messages-inner -->
+
+			<span class="messages-arrow"></span>
+		</div><!-- /.messages -->
+	</div><!-- /.user-expand -->
+
+	<div class="user-main">
+		<div class="user-actions">
+			<ul>
+				<li>
+					<div class="dropdown">
+						<a href="#" class="dropdown-btn" data-toggle="dropdown">
+							<i class="ico-add"></i>
+
+							<span>Add To Team</span>
+						</a>
+
+						<ul class="dropdown-menu user-groups">
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="field-user0-group0" id="field-user0-group0">
+
+									<label for="field-user0-group0">contacts</label>
+								</div><!-- /.checkbox -->
+							</li>
+
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="field-user0-group1" id="field-user0-group1">
+
+									<label for="field-user0-group1">johnny’s team</label>
+								</div><!-- /.checkbox -->
+							</li>
+
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="field-user0-group2" id="field-user0-group2">
+
+									<label for="field-user0-group2">3d artists uk...</label>
+								</div><!-- /.checkbox -->
+							</li>
+
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="field-user0-group3" id="field-user0-group3">
+
+									<label for="field-user0-group3">2d guys</label>
+								</div><!-- /.checkbox -->
+							</li>
+
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="field-user0-group4" id="field-user0-group4">
+
+									<label for="field-user0-group4">channel 4 promo</label>
+								</div><!-- /.checkbox -->
+							</li>
+
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="field-user0-group5" id="field-user0-group5">
+
+									<label for="field-user0-group5">bogi v2</label>
+								</div><!-- /.checkbox -->
+							</li>
+
+							<li>
+								<button class="user-create-group" data-template="#user-group-template">(+) create a new team</button>
+							</li>
+						</ul><!-- /.dropdown-menu -->
+					</div><!-- /.dropdown -->
+				</li>
+
+				<li>
+					<a href="#" class="user-message">
+						<i class="ico-message"></i>
+
+						<span>Send Message</span>
+					</a>
+				</li>
+			</ul>
+		</div><!-- /.user-actions -->
+
+		<div class="user-head">
+			<a href="#" class="user-image user-draggable">
+				<!-- <img src="../images/temp/user1.jpg" alt=""> -->
+				<%=image_tag "user1.jpg", { alt: "" } %>
+			</a>
+
+			<div class="user-head-placeholder">
+				<span>
+					Drag to the<br>
+					teams menu
+				</span>
+			</div><!-- /.user-head-placeholder -->
+		</div><!-- /.user-head -->
+
+		<div class="user-body">
+			<div class="user-name"><%= profile.user.name %></div><!-- /.user-name -->
+
+			<div class="user-title">
+				<a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.job_title) %>"><%= profile.job_title %></a>
+			</div><!-- /.user-title -->
+
+			<div class="user-location">
+				<a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.location) %>"><%=profile.location%></a>
+			</div><!-- /.user-location -->
+
+			<ul class="user-socials">
+				<% unless profile.linkedin_profile_url.blank? -%>
+				<li>
+					<a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
+						<i class="ico-linkedin"></i>
+					</a>
+				</li>
+				<% end -%>
+				<% unless profile.behance_profile_url.blank? -%>
+				<li>
+					<a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
+						<i class="ico-behance"></i>
+					</a>
+				</li>
+				<% end -%>
+				<% unless profile.vimeo_profile_url.blank? -%>
+				<li>
+					<a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
+						<i class="ico-vimeo"></i>
+					</a>
+				</li>
+				<% end -%>
+			<!-- 	<li>
+					<a href="#">
+						<i class="ico-link"></i>
+					</a>
+				</li>
+
+				<li>
+					<a href="#">
+						<i class="ico-behance"></i>
+					</a>
+				</li>
+
+				<li>
+					<a href="#">
+						<i class="ico-vimeo"></i>
+					</a>
+				</li> -->
+			</ul>
+		</div><!-- /.user-body -->
+	</div><!-- /.user-main -->
+</li><!-- /.user-alt -->

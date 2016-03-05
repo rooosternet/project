@@ -1,53 +1,69 @@
 <div class="main">
 	<div class="shell">
-		<section class="section-freelancers">
-			<header class="section-head">
-				<div class="row">
-					<div class="col-lg-6 col-md-8">
-						<h2 class="section-title">The Roooster</h2>
-
-						<span>found <strong><%= @profiles_count %> results</strong> that match your search</span>
-					</div>
-					
-					<div class="col-lg-6 col-md-4">
-						<div class="search search-alt">
-
-							<%= form_tag({ :controller => 'profiles', :action => 'index'}, :method => :get, :id => 'query_form') do %>
-							
-							<%= hidden_field_tag 'skills', params[:skills] %>
-							<%= hidden_field_tag 'location', params[:location] %>
-							
-							<label for="q" class="hidden">Search</label>
-							<div style="float:left">
-								<%= select_tag('search_by', options_for_select([["All","All"],["Location","Location"],["People","People"],["Skill","Skill"]],@search_by), :onchange => '',:class => "form-control search-field live_search_field")%>
-							</div>
-							<div style="float:right;">
-								<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
-							</div>
-							<button type="submit" class="search-btn" id="submit_search_form">
-								<i class="fa fa-search"></i>
-							</button>
-							<% end %>
-
-						</div>
-					</div>
-				</div>
-			</header>
+		<section class="section-results">
+			<header class="section-head sticky-wrapper">
+				<div class="sticky-item">
+					<div class="shell">
+						<%= render :partial => 'teams_menu' %>
+						<div class="section-bar">
+							<p>You have <span><%= @profiles_count %> results</span> that match your search</p>
+						</div><!-- /.section-bar -->
+					</div><!-- /.shell -->
+				</div><!-- /.sticky-item -->
+			</header><!-- /.section-head -->
 
 			<div class="section-body">
-				<ul class="freelancers">
+				<ul class="users users-flex infinite-scroll" data-src="../ajax/users1.html">
 					<% @profiles.each do |profile| %>
-					<tr>
 						<%= render :partial => 'profile' , :locals =>  { profile: profile }%>
-					</tr>
 					<% end %>
-				</ul>
-			</div>
-			<footer class="section-foot pagninate-ex">
-				<%= will_paginate @profiles %>
-			</footer><!-- /.section-foot -->
-		</section>
+				</ul><!-- /.users -->
 
-		<%= render :partial => 'invite_freelancer' %>
-	</div>
-</div>
+				<div class="infinite-loader">
+					<i class="ico-loader"></i>
+				</div><!-- /.infinite-loader -->
+
+				<script type="text/template" id="user-group-template">
+					<li>
+						<div class="checkbox">
+							<input type="checkbox" name="field-user{{user}}-group{{group}}" id="field-user{{user}}-group{{group}}" disabled>
+
+							<label for="field-user{{user}}-group{{group}}" contentEditable></label>
+						</div><!-- /.checkbox -->
+					</li>
+				</script>
+
+				<script type="text/template" id="message-template">
+					<div class="message message-hidden">
+						<div class="message-avatar">
+							<!-- <img src="{{avatar}}" alt="" width="69" height="69"> -->
+							<%=image_tag "{{avatar}}.jpg", { alt: "" ,width: "69" , height: "69"} %>
+						</div><!-- /.message-avatar -->
+
+						<div class="message-head clearfix">
+							<div class="message-actions">
+								<ul>
+									<li>
+										<a href="#modal-delete" data-toggle="modal">
+											<i class="ico-delete"></i>
+
+											<span>Delete message</span>
+										</a>
+									</li>
+								</ul>
+							</div><!-- /.message-actions -->
+
+							<div class="message-head-inner">
+								<div class="message-author">{{author}}</div><!-- /.message-author -->
+
+								<div class="message-date">November 26, 2015 &bull; 11:23pm</div><!-- /.message-date -->
+							</div><!-- /.message-head-inner -->
+						</div><!-- /.message-head -->
+
+						<div class="message-entry">{{content}}</div><!-- /.message-entry -->
+					</div><!-- /.message -->
+				</script>
+			</div><!-- /.section-body -->
+		</section><!-- /.section-results -->
+	</div><!-- /.shell -->
+</div><!-- /.main -->

@@ -1,0 +1,487 @@
+<div class="main">
+	<div class="shell">
+		<section class="section-inbox clearfix">
+			<div class="section-aside">
+				<header class="section-head clearfix">
+					<h2 class="section-title">
+						<span class="section-back">
+							<i class="ico-prev"></i>
+						</span>
+						Inbox
+					</h2><!-- /.section-title -->
+				</header><!-- /.section-head -->
+
+				<div class="section-body">
+					<ul class="conversations">
+						<li class="conversation-compose">
+							<a href="#conversation-compose" data-toggle="tab">
+								<i class="ico-message-add"></i>
+
+								<span>Compose</span>
+							</a>
+						</li><!-- /.conversation-new -->
+
+						<li class="conversation">
+							<a href="#conversation1" class="conversation-inner clearfix" data-toggle="tab">
+								<div class="conversation-avatar">
+									<!-- <img src="../images/temp/user2.jpg" alt=""> -->
+									<%=image_tag "user2.jpg", { alt: "" } %>
+								</div><!-- /.conversation-avatar -->
+
+								<div class="conversation-content">
+									<h4>Tony Zagoraios</h4>
+
+									<p>Hi Yana, My name is Rotem and I am creative director at Kazoo - a Londo...</p>
+								</div><!-- /.conversation-content -->
+							</a>
+						</li><!-- /.conversation -->
+
+						<li class="conversation">
+							<a href="#conversation2" class="conversation-inner clearfix" data-toggle="tab">
+								<div class="conversation-avatar">
+									<!-- <img src="../images/temp/user2.jpg" alt=""> -->
+									<%=image_tag "user2.jpg", { alt: "" } %>
+								</div><!-- /.conversation-avatar -->
+
+								<div class="conversation-content">
+									<h4>Tony Zagoraios</h4>
+
+									<p>Hi Yana, My name is Rotem and I am creative director at Kazoo - a Londo...</p>
+								</div><!-- /.conversation-content -->
+							</a>
+						</li><!-- /.conversation -->
+
+						<li class="conversation active">
+							<a href="#conversation3" class="conversation-inner clearfix" data-toggle="tab">
+								<div class="conversation-avatar">
+									<!-- <img src="../images/temp/user2.jpg" alt=""> -->
+									<%=image_tag "user2.jpg", { alt: "" } %>
+
+									<i class="ico-new-message"></i>
+								</div><!-- /.conversation-avatar -->
+
+								<div class="conversation-content">
+									<h4>Tony Zagoraios</h4>
+
+									<p>Hi Yana, My name is Rotem and I am creative director at Kazoo - a Londo...</p>
+								</div><!-- /.conversation-content -->
+							</a>
+						</li><!-- /.conversation -->
+					</ul><!-- /.conversations -->
+				</div><!-- /.section-body -->
+			</div><!-- /.section-aside -->
+
+			<div class="section-content">
+				<div class="tab-content">
+					<div class="tab-pane" id="conversation-compose">
+						<div class="messages">
+							<div class="messages-inner">
+								<div class="form-message">
+									<form action="#" method="post">
+										<div class="form-body">
+											<div class="form-row">
+												<label class="form-label">To</label>
+
+												<div class="form-controls">
+													<input type="text" class="form-control" name="message-to">
+												</div><!-- /.form-controls -->
+											</div><!-- /.form-row -->
+
+											<div class="form-row">
+												<label class="form-label">Message</label>
+
+												<div class="form-controls">
+													<textarea class="form-control" name="message-content" placeholder=""></textarea>
+												</div><!-- /.form-controls -->
+											</div><!-- /.form-row -->
+										</div><!-- /.form-body -->
+
+										<div class="form-actions">
+											<button type="submit" class="btn">Send Message</button>
+										</div><!-- /.form-actions -->
+									</form>
+								</div><!-- /.form-message -->
+							</div><!-- /.messages-inner -->
+						</div><!-- /.messages -->
+					</div><!-- /.tab-pane -->
+
+					<div class="tab-pane" id="conversation1">
+						<div class="messages">
+							<div class="messages-inner">
+								<div class="messages-wrapper" id="messages-user0">
+									<div class="message">
+										<div class="message-avatar">
+											<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69"> -->
+											<%=image_tag "form-avatar.jpg", { alt: "" ,width: "69" , height: "69"} %>
+										</div><!-- /.message-avatar -->
+
+										<div class="message-head clearfix">
+											<div class="message-actions">
+												<ul>
+													<li>
+														<a href="#modal-delete" data-toggle="modal">
+															<i class="ico-delete"></i>
+
+															<span>Delete message</span>
+														</a>
+													</li>
+												</ul>
+											</div><!-- /.message-actions -->
+
+											<div class="message-head-inner">
+												<div class="message-author">Rotem Nahlieli</div><!-- /.message-author -->
+
+												<div class="message-date">November 26, 2015 &bull; 11:23pm</div><!-- /.message-date -->
+											</div><!-- /.message-head-inner -->
+										</div><!-- /.message-head -->
+
+										<div class="message-entry">
+											<p>Hi Tony,</p>
+
+											<p>My name is Rotem and I am the creative director at Kazoo - a London based VFX and animation boutique, where we create cinematics and trailers for games as well as CGI for films and TV.</p>
+
+											<p>We are looking for a 2D artist to join our remote team for work on a gaming project where we produce isometric props / mini environments. Work will be remotley and start immediately. We ask new artists to take a quick test, on the first environment.</p>
+
+											<p>Please let me know if you are interested and I will send an NDA and a full brief and breakdown of required work.</p>
+
+											<p>
+												Best, <br>
+												Rotem
+											</p>
+
+											<p>
+												<a href="#">www.kazoo-creative.com</a>
+											</p>
+										</div><!-- /.message-entry -->
+									</div><!-- /.message -->
+
+									<div class="message">
+										<div class="message-avatar">
+											<!-- <img src="../images/temp/user2.jpg" alt="" width="69" height="69"> -->
+											<%=image_tag "user2.jpg", { alt: "" ,width: "69" , height: "69"} %>
+										</div><!-- /.message-avatar -->
+
+										<div class="message-head clearfix">
+											<div class="message-actions">
+												<ul>
+													<li>
+														<a href="#modal-delete" data-toggle="modal">
+															<i class="ico-delete"></i>
+
+															<span>Delete message</span>
+														</a>
+													</li>
+
+													<li>
+														<a href="#modal-report" data-toggle="modal">
+															<i class="ico-report"></i>
+
+															<span>report spam</span>
+														</a>
+													</li>
+
+													<li>
+														<a href="#modal-ignore" data-toggle="modal">
+															<i class="ico-ignore"></i>
+
+															<span>ignore user</span>
+														</a>
+													</li>
+												</ul>
+											</div><!-- /.message-actions -->
+
+											<div class="message-head-inner">
+												<div class="message-author">Tony Zagoraios</div><!-- /.message-author -->
+
+												<div class="message-date">November 27, 2015 &bull; 12:45am</div><!-- /.message-date -->
+											</div><!-- /.message-head-inner -->
+										</div><!-- /.message-head -->
+
+										<div class="message-entry">
+											<p>Hi Rotem,</p>
+
+											<p>If it is actual now, I'm interested in Your proposition. </p>
+
+											<p>Thanks.</p>
+										</div><!-- /.message-entry -->
+									</div><!-- /.message -->
+								</div><!-- /.messages-wrapper -->
+
+								<div class="form-message">
+									<form action="#messages-user0" method="post">
+										<div class="form-body">
+											<div class="form-avatar">
+												<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69 -->
+												<%=image_tag "form-avatar.jpg", { alt: "" } %>">
+
+												<input type="hidden" class="field-message-avatar" name="message-avatar" value="../images/temp/form-avatar.jpg">
+											</div><!-- /.form-avatar -->
+
+											<div class="form-row">
+												<label class="form-label">Rotem Nahlieli</label>
+
+												<input type="hidden" class="field-message-author" name="message-author" value="Rotem Nahlieli">
+
+												<div class="form-controls">
+													<textarea class="form-control field-message-content" name="message-content" placeholder="Reply to Tony Zagoraios"></textarea>
+												</div><!-- /.form-controls -->
+											</div><!-- /.form-row -->
+										</div><!-- /.form-body -->
+
+										<div class="form-actions">
+											<button type="submit" class="btn">Send Message</button>
+										</div><!-- /.form-actions -->
+									</form>
+								</div><!-- /.form-message -->
+							</div><!-- /.messages-inner -->
+						</div><!-- /.messages -->
+					</div><!-- /.tab-pane -->
+
+					<div class="tab-pane" id="conversation2">
+						<div class="messages">
+							<div class="messages-inner">
+								<div class="messages-wrapper" id="messages-user1">
+									<div class="message">
+										<div class="message-avatar">
+											<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69"> -->
+											<%=image_tag "form-avatar.jpg", { alt: "" ,width: "69" , height: "69"} %>
+										</div><!-- /.message-avatar -->
+
+										<div class="message-head clearfix">
+											<div class="message-actions">
+												<ul>
+													<li>
+														<a href="#modal-delete" data-toggle="modal">
+															<i class="ico-delete"></i>
+
+															<span>Delete message</span>
+														</a>
+													</li>
+												</ul>
+											</div><!-- /.message-actions -->
+
+											<div class="message-head-inner">
+												<div class="message-author">Rotem Nahlieli</div><!-- /.message-author -->
+
+												<div class="message-date">November 26, 2015 &bull; 11:23pm</div><!-- /.message-date -->
+											</div><!-- /.message-head-inner -->
+										</div><!-- /.message-head -->
+
+										<div class="message-entry">
+											<p>Hi Tony,</p>
+
+											<p>My name is Rotem and I am the creative director at Kazoo - a London based VFX and animation boutique, where we create cinematics and trailers for games as well as CGI for films and TV.</p>
+
+											<p>We are looking for a 2D artist to join our remote team for work on a gaming project where we produce isometric props / mini environments. Work will be remotley and start immediately. We ask new artists to take a quick test, on the first environment.</p>
+
+											<p>Please let me know if you are interested and I will send an NDA and a full brief and breakdown of required work.</p>
+
+											<p>
+												Best, <br>
+												Rotem
+											</p>
+
+											<p>
+												<a href="#">www.kazoo-creative.com</a>
+											</p>
+										</div><!-- /.message-entry -->
+									</div><!-- /.message -->
+								</div><!-- /.messages-wrapper -->
+
+								<div class="form-message">
+									<form action="#messages-user1" method="post">
+										<div class="form-body">
+											<div class="form-avatar">
+												<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69 -->
+												<%=image_tag "form-avatar.jpg", { alt: "" } %>">
+
+												<input type="hidden" class="field-message-avatar" name="message-avatar" value="../images/temp/form-avatar.jpg">
+											</div><!-- /.form-avatar -->
+
+											<div class="form-row">
+												<label class="form-label">Rotem Nahlieli</label>
+
+												<input type="hidden" class="field-message-author" name="message-author" value="Rotem Nahlieli">
+
+												<div class="form-controls">
+													<textarea class="form-control field-message-content" name="message-content" placeholder="Reply to Tony Zagoraios"></textarea>
+												</div><!-- /.form-controls -->
+											</div><!-- /.form-row -->
+										</div><!-- /.form-body -->
+
+										<div class="form-actions">
+											<button type="submit" class="btn">Send Message</button>
+										</div><!-- /.form-actions -->
+									</form>
+								</div><!-- /.form-message -->
+							</div><!-- /.messages-inner -->
+						</div><!-- /.messages -->
+					</div><!-- /.tab-pane -->
+
+					<div class="tab-pane active" id="conversation3">
+						<div class="messages">
+							<div class="messages-inner">
+								<div class="messages-wrapper" id="messages-user2">
+									<div class="message">
+										<div class="message-avatar">
+											<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69"> -->
+											<%=image_tag "form-avatar.jpg", { alt: "" ,width: "69" , height: "69"} %>
+										</div><!-- /.message-avatar -->
+
+										<div class="message-head clearfix">
+											<div class="message-actions">
+												<ul>
+													<li>
+														<a href="#modal-delete" data-toggle="modal">
+															<i class="ico-delete"></i>
+
+															<span>Delete message</span>
+														</a>
+													</li>
+												</ul>
+											</div><!-- /.message-actions -->
+
+											<div class="message-head-inner">
+												<div class="message-author">Rotem Nahlieli</div><!-- /.message-author -->
+
+												<div class="message-date">November 26, 2015 &bull; 11:23pm</div><!-- /.message-date -->
+											</div><!-- /.message-head-inner -->
+										</div><!-- /.message-head -->
+
+										<div class="message-entry">
+											<p>Hi Tony,</p>
+
+											<p>My name is Rotem and I am the creative director at Kazoo - a London based VFX and animation boutique, where we create cinematics and trailers for games as well as CGI for films and TV.</p>
+
+											<p>We are looking for a 2D artist to join our remote team for work on a gaming project where we produce isometric props / mini environments. Work will be remotley and start immediately. We ask new artists to take a quick test, on the first environment.</p>
+
+											<p>Please let me know if you are interested and I will send an NDA and a full brief and breakdown of required work.</p>
+
+											<p>
+												Best, <br>
+												Rotem
+											</p>
+
+											<p>
+												<a href="#">www.kazoo-creative.com</a>
+											</p>
+										</div><!-- /.message-entry -->
+									</div><!-- /.message -->
+
+									<div class="message">
+										<div class="message-avatar">
+											<!-- <img src="../images/temp/user2.jpg" alt="" width="69" height="69"> -->
+											<%=image_tag "user2.jpg", { alt: "" ,width: "69" , height: "69"} %>
+										</div><!-- /.message-avatar -->
+
+										<div class="message-head clearfix">
+											<div class="message-actions">
+												<ul>
+													<li>
+														<a href="#modal-delete" data-toggle="modal">
+															<i class="ico-delete"></i>
+
+															<span>Delete message</span>
+														</a>
+													</li>
+
+													<li>
+														<a href="#modal-report" data-toggle="modal">
+															<i class="ico-report"></i>
+
+															<span>report spam</span>
+														</a>
+													</li>
+
+													<li>
+														<a href="#modal-ignore" data-toggle="modal">
+															<i class="ico-ignore"></i>
+
+															<span>ignore user</span>
+														</a>
+													</li>
+												</ul>
+											</div><!-- /.message-actions -->
+
+											<div class="message-head-inner">
+												<div class="message-author">Tony Zagoraios</div><!-- /.message-author -->
+
+												<div class="message-date">November 27, 2015 &bull; 12:45am</div><!-- /.message-date -->
+											</div><!-- /.message-head-inner -->
+										</div><!-- /.message-head -->
+
+										<div class="message-entry">
+											<p>Hi Rotem,</p>
+
+											<p>If it is actual now, I'm interested in Your proposition. </p>
+
+											<p>Thanks.</p>
+										</div><!-- /.message-entry -->
+									</div><!-- /.message -->
+								</div><!-- /.messages-wrapper -->
+
+								<div class="form-message">
+									<form action="#messages-user2" method="post">
+										<div class="form-body">
+											<div class="form-avatar">
+												<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69 -->
+												<%=image_tag "form-avatar.jpg", { alt: "" } %>">
+
+												<input type="hidden" class="field-message-avatar" name="message-avatar" value="../images/temp/form-avatar.jpg">
+											</div><!-- /.form-avatar -->
+
+											<div class="form-row">
+												<label class="form-label">Rotem Nahlieli</label>
+
+												<input type="hidden" class="field-message-author" name="message-author" value="Rotem Nahlieli">
+
+												<div class="form-controls">
+													<textarea class="form-control field-message-content" name="message-content" placeholder="Reply to Tony Zagoraios"></textarea>
+												</div><!-- /.form-controls -->
+											</div><!-- /.form-row -->
+										</div><!-- /.form-body -->
+
+										<div class="form-actions">
+											<button type="submit" class="btn">Send Message</button>
+										</div><!-- /.form-actions -->
+									</form>
+								</div><!-- /.form-message -->
+							</div><!-- /.messages-inner -->
+						</div><!-- /.messages -->
+					</div><!-- /.tab-pane -->
+				</div><!-- /.tab-content -->
+
+				<script type="text/template" id="message-template">
+					<div class="message message-hidden">
+						<div class="message-avatar">
+							<!-- <img src="{{avatar}}" alt="" width="69" height="69"> -->
+							<%=image_tag "{{avatar}}.jpg", { alt: "" ,width: "69" , height: "69"} %>
+						</div><!-- /.message-avatar -->
+
+						<div class="message-head clearfix">
+							<div class="message-actions">
+								<ul>
+									<li>
+										<a href="#modal-delete" data-toggle="modal">
+											<i class="ico-delete"></i>
+
+											<span>Delete message</span>
+										</a>
+									</li>
+								</ul>
+							</div><!-- /.message-actions -->
+
+							<div class="message-head-inner">
+								<div class="message-author">{{author}}</div><!-- /.message-author -->
+
+								<div class="message-date">November 26, 2015 &bull; 11:23pm</div><!-- /.message-date -->
+							</div><!-- /.message-head-inner -->
+						</div><!-- /.message-head -->
+
+						<div class="message-entry">{{content}}</div><!-- /.message-entry -->
+					</div><!-- /.message -->
+				</script>
+			</div><!-- /.section-content -->
+		</section><!-- /.section-inbox -->
+	</div><!-- /.shell -->
+</div><!-- /.main -->

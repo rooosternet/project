@@ -2,7 +2,9 @@ class InMessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @messages = InMessage.all
+    @hide_footer = true
+    @top_search = true
+    @messages = InMessage.inbox
   end
   
   def new

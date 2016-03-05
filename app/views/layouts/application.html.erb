@@ -23,19 +23,24 @@
         <%= render :partial => 'pages/header' %>
     <% end %>
    
-    <main role="main">
+    <!-- <main role="main"> -->
         <div id="ajax-indicator" style="display:none;"><span></span></div>
         <%#= render 'layouts/messages' %>
         <%= yield %>
-    </main>
+    <!-- </main> -->
 
     <% if user_signed_in? %>
-         <%= render :partial => 'pages/modals_edit' %>    
+        <%= render :partial => 'pages/modals_edit' %>  
+        <% if @hide_footer %>
+          <%= render :partial => 'pages/modal_delete_message'%>
+          <%= render :partial => 'pages/modal_report_message'%>
+          <%= render :partial => 'pages/modal_ignore_user'%>  
+        <% end %>         
     <% else %>
          <%= render :partial => 'pages/modals_sign' %>    
     <% end %>
     <%= render :partial => 'pages/modals_alt' %>
-    <%= render :partial => 'pages/footer' %>
+    <%= render :partial => 'pages/footer' unless  @hide_footer %>
     
     </div><!-- /.wrapper -->  
   </body>
