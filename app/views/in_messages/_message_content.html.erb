@@ -1,0 +1,41 @@
+<div class="tab-pane" id="conversation<%=message.id%>">
+	<div class="messages">
+		<div class="messages-inner">
+			<div class="messages-wrapper" id="messages-user-<%=message.id%>">
+				
+				<%= render :partial => 'message' , :locals =>  { message: message }%>
+
+				<% message.children.each do |child_message| %>
+						<%= render :partial => 'message' , :locals =>  { message: child_message }%>
+				<% end %>
+			</div><!-- /.messages-wrapper -->
+
+			<div class="form-message">
+			
+				<%= form_for(InMessage.new,:url => in_messages_path ,:remote => true ,:html => { :method => :post, :class => "message-to" ,:role => 'form', :id => "#{message.id}_new_message_form_id"}) do |f| %>
+					<%= f.hidden_field(:from_id,value: message.from_id ) %>
+					<%= f.hidden_field(:to_id,value: message.to_id ) %>
+					<%= f.hidden_field(:parent_id,value: message.id) %>
+					<div class="form-body">
+						<div class="form-avatar">
+							<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69 -->
+							<%=image_tag "form-avatar.jpg", { alt: "" } %>
+						</div>
+
+						<div class="form-row">
+							<label class="form-label"><%=message.from.name%></label>
+
+							<div class="form-controls">				
+								<%= f.text_area :note, :rows => 6, :class =>"form-control field-message-content" ,:placeholder => "Reply to #{message.to.name}" %>		
+							</div>
+						</div>
+					</div>
+					<div class="form-actions">
+						<%= f.submit 'Send Message' , class: 'btn' %>
+					</div>
+				<% end %>
+
+			</div><!-- /.form-message -->
+		</div><!-- /.messages-inner -->
+	</div><!-- /.messages -->
+</div><!-- /.tab-pane -->

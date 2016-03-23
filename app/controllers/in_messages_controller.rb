@@ -4,7 +4,7 @@ class InMessagesController < ApplicationController
   def index
     @hide_footer = true
     @top_search = true
-    @messages = InMessage.inbox
+    @messages = InMessage.allbox.roots.includes(:children) #InMessage.allbox
   end
   
   def new
@@ -12,14 +12,20 @@ class InMessagesController < ApplicationController
   end
 
   def create
-    message = InMessage.new(secure_params)
-    message.save
-    unless message.persisted?
-      msg = message.errors.any? ? message.errors.full_messages.join('<br>') : "fail to create message!"          
+    @message = InMessage.new(secure_params)
+    @message.save
+    unless @message.persisted?
+      msg = @message.errors.any? ? @message.errors.full_messages.join('<br>') : "fail to create message!"          
       puts "MessagesController::create: #{msg}"
       status = 503
+      render :text => "#{@message.to_id}_message", :status => status
+    else
+      if request.xhr?
+        render partial: "message", locals: { message: @message }
+      else
+        redirect_to inbox_path, :notice => "Message added."
+      end
     end
-    render :text => "#{message.to_id}_message", :status => status
   end
 
   def edit
@@ -39,16 +45,25 @@ class InMessagesController < ApplicationController
     end
   end
 
+  def touch
+    @message = InMessage.find(params[:id])
+    @message.touch
+    render :nothing => true
+  end
+
   def destroy
-    user = InMessage.find(params[:id])
-    InMessage.destroy
-    redirect_to users_path, :notice => "User deleted."
+    msg = InMessage.find(params[:id])
+    msg.destroy
+    if request.xhr?
+      render :text => params[:id] , :status => 200
+    else
+      redirect_to users_path, :notice => "Message deleted."
+    end
   end
 
   private
 
   def secure_params
-
-    params.require(:in_message).permit(:id,:from_id,:to_id,:note,:token,:notify,:private)
+    params.require(:in_message).permit(:id,:from_id,:to_id,:subject,:note,:token,:notify,:private,:parent_id)
   end
 end

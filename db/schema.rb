@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214195310) do
+ActiveRecord::Schema.define(version: 20160214195615) do
 
   create_table "in_messages", force: :cascade do |t|
     t.integer  "from_id",    limit: 4,     default: 0,     null: false
@@ -22,7 +22,15 @@ ActiveRecord::Schema.define(version: 20160214195310) do
     t.boolean  "private",                  default: false, null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.string   "subject",    limit: 255
+    t.integer  "parent_id",  limit: 4
   end
+
+  add_index "in_messages", ["from_id"], name: "index_in_messages_on_from_id", using: :btree
+  add_index "in_messages", ["parent_id"], name: "index_in_messages_on_parent_id", using: :btree
+  add_index "in_messages", ["subject"], name: "index_in_messages_on_subject", using: :btree
+  add_index "in_messages", ["to_id"], name: "index_in_messages_on_to_id", using: :btree
+  add_index "in_messages", ["token"], name: "index_in_messages_on_token", using: :btree
 
   create_table "profile_connects", force: :cascade do |t|
     t.integer  "profile_id",       limit: 4
@@ -89,7 +97,7 @@ ActiveRecord::Schema.define(version: 20160214195310) do
     t.string   "subject",     limit: 255
     t.text     "description", limit: 65535
     t.integer  "owner_id",    limit: 4
-    t.boolean  "public",      default: false, null: false
+    t.boolean  "public"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

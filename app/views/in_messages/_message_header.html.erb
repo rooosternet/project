@@ -1,0 +1,16 @@
+<li class="conversation <%='new-message' if message.active? %>" data-url="<%=message_touch_path(message)%>">
+	<a href="#conversation<%=message.id%>" class="conversation-inner clearfix" data-toggle="tab">
+		<div class="conversation-avatar">
+			<!-- <img src="../images/temp/user2.jpg" alt=""> -->
+			<%=image_tag "user2.jpg", { alt: "" } %>
+			<% if message.active? %>
+				<i class="ico-new-message"></i>
+			<% end %>
+		</div><!-- /.conversation-avatar -->
+
+		<div class="conversation-content">
+			<h4><%= message.from.name %></h4>
+			<p><%= message.note.gsub(/[\n\r,]/,' ').split(' ').join(' ').truncate(50) %></p>
+		</div><!-- /.conversation-content -->
+	</a>
+</li><!-- /.conversation -->

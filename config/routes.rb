@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   # match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
   resources :in_messages
   get 'in_messages/:token', :controller => :in_messages , :action => :show , :as => "message_show"
+  post 'in_messages/:id/touch' , :controller => :in_messages , :action => :touch , :as => "message_touch"
+  
   match 'inbox', :to => 'in_messages#index', :via => [:get], :as => 'inbox'
   
   get 'info/about', :as => "about"

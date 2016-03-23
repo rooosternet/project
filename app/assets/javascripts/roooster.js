@@ -312,7 +312,8 @@
 			$(this).closest('.user-expand').fadeOut(300);
 		});
 
-		$('.users, .section-team-page, .section-inbox').on('submit', '.form-message form', function(event) {
+		// $('.users, .section-team-page, .section-inbox').on('submit', '.form-message form', function(event) {
+		$('.users, .section-team-page, .section-inbox').on('submit', '.form', function(event) {
 			event.preventDefault();
 
 			var $target = $($(this).attr('action'));
