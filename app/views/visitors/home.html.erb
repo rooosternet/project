@@ -4,6 +4,9 @@
 		<% if user_signed_in? %>
 			<%= render :partial => 'pages/search' %>
 		<% else %>    
+
+		    <%= render :partial => 'pages/intro' %>
+			
 			<div class="divider">
 				<a href="#" data-scroll-to=".section-about">
 					<i class="ico-arrow-down"></i>

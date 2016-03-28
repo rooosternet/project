@@ -26,9 +26,11 @@ Rails.application.routes.draw do
   resources :in_messages
   get 'in_messages/:token', :controller => :in_messages , :action => :show , :as => "message_show"
   post 'in_messages/:id/touch' , :controller => :in_messages , :action => :touch , :as => "message_touch"
-  
   match 'inbox', :to => 'in_messages#index', :via => [:get], :as => 'inbox'
   
+  resources :teams
+
+
   get 'info/about', :as => "about"
   get 'info/blog', :as => "blog"
   # get 'info/post/:name', :controller => :info , :action => :post , :as => "post"

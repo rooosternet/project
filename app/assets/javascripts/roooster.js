@@ -1,3 +1,23 @@
+var create_team = function(attributes){
+	console.log(attributes);
+	$.ajax({
+		url: "/teams/",
+		type: 'post',
+		data: {team: attributes },
+		dataType: 'script',
+		success: function(data){
+		},
+		error: function(data){ 
+			// console.log(data);
+		},
+		complete: function(data){
+			// console.log(data);
+			return data; 
+		}
+	});	
+}
+
+
 ;(function($, window, document, undefined) {
 	var $win = $(window);
 	var $doc = $(document);
@@ -26,7 +46,7 @@
 		// 		// Scroll To
 		// $('[data-scroll-to]').on('click', function(event) {
 		// 	event.preventDefault();
-			
+
 		// 	var target = $(this).data('scroll-to');
 
 		// 	$('html, body').animate({
@@ -135,25 +155,36 @@
 
 		$('.teams .team-create').on('click', function(event) {
 			event.preventDefault();
-
+            // console.log(1);
 			var tpl = $($(this).attr('href')).html();
+			var image_id = Math.round(Math.random() * 8);
+			var image_name = "team"+(image_id + 1);
 			var $team = $(template(tpl, {
-				image: Math.round(Math.random() * 8) + 1
+				image: team_images[image_id]
 			}));
 
 			$(this).closest('.team').before($team);
 
 			$(this).closest('.teams-sortable').sortable('refresh');
+			var team_created = false;
 
 			$team.find('.team-title').focus().on('blur keydown', function(event) {
 				if (event.keyCode === 13 || event.type === 'blur') {
 					$(this).removeAttr('contentEditable');
-
+					// console.log(2);
 					if ($(this).html() == '') {
 						$(this).html('Team ' + leadingZero(newTeamsCount + 1));
 						newTeamsCount++;
 					};
+
+					if(team_created == false){
+					 create_team({name: $(this).html(),image: image_name });
+					 // console.log("------");
+					 team_created = true
+					}
+
 				};
+
 			});
 		});
 
@@ -187,7 +218,10 @@
 
 		$teamsSlider.on('translated.owl.carousel', function(event) {
 			var $teamNew = $(this).find('.team-new');
+			var team_created = false;
+			
 			$teamNew.find('.team-title').focus().on('blur keydown', function(event) {
+				
 				if (event.keyCode === 13 || event.type === 'blur') {
 					$(this).removeAttr('contentEditable');
 					$(this).closest('.team').removeClass('team-new');
@@ -196,7 +230,13 @@
 						$(this).html('Team ' + leadingZero(newTeamsCount + 1));
 						newTeamsCount++;
 					};
+
+					if(team_created == false){
+						 create_team({name: $(this).html(),image: $(this).closest('.team').data('image')});
+						 team_created = true
+					};
 				};
+
 			});
 
 			teamDroppable($teamNew);
@@ -206,8 +246,12 @@
 			event.preventDefault();
 
 			var tpl = $($(this).attr('href')).html();
+
+			var image_id = Math.round(Math.random() * 8);
+			var image_name = "team"+(image_id + 1);
 			var $team = template(tpl, {
-				image: Math.round(Math.random() * 8) + 1
+				image: team_images[image_id],
+				image_name: image_name
 			});
 
 			$teamsSlider.trigger('add.owl.carousel', $team);
@@ -313,29 +357,29 @@
 		});
 
 		// $('.users, .section-team-page, .section-inbox').on('submit', '.form-message form', function(event) {
-		$('.users, .section-team-page, .section-inbox').on('submit', '.form', function(event) {
-			event.preventDefault();
+			$('.users, .section-team-page, .section-inbox').on('submit', '.form', function(event) {
+				event.preventDefault();
 
-			var $target = $($(this).attr('action'));
-			var tpl = $('#message-template').html();
+				var $target = $($(this).attr('action'));
+				var tpl = $('#message-template').html();
 
-			var avatar = $(this).find('.field-message-avatar').val();
-			var author = $(this).find('.field-message-author').val();
-			var content = $(this).find('.field-message-content').val();
+				var avatar = $(this).find('.field-message-avatar').val();
+				var author = $(this).find('.field-message-author').val();
+				var content = $(this).find('.field-message-content').val();
 
-			content = '<p>' + content.replace(new RegExp('\n\n', 'g'), '</p><p>').replace(new RegExp('\n', 'g'), '<br>') + '</p>';
+				content = '<p>' + content.replace(new RegExp('\n\n', 'g'), '</p><p>').replace(new RegExp('\n', 'g'), '<br>') + '</p>';
 
-			if (content !== '') {
-				var $message = $(template(tpl, {
-					avatar: avatar,
-					author: author,
-					content: content
-				}));
+				if (content !== '') {
+					var $message = $(template(tpl, {
+						avatar: avatar,
+						author: author,
+						content: content
+					}));
 
-				$target.append($message.fadeIn(300));
-				$(this).find('.field-message-content').val('');
-			};
-		});
+					$target.append($message.fadeIn(300));
+					$(this).find('.field-message-content').val('');
+				};
+			});
 
 		// User Touch
 		$('.users').on('touchstart', '.user-alt', function(event) {
@@ -361,27 +405,27 @@
 					$infinite.addClass('infinite-loading')
 
 					loadPage(nextPageHref)
-						.success(function(response) {
-							$infinite.data('src', nextPageHref.replace(/\d+/, function(match) {
+					.success(function(response) {
+						$infinite.data('src', nextPageHref.replace(/\d+/, function(match) {
 
-								return parseInt(match) + 1;
-							}));
+							return parseInt(match) + 1;
+						}));
 
-							var $content = $(response);
+						var $content = $(response);
 
-							userDraggable($content.find('.user-draggable'));
+						userDraggable($content.find('.user-draggable'));
 
-							$infinite.append($content);
-						})
-						.error(function() {
-							hasNextPage = false;
+						$infinite.append($content);
+					})
+					.error(function() {
+						hasNextPage = false;
 
-							$win.off('scroll.infiniteScroll');
-						})
-						.always(function() {
-							loading = false;
-							$infinite.removeClass('infinite-loading')
-						});
+						$win.off('scroll.infiniteScroll');
+					})
+					.always(function() {
+						loading = false;
+						$infinite.removeClass('infinite-loading')
+					});
 				}
 			}).scroll();
 		};

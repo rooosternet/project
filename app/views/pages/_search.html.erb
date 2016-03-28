@@ -95,6 +95,12 @@
 				</a>
 			</li><!-- /.team -->
 
+			<% current_user.teams.each do |team| %>
+				<li class="team team-sortable">
+					<%= render :partial => 'teams/team' , :locals =>  { team: team }%>
+				</li>
+			<% end %>
+
 			<li class="team">
 				<a href="#template-team" class="team-inner team-create">
 					<div class="team-image">
@@ -115,16 +121,20 @@
 			<li class="team team-sortable">
 				<a href="#" class="team-inner">
 					<div class="team-image">
-						<!-- <img src="../images/temp/team{{image}}.jpg" alt=""> -->
-						<%=image_tag "team{{image}}.jpg", { alt: "" } %>
+						<img src="{{image}}" alt="">
 						<div class="team-actions">
 							<span class="team-count">0</span>
-						</div><!-- /.team-actions -->
-					</div><!-- /.team-image -->
+						</div>
+					</div>
 
-					<div class="team-title" contentEditable></div><!-- /.team-title -->
+					<div class="team-title" contentEditable></div>
 				</a>
-			</li><!-- /.team -->
+			</li>
 		</script>
 	</div><!-- /.section-body -->
 </section><!-- /.section-team -->
+
+<%= javascript_tag do %>
+	var team_images = <%=raw team_images %>;
+<% end %>
+

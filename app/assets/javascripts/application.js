@@ -20,4 +20,5 @@
 //= require owl.carousel.min
 // require turbolinks
 // require javascripts/bootstrap-sprockets
+// require avatars_for_rails
 //= require_tree .

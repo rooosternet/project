@@ -3,4 +3,10 @@ class Team < ActiveRecord::Base
 	
 	has_many :team_profiles
   	has_many :profiles, through: :team_profiles
+  	scope :my ,lambda { include(:team_profiles).where("#{Team.table_name}.owner_id = #{User.current.id}")}
+
+
+  	def team_image
+  		self.image.blank? ? "team1.jpg" : "#{self.image}.jpg"
+  	end
 end

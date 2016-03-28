@@ -17,155 +17,31 @@
 
 	<div class="teams-slider">
 		<div class="teams-slides owl-carousel">
-			<div class="teams-slide">
-				<div class="team team-droppable" data-accept=".user-draggable">
-					<a href="team-page.html" class="team-inner">
-						<div class="team-image">
-							<%=image_tag "team2.jpg", { alt: "" } %>
+			
+			<% current_user.teams.each do |team| %>
+				<div class="teams-slide">
+					<div class="team team-droppable" data-accept=".user-draggable">
+						<%= render :partial => 'teams/team' , :locals =>  { team: team }%>
+					</div><!-- /.team -->
+				</div><!-- /.teams-slide -->
+			<% end %>
 
-							<div class="team-actions">
-								<span class="team-count">0</span>
-							</div><!-- /.team-actions -->
-						</div><!-- /.team-image -->
-
-						<div class="team-title">John’ys Team</div><!-- /.team-title -->
-					</a>
-				</div><!-- /.team -->
-			</div><!-- /.teams-slide -->
-
-			<div class="teams-slide">
-				<div class="team team-droppable" data-accept=".user-draggable">
-					<a href="team-page.html" class="team-inner">
-						<div class="team-image">
-							<%=image_tag "team3.jpg", { alt: "" } %>
-
-							<div class="team-actions">
-								<span class="team-count">0</span>
-							</div><!-- /.team-actions -->
-						</div><!-- /.team-image -->
-
-						<div class="team-title">project X</div><!-- /.team-title -->
-					</a>
-				</div><!-- /.team -->
-			</div><!-- /.teams-slide -->
-
-			<div class="teams-slide">
-				<div class="team team-droppable" data-accept=".user-draggable">
-					<a href="team-page.html" class="team-inner">
-						<div class="team-image">
-							<%=image_tag "team4.jpg", { alt: "" } %>
-
-							<div class="team-actions">
-								<span class="team-count">28</span>
-							</div><!-- /.team-actions -->
-						</div><!-- /.team-image -->
-
-						<div class="team-title">
-							illustrators<br>
-							in london
-						</div><!-- /.team-title -->
-					</a>
-				</div><!-- /.team -->
-			</div><!-- /.teams-slide -->
-
-			<div class="teams-slide">
-				<div class="team team-droppable" data-accept=".user-draggable">
-					<a href="team-page.html" class="team-inner">
-						<div class="team-image">
-							<%=image_tag "team5.jpg", { alt: "" } %>
-
-							<div class="team-actions">
-								<span class="team-count">12</span>
-							</div><!-- /.team-actions -->
-						</div><!-- /.team-image -->
-
-						<div class="team-title">John&rsquo;ys Team</div><!-- /.team-title -->
-					</a>
-				</div><!-- /.team -->
-			</div><!-- /.teams-slide -->
-
-			<div class="teams-slide">
-				<div class="team team-droppable" data-accept=".user-draggable">
-					<a href="team-page.html" class="team-inner">
-						<div class="team-image">
-							<%=image_tag "team6.jpg", { alt: "" } %>
-
-							<div class="team-actions">
-								<span class="team-count">17</span>
-							</div><!-- /.team-actions -->
-						</div><!-- /.team-image -->
-
-						<div class="team-title">2D guys</div><!-- /.team-title -->
-					</a>
-				</div><!-- /.team -->
-			</div><!-- /.teams-slide -->
-
-			<div class="teams-slide">
-				<div class="team team-droppable" data-accept=".user-draggable">
-					<a href="team-page.html" class="team-inner">
-						<div class="team-image">
-							<%=image_tag "team7.jpg", { alt: "" } %>
-
-							<div class="team-actions">
-								<span class="team-count">21</span>
-							</div><!-- /.team-actions -->
-						</div><!-- /.team-image -->
-
-						<div class="team-title">Channel 4 Job</div><!-- /.team-title -->
-					</a>
-				</div><!-- /.team -->
-			</div><!-- /.teams-slide -->
-
-			<div class="teams-slide">
-				<div class="team team-droppable" data-accept=".user-draggable">
-					<a href="team-page.html" class="team-inner">
-						<div class="team-image">
-							<%=image_tag "team8.jpg", { alt: "" } %>
-
-							<div class="team-actions">
-								<span class="team-count">91</span>
-							</div><!-- /.team-actions -->
-						</div><!-- /.team-image -->
-
-						<div class="team-title">
-							VFX Sups NY<br>
-							and Boston
-						</div><!-- /.team-title -->
-					</a>
-				</div><!-- /.team -->
-			</div><!-- /.teams-slide -->
-
-			<div class="teams-slide">
-				<div class="team team-droppable" data-accept=".user-draggable">
-					<a href="team-page.html" class="team-inner">
-						<div class="team-image">
-							<%=image_tag "team9.jpg", { alt: "" } %>
-
-							<div class="team-actions">
-								<span class="team-count">5</span>
-							</div><!-- /.team-actions -->
-						</div><!-- /.team-image -->
-
-						<div class="team-title">TV Wiz</div><!-- /.team-title -->
-					</a>
-				</div><!-- /.team -->
-			</div><!-- /.teams-slide -->
+		
 		</div><!-- /.teams-slides -->
 	</div><!-- /.teams-slider -->
 
 	<script type="text/template" id="template-team">
 		<div class="teams-slide">
-			<div class="team team-new team-droppable" data-accept=".user-draggable">
-				<a href="team-page.html" class="team-inner">
+			<div class="team team-new team-droppable" data-accept=".user-draggable" data-image="{{image_name}}">
+				<a href="#" class="team-inner">
 					<div class="team-image">
-						<%=image_tag "team{{image}}.jpg", { alt: "" } %>
-
+						<img src="{{image}}" alt="">
 						<div class="team-actions">
 							<span class="team-count">0</span>
-						</div><!-- /.team-actions -->
-					</div><!-- /.team-image -->
+						</div>
+					</div>
 
-					<div class="team-title" contentEditable></div><!-- /.team-title -->
+					<div class="team-title" contentEditable></div>
 				</a>
 			</div><!-- /.team -->
 		</div><!-- /.teams-slide -->
@@ -189,3 +65,7 @@
 		</div><!-- /.team -->
 	</div><!-- /.teams-create -->
 </div><!-- /.teams-menu -->
+
+<%= javascript_tag do %>
+	var team_images = <%=raw team_images %>;
+<% end %>

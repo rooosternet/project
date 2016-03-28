@@ -1,5 +1,15 @@
 module ApplicationHelper
 
+	def team_images
+		arr = []
+		image = 1
+		10.times do 
+			arr << image_url("team#{image}.jpg")
+			image+=1
+		end	
+		arr
+	end
+
 	def favicon
 		"<link rel='shortcut icon' type='image/x-icon' href='#{image_path('favicon.ico')}' />".html_safe
 	end
