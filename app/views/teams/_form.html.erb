@@ -1,0 +1,62 @@
+<%= form_for(@team,:url => teams_path  ,:html => { :method => :post, :class => "" ,:role => 'form', :id => 'team_form_id'}) do |f| %>
+	<%= f.hidden_field(:owner_id#,value: current_user.id) %>
+	<div class="form-body">
+		<div class="form-row">
+			<label class="form-label">To</label>
+
+			<div class="form-controls">
+				<%= f.select :to_id, User.all.map {|u| [u.name,u.id] unless u.id.eql?(current_user.id)} ,{ include_blank: true },{class: "form-control form-to"}%>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<label class="form-label">Message</label>
+
+			<div class="form-controls">				
+				<%= f.text_area :note ,:rows => 6, :class =>"form-control" ,:placeholder => "" %>		
+			</div>
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<%= f.submit 'Send Message' , class: 'btn' %>
+	</div>
+<% end %>
+
+<%= form_for(@team) do |f| %>
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :string %><br>
+    <%= f.text_field :string %>
+  </div>
+  <div class="field">
+    <%= f.label :string %><br>
+    <%= f.text_field :string %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_field :text %>
+  </div>
+  <div class="field">
+    <%= f.label :integer %><br>
+    <%= f.text_field :integer %>
+  </div>
+  <div class="field">
+    <%= f.label :boolean %><br>
+    <%= f.text_field :boolean %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
