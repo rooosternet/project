@@ -13,10 +13,8 @@
 			</header><!-- /.section-head -->
 
 			<div class="section-body">
-				<ul class="users users-flex infinite-scroll" data-src="../ajax/users1.html">
-					<% @profiles.each do |profile| %>
-						<%= render :partial => 'profile' , :locals =>  { profile: profile }%>
-					<% end %>
+				<ul class="users users-flex infinite-scroll" data-src="?page=2&<%=params.dup.except(:action,:controller).to_query%>">
+					<%= render :partial => 'more_profiles' %>
 				</ul><!-- /.users -->
 
 				<div class="infinite-loader">

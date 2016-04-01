@@ -5,5 +5,6 @@ class CreateTeamProfiles < ActiveRecord::Migration
       t.references :profile, index: true, foreign_key: true
       t.timestamps null: false
     end
+    add_index :team_profiles, [:team,:profile], unique: true
   end
 end

@@ -24,7 +24,7 @@
     <% end %>
    
     <!-- <main role="main"> -->
-        <div id="ajax-indicator" style="display:none;"><span></span></div>
+        <!-- <div id="ajax-indicator" style="display:none;"><span></span></div> -->
         <%#= render 'layouts/messages' %>
         <%= yield %>
     <!-- </main> -->
@@ -35,6 +35,7 @@
           <%= render :partial => 'pages/modal_delete_message'%>
           <%= render :partial => 'pages/modal_report_message'%>
           <%= render :partial => 'pages/modal_ignore_user'%>  
+          <%= render :partial => 'pages/modal_avatar'%>  
         <% end %>         
     <% else %>
          <%= render :partial => 'pages/modals_sign' %>    

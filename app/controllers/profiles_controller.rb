@@ -29,8 +29,20 @@ class ProfilesController < ApplicationController
     scope = scope.location_search(params[:location]) if !params[:location].blank?
     
     @profiles_count = scope.count
-    @profiles = scope.order("users.firstname,users.lastname asc").paginate(page: params[:page], per_page: 10)
-    render :template => 'visitors/home' if params[:location].blank? && params[:skills].blank? && params[:search].blank?
+    @profiles = scope.order("users.firstname,users.lastname asc").paginate(page: params[:page], per_page: 8)
+    
+
+
+    if params[:page]
+      if @profiles.blank?
+        render :error => "no more profiles" , :status => 404
+      else  
+        render :partial => "more_profiles" 
+      end  
+    elsif params[:location].blank? && params[:skills].blank? && params[:search].blank?
+      render :template => 'visitors/home'
+    end
+      
   end
 
   def edit

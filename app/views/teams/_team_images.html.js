@@ -1,1 +1,0 @@
-var team_images = <%=raw @all_versions %>;

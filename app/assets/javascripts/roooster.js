@@ -18,6 +18,27 @@ var create_team = function(attributes){
 }
 
 
+var add_profile_to_team = function(profile_id,team_id){
+	console.log(profile_id +" "+ team_id);
+	$.ajax({
+		url: "/teams/"+team_id,
+		type: 'PUT',
+		data: {team: {team_profiles_attributes: {team_id: team_id, profile_id: profile_id} }},
+		dataType: 'script',
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){ 
+			console.log(data);
+		},
+		complete: function(data){
+			console.log(data);
+			return data; 
+		}
+	});	
+}
+
+
 ;(function($, window, document, undefined) {
 	var $win = $(window);
 	var $doc = $(document);
@@ -186,6 +207,8 @@ var create_team = function(attributes){
 				};
 
 			});
+
+			teamDroppable($team);
 		});
 
 		// Teams Slider
@@ -260,7 +283,9 @@ var create_team = function(attributes){
 
 		// Team Droppable
 		function teamDroppable(that) {
-			var accept = $(that).data('accept');
+			var that_id = $(that).find('a.team-inner').attr('href').match(/\d+/);
+			that_id = that_id ? that_id[0] : 0;
+			var accept = $(that).data('accept') + ':not(.g-'+that_id+')';
 
 			$(that).droppable({
 				accept: accept,
@@ -275,8 +300,9 @@ var create_team = function(attributes){
 					ui.draggable.removeClass('user-draggable-over');
 				},
 				drop: function(event, ui) {
+					
 					$(that).addClass('team-dropped');
-					ui.draggable.addClass('user-dropped');
+					ui.draggable.addClass('user-dropped g-' + that_id);
 
 					setTimeout(function() {
 						ui.draggable.removeAttr('style');
@@ -286,6 +312,9 @@ var create_team = function(attributes){
 						$(that).removeClass('team-dropped');
 						ui.draggable.removeClass('user-dropped');
 					}, 1000);
+					var user_id = ui.draggable.parents('li.user-alt').attr('id');
+					add_profile_to_team(user_id,that_id);
+					$(that).find('.team-count').text(parseInt($(that).find('.team-count').text()) + 1).css('color','#fff');
 				}
 			});
 		};

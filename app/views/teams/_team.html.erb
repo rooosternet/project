@@ -1,4 +1,4 @@
-<a href="#" class="team-inner">
+<%= link_to team , class: "team-inner"  do %>
 	<div class="team-image">
 		<%=image_tag team.team_image, { alt: "" } %>
 		<div class="team-actions">
@@ -7,4 +7,4 @@
 	</div>
 
 	<div class="team-title"><%= team.name %></div>
-</a>
+<% end %>

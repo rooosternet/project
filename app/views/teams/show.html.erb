@@ -1,0 +1,355 @@
+<section class="section-team-page">
+	<div class="section-actions">
+		<ul>
+			<li>
+				<div class="checkbox-select">
+					<input type="checkbox" class="checkbox-group" data-group=".checkbox-group1" name="select-all" id="select-all">
+
+					<label for="select-all">
+						<i class="ico-select"></i>
+
+						<span>Select all</span>
+					</label>
+				</div><!-- /.checkbox-select -->
+			</li>
+
+			<li>
+				<a href="#mass-message" class="link-mass-message" data-toggle="collapse">
+					<i class="ico-message"></i>
+
+					<span>message selected</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="#modal-delete" data-toggle="modal">
+					<i class="ico-delete"></i>
+
+					<span>remove selected</span>
+				</a>
+			</li>
+		</ul>
+	</div><!-- /.section-actions -->
+
+	<div class="section-head">
+		<div class="section-head-inner">
+			<div class="team-page">
+				<div class="team team-sortable">
+					<a href="#modal-avatar" class="team-inner" data-toggle="modal">
+						<div class="team-image">
+							<%=image_tag @team.team_image, { class: "team-image-selected",alt: "" } %>
+							<div class="team-image-change">
+								<span>
+									Change<br>
+									Image
+								</span>
+							</div><!-- /.team-image-change -->
+
+							<div class="team-actions">
+								<span class="team-count">101</span>
+							</div><!-- /.team-actions -->
+						</div><!-- /.team-image -->
+					</a>
+				</div><!-- /.team -->
+
+				<div class="team-page-content">
+					<h4 class="team-page-name" contenteditable><%= @team.name %></h4><!-- /.team-page-name -->
+
+					<div class="team-page-description" contenteditable data-placeholder="This is where you can write a short description for this team."></div><!-- /.team-page-description -->
+				</div><!-- /.team-page-content -->
+			</div><!-- /.team-page -->
+		</div><!-- /.section-head-inner -->
+
+		<div class="section-head-form collapse" id="mass-message">
+			<a href="#mass-message" class="section-head-close" data-toggle="collapse">
+				<i class="ico-close"></i>
+			</a>
+
+			<script type="text/template" id="message-template">
+				<div class="message message-hidden">
+					<div class="message-avatar">
+						<img src="{{avatar}}" alt="" width="69" height="69">
+					</div><!-- /.message-avatar -->
+
+					<div class="message-head clearfix">
+						<div class="message-actions">
+							<ul>
+								<li>
+									<a href="#modal-delete" data-toggle="modal">
+										<i class="ico-delete"></i>
+
+										<span>Delete message</span>
+									</a>
+								</li>
+							</ul>
+						</div><!-- /.message-actions -->
+
+						<div class="message-head-inner">
+							<div class="message-author">{{author}}</div><!-- /.message-author -->
+
+							<div class="message-date">November 26, 2015 &bull; 11:23pm</div><!-- /.message-date -->
+						</div><!-- /.message-head-inner -->
+					</div><!-- /.message-head -->
+
+					<div class="message-entry">{{content}}</div><!-- /.message-entry -->
+				</div><!-- /.message -->
+			</script>
+
+			<div class="form-message">
+				<div class="messages">
+					<div class="messages-wrapper" id="messages-mass"></div><!-- /.messages-wrapper -->
+				</div><!-- /.messages -->
+
+				<form action="#messages-mass" method="post">
+					<div class="form-body">
+						<div class="form-avatar">
+							<img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69">
+
+							<input type="hidden" class="field-message-avatar" name="message-avatar" value="../images/temp/form-avatar.jpg">
+						</div><!-- /.form-avatar -->
+
+						<div class="form-row">
+							<label class="form-label">Rotem Nahlieli</label>
+
+							<input type="hidden" class="field-message-author" name="message-author" value="Rotem Nahlieli">
+
+							<div class="form-controls">
+								<textarea class="form-control field-message-content" name="message-content" placeholder="Your message to Sam, Tony, Jon Jon, Dana"></textarea>
+							</div><!-- /.form-controls -->
+						</div><!-- /.form-row -->
+
+						<div class="checkbox-select">
+							<input type="checkbox" name="select-personalised" id="select-personalised">
+
+							<label for="select-personalised">
+								<i class="ico-select"></i>
+
+								<span class="checkbox-select-label">Personalised</span>
+
+								<span class="checkbox-select-label-checked">Tick if you like your recipients to get this as a personal message</span>
+							</label>
+						</div><!-- /.checkbox-select -->
+					</div><!-- /.form-body -->
+
+					<div class="form-actions">
+						<button type="submit" class="btn">Send Team Message</button>
+					</div><!-- /.form-actions -->
+
+					<div class="form-recipients">
+						<ul>
+							<li>
+								<span>Username</span>
+
+								<img src="../images/temp/user1.jpg" alt="">
+							</li>
+
+							<li>
+								<span>Username</span>
+
+								<img src="../images/temp/user2.jpg" alt="">
+							</li>
+
+							<li>
+								<span>Username</span>
+
+								<img src="../images/temp/user3.jpg" alt="">
+							</li>
+
+							<li>
+								<span>Username</span>
+
+								<img src="../images/temp/user4.jpg" alt="">
+							</li>
+
+							<li>
+								<span>Username</span>
+
+								<img src="../images/temp/user5.jpg" alt="">
+							</li>
+
+							<li>
+								<span>Username</span>
+
+								<img src="../images/temp/user6.jpg" alt="">
+							</li>
+
+							<li>
+								<span>Username</span>
+
+								<img src="../images/temp/user7.jpg" alt="">
+							</li>
+
+							<li>
+								<span>Username</span>
+
+								<img src="../images/temp/user8.jpg" alt="">
+							</li>
+						</ul>
+					</div><!-- /.form-recipients -->
+				</form>
+			</div><!-- /.form-message -->
+		</div><!-- /.section-head-form -->
+	</div><!-- /.section-head -->
+</section><!-- /.section-team-page -->
+
+
+<section class="section-results">
+	<div class="section-body">
+		
+		<div class="section-bar">
+			<p>You have <span><%= @profiles_count %> results</span> that match your search</p>
+		</div><!-- /.section-bar -->
+
+		<ul class="users users-flex">
+			<% @profiles.each do |profile| %>
+				<%#= render :partial => 'profile' , :locals =>  { profile: profile }%>
+				<%= render :partial => 'profiles/user_alt' , :locals =>  { profile: profile }%>
+			<% end %>
+		</ul><!-- /.users -->
+
+
+		<div class="form-invite">
+			<!-- <form action="?" method="post"> -->
+			<%= form_for(User.new, :url => user_invitation_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
+				<div class="form-head">
+					<h4 class="form-title">
+						<span>Invite Creatives To Your Team</span>
+					</h4><!-- /.form-title -->
+
+					<p>Want more creatives you know to be on your team? send them an invitasion to join Roooster!</p>
+				</div><!-- /.form-head -->
+
+				<div class="form-body">
+					<div class="tabs-invites">
+						<ul class="tabs-nav list-avatars">
+							<li>
+								<a href="#invite1" data-toggle="tab">
+									<div class="team team-alt">
+										<div class="team-inner">
+											<div class="team-image">
+												<%=image_tag "team-default-active.jpg", { alt: "" } %>
+												<div class="team-actions">
+													<span class="team-add">
+														<i class="ico-plus"></i>
+													</span>
+												</div><!-- /.team-actions -->
+											</div><!-- /.team-image -->
+										</div>
+									</div><!-- /.team -->
+								</a>
+							</li>
+
+							<li>
+								<a href="#invite2" data-toggle="tab">
+									<div class="team team-alt">
+										<div class="team-inner">
+											<div class="team-image">
+												<%=image_tag "team-default-active.jpg", { alt: "" } %>
+												<div class="team-actions">
+													<span class="team-add">
+														<i class="ico-plus"></i>
+													</span>
+												</div><!-- /.team-actions -->
+											</div><!-- /.team-image -->
+										</div>
+									</div><!-- /.team -->
+								</a>
+							</li>
+
+							<li>
+								<a href="#invite3" data-toggle="tab">
+									<div class="team team-alt">
+										<div class="team-inner">
+											<div class="team-image">
+												<%=image_tag "team-default-active.jpg", { alt: "" } %>
+												<div class="team-actions">
+													<span class="team-add">
+														<i class="ico-plus"></i>
+													</span>
+												</div><!-- /.team-actions -->
+											</div><!-- /.team-image -->
+										</div>
+									</div><!-- /.team -->
+								</a>
+							</li>
+
+							<li>
+								<a href="#invite4" data-toggle="tab">
+									<div class="team team-alt">
+										<div class="team-inner">
+											<div class="team-image">
+												<%=image_tag "team-default-active.jpg", { alt: "" } %>
+												<div class="team-actions">
+													<span class="team-add">
+														<i class="ico-plus"></i>
+													</span>
+												</div><!-- /.team-actions -->
+											</div><!-- /.team-image -->
+										</div>
+									</div><!-- /.team -->
+								</a>
+							</li>
+
+							<li>
+								<a href="#invite5" data-toggle="tab">
+									<div class="team team-alt">
+										<div class="team-inner">
+											<div class="team-image">
+												<%=image_tag "team-default-active.jpg", { alt: "" } %>
+												<div class="team-actions">
+													<span class="team-add">
+														<i class="ico-plus"></i>
+													</span>
+												</div><!-- /.team-actions -->
+											</div><!-- /.team-image -->
+										</div>
+									</div><!-- /.team -->
+								</a>
+							</li>
+						</ul><!-- /.tabs-nav -->
+
+						<div class="tab-content">
+							
+							<% (1..5).each_with_index do |index| %>
+								<div class="tab-pane" id="invite<%=index%>">
+									<div class="form-row clearfix">
+										<div class="form-col">
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-first-name1" id="field-first-name1" value="" placeholder="First"> -->
+												<%= f.text_field :firstname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "First Name",:pattern => "^[a-zA-Z]+( [a-zA-Z]+)*$" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-col -->
+
+										<div class="form-col">
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-last-name1" id="field-last-name1" value="" placeholder="Last"> -->
+												<%= f.text_field :lastname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "Last Name",:pattern => "^[a-zA-Z]+( [a-zA-Z]+)*$" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-col -->
+
+										<div class="form-col form-col-medium">
+											<div class="form-controls">
+												<!-- <input type="text" class="form-control" name="field-email1" id="field-email1" value="" placeholder="Email *"> -->
+												<%= f.text_field :email, :no_label => true ,:required => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-col -->
+									</div><!-- /.form-row -->
+								</div><!-- /.tab-pane -->
+							<% end %>
+							
+
+							<div class="form-actions">
+								<button type="submit" class="form-btn btn">Submit</button>
+
+								<div class="form-error">
+									<p>This is where error messages go</p>
+								</div><!-- /.form-error -->
+							</div><!-- /.form-actions -->
+						</div><!-- /.tab-content -->
+					</div><!-- /.tabs-invites -->
+				</div><!-- /.form-body -->
+			<!-- </form> -->
+			<% end %>
+		</div><!-- /.form-invite -->
+	</div><!-- /.section-body -->
+</section><!-- /.section-results -->

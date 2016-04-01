@@ -1,0 +1,62 @@
+<li class="user-alt">
+	<div class="user-main">
+		
+		<div class="user-head">
+			<a href="#" class="user-image user-draggable">
+				<!-- <img src="../images/temp/user1.jpg" alt=""> -->
+				<%=image_tag "user1.jpg", { alt: "" } %>
+			</a>
+
+			<div class="user-head-placeholder">
+				<span>
+					Drag to the<br>
+					teams menu
+				</span>
+			</div><!-- /.user-head-placeholder -->
+		</div><!-- /.user-head -->
+
+		<div class="user-body">
+			<div class="user-name"><%= profile.user.name %></div><!-- /.user-name -->
+
+			<div class="user-title">
+				<a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.job_title) %>"><%= profile.job_title %></a>
+			</div><!-- /.user-title -->
+
+			<div class="user-location">
+				<a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.location) %>"><%=profile.location%></a>
+			</div><!-- /.user-location -->
+
+			<ul class="user-socials">
+				<% unless profile.linkedin_profile_url.blank? -%>
+				<li>
+					<a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
+						<i class="ico-linkedin"></i>
+					</a>
+				</li>
+				<% end -%>
+				<% unless profile.behance_profile_url.blank? -%>
+				<li>
+					<a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
+						<i class="ico-behance"></i>
+					</a>
+				</li>
+				<% end -%>
+				<% unless profile.vimeo_profile_url.blank? -%>
+				<li>
+					<a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
+						<i class="ico-vimeo"></i>
+					</a>
+				</li>
+				<% end -%>
+			</ul>
+		</div><!-- /.user-body -->
+
+		<div class="checkbox-select">
+			<input type="checkbox" class="checkbox-group1" name="select-user0" id="select-user0">
+
+			<label for="select-user0">
+				<i class="ico-select"></i>
+			</label>
+		</div><!-- /.checkbox-select -->
+	</div><!-- /.user-main -->
+</li><!-- /.user-alt -->

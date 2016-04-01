@@ -1,10 +1,10 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_menu #, only: [:show, :edit, :update, :destroy]
   
+
   def index
-    @hide_footer = true
-    @top_search = true
     @teams = User.current.admin? ? Team.all : Team.my
   end
   
@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.js   { 
-            render :nothing => true
+          render :nothing => true
           # render :show, status: :created, locals: { team: @team } 
         }
         format.json { render :show, status: :created, locals: { team: @team } }
@@ -48,20 +48,32 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    @team = Team.find(params[:id])
+
   end
 
   def show
-    @team = Team.find(params[:id])
+    @profiles = @team.profiles
+    @profiles_count = @profiles.any? ? @profiles.count : 'No'
   end
 
   def update
     respond_to do |format|
-      if @team.update(team_params)
+      if @team.update(team_params.except("team_profiles_attributes"))
+        team_profile = params[:team][:team_profiles_attributes].except("team_id").to_hash if params[:team][:team_profiles_attributes]
+        if team_profile
+          @team.team_profiles.build(team_profile) 
+          begin
+            @team.save
+          rescue ActiveRecord::RecordInvalid => invalid
+            puts invalid.message
+          end
+        end
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
+        format.js   { render :nothing => true }
         format.json { render :show, status: :ok, location: @team }
       else
         format.html { render :edit }
+        format.js { render json: @team.errors, status: :unprocessable_entity }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
@@ -77,6 +89,12 @@ class TeamsController < ApplicationController
   end
 
   private
+
+  def set_menu
+    @hide_footer = true
+    @top_search = true
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:id])
@@ -84,6 +102,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:id,:owner_id,:name,:image,:description,:public)
+      params.require(:team).permit(:id,:owner_id,:name,:image,:description,:public,:team_profiles_attributes => [:team_id,:profile_id])
     end
-end
+  end
