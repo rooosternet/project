@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+	def profile_teams_classes(profile)
+		profile.teams.pluck(:id).inject([]) do |memo,id|
+			memo << "g-#{id}"
+			memo
+		end.flatten.join(' ') 
+	end
+
 	def team_images
 		arr = []
 		image = 1

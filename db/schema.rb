@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214195615) do
+ActiveRecord::Schema.define(version: 20160401109591) do
 
   create_table "in_messages", force: :cascade do |t|
     t.integer  "from_id",    limit: 4,     default: 0,     null: false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160214195615) do
     t.datetime "updated_at",                                     null: false
     t.boolean  "is_company",                     default: false, null: false
     t.boolean  "is_freelancer",                  default: false, null: false
+    t.string   "image",            limit: 255
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -90,12 +91,13 @@ ActiveRecord::Schema.define(version: 20160214195615) do
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",        limit: 255
-    t.string   "image",     limit: 255
+    t.string   "image",       limit: 255
     t.text     "description", limit: 65535
     t.integer  "owner_id",    limit: 4
     t.boolean  "public",                    default: false, null: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.boolean  "backet",                    default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|

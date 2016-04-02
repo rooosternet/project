@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   attr_reader :raw_invitation_token
   attr_accessor :terms_of_service
   
-  has_many :teams , :class_name => 'Team', :foreign_key => 'owner_id'
-
+  has_many :teams ,->{ where(backet: false)}, :class_name => 'Team', :foreign_key => 'owner_id'
+ 
   enum role: [:pending ,:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   # accepts_nested_attributes_for :studio, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Studio.reject_studio(attributes)}
   # accepts_nested_attributes_for :freelancer, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Freelancer.reject_freelancer(attributes)}
   accepts_nested_attributes_for :profile, :allow_destroy => true #, :update_only => true, :reject_if => proc {|attributes| Profile.reject_profile(attributes)}
+
+  def my_contacts_team
+    Team.where(name: 'My Contacts', owner_id: self.id , backet: true).first_or_create
+  end
 
   def set_default_role
     self.role ||= ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ?  :admin : :user 

@@ -76,9 +76,9 @@
 	</div><!-- /.user-actions -->
 
 	<div class="user-head">
-		<a href="#" class="user-image user-draggable">
+		<a href="#" class="user-image user-draggable <%= profile_teams_classes(profile)%>">
 			<!-- <img src="../images/temp/user1.jpg" alt=""> -->
-			<%=image_tag "user1.jpg", { alt: "" } %>
+			<%=image_tag profile.profile_image, { alt: "" } %>
 		</a>
 
 		<div class="user-head-placeholder">
