@@ -32,6 +32,27 @@ class UsersController < ApplicationController
     end
   end
 
+  # "user"=>[{"firstname"=>"TestBB", "lastname"=>"asxascas", "email"=>"sada@saa.clk"}, {"firstname"=>"homfj", "lastname"=>"assdasdas", "email"=>"4yoss@sss.com"}, {"firstname"=>"", "lastname"=>"", "email"=>""}, {"firstname"=>"", "lastname"=>"", "email"=>""}, {"firstname"=>"", "lastname"=>"", "email"=>""}]}
+  def batch_invite
+    authorize User.current
+    invited = []
+    not_invited = []
+    params[:user].each do |user|
+      if user[:firstname] && user[:lastname] && user[:email]
+        begin
+          _user = User.invite!({:email => user[:email] , :firstname =>user[:firstname],:lastname=> user[:lastname]},User.current)  
+          invited << _user.id
+        rescue Exception => e
+          not_invited << [error: e.message,user: user]
+        end
+      else
+          not_invited << [error: e.message,user: user]
+      end  
+    end
+    render nothing: true
+    
+  end
+
   def destroy
     user = User.find(params[:id])
     authorize user

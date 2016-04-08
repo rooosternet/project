@@ -22,6 +22,10 @@ class UserPolicy
     @current_user.admin?
   end
 
+  def batch_invite?
+    @current_user
+  end
+  
   def destroy?
     return false if @current_user == @user
     @current_user.admin?

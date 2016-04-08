@@ -28,6 +28,46 @@ class InMessagesController < ApplicationController
     end
   end
 
+  def bulk_create
+    
+    recepients = secure_params[:to_ids]
+    
+    if recepients && recepients.is_a?(Array)
+      msg_attr = secure_params.dup.except(:to_ids)
+      msg_attr.merge!(to_id: nil)
+      save_messages = []
+      fail_messages = []
+
+      recepients.each do |id|
+        begin
+          msg_attr[:to_id] = id
+          message = InMessage.new(msg_attr)
+          message.save!
+          save_messages << message
+        rescue StandardError => e
+          msg = message.errors.any? ? message.errors.full_messages.join(',') : "fail to create message!"          
+          puts "MessagesController::create: #{msg}"
+          fail_messages << msg 
+        end
+      end
+      
+      if request.xhr?
+        if fail_messages.any?
+          render :text =>  fail_messages.uniq.join(",") , :status => 503
+        else  
+          puts save_messages.inspect
+          render :text => "Message send" , :status => 200
+        end  
+      else
+        redirect_to inbox_path, :notice => fail_messages.any? ? fail_messages.uniq.join(",") : "Message send."
+      end
+
+    else
+      render :text => "Recepient cant be blank!" , :status => 503
+    end  
+  end
+
+
   def edit
     @message = InMessage.find(params[:id])
   end
@@ -64,6 +104,6 @@ class InMessagesController < ApplicationController
   private
 
   def secure_params
-    params.require(:in_message).permit(:id,:from_id,:to_id,:subject,:note,:token,:notify,:private,:parent_id)
+    params.require(:in_message).permit(:id,:from_id , :to_id,:subject,:note,:token,:notify,:private,:parent_id,:to_ids =>[])
   end
 end

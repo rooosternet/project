@@ -1,0 +1,46 @@
+<%= form_for(InMessage.new,:url => bulk_create_message_path , :remote => true ,:html => { :method => :post, :class => "message-to" ,:role => 'form', :id => 'new_message_form_id'}) do |f| %>
+	
+	<div class="form-body">
+		<div class="form-avatar">
+			<%=image_tag profile.profile_image , { alt: "",width: "69" , height: "69" } %>
+		</div><!-- /.form-avatar -->
+
+		<div class="form-row">
+			<label class="form-label"><%=profile.name%></label>
+
+			<%= f.hidden_field(:from_id,value: profile.id) %>
+
+			<div class="form-controls">
+				<%= f.text_area :note ,:rows => 6, :class =>"form-control" ,:placeholder => "" %>		
+			</div><!-- /.form-controls -->
+		</div><!-- /.form-row -->
+
+		<div class="checkbox-select">
+			<input type="checkbox" name="select-personalised" id="select-personalised">
+
+			<label for="select-personalised">
+				<i class="ico-select"></i>
+
+				<span class="checkbox-select-label">Personalised</span>
+
+				<span class="checkbox-select-label-checked">Tick if you like your recipients to get this as a personal message</span>
+			</label>
+		</div><!-- /.checkbox-select -->
+	</div><!-- /.form-body -->
+
+	<div class="form-actions">
+		<%= f.submit 'Send Message' , class: 'btn' %>
+	</div><!-- /.form-actions -->
+
+	<div class="form-recipients">
+		<ul>
+			<% @profiles.each do |profile| %>
+				<li>
+					<span><%=profile.name%></span>
+					<%=image_tag profile.profile_image, { alt: "" } %>
+					<%= f.hidden_field :to_ids, :multiple => true, :value => profile.id %>
+				</li>
+			<% end %>
+		</ul>
+	</div><!-- /.form-recipients -->
+<% end %>

@@ -102,7 +102,7 @@
 		.team:hover .team-title,
 		.team-new .team-title { visibility: visible; opacity: 1; }
 
-		.team .team-count { color: transparent; }
+		/*.team .team-count { color: transparent; }*/
 
 		@media (max-width: $screen-md-max) {
 			& { width: 386px; }

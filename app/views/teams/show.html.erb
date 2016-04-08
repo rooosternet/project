@@ -22,7 +22,7 @@
 			</li>
 
 			<li>
-				<a href="#modal-delete" data-toggle="modal">
+				<a href="#modal-delete" data-toggle="modal" data-message-id="">
 					<i class="ico-delete"></i>
 
 					<span>remove selected</span>
@@ -100,51 +100,7 @@
 					<div class="messages-wrapper" id="messages-mass"></div><!-- /.messages-wrapper -->
 				</div><!-- /.messages -->
 
-				<form action="#messages-mass" method="post">
-					<div class="form-body">
-						<div class="form-avatar">
-							<%=image_tag "form-avatar.jpg", { alt: "",width: "69" , height: "69" } %>
-							<input type="hidden" class="field-message-avatar" name="message-avatar" value="../images/temp/form-avatar.jpg">
-						</div><!-- /.form-avatar -->
-
-						<div class="form-row">
-							<label class="form-label">Rotem Nahlieli</label>
-
-							<input type="hidden" class="field-message-author" name="message-author" value="Rotem Nahlieli">
-
-							<div class="form-controls">
-								<textarea class="form-control field-message-content" name="message-content" placeholder="Your message to Sam, Tony, Jon Jon, Dana"></textarea>
-							</div><!-- /.form-controls -->
-						</div><!-- /.form-row -->
-
-						<div class="checkbox-select">
-							<input type="checkbox" name="select-personalised" id="select-personalised">
-
-							<label for="select-personalised">
-								<i class="ico-select"></i>
-
-								<span class="checkbox-select-label">Personalised</span>
-
-								<span class="checkbox-select-label-checked">Tick if you like your recipients to get this as a personal message</span>
-							</label>
-						</div><!-- /.checkbox-select -->
-					</div><!-- /.form-body -->
-
-					<div class="form-actions">
-						<button type="submit" class="btn">Send Team Message</button>
-					</div><!-- /.form-actions -->
-
-					<div class="form-recipients">
-						<ul>
-							<% (2..8).each_with_index do |index| %>
-								<li>
-									<span>Username</span>
-									<%=image_tag "user#{index}.jpg", { alt: "" } %>
-								</li>
-							<%	end	%>	
-						</ul>
-					</div><!-- /.form-recipients -->
-				</form>
+				<%= render :partial => 'teams/message_form' , :locals =>  { profile: current_user.profile }%>
 			</div><!-- /.form-message -->
 		</div><!-- /.section-head-form -->
 	</div><!-- /.section-head -->
@@ -162,13 +118,13 @@
 		<ul class="users users-flex">
 			<% @profiles.each do |profile| %>
 			<%#= render :partial => 'profile' , :locals =>  { profile: profile }%>
-			<%= render :partial => 'profiles/profile' , :locals =>  { profile: profile }%>
+			<%= render :partial => 'profiles/profile_alt' , :locals =>  { profile: profile }%>
 			<% end %>
 		</ul><!-- /.users -->
 
 		<div class="form-invite">
 			<!-- <form action="?" method="post"> -->
-			<%= form_for(User.new, :url => user_invitation_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
+			<%= form_for(User.new, :url => batch_invite_users_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
 			<div class="form-head">
 				<h4 class="form-title">
 					<span>Invite Creatives To Your Team</span>
@@ -274,21 +230,21 @@
 								<div class="form-col">
 									<div class="form-controls">
 										<!-- <input type="text" class="form-control" name="field-first-name1" id="field-first-name1" value="" placeholder="First"> -->
-										<%= f.text_field :firstname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "First Name",:pattern => "^[a-zA-Z]+( [a-zA-Z]+)*$" %>
+										<%= text_field_tag "user[][firstname]",'', :no_label => true, :class =>"form-control" ,:placeholder => "First Name",:pattern => "^[a-zA-Z]+( [a-zA-Z]+)*$" %>
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-col -->
 
 								<div class="form-col">
 									<div class="form-controls">
 										<!-- <input type="text" class="form-control" name="field-last-name1" id="field-last-name1" value="" placeholder="Last"> -->
-										<%= f.text_field :lastname, :no_label => true ,:required => true, :class =>"form-control" ,:placeholder => "Last Name",:pattern => "^[a-zA-Z]+( [a-zA-Z]+)*$" %>
+										<%= text_field_tag "user[][lastname]",'', :no_label => true, :class =>"form-control" ,:placeholder => "Last Name",:pattern => "^[a-zA-Z]+( [a-zA-Z]+)*$" %>
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-col -->
 
 								<div class="form-col form-col-medium">
 									<div class="form-controls">
 										<!-- <input type="text" class="form-control" name="field-email1" id="field-email1" value="" placeholder="Email *"> -->
-										<%= f.text_field :email, :no_label => true ,:required => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+										<%= text_field_tag "user[][email]",'', :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-col -->
 							</div><!-- /.form-row -->
