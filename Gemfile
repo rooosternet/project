@@ -75,6 +75,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :staging do
+  gem 'byebug'
+end
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'

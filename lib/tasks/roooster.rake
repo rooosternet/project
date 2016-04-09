@@ -23,11 +23,12 @@ namespace :roooster do
     private
 
     def populate_admin_users
-        emails = ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"]
+        emails = ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net","yoav@weitzman.co.il"]
         users = [
             {"firstname"=>"yossi", "lastname"=>"edri", "email"=>"yossi@roooster.net" , "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now},
             {"firstname"=>"sam", "lastname"=>"miller", "email"=>"sam@roooster.net", "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now},
-            {"firstname"=>"rotem", "lastname"=>"nahlieli", "email"=>"rotem@roooster.net", "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now}
+            {"firstname"=>"rotem", "lastname"=>"nahlieli", "email"=>"rotem@roooster.net", "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now},
+            {"firstname"=>"yoav", "lastname"=>"weitzman", "email"=>"yoav@weitzman.co.il", "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now}
             ]
             
         start = Time.now
@@ -37,8 +38,12 @@ namespace :roooster do
         ActiveRecord::Base.transaction do
             begin
                 users.each do |user|
-                    _user = User.create!(user)
-                    puts _user.inspect
+                    unless User.where(email: user["email"]).first
+                        _user = User.create!(user) 
+                        puts _user.inspect
+                    else
+                        puts 'User exists: #{user["email"]}'
+                    end
                 end 
             rescue Exception => e
                 puts e.message
