@@ -35,7 +35,7 @@
 		<div class="section-head-inner">
 			<div class="team-page">
 				<div class="team team-sortable">
-					<a href="#modal-avatar" class="team-inner" data-toggle="modal">
+					<a href="#modal-avatar" class="team-inner" data-toggle="modal" data-source-id="<%=@team.id%>" >
 						<div class="team-image">
 							<%=image_tag @team.team_image, { class: "team-image-selected",alt: "" } %>
 							<div class="team-image-change">

@@ -82,17 +82,19 @@
 
 	<div class="section-body">
 		<ul class="teams teams-sortable">
+			
+			<% team_contacts = current_user.my_contacts_team %>
 			<li class="team team-highlighted">
-				<a href="#" class="team-inner">
+				<%= link_to team_contacts , class: "team-inner"  do %>
 					<div class="team-image">
-						<%=image_tag "team1.jpg", { alt: "" } %>
+						<%=image_tag team_contacts.team_image, { alt: "" } %>
 						<div class="team-actions">
-							<span class="team-count">101</span>
+							<span class="team-count"><%= team_contacts.team_profiles.count %></span>
 						</div><!-- /.team-actions -->
 					</div><!-- /.team-image -->
 
-					<div class="team-title">My Contacts</div><!-- /.team-title -->
-				</a>
+					<div class="team-title"><%= team_contacts.name %></div><!-- /.team-title -->
+				<% end %>
 			</li><!-- /.team -->
 
 			<% current_user.teams.each do |team| %>

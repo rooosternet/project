@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401109591) do
+ActiveRecord::Schema.define(version: 20160401909711) do
 
   create_table "in_messages", force: :cascade do |t|
     t.integer  "from_id",    limit: 4,     default: 0,     null: false
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160401109591) do
   end
 
   add_index "team_profiles", ["profile_id"], name: "index_team_profiles_on_profile_id", using: :btree
+  add_index "team_profiles", ["team_id", "profile_id"], name: "index_team_profiles_on_team_id_and_profile_id", unique: true, using: :btree
   add_index "team_profiles", ["team_id"], name: "index_team_profiles_on_team_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 20160401109591) do
     t.integer  "invitations_count",      limit: 4,   default: 0
     t.boolean  "edit_profile",                       default: false, null: false
     t.boolean  "subscribe",                          default: false, null: false
+    t.string   "image",                  limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

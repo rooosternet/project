@@ -68,6 +68,9 @@ class User < ActiveRecord::Base
     end  
   end
 
+  def profile_image
+    self.image.blank? ? "logged-user.jpg" : "#{self.image}.jpg"
+  end
 
   class << self
     def current=(user)

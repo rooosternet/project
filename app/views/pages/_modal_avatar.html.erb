@@ -25,7 +25,7 @@
 									<% (1..4).each_with_index do |index| %>
 									<li>
 										<div class="team">
-											<a href=".team-image-selected" class="team-inner change-image">
+											<a href=".team-image-selected" class="team-inner change-image" data-image="team-image<%=index%>">
 												<div class="team-image">
 													<%=image_tag "team-image#{index}.jpg", { alt: "" } %>
 												</div><!-- /.team-image -->

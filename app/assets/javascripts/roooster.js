@@ -506,6 +506,8 @@ var add_profile_to_team = function(profile_id,team_id){
 
 			var src = $(this).find('img').first().attr('src');
 			var $target = $($(this).attr('href'));
+			var image_name = $(this).data('image');
+			$("#user_image").val(image_name);
 
 			$target.attr('src', src);
 		});
