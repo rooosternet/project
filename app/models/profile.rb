@@ -28,8 +28,10 @@ class Profile < ActiveRecord::Base
 
 	before_update { |profile| profile.send_directory_activation_mail if !profile.new_record? and profile.searchable_changed? and profile.searchable.eql?(true)}
 
+	# delegate :profile_image, to: :user , :allow_nil => true
+
 	def profile_image
-  		self.image.blank? ? "user_default.jpg" : "#{self.image}.jpg"
+  		self.image.blank? ? user.profile_image : "#{self.image}.jpg"
   	end
 
 	def send_directory_activation_mail
