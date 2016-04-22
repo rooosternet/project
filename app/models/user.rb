@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def has_active_messages?
+    InMessage.active_messages > 0 
+  end
+    
   # def send_welcome_mail
   #   begin
   #     return true if self.role.eql?("admin")

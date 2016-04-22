@@ -1,6 +1,6 @@
 <div class="message" id="message-<%=message.id%>" data-id="<%=message.id%>" data-parent="<%=message.parent_id%>" >
 	<div class="message-avatar">
-		<%=image_tag "form-avatar.jpg", { alt: "" ,width: "69" , height: "69"} %>
+		<%=image_tag message.try(:from).try(:profile_image), { alt: "" ,width: "69" , height: "69"} %>
 	</div><!-- /.message-avatar -->
 
 	<div class="message-head clearfix">
@@ -17,7 +17,7 @@
 		</div><!-- /.message-actions -->
 
 		<div class="message-head-inner">
-			<div class="message-author"><%=message.from.name %></div><!-- /.message-author -->
+			<div class="message-author"><%=message.from.try(:name) if message.from %></div><!-- /.message-author -->
 
 			<div class="message-date"><%=message.updated_at.strftime("%B %d, %Y - %H:%M%P") %></div><!-- /.message-date -->
 		</div><!-- /.message-head-inner -->

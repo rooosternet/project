@@ -10,8 +10,10 @@
 					<a href="<%= inbox_path %>" class="user-btn">
 						<span class="user-btn-icon">
 							<i class="fa fa-envelope"></i>
-
-							<i class="ico-new-message"></i>
+							
+							<% if current_user.has_active_messages? %>
+								<i class="ico-new-message"></i>
+							<% end %>
 						</span>
 
 						<span class="user-btn-label">Inbox</span>
@@ -111,7 +113,9 @@
 					<a href="#">
 						<i class="fa fa-envelope"></i>
 
-						<i class="ico-new-message"></i>
+						<% if current_user.has_active_messages? %>
+							<i class="ico-new-message"></i>
+						<% end %>
 					</a>
 				</li>
 

@@ -2,14 +2,16 @@
 	<a href="#conversation<%=message.id%>" class="conversation-inner clearfix" data-toggle="tab">
 		<div class="conversation-avatar">
 			<!-- <img src="../images/temp/user2.jpg" alt=""> -->
-			<%=image_tag "user2.jpg", { alt: "" } %>
+			<%#=image_tag "user2.jpg", { alt: "" } %>
+			<%=image_tag message.try(:from).try(:profile_image) , { alt: "" } %>
+
 			<% if message.active? %>
 				<i class="ico-new-message"></i>
 			<% end %>
 		</div><!-- /.conversation-avatar -->
 
 		<div class="conversation-content">
-			<h4><%= message.from.name %></h4>
+			<h4><%= message.from.try(:name) if message.from %></h4>
 			<p><%= message.note.gsub(/[\n\r,]/,' ').split(' ').join(' ').truncate(50) %></p>
 		</div><!-- /.conversation-content -->
 	</a>
