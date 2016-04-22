@@ -38,11 +38,33 @@ var add_profile_to_team = function(profile_id,team_id){
 	});	
 }
 
+var update_team = function(team_id,properties){
+	console.log(team_id);
+	console.log(properties);
+	
+	$.ajax({
+		url: "/teams/"+team_id,
+		type: 'PUT',
+		data: {team: properties},
+		dataType: 'script',
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){ 
+			console.log(data);
+		},
+		complete: function(data){
+			console.log(data);
+			return data; 
+		}
+	});	
+}
 
 ;(function($, window, document, undefined) {
 	var $win = $(window);
 	var $doc = $(document);
 
+	
 	// Simple Templates
 	function template(tpl, vars) {
 		return tpl.replace(/{{([^}]+)}}/g, function(match, property) {
@@ -106,6 +128,14 @@ var add_profile_to_team = function(profile_id,team_id){
 		// 		placeholder: placeholderText
 		// 	});
 		// });
+
+		$(".team-page-name,.team-page-description").focusout(function(){
+	    	var target = $(this).parent();
+	    	console.log(target);
+	    	var team_id = target.data('team-id');
+	    	console.log("team_id: " + team_id);
+	    	update_team(team_id,{name: target.find(".team-page-name")[0].innerText, description: target.find(".team-page-description")[0].innerText});
+		});
 
 		
 		// Scroll To
@@ -510,6 +540,8 @@ var add_profile_to_team = function(profile_id,team_id){
 			$("#user_image").val(image_name);
 
 			$target.attr('src', src);
+			var team_id = $target[0].id;
+			update_team(team_id,{image: image_name});
 		});
 
 		// Mass Message

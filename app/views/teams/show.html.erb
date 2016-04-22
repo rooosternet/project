@@ -37,7 +37,7 @@
 				<div class="team team-sortable">
 					<a href="#modal-avatar" class="team-inner" data-toggle="modal" data-source-id="<%=@team.id%>" >
 						<div class="team-image">
-							<%=image_tag @team.team_image, { class: "team-image-selected",alt: "" } %>
+							<%=image_tag @team.team_image, { class: "team-image-selected",alt: "",id: @team.id } %>
 							<div class="team-image-change">
 								<span>
 									Change<br>
@@ -52,7 +52,7 @@
 					</a>
 				</div><!-- /.team -->
 
-				<div class="team-page-content">
+				<div class="team-page-content" data-team-id="<%=@team.id%>">
 					<h4 class="team-page-name" contenteditable><%= @team.name %></h4><!-- /.team-page-name -->
 
 					<div class="team-page-description" contenteditable data-placeholder="This is where you can write a short description for this team."></div><!-- /.team-page-description -->

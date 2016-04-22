@@ -25,7 +25,10 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile, :allow_destroy => true #, :update_only => true, :reject_if => proc {|attributes| Profile.reject_profile(attributes)}
 
   def my_contacts_team
-    Team.where(name: 'My Contacts', owner_id: self.id , backet: true).first_or_create
+    unless _team = Team.where(name: 'My Contacts', owner_id: self.id , backet: true).first
+      _team = Team.where(name: 'My Contacts', owner_id: self.id , backet: true).first_or_create
+    end
+    _team  
   end
 
   def set_default_role
