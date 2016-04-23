@@ -14,19 +14,19 @@ $(function() {
 	// });
 
 
-	$('#invite_form').bind('ajax:success',function(event, data, status, xhr){
-		if(status == 'success'){
-			$(this).find("input[type=text], textarea").val("");
-			$(".form-error").text(data.responseText);
-		}
-	});	
+	// $('#invite_form').bind('ajax:success',function(event, data, status, xhr){
+	// 	if(status == 'success'){
+	// 		$(this).find("input[type=text], textarea").val("");
+	// 		$(".form-error").text(data.responseText);
+	// 	}
+	// });	
 
-	$('#invite_form').bind('ajax:error', function(event, data, status, xhr) {
-		$(".form-error").text(data.responseJSON.responseText);
-	});
+	// $('#invite_form').bind('ajax:error', function(event, data, status, xhr) {
+	// 	$(".form-error").text(data.responseJSON.responseText);
+	// });
 
-	$('#invite_form').bind('ajax:complete', function(event, data, status, xhr) {
+	// $('#invite_form').bind('ajax:complete', function(event, data, status, xhr) {
 
-	});
+	// });
 
 });

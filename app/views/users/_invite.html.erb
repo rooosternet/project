@@ -1,0 +1,17 @@
+<p>
+	<% if empty %>
+		No contact details was provided.
+	<% else %>
+
+	<ul>
+		<% invited.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+	<ul>
+		<% not_invited.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+	<% end %>
+</p>

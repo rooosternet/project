@@ -35,22 +35,31 @@ class UsersController < ApplicationController
   # "user"=>[{"firstname"=>"TestBB", "lastname"=>"asxascas", "email"=>"sada@saa.clk"}, {"firstname"=>"homfj", "lastname"=>"assdasdas", "email"=>"4yoss@sss.com"}, {"firstname"=>"", "lastname"=>"", "email"=>""}, {"firstname"=>"", "lastname"=>"", "email"=>""}, {"firstname"=>"", "lastname"=>"", "email"=>""}]}
   def batch_invite
     authorize User.current
-    invited = []
-    not_invited = []
+    @invited = []
+    @not_invited = []
+    @empty = true
     params[:user].each do |user|
-      if user[:firstname] && user[:lastname] && user[:email]
+      if !user[:firstname].blank? || !user[:lastname].blank? || !user[:email].blank?
         begin
+          @empty = false
           _user = User.invite!({:email => user[:email] , :firstname =>user[:firstname],:lastname=> user[:lastname]},User.current)  
-          invited << _user.id
+
+          if _user.errors.any?
+            if _user.errors.full_messages.include?("Email has already been taken")
+              message = "Great! have already heard about #{_user.name} from other users."
+            else
+              message = "Fail to sent invitation: #{_user.errors.full_messages.uniq.join(',')}" 
+            end
+            @not_invited << message  
+          else    
+            @invited << "Invitation sent to #{_user.name}"
+          end
         rescue Exception => e
-          not_invited << [error: e.message,user: user]
-        end
-      else
-          not_invited << [error: e.message,user: user]
+          @not_invited << "Fail to sent invitation: #{e.message}"
+        end      
       end  
     end
-    render nothing: true
-    
+    # render nothing: true
   end
 
   def destroy
