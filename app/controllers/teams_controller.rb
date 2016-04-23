@@ -35,7 +35,8 @@ class TeamsController < ApplicationController
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.js   { 
-          render :nothing => true
+          # render :nothing => true
+          render json: @team.id.to_json , status: 200
           # render :show, status: :created, locals: { team: @team } 
         }
         format.json { render :show, status: :created, locals: { team: @team } }

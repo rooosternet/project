@@ -6,13 +6,14 @@ var create_team = function(attributes){
 		data: {team: attributes },
 		dataType: 'script',
 		success: function(data){
+			console.log(data);
+			$("a.team-inner").filter("[href='#']").attr('href',"/teams/" + data);
 		},
 		error: function(data){ 
-			// console.log(data);
+			console.log(data);
 		},
 		complete: function(data){
-			// console.log(data);
-			return data; 
+			console.log(data);
 		}
 	});	
 }
@@ -230,7 +231,7 @@ var update_team = function(team_id,properties){
 
 					if(team_created == false){
 					 create_team({name: $(this).html(),image: image_name });
-					 // console.log("------");
+					 console.log("------");
 					 team_created = true
 					}
 
@@ -286,6 +287,7 @@ var update_team = function(team_id,properties){
 
 					if(team_created == false){
 						 create_team({name: $(this).html(),image: $(this).closest('.team').data('image')});
+						 console.log("+++++");
 						 team_created = true
 					};
 				};
