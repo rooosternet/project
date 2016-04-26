@@ -28,10 +28,11 @@
 		</div><!-- /.checkbox-select -->
 	</div><!-- /.form-body -->
 
-	<div class="form-actions">
+	<div class="form-actions text-center">
 		<%= f.submit 'Send Message' , class: 'btn' %>
+		<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
 	</div><!-- /.form-actions -->
-
+	
 	<div class="form-recipients">
 		<ul>
 			<% @profiles.each do |profile| %>

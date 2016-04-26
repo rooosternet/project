@@ -26,7 +26,11 @@
     <!-- <main role="main"> -->
         <!-- <div id="ajax-indicator" style="display:none;"><span></span></div> -->
         <%#= render 'layouts/messages' %>
-        <%= yield %>
+        <div class="main">
+          <div class="shell">
+            <%= yield %>
+          </div><!-- /.shell -->
+        </div><!-- /.main -->    
     <!-- </main> -->
 
     <% if user_signed_in? %>

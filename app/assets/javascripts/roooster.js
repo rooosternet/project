@@ -1,4 +1,4 @@
-var create_team = function(attributes){
+var create_team = function(attributes,target){
 	console.log(attributes);
 	$.ajax({
 		url: "/teams/",
@@ -8,6 +8,9 @@ var create_team = function(attributes){
 		success: function(data){
 			console.log(data);
 			$("a.team-inner").filter("[href='#']").attr('href',"/teams/" + data);
+			if(target){
+				target.attr('data-team',data);
+			}
 		},
 		error: function(data){ 
 			console.log(data);
@@ -230,7 +233,7 @@ var update_team = function(team_id,properties){
 					};
 
 					if(team_created == false){
-					 create_team({name: $(this).html(),image: image_name });
+					 create_team({name: $(this).html(),image: image_name },$(this));
 					 console.log("------");
 					 team_created = true
 					}
@@ -286,7 +289,7 @@ var update_team = function(team_id,properties){
 					};
 
 					if(team_created == false){
-						 create_team({name: $(this).html(),image: $(this).closest('.team').data('image')});
+						 create_team({name: $(this).html(),image: $(this).closest('.team').data('image')},$(this));
 						 console.log("+++++");
 						 team_created = true
 					};
@@ -381,13 +384,14 @@ var update_team = function(team_id,properties){
 			event.preventDefault();
 
 			var tpl = $($(this).data('template')).html();
+			var profile_id = $(this).data('profile');
 			var $userGroup = $(template(tpl, {
 				user: $(this).closest('.user-alt').index(),
 				group: $(this).closest('li').index()
 			}));
 
 			$(this).closest('li').before($userGroup);
-
+			team_created = false
 			setTimeout(function() {
 				$userGroup.find('label').focus().on('blur keydown', function(event) {
 					if (event.keyCode === 13 || event.type === 'blur') {
@@ -398,10 +402,28 @@ var update_team = function(team_id,properties){
 							$(this).html('Team ' + leadingZero(newTeamsCount + 1));
 							newTeamsCount++;
 						};
+						
+						if(team_created == false){
+							create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}},$(this));
+							console.log("------");
+							team_created = true
+							$(this).addClass("add-profile");
+							$(this).attr('data-profile',profile_id);
+							// $(this).attr('data-team',);
+						}
 					};
 				});
 			}, 100);
 		});
+
+		// Add User To Group
+		$('.users').on('click', '.add-profile', function(event) {
+			event.preventDefault();
+			var team_id = $(this).data('team');
+			var profile_id = $(this).data('profile');
+			add_profile_to_team(profile_id,team_id);
+		});
+
 
 		// User Messages
 		$('.users').on('click', '.user-alt .user-message', function(event) {

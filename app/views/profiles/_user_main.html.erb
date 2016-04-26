@@ -10,56 +10,16 @@
 					</a>
 
 					<ul class="dropdown-menu user-groups">
+						<% ([current_user.my_contacts_team] + current_user.teams).each do |team| %>
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="field-user<%=team.id%>-group<%=team.id%>" id="field-user<%=team.id%>-group<%=team.id%>">
+									<label for="field-user<%=team.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" class="add-profile"><%=team.name%></label>
+								</div><!-- /.checkbox -->
+							</li>
+						<% end %>
 						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="field-user0-group0" id="field-user0-group0">
-
-								<label for="field-user0-group0">contacts</label>
-							</div><!-- /.checkbox -->
-						</li>
-
-						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="field-user0-group1" id="field-user0-group1">
-
-								<label for="field-user0-group1">johnny’s team</label>
-							</div><!-- /.checkbox -->
-						</li>
-
-						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="field-user0-group2" id="field-user0-group2">
-
-								<label for="field-user0-group2">3d artists uk...</label>
-							</div><!-- /.checkbox -->
-						</li>
-
-						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="field-user0-group3" id="field-user0-group3">
-
-								<label for="field-user0-group3">2d guys</label>
-							</div><!-- /.checkbox -->
-						</li>
-
-						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="field-user0-group4" id="field-user0-group4">
-
-								<label for="field-user0-group4">channel 4 promo</label>
-							</div><!-- /.checkbox -->
-						</li>
-
-						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="field-user0-group5" id="field-user0-group5">
-
-								<label for="field-user0-group5">bogi v2</label>
-							</div><!-- /.checkbox -->
-						</li>
-
-						<li>
-							<button class="user-create-group" data-template="#user-group-template">(+) create a new team</button>
+							<button class="user-create-group" data-template="#user-group-template" data-profile="<%=profile.id%>" >(+) create a new team</button>
 						</li>
 					</ul><!-- /.dropdown-menu -->
 				</div><!-- /.dropdown -->
@@ -101,26 +61,34 @@
 		</div><!-- /.user-location -->
 
 		<ul class="user-socials">
-			<% unless profile.linkedin_profile_url.blank? -%>
-				<li>
-					<a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
-						<i class="ico-linkedin"></i>
-					</a>
-				</li>
+				<% unless profile.online_portfolio.blank? -%>
+					<li>
+						<a href="<%=toggle_url_protocole(profile.online_portfolio)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
+							<i class="ico-link"></i>
+						</a>
+					</li>
+				<% end -%>
+
+			    <% unless profile.linkedin_profile_url.blank? -%>
+					<li>
+						<a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
+							<i class="ico-linkedin"></i>
+						</a>
+					</li>
 				<% end -%>
 				<% unless profile.behance_profile_url.blank? -%>
-				<li>
-					<a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
-						<i class="ico-behance"></i>
-					</a>
-				</li>
+					<li>
+						<a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
+							<i class="ico-behance"></i>
+						</a>
+					</li>
 				<% end -%>
 				<% unless profile.vimeo_profile_url.blank? -%>
-				<li>
-					<a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
-						<i class="ico-vimeo"></i>
-					</a>
-				</li>
+					<li>
+						<a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
+							<i class="ico-vimeo"></i>
+						</a>
+					</li>
 			<% end -%>
 		</ul>
 	</div><!-- /.user-body -->

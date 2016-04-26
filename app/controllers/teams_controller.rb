@@ -30,8 +30,10 @@ class TeamsController < ApplicationController
   # end
 
   def create
-    @team = Team.new(team_params.merge!({owner_id: User.current.id}))
+    @team = Team.new(team_params.merge!({owner_id: User.current.id}).except("team_profiles_attributes"))
     respond_to do |format|
+      team_profile = params[:team][:team_profiles_attributes].except("team_id").to_hash if params[:team][:team_profiles_attributes]  
+      @team.team_profiles.build(team_profile) if team_profile
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.js   { 

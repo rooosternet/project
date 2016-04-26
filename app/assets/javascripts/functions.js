@@ -62,16 +62,17 @@
 
  //  }, false);
 
-
-
 function setupAjaxIndicator() {
 	$(document).bind('ajaxSend', function(event, xhr, settings) {
-		if ($('.ajax-loading').length === 0 && settings.contentType != 'application/octet-stream') {
-			$('#ajax-indicator').show();
-		}
+		// if ($('.ajax-loading').length === 0 && settings.contentType != 'application/octet-stream') {
+		// 	$('#ajax-indicator').show();
+		// }
+		$(".fa.fa-spinner.fa-pulse").removeClass('hidden');
+		// $(".fa.fa-spinner.fa-pulse").toggleClass('hidden');
 	});
 	$(document).bind('ajaxStop', function() {
-		$('#ajax-indicator').hide();
+		// $('#ajax-indicator').hide();
+		$(".fa.fa-spinner.fa-pulse").addClass('hidden');
 	});
 };
 
