@@ -2,10 +2,12 @@ class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :set_menu #, only: [:show, :edit, :update, :destroy]
-  
+  before_action :verify_permissions , only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy]
 
   def index
-    @teams = User.current.admin? ? Team.all : Team.my
+    authorize current_user
+    @teams = current_user.admin? ? Team.all : Team.my
   end
   
   def new
@@ -51,7 +53,6 @@ class TeamsController < ApplicationController
   end
 
   def edit
-
   end
 
   def show
@@ -98,14 +99,18 @@ class TeamsController < ApplicationController
 
   private
 
-  def set_menu
-    @hide_footer = true
-    @top_search = true
-  end
+    def verify_permissions
+      authorize @team
+    end
+
+    def set_menu
+      @hide_footer = true
+      @top_search = true
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_team
-      @team = Team.find(params[:id])
+      @team = Team.where(id: params[:id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

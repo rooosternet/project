@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_user , :only => [:edit,:show,:update,:destroy]
   after_action :verify_authorized
 
   layout 'admin'
@@ -11,17 +12,14 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
     authorize @user
   end
 
   def show
-    @user = User.find(params[:id])
     authorize @user
   end
 
   def update
-    @user = User.find(params[:id])
     authorize @user
     if @user.update_attributes(secure_params)
       # @user.profile.skills = params[:user][:profile_attributes][:skills]
@@ -63,13 +61,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    authorize user
-    user.destroy
+    authorize @user
+    @user.destroy
     redirect_to users_path, :notice => "User deleted."
   end
 
   private
+
+  def find_user
+    @user = User.where(id: params[:id]).first
+  end
 
   def secure_params
     params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname,:image,:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])

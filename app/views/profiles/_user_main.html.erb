@@ -13,7 +13,7 @@
 						<% ([current_user.my_contacts_team] + current_user.teams).each do |team| %>
 							<li>
 								<div class="checkbox">
-									<input type="checkbox" name="field-user<%=profile.id%>-group<%=team.id%>" id="field-user<%=profile.id%>-group<%=team.id%>">
+									<%=check_box_tag("field-user#{profile.id}-group#{team.id}",nil,team.profiles.pluck(:id).include?(profile.id),{:id=>"field-user#{profile.id}-group#{team.id}"})%>
 									<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" class="add-profile"><%=team.name%></label>
 								</div><!-- /.checkbox -->
 							</li>
