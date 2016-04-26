@@ -82,6 +82,11 @@ class TeamsController < ApplicationController
     end
   end
 
+  def remove_profile
+    TeamProfile.where(team_id: params[:team_id],profile_id: params[:profile_id]).first.try(:delete)
+    render :nothing => true
+  end
+
   def destroy
     @team.destroy
     respond_to do |format|

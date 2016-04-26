@@ -42,6 +42,26 @@ var add_profile_to_team = function(profile_id,team_id){
 	});	
 }
 
+var remove_profile_from_team = function(profile_id,team_id){
+	console.log(profile_id +" "+ team_id);
+	$.ajax({
+		url: "/teams/remove_profile",
+		type: 'POST',
+		data: {team_id: team_id, profile_id: profile_id},
+		dataType: 'script',
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){ 
+			console.log(data);
+		},
+		complete: function(data){
+			console.log(data);
+			return data; 
+		}
+	});	
+}
+
 var update_team = function(team_id,properties){
 	console.log(team_id);
 	console.log(properties);
@@ -418,10 +438,19 @@ var update_team = function(team_id,properties){
 
 		// Add User To Group
 		$('.users').on('click', '.add-profile', function(event) {
-			event.preventDefault();
+			// event.preventDefault();
 			var team_id = $(this).data('team');
 			var profile_id = $(this).data('profile');
-			add_profile_to_team(profile_id,team_id);
+			var action = $(this).siblings('input[type=checkbox]').is(':checked');
+			console.log("Add User To Group: " + action);
+			teams_count = $('.team-count-'+team_id);
+			if(action == true){
+			   remove_profile_from_team(profile_id,team_id);
+			   teams_count.text(parseInt(teams_count.text()) - 1).css('color','#fff');
+			}else{
+			   add_profile_to_team(profile_id,team_id);
+			   teams_count.text(parseInt(teams_count.text()) + 1).css('color','#fff');	
+			}
 		});
 
 

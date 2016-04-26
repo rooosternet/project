@@ -8,7 +8,7 @@
 				<div class="team-image">
 					<%=image_tag team_contacts.team_image, { alt: "" } %>
 					<div class="team-actions">
-						<span class="team-count"><%= team_contacts.team_profiles.count %></span>
+						<span class="team-count team-count-<%=team_contacts.id%>"><%= team_contacts.team_profiles.count %></span>
 					</div><!-- /.team-actions -->
 				</div><!-- /.team-image -->
 

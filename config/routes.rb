@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   match 'inbox', :to => 'in_messages#index', :via => [:get], :as => 'inbox'
   
   resources :teams
-
+  post 'teams/remove_profile', :as => "remove_profile"
 
   get 'info/about', :as => "about"
   get 'info/blog', :as => "blog"
