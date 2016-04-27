@@ -13,8 +13,8 @@ class InMessage < ActiveRecord::Base
 	scope :inbox ,lambda { where("#{InMessage.table_name}.to_id = #{User.current.id}")}
 	scope :outbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id}")}
 	scope :allbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id} OR #{InMessage.table_name}.to_id = #{User.current.id}")}
-
 	scope :active_messages , lambda { where("#{InMessage.table_name}.to_id = #{User.current.id} AND #{InMessage.table_name}.updated_at = #{InMessage.table_name}.created_at").count}
+	scope :intercept ,lambda { |profile| where("(#{InMessage.table_name}.from_id = #{User.current.id} and #{InMessage.table_name}.to_id = #{profile.id}) OR (#{InMessage.table_name}.to_id = #{User.current.id} and #{InMessage.table_name}.from_id = #{profile.id})")}
 
 	before_create do
 		self.token = Devise.friendly_token if @token.blank?

@@ -6,34 +6,36 @@
 				<%= render :partial => 'message' , :locals =>  { message: message }%>
 
 				<% message.children.each do |child_message| %>
-						<%= render :partial => 'message' , :locals =>  { message: child_message }%>
+				<%= render :partial => 'message' , :locals =>  { message: child_message }%>
 				<% end %>
 			</div><!-- /.messages-wrapper -->
 
 			<div class="form-message">
-			
+				
 				<%= form_for(InMessage.new,:url => in_messages_path ,:remote => true ,:html => { :method => :post, :class => "message-to" ,:role => 'form', :id => "#{message.id}_new_message_form_id"}) do |f| %>
-					<%= f.hidden_field(:from_id,value: current_user.id ) %>
-					<%= f.hidden_field(:to_id,value: message.replay_to.id ) %>
-					<%= f.hidden_field(:parent_id,value: message.id) %>
-					<div class="form-body">
-						<div class="form-avatar">
-							<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69 -->
-							<%#=image_tag "form-avatar.jpg", { alt: "" } %>
-							<%=image_tag current_user.profile_image , { alt: "" } %>
-						</div>
+				<%= f.hidden_field(:from_id,value: current_user.id ) %>
+				<%= f.hidden_field(:to_id,value: message.replay_to.id ) %>
+				<%= f.hidden_field(:parent_id,value: message.id) %>
+				<div class="form-body">
+					<div class="form-avatar">
+						<!-- <img src="../images/temp/form-avatar.jpg" alt="" width="69" height="69 -->
+						<%#=image_tag "form-avatar.jpg", { alt: "" } %>
+						<%=image_tag current_user.profile_image , { alt: "" } %>
+					</div>
 
-						<div class="form-row">
-							<label class="form-label"><%= current_user.name %></label>
+					<div class="form-row">
+						<label class="form-label"><%= current_user.name %></label>
 
-							<div class="form-controls">				
-								<%= f.text_area :note, :rows => 6, :class =>"form-control field-message-content" ,:placeholder => "Reply to #{message.try(:replay_to).try(:name)}" %>		
-							</div>
+						<div class="form-controls">				
+							<%= f.text_area :note, :rows => 6, :class =>"form-control field-message-content" ,:placeholder => "Reply to #{message.try(:replay_to).try(:name)}" %>		
 						</div>
 					</div>
-					<div class="form-actions">
-						<%= f.submit 'Send Message' , class: 'btn' %>
-					</div>
+				</div>
+				
+				<div class="form-actions text-center">
+					<%= f.submit 'Send Message' , class: 'btn' %>
+					<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
+				</div>
 				<% end %>
 
 			</div><!-- /.form-message -->

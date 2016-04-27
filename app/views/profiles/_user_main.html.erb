@@ -5,18 +5,17 @@
 				<div class="dropdown">
 					<a href="#" class="dropdown-btn" data-toggle="dropdown">
 						<i class="ico-add"></i>
-
 						<span>Add To Team</span>
 					</a>
 
 					<ul class="dropdown-menu user-groups">
 						<% ([current_user.my_contacts_team] + current_user.teams).each do |team| %>
-							<li>
-								<div class="checkbox">
-									<%=check_box_tag("field-user#{profile.id}-group#{team.id}",nil,team.profiles.pluck(:id).include?(profile.id),{:id=>"field-user#{profile.id}-group#{team.id}"})%>
-									<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" class="add-profile"><%=team.name%></label>
-								</div><!-- /.checkbox -->
-							</li>
+						<li>
+							<div class="checkbox">
+								<%=check_box_tag("field-user#{profile.id}-group#{team.id}",nil,team.profiles.pluck(:id).include?(profile.id),{:id=>"field-user#{profile.id}-group#{team.id}"})%>
+								<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" class="add-profile"><%=team.name%></label>
+							</div><!-- /.checkbox -->
+						</li>
 						<% end %>
 						<li>
 							<button class="user-create-group" data-template="#user-group-template" data-profile="<%=profile.id%>" >(+) create a new team</button>
@@ -61,34 +60,34 @@
 		</div><!-- /.user-location -->
 
 		<ul class="user-socials">
-				<% unless profile.online_portfolio.blank? -%>
-					<li>
-						<a href="<%=toggle_url_protocole(profile.online_portfolio)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
-							<i class="ico-link"></i>
-						</a>
-					</li>
-				<% end -%>
+			<% unless profile.online_portfolio.blank? -%>
+			<li>
+				<a href="<%=toggle_url_protocole(profile.online_portfolio)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
+					<i class="ico-link"></i>
+				</a>
+			</li>
+			<% end -%>
 
-			    <% unless profile.linkedin_profile_url.blank? -%>
-					<li>
-						<a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
-							<i class="ico-linkedin"></i>
-						</a>
-					</li>
-				<% end -%>
-				<% unless profile.behance_profile_url.blank? -%>
-					<li>
-						<a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
-							<i class="ico-behance"></i>
-						</a>
-					</li>
-				<% end -%>
-				<% unless profile.vimeo_profile_url.blank? -%>
-					<li>
-						<a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
-							<i class="ico-vimeo"></i>
-						</a>
-					</li>
+			<% unless profile.linkedin_profile_url.blank? -%>
+			<li>
+				<a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
+					<i class="ico-linkedin"></i>
+				</a>
+			</li>
+			<% end -%>
+			<% unless profile.behance_profile_url.blank? -%>
+			<li>
+				<a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
+					<i class="ico-behance"></i>
+				</a>
+			</li>
+			<% end -%>
+			<% unless profile.vimeo_profile_url.blank? -%>
+			<li>
+				<a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
+					<i class="ico-vimeo"></i>
+				</a>
+			</li>
 			<% end -%>
 		</ul>
 	</div><!-- /.user-body -->

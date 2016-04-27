@@ -1,0 +1,49 @@
+<div class="messages">
+	<a href="#" class="messages-close">
+		<i class="ico-close"></i>
+	</a>
+
+	<div class="messages-inner">
+		<div class="messages-wrapper" id="messages-user-<%=profile.id%>">
+			<%
+			message = nil
+			if message = InMessage.intercept(profile).roots.first %>
+			<%= render :partial => 'in_messages/message' , :locals =>  { message: message }%>
+
+			<% message.children.each do |child_message| %>
+			<%= render :partial => 'in_messages/message' , :locals =>  { message: child_message }%>
+			<% end %>
+			<% end %>
+			
+		</div>
+		<div class="form-message">
+			<%= form_for(InMessage.new,:url => in_messages_path ,:remote => true ,:html => { :method => :post, :class => "profile-message-to" ,:role => 'form', :"data-target-id" => "messages-user-#{profile.id}" }) do |f| %>
+			<%= f.hidden_field(:from_id,value: current_user.id ) %>
+			<%= f.hidden_field(:to_id,value: profile.id ) %>
+			<%= f.hidden_field(:parent_id,value: message.id) unless message.nil? %>
+			<div class="form-body">
+				<div class="form-avatar">
+					<%=image_tag current_user.profile_image , { alt: "" } %>
+				</div>
+
+				<div class="form-row">
+					<label class="form-label"><%= current_user.name %></label>
+
+					<div class="form-controls">				
+						<%= f.text_area :note, :rows => 6, :class =>"form-control field-message-content" ,:placeholder => "Your message to #{profile.try(:name)}" %>		
+					</div>
+				</div>
+			</div>
+
+			<div class="form-actions text-center">
+				<%= f.submit 'Send Message' , class: 'btn' %>
+				<br>
+				<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
+			</div>
+			<% end %>
+		</div>
+
+	</div>
+
+	<span class="messages-arrow"></span>
+</div><!-- /.messages -->

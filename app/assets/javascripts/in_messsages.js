@@ -95,6 +95,20 @@ $(function() {
 	$('.message-to').bind('ajax:complete', function(event, data, status, xhr) {
 	});
 
+	$('.profile-message-to').bind('ajax:success',function(event, data, status, xhr){
+		console.log(data);
+		var $target = $("#"+$(this).data('target-id'));
+		$target.append($(data).fadeIn(300));
+		$(this).find('.field-message-content').val('');
+	});	
+
+	$('.profile-message-to').bind('ajax:error', function(event, data, status, xhr) {
+		console.log(data);
+	});
+	
+	$('.profile-message-to').bind('ajax:complete', function(event, data, status, xhr) {
+	});
+
 	// $('.message-to')
 	//     // event handler
 	//     .keyup(resizeInput)
