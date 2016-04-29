@@ -30,18 +30,25 @@
 
 	<div class="form-actions text-center">
 		<%= f.submit 'Send Message' , class: 'btn' %>
+		<br>
 		<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
+		<br>
+		<div class="form-error text-center" id="team_bulk_message_error">
+			<p></p>
+		</div>
 	</div><!-- /.form-actions -->
 	
+
 	<div class="form-recipients">
 		<ul>
 			<% @profiles.each do |profile| %>
-				<li>
+				<li class="hidden" id="recipient_<%=profile.id%>">
 					<span><%=profile.name%></span>
 					<%=image_tag profile.profile_image, { alt: "" } %>
-					<%= f.hidden_field :to_ids, :multiple => true, :value => profile.id %>
+					<%#= f.hidden_field :to_ids, :multiple => true, :value => profile.id %>
 				</li>
 			<% end %>
 		</ul>
+		<%= f.hidden_field :to_ids, :multiple => true, :value => nil %>
 	</div><!-- /.form-recipients -->
 <% end %>

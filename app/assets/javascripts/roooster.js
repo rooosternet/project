@@ -47,7 +47,7 @@ var remove_profile_from_team = function(profile_id,team_id){
 	$.ajax({
 		url: "/teams/remove_profile",
 		type: 'POST',
-		data: {team_id: team_id, profile_id: profile_id},
+		data: {team_profile: {team_id: team_id, profile_id: profile_id}},
 		dataType: 'script',
 		success: function(data){
 			console.log(data);

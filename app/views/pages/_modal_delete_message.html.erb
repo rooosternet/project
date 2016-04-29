@@ -32,3 +32,39 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal modal-small fade" id="modal-delete-profile-from-team">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<div class="form form-action">
+					<%= form_for(TeamProfile.new,:url => remove_profile_path ,:remote => true ,:html => { :method => :post ,id: "delete_profile_from_team_form_id" }) do |f| %>
+						<%= f.hidden_field(:team_id,value: 0) %>
+						<%= f.hidden_field(:profile_id,value: 0) %>
+						<div class="form-inner">
+							<div class="form-head">
+								<h4 class="form-title">Remove Profiles</h4><!-- /.form-title -->
+							</div><!-- /.form-head -->
+
+							<div class="form-body">
+								<div class="form-entry">
+									<p>Are you sure you want to remove this profiles?</p>
+								</div><!-- /.form-entry -->
+							</div><!-- /.form-body -->
+
+							<div class="form-actions text-center">
+								<button class="btn btn-blue form-btn" data-dismiss="modal">Cancel</button>
+								<button type="submit" class="btn form-btn">Yes</button>
+								<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
+							</div><!-- /.form-actions -->
+						</div><!-- /.form-inner -->
+					<% end %>		
+				</div><!-- /.form-action -->
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

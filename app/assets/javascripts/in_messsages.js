@@ -83,6 +83,27 @@ $(function() {
  //    	return false;
 	// });
 
+
+	$('#mass-message').on('shown.bs.collapse', function(e) {
+		console.log('mass-message: shown.bs.collapse');
+		var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
+		$.each(profile_ids, function( index, value ) {
+			$("#recipient_"+value).removeClass('hidden');  
+		});
+		$("#in_message_to_ids").val(profile_ids);
+		$("#team_bulk_message_error").text('');
+	});
+
+	$('#mass-message').on('hide.bs.collapse', function(e) {
+		console.log('mass-message: hide.bs.collapse');
+		var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
+		$.each(profile_ids, function( index, value ) {
+			$("#recipient_"+value).addClass('hidden');  
+		});
+		$("#in_message_to_ids").val([]);
+		$("#team_bulk_message_error").text('');
+	});
+
 	$('.message-to').bind('ajax:success',function(event, data, status, xhr){
 		$(".tab-pane.active .messages-wrapper").append($(data).fadeIn(300));
 		$(".tab-pane.active").find('.field-message-content').val('');
@@ -90,6 +111,7 @@ $(function() {
 
 	$('.message-to').bind('ajax:error', function(event, data, status, xhr) {
 		console.log(data);
+		$("#team_bulk_message_error").text(data.responseText);
 	});
 	
 	$('.message-to').bind('ajax:complete', function(event, data, status, xhr) {

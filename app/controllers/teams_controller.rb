@@ -84,7 +84,8 @@ class TeamsController < ApplicationController
   end
 
   def remove_profile
-    TeamProfile.where(team_id: params[:team_id],profile_id: params[:profile_id]).first.try(:delete)
+    profile_ids = params[:team_profile][:profile_id].blank? ? [] : params[:team_profile][:profile_id].split(',')
+    TeamProfile.where(team_id: params[:team_profile][:team_id],profile_id: profile_ids).map(&:delete)
     render :nothing => true
   end
 

@@ -11,8 +11,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
     
     # resource_updated = resource.update_attributes(account_update_params)
-    resource_updated = update_resource(resource, account_update_params)
-
+    # resource_updated = update_resource(resource, account_update_params)
+    resource_updated = update_resource(resource, user_secure_params)
+    
     yield resource if block_given?
     
     if resource_updated
@@ -106,6 +107,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     signed_in_root_path(resource)
   end
 
+  def user_secure_params
+    params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname,:image,:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
+  end
 
   # def create
 
