@@ -154,11 +154,11 @@ var update_team = function(team_id,properties){
 		// });
 
 		$(".team-page-name,.team-page-description").focusout(function(){
-	    	var target = $(this).parent();
-	    	console.log(target);
-	    	var team_id = target.data('team-id');
-	    	console.log("team_id: " + team_id);
-	    	update_team(team_id,{name: target.find(".team-page-name")[0].innerText, description: target.find(".team-page-description")[0].innerText});
+			var target = $(this).parent();
+			console.log(target);
+			var team_id = target.data('team-id');
+			console.log("team_id: " + team_id);
+			update_team(team_id,{name: target.find(".team-page-name")[0].innerText, description: target.find(".team-page-description")[0].innerText});
 		});
 
 		
@@ -231,21 +231,21 @@ var update_team = function(team_id,properties){
 		$('.teams .team-create').on('click', function(event) {
 			event.preventDefault();
             // console.log(1);
-			var tpl = $($(this).attr('href')).html();
-			var image_id = Math.round(Math.random() * 8);
-			var image_name = "team"+(image_id + 1);
-			var $team = $(template(tpl, {
-				image: team_images[image_id]
-			}));
+            var tpl = $($(this).attr('href')).html();
+            var image_id = Math.round(Math.random() * 8);
+            var image_name = "team"+(image_id + 1);
+            var $team = $(template(tpl, {
+            	image: team_images[image_id]
+            }));
 
-			$(this).closest('.team').before($team);
+            $(this).closest('.team').before($team);
 
-			$(this).closest('.teams-sortable').sortable('refresh');
-			var team_created = false;
+            $(this).closest('.teams-sortable').sortable('refresh');
+            var team_created = false;
 
-			$team.find('.team-title').focus().on('blur keydown', function(event) {
-				if (event.keyCode === 13 || event.type === 'blur') {
-					$(this).removeAttr('contentEditable');
+            $team.find('.team-title').focus().on('blur keydown', function(event) {
+            	if (event.keyCode === 13 || event.type === 'blur') {
+            		$(this).removeAttr('contentEditable');
 					// console.log(2);
 					if ($(this).html() == '') {
 						$(this).html('Team ' + leadingZero(newTeamsCount + 1));
@@ -253,17 +253,17 @@ var update_team = function(team_id,properties){
 					};
 
 					if(team_created == false){
-					 create_team({name: $(this).html(),image: image_name },$(this));
-					 console.log("------");
-					 team_created = true
+						create_team({name: $(this).html(),image: image_name },$(this));
+						console.log("------");
+						team_created = true
 					}
 
 				};
 
 			});
 
-			teamDroppable($team);
-		});
+            teamDroppable($team);
+        });
 
 		// Teams Slider
 		var $teamsSlider = $('.teams-slider .teams-slides').owlCarousel({
@@ -309,9 +309,9 @@ var update_team = function(team_id,properties){
 					};
 
 					if(team_created == false){
-						 create_team({name: $(this).html(),image: $(this).closest('.team').data('image')},$(this));
-						 console.log("+++++");
-						 team_created = true
+						create_team({name: $(this).html(),image: $(this).closest('.team').data('image')},$(this));
+						console.log("+++++");
+						team_created = true
 					};
 				};
 
@@ -370,6 +370,10 @@ var update_team = function(team_id,properties){
 					var user_id = ui.draggable.parents('li.user-alt').attr('id');
 					add_profile_to_team(user_id,that_id);
 					$(that).find('.team-count').text(parseInt($(that).find('.team-count').text()) + 1).css('color','#fff');
+					if(!($(that).find('.team-count').hasClass('team-count-backet'))){
+						var backet = $('.team-count-backet');
+						backet.text(parseInt(backet.text()) + 1).css('color','#fff');											
+					}
 				}
 			});
 		};
@@ -442,14 +446,30 @@ var update_team = function(team_id,properties){
 			var team_id = $(this).data('team');
 			var profile_id = $(this).data('profile');
 			var action = $(this).siblings('input[type=checkbox]').is(':checked');
+			var menu_backet =$("#"+$(this).data('backet'));
 			console.log("Add User To Group: " + action);
 			teams_count = $('.team-count-'+team_id);
+			
 			if(action == true){
-			   remove_profile_from_team(profile_id,team_id);
-			   teams_count.text(parseInt(teams_count.text()) - 1).css('color','#fff');
+				remove_profile_from_team(profile_id,team_id);
+				teams_count.text(parseInt(teams_count.text()) - 1).css('color','#fff');
+
+				if(!(teams_count.hasClass('team-count-backet'))){
+					var top_backet = $('.team-count-backet');
+					top_backet.text(parseInt(top_backet.text()) - 1).css('color','#fff');											
+				}
+
 			}else{
-			   add_profile_to_team(profile_id,team_id);
-			   teams_count.text(parseInt(teams_count.text()) + 1).css('color','#fff');	
+				add_profile_to_team(profile_id,team_id);
+				teams_count.text(parseInt(teams_count.text()) + 1).css('color','#fff');	
+
+				if(!(teams_count.hasClass('team-count-backet'))){
+					var top_backet = $('.team-count-backet');
+					top_backet.text(parseInt(top_backet.text()) + 1).css('color','#fff');											
+				}
+				if(menu_backet && !menu_backet.is(':checked')){
+					menu_backet.each(function(){ this.checked = true; });
+				}
 			}
 		});
 

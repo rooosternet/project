@@ -9,11 +9,23 @@
 					</a>
 
 					<ul class="dropdown-menu user-groups">
-						<% ([current_user.my_contacts_team] + current_user.teams).each do |team| %>
+						
+						<% if team = current_user.my_contacts_team 
+							backet_id = "field-user#{profile.id}-group#{team.id}"
+							%>
+						<li>
+							<div class="checkbox">
+								<%=check_box_tag("field-user#{profile.id}-group#{team.id}",nil,team.profiles.pluck(:id).include?(profile.id),{:id=>backet_id})%>
+								<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" class="add-profile"><%=team.name%></label>
+							</div><!-- /.checkbox -->
+						</li>
+						<% end %>	
+
+						<% current_user.teams.each do |team| %>
 						<li>
 							<div class="checkbox">
 								<%=check_box_tag("field-user#{profile.id}-group#{team.id}",nil,team.profiles.pluck(:id).include?(profile.id),{:id=>"field-user#{profile.id}-group#{team.id}"})%>
-								<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" class="add-profile"><%=team.name%></label>
+								<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" data-backet="<%=backet_id%>" class="add-profile"><%=team.name%></label>
 							</div><!-- /.checkbox -->
 						</li>
 						<% end %>
@@ -37,7 +49,7 @@
 	<div class="user-head">
 		<a href="#" class="user-image user-draggable <%= profile_teams_classes(profile)%>">
 			<!-- <img src="../images/temp/user1.jpg" alt=""> -->
-			<%=image_tag profile.profile_image, { alt: "" } %>
+			<%=image_tag profile.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
 		</a>
 
 		<div class="user-head-placeholder">
@@ -52,11 +64,19 @@
 		<div class="user-name"><%= profile.user.name %></div><!-- /.user-name -->
 
 		<div class="user-title">
+		<%- unless profile.job_title.blank? -%>
 			<a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.job_title) %>"><%= profile.job_title %></a>
+		<%  else %>
+			&nbsp
+		<%- end -%>	
 		</div><!-- /.user-title -->
 
 		<div class="user-location">
+			<%- unless profile.location.blank? -%>
 			<a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.location) %>"><%=profile.location%></a>
+			<% else %>
+				&nbsp
+			<%- end -%>
 		</div><!-- /.user-location -->
 
 		<ul class="user-socials">
