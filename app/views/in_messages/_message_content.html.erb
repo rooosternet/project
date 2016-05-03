@@ -5,7 +5,7 @@
 				
 				<%= render :partial => 'message' , :locals =>  { message: message }%>
 
-				<% message.children.each do |child_message| %>
+				<% message.children.notarchive.each do |child_message| %>
 				<%= render :partial => 'message' , :locals =>  { message: child_message }%>
 				<% end %>
 			</div><!-- /.messages-wrapper -->

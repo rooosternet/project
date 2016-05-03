@@ -4,7 +4,7 @@ class InMessagesController < ApplicationController
   def index
     @hide_footer = true
     @top_search = true
-    @messages = InMessage.allbox.roots.includes(:children) #InMessage.allbox
+    @messages = InMessage.allbox.roots.includes(:children).notarchive #InMessage.allbox
   end
   
   def new
@@ -88,7 +88,28 @@ class InMessagesController < ApplicationController
   def touch
     @message = InMessage.find(params[:id])
     @message.touch
+    @message.children.each{|msg| msg.touch if msg.active?}
     render :nothing => true
+  end
+
+  def archive
+    
+    message = InMessage.find(params[:in_message][:id])
+    if message.archive!
+      if request.xhr?
+        render :text => message.id , :status => 200
+      else
+        redirect_to inbox_path, :notice => "Message archived."
+      end
+    else
+      if request.xhr?
+        render :text => "Fail to archive message." , :status => 500
+      else
+        redirect_to inbox_path, :alert => "Unable to archived message."
+      end
+    end
+
+
   end
 
   def destroy
@@ -97,7 +118,7 @@ class InMessagesController < ApplicationController
     if request.xhr?
       render :text => params[:id] , :status => 200
     else
-      redirect_to users_path, :notice => "Message deleted."
+      redirect_to inbox_path, :notice => "Message deleted."
     end
   end
 

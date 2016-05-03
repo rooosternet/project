@@ -23,12 +23,11 @@ namespace :roooster do
     private
 
     def populate_admin_users
-        emails = ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net","yoav@weitzman.co.il"]
+        emails = ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"]
         users = [
             {"firstname"=>"yossi", "lastname"=>"edri", "email"=>"yossi@roooster.net" , "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now},
             {"firstname"=>"sam", "lastname"=>"miller", "email"=>"sam@roooster.net", "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now},
-            {"firstname"=>"rotem", "lastname"=>"nahlieli", "email"=>"rotem@roooster.net", "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now},
-            {"firstname"=>"yoav", "lastname"=>"weitzman", "email"=>"yoav@weitzman.co.il", "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now}
+            {"firstname"=>"rotem", "lastname"=>"nahlieli", "email"=>"rotem@roooster.net", "password" => '1q2w3e4r',"confirmation_token" => "dyTTr4UPA8oGTxG7EedE","confirmed_at" => DateTime.now,"confirmation_sent_at" => DateTime.now}
             ]
             
         start = Time.now

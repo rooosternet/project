@@ -1,11 +1,11 @@
-<li class="conversation <%='new-message' if message.active? %>" data-url="<%=message_touch_path(message)%>">
+<li class="conversation <%='new-message' if (message.active? || message.descendants_active?) %>" data-url="<%=message_touch_path(message)%>">
 	<a href="#conversation<%=message.id%>" class="conversation-inner clearfix" data-toggle="tab">
 		<div class="conversation-avatar">
 			<!-- <img src="../images/temp/user2.jpg" alt=""> -->
 			<%#=image_tag "user2.jpg", { alt: "" } %>
 			<%=image_tag message.try(:from).try(:profile_image) , { alt: "" } %>
 
-			<% if message.active? %>
+			<% if message.active? || message.descendants_active? %>
 				<i class="ico-new-message"></i>
 			<% end %>
 		</div><!-- /.conversation-avatar -->

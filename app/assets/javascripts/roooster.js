@@ -232,7 +232,7 @@ var update_team = function(team_id,properties){
 			event.preventDefault();
             // console.log(1);
             var tpl = $($(this).attr('href')).html();
-            var image_id = Math.round(Math.random() * 20);
+            var image_id = Math.round(Math.random() * 18);
             var image_name = "team"+(image_id + 1);
             var $team = $(template(tpl, {
             	image: team_images[image_id]

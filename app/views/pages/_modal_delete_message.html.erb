@@ -7,7 +7,7 @@
 
 			<div class="modal-body">
 				<div class="form form-action">
-					<%= form_for(InMessage.new,:url => in_messages_path ,:remote => true ,:html => { :method => :delete ,id: "delete_message_form_id" }) do |f| %>
+					<%= form_for(InMessage.new,:url => message_archive_path ,:remote => true ,:html => { :method => :post ,id: "delete_message_form_id" }) do |f| %>
 						<%= f.hidden_field(:id,value: 0) %>
 						<div class="form-inner">
 							<div class="form-head">

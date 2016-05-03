@@ -15,7 +15,7 @@ $(function() {
 	$('#modal-delete').on('show.bs.modal', function(e) {
 	    var message_id = $(e.relatedTarget).data('message-id');
 	    $(e.currentTarget).find('input[name="in_message[id]"]').val(message_id);
-	    $(e.currentTarget).find('form[id="delete_message_form_id"]').attr('action','/in_messages/'+message_id)
+	    // $(e.currentTarget).find('form[id="delete_message_form_id"]').attr('action','/in_messages/'+message_id)
 	});
 
 	$('#modal-delete').on('hide.bs.modal', function(e) {

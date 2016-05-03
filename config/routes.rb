@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :in_messages
   get 'in_messages/:token', :controller => :in_messages , :action => :show , :as => "message_show"
   post 'in_messages/:id/touch' , :controller => :in_messages , :action => :touch , :as => "message_touch"
+  post 'in_messages/archive' , :controller => :in_messages , :action => :archive , :as => "message_archive"
   post "in_messages/bulk_create",:controller => :in_messages, :action => :bulk_create ,:as => :bulk_create_message
   match 'inbox', :to => 'in_messages#index', :via => [:get], :as => 'inbox'
   

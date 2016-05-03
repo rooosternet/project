@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   attr_reader :raw_invitation_token
   attr_accessor :terms_of_service
   
-  has_many :teams ,->{ where(backet: false)}, :class_name => 'Team', :foreign_key => 'owner_id'
+  has_many :teams ,->{ where(backet: false , archive: false)}, :class_name => 'Team', :foreign_key => 'owner_id'
  
   enum role: [:pending ,:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
