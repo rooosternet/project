@@ -15,7 +15,7 @@ class Users::InvitationsController < Devise::InvitationsController
     else
       # respond_with_navigational(resource) { render :new }
       if resource.errors.full_messages.include?("Email has already been taken")
-        message = "Great! have already heard about #{resource.name} from other users."
+        message = "Great! we have already heard about #{resource.name} from other users."
       else
         message = "Fail to sent invitation: #{resource.errors.full_messages.join(',')}" 
       end  

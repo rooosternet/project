@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
           if _user.errors.any?
             if _user.errors.full_messages.include?("Email has already been taken")
-              message = "Great! have already heard about #{_user.name} from other users."
+              message = "Great! we have already heard about #{_user.name} from other users."
             else
               message = "Fail to sent invitation: #{_user.errors.full_messages.uniq.join(',')}" 
             end
