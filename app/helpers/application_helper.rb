@@ -10,7 +10,7 @@ module ApplicationHelper
 	def team_images
 		arr = []
 		image = 1
-		10.times do 
+		20.times do 
 			arr << image_url("team#{image}.jpg")
 			image+=1
 		end	
