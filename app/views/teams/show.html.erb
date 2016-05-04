@@ -111,7 +111,11 @@
 	<div class="section-body">
 		
 		<div class="section-bar">
+			<% if @team.team_profiles.count > 0 %>
 			<p>You have <span><%= @profiles_count %> results</span> that match your search</p>
+			<% else %>
+			<p>You still don't have any contacts on this team.</p>
+			<% end %>
 		</div><!-- /.section-bar -->
 
 		<!-- <ul class="users users-flex infinite-scroll" data-src="?page=2&<%#=params.dup.except(:action,:controller).to_query%>"> -->
