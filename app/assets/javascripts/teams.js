@@ -33,4 +33,26 @@ $(function() {
 	$('#delete_profile_from_team_form_id').bind('ajax:complete', function(event, data, status, xhr) {
 	});
 
+	// Detete Team
+	$('#modal-delete-team').on('show.bs.modal', function(e) {
+	    var team_id = $(e.relatedTarget).data('team-id');
+	    $(e.currentTarget).find('input[name="team[id]"]').val(team_id);
+	    // $(e.currentTarget).find('form[id="delete_team_form_id"]').attr('action','/teams/'+message_id+/archive)
+	});
+
+	$('#modal-delete-team').on('hide.bs.modal', function(e) {
+	    $(e.currentTarget).find('input[name="team_profile[id]"]').val('');
+	});
+
+	$('#delete_team_form_id').bind('ajax:success',function(event, data, status, xhr){
+		$('#modal-delete-team').modal('hide');
+		window.location.href = "/";
+	});	
+
+	$('#delete_team_form_id').bind('ajax:error', function(event, data, status, xhr) {
+	});
+	
+	$('#delete_team_form_id').bind('ajax:complete', function(event, data, status, xhr) {
+	});
+
 });

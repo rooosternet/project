@@ -336,6 +336,12 @@ var update_team = function(team_id,properties){
 			$teamsSlider.trigger('refresh.owl.carousel');
 		});
 
+		// Delete team
+		$('.team-delete.ico-delete').on('click', function(event) {
+			event.preventDefault();
+			console.log("team-delete");
+		});
+
 		// Team Droppable
 		function teamDroppable(that) {
 			var that_id = $(that).find('a.team-inner').attr('href').match(/\d+/);

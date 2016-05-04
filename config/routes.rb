@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   
   resources :teams
   post 'teams/remove_profile', :as => "remove_profile"
+  post 'teams/archive' , :as => "team_archive"
+
 
   get 'info/about', :as => "about"
   get 'info/blog', :as => "blog"

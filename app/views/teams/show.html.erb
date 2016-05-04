@@ -1,13 +1,19 @@
 <section class="section-team-page">
 	<div class="section-actions">
 		<ul>
+			<% unless @team.backet? %>	
+			<li>
+				<a href="#modal-delete-team" data-toggle="modal" data-team-id="<%=@team.id%>">
+					<i class="ico-delete"></i>
+					<span>Delete Team</span>
+				</a>
+			</li>
+			<% end %>	
 			<li>
 				<div class="checkbox-select">
 					<input type="checkbox" class="checkbox-group" data-group=".checkbox-group1" name="select-all" id="select-all">
-
 					<label for="select-all">
 						<i class="ico-select"></i>
-
 						<span>Select all</span>
 					</label>
 				</div><!-- /.checkbox-select -->
@@ -16,16 +22,14 @@
 			<li>
 				<a href="#mass-message" class="link-mass-message" data-toggle="collapse">
 					<i class="ico-message"></i>
-
-					<span>message selected</span>
+					<span>Message selected</span>
 				</a>
 			</li>
 
 			<li>
 				<a href="#modal-delete-profile-from-team" data-toggle="modal" data-team-id="<%=@team.id%>" data-message-id="">
 					<i class="ico-delete"></i>
-
-					<span>remove selected</span>
+					<span>Remove selected profiles</span>
 				</a>
 			</li>
 		</ul>
@@ -35,6 +39,15 @@
 		<div class="section-head-inner">
 			<div class="team-page">
 				<div class="team team-sortable">
+					
+					<!-- <a href="#modal-delete-team" data-toggle="modal" data-team-id="<%=@team.id%>">
+						<div class="team-more-actions">
+							<span class="team-delete">
+								<i class="ico-delete"></i>
+							</span>
+						</div>
+					</a> -->
+
 					<a href="#modal-avatar" class="team-inner" data-toggle="modal" data-source-id="<%=@team.id%>" >
 						<div class="team-image">
 							<%=image_tag @team.team_image, { class: "team-image-selected",alt: "",id: @team.id } %>
@@ -45,11 +58,19 @@
 								</span>
 							</div><!-- /.team-image-change -->
 
+							<!-- <div class="team-model-delete">
+								<span>
+									Delete<br>
+									Team
+								</span>
+							</div> -->
+							
 							<div class="team-actions">
 								<span class="team-count"><%= @team.team_profiles.count %></span>
 							</div><!-- /.team-actions -->
 						</div><!-- /.team-image -->
 					</a>
+
 				</div><!-- /.team -->
 
 				<div class="team-page-content" data-team-id="<%=@team.id%>">

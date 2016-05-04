@@ -26,6 +26,10 @@ class TeamPolicy
     valid?
   end
 
+  def archive?
+    valid? && !@team.backet?
+  end
+
   private
 
   def valid?

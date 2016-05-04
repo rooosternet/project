@@ -1,9 +1,10 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :edit, :update ,:destroy]
+  before_action :find_team, only: [:archive]
   before_action :set_menu #, only: [:show, :edit, :update, :destroy]
-  before_action :verify_permissions , only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy]
+  before_action :verify_permissions , only: [:show, :edit, :update, :destroy ,:archive]
+  after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy ,:archive]
 
   def index
     authorize current_user
@@ -90,6 +91,23 @@ class TeamsController < ApplicationController
     render :nothing => true
   end
 
+  def archive
+    @team.archive = true
+    if @team.save
+      if request.xhr?
+        render :text => @team.id , :status => 200
+      else
+        redirect_to root_path, notice: 'Team was successfully archived.'
+      end
+    else
+      if request.xhr?
+        render :text => "Fail to archive team." , :status => 500
+      else
+        redirect_to @team , :alert => "Unable to archived team."
+      end
+    end
+  end
+
   def destroy
     @team.destroy
     respond_to do |format|
@@ -103,6 +121,10 @@ class TeamsController < ApplicationController
 
     def verify_permissions
       authorize @team
+    end
+    
+    def find_team
+      @team = Team.where(id: params[:team][:id]).first
     end
 
     def set_menu
