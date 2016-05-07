@@ -55,4 +55,16 @@ $(function() {
 	$('#delete_team_form_id').bind('ajax:complete', function(event, data, status, xhr) {
 	});
 
+
+	// replace Team image
+	$('#modal-avatar').on('show.bs.modal', function(e) {
+		var image = $(e.relatedTarget).find(".team-image-selected").attr('src');
+	    $(e.currentTarget).find(".team-image-selected").attr('src',image);
+	});
+
+	$('#modal-avatar').on('hide.bs.modal', function(e) {
+	    $(e.currentTarget).find(".team-image-selected").attr('src','');
+	});
+
+
 });
