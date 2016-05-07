@@ -11,6 +11,57 @@
 					<%= f.hidden_field :edit_profile , :value => true %>
 					<div class="form-inner">
 						<div class="form-head">
+							<div class="dropdown dropdown-avatar">
+									<a href="#" data-toggle="dropdown">
+										<div class="team team-sortable">
+											<div class="team-inner">
+												<div class="team-image">
+													<!-- <img src="../images/temp/team-default.jpg" id="main-image" alt="" -->
+													<%=image_tag current_user.profile_image, { id: "main-image" ,class: "user-main-image" ,alt: "" } %>
+													<%= f.hidden_field :image %>
+												</div><!-- /.team-image -->
+											</div>
+										</div><!-- /.team -->
+									</a>
+
+									<div class="dropdown-menu">
+										<ul class="list-avatars">
+											<% (1..20).each_with_index do |index| %>
+											<li>
+												<div class="team">
+													<a href=".user-main-image" class="team-inner change-image" data-image="team<%=index%>">
+														<div class="team-image">
+															<%=image_tag "team#{index}.jpg", { alt: "" } %>
+														</div><!-- /.team-image -->
+													</a>
+												</div><!-- /.team -->
+											</li>
+											<% end %>
+											
+
+											<li>
+												<div class="team team-alt">
+													<div class="team-inner">
+														<div class="team-image">
+															<!-- <img src="../images/temp/team-default.jpg" alt=""> -->
+															<%=image_tag "team-default.jpg", { alt: "" } %>
+
+															<div class="team-actions">
+																<span class="team-add">
+																	<i class="ico-plus"></i>
+																</span>
+															</div><!-- /.team-actions -->
+
+															<input type="file" name="upload-team" id="upload-team">
+
+															<label for="upload-team">Upload</label>
+														</div><!-- /.team-image -->
+													</div>
+												</div><!-- /.team -->
+											</li>
+										</ul><!-- /.list-avatars -->
+									</div><!-- /.dropdown-menu -->
+								</div><!-- /.dropdown -->
 							<h4 class="form-title">Admin Profile</h4>
 						</div>
 
@@ -63,6 +114,86 @@
 									</div>
 								</div>
 
+								<div class="form-socials">
+										<ul class="list-socials">
+											<li>
+												<i class="ico-linkedin"></i>
+
+												<span>Linkedin</span>
+
+												<div class="checkbox-link">
+													<!-- <input type="checkbox" name="field-link1" id="field-link1"> -->
+													<%= profile_connect("linkedin",current_user.profile) %>
+
+													<label for="field-connect-linkedin">
+														<span class="checkbox-label">Link</span>
+
+														<span class="checkbox-label-checked">Unlink</span>
+													</label>
+												</div><!-- /.checkbox-link -->
+											</li>
+
+											<li>
+												<i class="ico-twitter"></i>
+
+												<span>Twitter</span>
+
+												<div class="checkbox-link">
+													<!-- <input type="checkbox" name="field-link2" id="field-link2" checked> -->
+													<%= profile_connect("twitter",current_user.profile) %>
+
+													<label for="field-connect-twitter">
+														<span class="checkbox-label">Link</span>
+
+														<span class="checkbox-label-checked">Unlink</span>
+													</label>
+												</div><!-- /.checkbox-link -->
+											</li>
+										</ul><!-- /.list-socials -->
+
+										<ul class="list-socials collapse" id="additional-socials">
+											
+											<li>
+												<i class="ico-vimeo"></i>
+
+												<span>Vimeo</span>
+
+												<div class="checkbox-link">
+													<!-- <input type="checkbox" name="field-link5" id="field-link5"> -->
+													<%= profile_connect("vimeo",current_user.profile) %>	
+													<label for="field-connect-vimeo">
+														<span class="checkbox-label">Link</span>
+
+														<span class="checkbox-label-checked">Unlink</span>
+													</label>
+												</div>
+											</li>
+
+											<li>
+												<i class="ico-behance"></i>
+
+												<span>Behance</span>
+
+												<div class="checkbox-link">
+													<!-- <input type="checkbox" name="field-link6" id="field-link6"> -->
+													<%= profile_connect("behance",current_user.profile) %>
+													<label for="field-connect-behance">
+														<span class="checkbox-label">Link</span>
+
+														<span class="checkbox-label-checked">Unlink</span>
+													</label>
+												</div>
+											</li>
+										</ul><!-- /.list-socials -->
+
+										<div class="form-socials-expand">
+											<a href="#additional-socials" data-toggle="collapse">
+												<i class="ico-arrow-down-medium"></i>
+
+												<span>Additional Networks</span>
+											</a>
+										</div><!-- /.form-socials-expand -->
+									</div><!-- /.form-socials -->
 								<!-- <div class="row">
 									<div class="col-sm-6">
 										<div class="form-row">
@@ -123,7 +254,7 @@
 											<div class="team-inner">
 												<div class="team-image">
 													<!-- <img src="../images/temp/team-default.jpg" id="main-image" alt="" -->
-													<%=image_tag current_user.profile_image, { id: "main-image" ,alt: "" } %>
+													<%=image_tag current_user.profile_image, { id: "main-image" ,class: "user-main-image" , alt: "" } %>
 													<%= f.hidden_field :image %>
 												</div><!-- /.team-image -->
 											</div>
@@ -132,12 +263,12 @@
 
 									<div class="dropdown-menu">
 										<ul class="list-avatars">
-											<% (1..4).each_with_index do |index| %>
+											<% (1..20).each_with_index do |index| %>
 											<li>
 												<div class="team">
-													<a href="#main-image" class="team-inner change-image" data-image="team-image<%=index%>">
+													<a href=".user-main-image" class="team-inner change-image" data-image="team<%=index%>">
 														<div class="team-image">
-															<%=image_tag "team-image#{index}.jpg", { alt: "" } %>
+															<%=image_tag "team#{index}.jpg", { alt: "" } %>
 														</div><!-- /.team-image -->
 													</a>
 												</div><!-- /.team -->

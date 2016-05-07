@@ -373,12 +373,19 @@ var update_team = function(team_id,properties){
 						$(that).removeClass('team-dropped');
 						ui.draggable.removeClass('user-dropped');
 					}, 1000);
+
 					var user_id = ui.draggable.parents('li.user-alt').attr('id');
 					add_profile_to_team(user_id,that_id);
+					
 					$(that).find('.team-count').text(parseInt($(that).find('.team-count').text()) + 1).css('color','#fff');
+					
 					if(!($(that).find('.team-count').hasClass('team-count-backet'))){
 						var backet = $('.team-count-backet');
-						backet.text(parseInt(backet.text()) + 1).css('color','#fff');											
+						var team_id = backet.closest('a.team-inner').attr('href').match(/\d+/)[0];
+						if(!(ui.draggable.hasClass('g-'+team_id))){
+							backet.text(parseInt(backet.text()) + 1).css('color','#fff');											
+							ui.draggable.addClass('g-' + team_id);
+						}
 					}
 				}
 			});
