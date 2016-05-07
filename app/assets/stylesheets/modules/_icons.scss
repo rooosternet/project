@@ -48,10 +48,13 @@ a:hover .ico-message-add { background-position: center 100%; }
 .ico-delete { width: 17px; height: 17px; background-image: image-url('ico-delete@2x.png'); background-position: center 0; background-size: 100% auto; } 
 .ico-report { width: 17px; height: 17px; background-image: image-url('ico-report@2x.png'); background-position: center 0; background-size: 100% auto; } 
 .ico-ignore { width: 17px; height: 17px; background-image: image-url('ico-ignore@2x.png'); background-position: center 0; background-size: 100% auto; } 
+.ico-settings      { width: 19px; height: 19px; padding: 6px;border: 1px solid #a2a2a2; border-radius: 50%; transition: all .2s ease-out; background-image: image-url('ico-settings@2x.png'); background-position: center 0; background-size: 100% auto; } 
+.ico-settings-over { width: 19px; height: 19px; padding: 6px;border: 1px solid #a2a2a2; border-radius: 50%; transition: all .2s ease-out; background-image: image-url('ico-settings_over@2x.png'); background-position: center 0; background-size: 100% auto; } 
 
 a:hover .ico-delete,
 a:hover .ico-report,
 a:hover .ico-ignore { background-position: center 100%; }
+a:hover .ico-settings { background-image: image-url('ico-settings_over@2x.png'); }
 
 .ico-select { width: 19px; height: 19px; padding: 6px; background: #fff; border: 1px solid #a2a2a2; border-radius: 50%; transition: all .2s ease-out; }
 .ico-select:before { content: ''; display: block; width: 100%; height: 100%; border: 1px solid #b6b6b6; border-radius: 50%; transition: all .2s ease-out; }
