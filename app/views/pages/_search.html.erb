@@ -97,7 +97,7 @@
 				<% end %>
 			</li><!-- /.team -->
 
-			<% current_user.teams.each do |team| %>
+			<% current_user.ordered_teams.each do |team| %>
 				<li class="team team-sortable">
 					<%= render :partial => 'teams/team' , :locals =>  { team: team }%>
 				</li>

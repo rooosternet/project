@@ -1,14 +1,6 @@
 <section class="section-team-page">
 	<div class="section-actions">
 		<ul>
-			<% unless @team.backet? %>	
-			<li>
-				<a href="#modal-delete-team" data-toggle="modal" data-team-id="<%=@team.id%>">
-					<i class="ico-settings"></i>
-					<span>Delete Team</span>
-				</a>
-			</li>
-			<% end %>	
 			<li>
 				<div class="checkbox-select">
 					<input type="checkbox" class="checkbox-group" data-group=".checkbox-group1" name="select-all" id="select-all">
@@ -32,6 +24,14 @@
 					<span>Remove selected profiles</span>
 				</a>
 			</li>
+			<% unless @team.backet? %>	
+			<li>
+				<a href="#modal-delete-team" data-toggle="modal" data-team-id="<%=@team.id%>">
+					<i class="ico-settings"></i>
+					<span>Delete Team</span>
+				</a>
+			</li>
+			<% end %>	
 		</ul>
 	</div><!-- /.section-actions -->
 

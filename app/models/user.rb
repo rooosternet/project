@@ -17,12 +17,25 @@ class User < ActiveRecord::Base
   has_many :outgoing_messages , :class_name => 'InMessage' , :foreign_key => 'from_id'
   has_many :incoming_messages , :class_name => 'InMessage' , :foreign_key => 'to_id'
   has_many :profile_connects , :through => :profile
+  has_one :preference, :dependent => :destroy, :class_name => 'UserPreference'
 
   # delegate :job_title ,:company_name ,:company_website , :to => :studio, :allow_nil => true
   # delegate :online_portfolio,:linkedin_profile,:company_name,:contact_name,:contact_email,:behance,:vimeo,:skills,:location , :to => :freelancer, :allow_nil => true
   # accepts_nested_attributes_for :studio, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Studio.reject_studio(attributes)}
   # accepts_nested_attributes_for :freelancer, :allow_destroy => true, :update_only => true, :reject_if => proc {|attributes| Freelancer.reject_freelancer(attributes)}
   accepts_nested_attributes_for :profile, :allow_destroy => true #, :update_only => true, :reject_if => proc {|attributes| Profile.reject_profile(attributes)}
+
+  def ordered_teams
+    if(ids=pref[:teams_order])
+      teams.sort_by {|m| ids.index(m.id)}
+    else
+      teams
+    end  
+  end
+
+  def pref
+    self.preference ||= UserPreference.new(:user => self)
+  end
 
   def my_contacts_team
     unless _team = Team.where(owner_id: self.id , backet: true).first

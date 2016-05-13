@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503090539) do
+ActiveRecord::Schema.define(version: 20160512041148) do
 
   create_table "in_messages", force: :cascade do |t|
     t.integer  "from_id",    limit: 4,     default: 0,     null: false
@@ -104,6 +104,11 @@ ActiveRecord::Schema.define(version: 20160503090539) do
   end
 
   add_index "teams", ["archive"], name: "index_teams_on_archive", using: :btree
+
+  create_table "user_preferences", force: :cascade do |t|
+    t.integer "user_id", limit: 4,     default: 0, null: false
+    t.text    "others",  limit: 65535
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false

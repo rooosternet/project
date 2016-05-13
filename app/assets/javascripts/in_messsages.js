@@ -37,7 +37,6 @@ $(function() {
 	$('#delete_message_form_id').bind('ajax:complete', function(event, data, status, xhr) {
 	});
 
-
 	// $('#new_message_form_id').bind('ajax:success',function(event, data, status, xhr){
 	// 	$('#modal-delete').modal('hide');
 	// 	// $(".conversations").find('li').last().addClass('active')
@@ -83,25 +82,77 @@ $(function() {
  //    	return false;
 	// });
 
-
-	$('#mass-message').on('shown.bs.collapse', function(e) {
-		console.log('mass-message: shown.bs.collapse');
+	function addTeamRecipents() {
 		var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
 		$.each(profile_ids, function( index, value ) {
 			$("#recipient_"+value).removeClass('hidden');  
 		});
 		$("#in_message_to_ids").val(profile_ids);
 		$("#team_bulk_message_error").text('');
-	});
+	}
 
-	$('#mass-message').on('hide.bs.collapse', function(e) {
-		console.log('mass-message: hide.bs.collapse');
+	function clearTeamRecipents() {
 		var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
 		$.each(profile_ids, function( index, value ) {
 			$("#recipient_"+value).addClass('hidden');  
 		});
 		$("#in_message_to_ids").val([]);
 		$("#team_bulk_message_error").text('');
+	}
+
+	function addTeamRecipent(id) {
+		$("#recipient_"+id).removeClass('hidden');  
+	}
+
+	function clearTeamRecipent(id) {
+		$("#recipient_"+id).addClass('hidden');  
+	}
+
+	$('.checkbox-group1').bind('change', function(e){
+		var $this = $(this),
+			id = $this.data('profile-id');
+
+		if ($this.is(':checked')) {
+			addTeamRecipent(id);
+		} else {
+			clearTeamRecipent(id);
+		}
+	})
+
+	// Checkbox
+	$('.checkbox-group').on('change', function(event) {
+		var $group = $($(this).data('group'));
+
+		$group.prop('checked', this.checked).trigger('change');
+	});
+
+
+	$('#new_message_form_id').bind('submit',function(event) {
+		var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
+		$("#in_message_to_ids").val(profile_ids);
+	});
+
+	// $('.link-mass-message').bind('click', function(e) {
+	// 	e.preventDefault();
+	// 	$('#mass-message').show();
+	// 	addTeamRecipent()
+	// });
+
+	// $('.section-head-close').bind('click', function(e){
+	// 	e.preventDefault();
+	// 	$('#mass-message').hide();
+	// 	clearTeamRecipents();
+	// });
+
+
+	$('#mass-message').on('shown.bs.collapse', function(e) {
+		console.log('mass-message: shown.bs.collapse');
+		addTeamRecipents();
+	});
+
+	$('#mass-message').on('hide.bs.collapse', function(e) {
+		console.log('mass-message: hide.bs.collapse');
+		clearTeamRecipents();
 	});
 
 	$('.message-to').bind('ajax:success',function(event, data, status, xhr){

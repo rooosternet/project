@@ -596,12 +596,6 @@ var update_team = function(team_id,properties){
 			});
 		});
 
-		// Checkbox
-		$('.checkbox-group').on('change', function(event) {
-			var $group = $($(this).data('group'));
-
-			$group.prop('checked', this.checked);
-		});
 
 		// Section Inbox
 		$('.conversation > a, .conversation-compose > a').on('click', function(event) {
@@ -631,15 +625,15 @@ var update_team = function(team_id,properties){
 		});
 
 		// Mass Message
-		$('.link-mass-message').on('click', function(event) {
-			event.preventDefault();
+		// $('.link-mass-message').on('click', function(event) {
+		// 	event.preventDefault();
 
-			setTimeout(function() {
-				$('body').one('click', function(event) {
-					$('.section-team-page .section-head-close').trigger('click');
-				});
-			}, 500);
-		});
+		// 	setTimeout(function() {
+		// 		$('body').one('click', function(event) {
+		// 			$('.section-team-page .section-head-close').trigger('click');
+		// 		});
+		// 	}, 500);
+		// });
 
 		$('.section-team-page .form-message').on('click', function(event) {
 			event.stopPropagation();
