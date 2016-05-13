@@ -75,7 +75,7 @@
 	.teams-slider,
 	.teams-create { display: inline-block; vertical-align: top; }
 
-	.teams-slider { position: relative; width: 468px; padding: 0 15px; border-width: 0 1px; border-style: solid; border-color: #dbdbdb; margin: 0 17px;
+	.teams-slider { position: relative; width: 468px; height: 78px; padding: 0 15px; border-width: 0 1px; border-style: solid; border-color: #dbdbdb; margin: 0 17px;
 
 		.teams-slides { padding: 40px 0 0; margin: -40px 0 0; overflow: hidden; display: flex;justify-content: space-around;}
 
@@ -106,7 +106,7 @@
 
 		.team .team-image { margin: 0; }
 
-		.team .team-title { position: absolute; left: 50%; bottom: 100%; min-height: 0; width: 84px; margin: 0 0 5px -42px; text-align: center; color: #979797; visibility: hidden; opacity: 0; }
+		.team .team-title { position: absolute; left: 50%; bottom: 100%; min-height: 0; width: 84px; margin: 0 0 5px -42px; text-align: center; color: #979797; }
 		.team:hover .team-title,
 		.team-new .team-title { visibility: visible; opacity: 1; }
 
