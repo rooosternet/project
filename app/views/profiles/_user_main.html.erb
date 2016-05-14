@@ -21,14 +21,17 @@
 						</li>
 						<% end %>	
 
-						<% current_user.teams.each do |team| %>
-						<li>
+						<% current_user.teams.each_with_index do |team, i| %>
+						<li class="<%= i >= 7 ? 'hidden' : ''%>">
 							<div class="checkbox">
 								<%=check_box_tag("field-user#{profile.id}-group#{team.id}",nil,team.profiles.pluck(:id).include?(profile.id),{:id=>"field-user#{profile.id}-group#{team.id}"})%>
 								<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" data-backet="<%=backet_id%>" class="add-profile"><%=team.name%></label>
 							</div><!-- /.checkbox -->
 						</li>
 						<% end %>
+						<li class="<%= current_user.teams.size > 7 ? '' : 'hidden'%>">
+							<button type="button" class="show-all-teams">Show all</button>
+						</li>
 						<li>
 							<button class="user-create-group" data-template="#user-group-template" data-profile="<%=profile.id%>" >(+) create a new team</button>
 						</li>

@@ -694,5 +694,13 @@ var update_team = function(team_id,properties){
 				$tabBtn.removeClass('team-filled');
 			};
 		});
+
+    $('.user-groups .show-all-teams').click(function(e) {
+      e.preventDefault();
+      $('.user-groups li.hidden').removeClass('hidden');
+      $(this).hide();
+    });
+
 	});
+
 })(jQuery, window, document);

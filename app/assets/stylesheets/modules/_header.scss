@@ -66,7 +66,10 @@
 		a:hover { color: #000; background: transparent; }
 	}
 	&.open .btn-icon i { transform: rotate(-180deg); }
-	&.open .dropdown-menu { visibility: visible; opacity: 1; }
+	&.open .dropdown-menu {
+		visibility: visible;
+		opacity: 1;
+	}
 }
 
 /* ------------------------------------------------------------ *\
