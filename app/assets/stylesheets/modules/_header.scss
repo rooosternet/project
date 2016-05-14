@@ -69,11 +69,6 @@
 	&.open .dropdown-menu {
 		visibility: visible;
 		opacity: 1;
-		max-height: 120px;
-
-		&.show-all {
-			max-height: auto;
-		}
 	}
 }
 
