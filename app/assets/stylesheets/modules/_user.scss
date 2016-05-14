@@ -66,7 +66,7 @@
 	.user-location { margin: 0 auto 8px; padding-top: 5px; border-top: 1px solid #d1d1d2; color: #707274; font-size: 11px; }
 	.user-location a { color: #707274; }
 
-	.user-socials { list-style: none outside none; text-align: center; font-size: 0; }
+	.user-socials { list-style: none outside none; text-align: center; font-size: 0;min-height: 25px; }
 	.user-socials li { display: inline-block; vertical-align: top; margin: 0 3px; }
 	.user-socials a { display: block; opacity: .6; transition: all .2s ease-out; }
 	.user-socials a:hover { opacity: 1; }
