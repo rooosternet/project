@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
   end
 
   def profile_image
-    self.image.blank? ? "logged-user.jpg" : "#{self.image}.jpg"
+    self.image.blank? ? "user_default.jpg" : "#{self.image}.jpg"
   end
 
   class << self
