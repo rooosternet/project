@@ -112,12 +112,14 @@
 		<div class="header-actions visible-xs">
 			<ul>
 				<li>
-					<a href="#">
-						<i class="fa fa-envelope"></i>
-
-						<% if current_user.has_active_messages? %>
-							<i class="ico-new-message"></i>
-						<% end %>
+					<a href="<%= inbox_path %>" class="user-btn">
+						<span class="user-btn-icon">
+							<i class="fa fa-envelope"></i>
+							
+							<% if current_user.has_active_messages? %>
+								<i class="ico-new-message"></i>
+							<% end %>
+						</span>
 					</a>
 				</li>
 				<%- if @top_search -%>
