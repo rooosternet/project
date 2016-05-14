@@ -656,7 +656,9 @@ var update_team = function(team_id,properties){
 
 			$target.attr('src', src);
 			var team_id = $target[0].id;
-			update_team(team_id,{image: image_name});
+			if(team_id){
+				update_team(team_id,{image: image_name});
+			}
 		});
 
 		// Mass Message
