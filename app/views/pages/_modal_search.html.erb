@@ -1,0 +1,79 @@
+<div class="modal modal-search fade" id="modal-search">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+				<i class="ico-close"></i>
+			</button>
+
+			<div class="modal-body">
+				<section class="section-search section-search-alt">
+					<div class="section-body">
+						<div class="search">
+							<div class="search-body">
+								<%= form_tag({ :controller => 'profiles', :action => 'index'}, :method => :get, :id => 'query_form') do %>
+									<label for="q" class="hidden">Search</label>
+									<%= text_field_tag(:search, params[:search], :autocomplete => "off", :class => "form-control search-field live_search_field", :placeholder => '' ) %>
+									<button type="submit" class="search-btn" id="submit_search_form">
+										<i class="fa fa-search"></i>
+									</button>
+								<% end %>
+
+								<div class="dropdown">
+									<a href="#" class="dropdown-btn" data-toggle="dropdown">
+										<span class="btn-icon">
+											<i class="ico-arrow-right-small"></i>
+
+											<span class="btn-icon-alt">
+												<i id="search-icon-popup"></i>
+											</span>
+										</span>
+									</a>
+
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#search-icon-popup" data-change-class="">All</a>
+										</li>
+
+										<li>
+											<a href="#search-icon-popup" data-change-class="ico-location">Location</a>
+										</li>
+
+										<li>
+											<a href="#search-icon-popup" data-change-class="ico-people">People</a>
+										</li>
+
+										<li>
+											<a href="#search-icon-popup" data-change-class="ico-skills">Skill</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="search-foot">
+								<span>Popular Searches:</span>
+
+								<ul>
+									<li>
+										<a href="<%=profiles_index_path(:search=>'',:skills => 'Motion Graphics') %>"> Motion Graphics</a>
+									</li>
+									<li>
+										<a href="<%=profiles_index_path(:search=>'',:skills => '2D Animation') %>">2D Animation</a>
+									</li>
+									<li>
+										<a href="<%=profiles_index_path(:search=>'',:skills => 'Art Direction') %>">Art Direction</a>
+									</li>
+									<li>
+										<a href="<%=profiles_index_path(:search=>'',:skills => 'VFX') %>">VFX</a>
+									</li>
+									<li>
+										<a href="<%=profiles_index_path(:search=>'',:skills => 'Illustration') %>">Illustration</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
