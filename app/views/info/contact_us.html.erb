@@ -32,7 +32,7 @@
 					</div>
 					<div class="section-dot">
 						<div class="section-icon">
-							<i class="ico-dots"></i>
+							<center><i class="ico-dots"></i></center>
 						</div>
 					</div>
 
@@ -44,7 +44,7 @@
 
 					<div class="form-row">
 						<div class="form-controls">
-							<%= text_area_tag "message[note]", '' , :no_label => true,:required => true ,:rows => 6, :class =>"note" ,:placeholder => "Your message" %>
+							<%= text_area_tag "message[note]", '' , :no_label => true,:required => true ,:rows => 6, :class =>"note form-control" ,:placeholder => "Your message",resize: 'none;' %>
 						</div>
 					</div>	
 
