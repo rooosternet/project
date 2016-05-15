@@ -711,8 +711,7 @@ var update_team = function(team_id,properties){
 
     $('.user-groups .show-all-teams').click(function(e) {
       e.preventDefault();
-      $('.user-groups li.hidden').removeClass('hidden');
-      $(this).hide();
+      $(this).parents('.user-groups').toggleClass('show-all');
     });
 
 	});

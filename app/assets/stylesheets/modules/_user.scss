@@ -101,6 +101,43 @@
 	.user-groups label:hover,
 	.user-groups button:hover { color: #000; }
 
+	.user-groups {
+
+		.show-all-teams {
+			position: relative;
+			height: 0;
+      min-height: 0;
+      margin: 10px 0;
+			border-top: 1px solid #f3f3f3;
+
+			&:before {
+				content: '';
+				position: absolute;
+		    left: 50%;
+		    margin-left: -10px;
+		    top: -10px;
+				width: 20px;
+				height: 20px;
+				background: transparent url(image_path('ico-arrow-down-medium@2x.png')) no-repeat;
+				background-size: 20px;
+			}
+		}
+
+    &.show-all {
+
+      li.hidden {
+        display: block!important;
+      }
+
+      .show-all-teams {
+
+        &:before {
+          transform: rotate(180deg);
+        }
+      }
+    }
+	}
+
 	.checkbox-select { position: absolute; right: 10px; top: 10px; }
 
 	@media (max-width: $screen-sm-max) {
