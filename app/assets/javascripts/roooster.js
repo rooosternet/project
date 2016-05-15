@@ -246,7 +246,10 @@ var update_team = function(team_id,properties){
 		$('.teams-sortable').sortable({
 			items: '.team-sortable',
 			delay: delay,
-			revert: 300
+			revert: 300,
+      update: function(e, ui){
+        console.log('ui ' , ui);
+      }
 		});
 
 		// Create Team
