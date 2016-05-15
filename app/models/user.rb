@@ -85,8 +85,13 @@ class User < ActiveRecord::Base
   end
 
   def profile_image
-    self.image.blank? ? "user_default.jpg" : "#{self.image}.jpg"
+    self.image.blank?  ? "user_default.jpg" : (self.image.match(/http/) ? self.image : "#{self.image}.jpg")
   end
+
+  def profile_additional_images
+    # profile_connects.collect{|profile| profile.image_url unless self.image.eql?(profile.image_url) }.compact
+    profile_connects.collect(&:image_url).compact
+  end  
 
   class << self
     def current=(user)

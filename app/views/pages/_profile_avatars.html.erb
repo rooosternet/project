@@ -1,0 +1,63 @@
+<div class="dropdown dropdown-avatar">
+	<a href="#" data-toggle="dropdown">
+		<div class="team team-sortable">
+			<div class="team-inner">
+				<div class="team-image">
+					<%#=image_tag current_user.profile_image, { id: "main-image" ,class: "user-main-image" , alt: "" } %>
+					<%=profile_image current_user , { id: "main-image" ,class: "user-main-image" , alt: "" } %>
+					 
+					<%= f.hidden_field :image %>
+				</div><!-- /.team-image -->
+			</div>
+		</div><!-- /.team -->
+	</a>
+
+	<div class="dropdown-menu">
+		<ul class="list-avatars">
+			
+			<li>
+				<div class="team">
+					<a href=".user-main-image" class="team-inner change-image" data-image="user_default">
+						<div class="team-image">
+							<%=image_tag "user_default.jpg", { alt: "" } %>
+						</div><!-- /.team-image -->
+					</a>
+				</div><!-- /.team -->
+			</li>
+
+			<% current_user.profile_additional_images.each do |image| %>
+			<li>
+				<div class="team">
+					<a href=".user-main-image" class="team-inner change-image" data-image="<%=image%>">
+						<div class="team-image">
+							<%#=image_tag image, { alt: "" } %>
+							<img alt="" src="<%=image%>">
+						</div>
+					</a>
+				</div>
+			</li>
+			<% end %>
+
+
+			<li>
+				<div class="team team-alt">
+					<div class="team-inner">
+						<div class="team-image">
+							<%=image_tag "team-default.jpg", { alt: "" } %>
+
+							<div class="team-actions">
+								<span class="team-add">
+									<i class="ico-plus"></i>
+								</span>
+							</div><!-- /.team-actions -->
+
+							<input type="file" name="upload-team" id="upload-team">
+
+							<label for="upload-team">Upload</label>
+						</div><!-- /.team-image -->
+					</div>
+				</div><!-- /.team -->
+			</li>
+		</ul><!-- /.list-avatars -->
+	</div><!-- /.dropdown-menu -->
+</div><!-- /.dropdown -->
