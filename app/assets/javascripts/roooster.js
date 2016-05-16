@@ -201,7 +201,7 @@ var update_team = function(team_id,properties){
 
     var addItemToCarousel = function (teamData){
       var tpl = $('#template-team').html(),
-          name = teamData ? teamData.name : '&nbsp',
+          name = teamData ? teamData.name : '',
           imageId = teamData ? teamData.image : Math.round(Math.random() * 8),
           team = template(tpl, {
             image: team_images[imageId],
@@ -212,18 +212,23 @@ var update_team = function(team_id,properties){
       $teamsSlider.trigger('refresh.owl.carousel');
 
       if(name == '') {
-        $(team).find('.team-title')[0].focus().on('blur keydown', function(event) {
+        $('.teams-slider').find('.team-new .team-title').focus().on('blur keydown', function(event) {
+
           if (event.keyCode === 13 || event.type === 'blur') {
-            $(this).addAttr('contentEditable');
+
+            $(this).removeAttr('contentEditable');
+            $(this).closest('.team').removeClass('team-new');
+
             if ($(this).html() == '') {
               $(this).html('Team ' + leadingZero(newTeamsCount + 1));
               newTeamsCount++;
             }
+
             var attrs = {
               name: $(this).html(),
-              image: team_images[imageId],
+              image: team.image,
             }
-
+            debugger
             create_team(attrs, function(id){
               $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
               teamDroppable($(team));
@@ -246,7 +251,6 @@ var update_team = function(team_id,properties){
 			update_team(team_id,{name: target.find(".team-page-name")[0].innerText, description: target.find(".team-page-description")[0].innerText});
 		});
 
-		
 		// Scroll To
 		$('[data-scroll-to]').on('click', function(event) {
 			event.preventDefault();
@@ -394,6 +398,7 @@ var update_team = function(team_id,properties){
     $('.users').on('click', '.user-alt .user-create-group', function(event) {
       event.preventDefault();
       addItemToCarousel();
+      console.log('.user-alt .user-create-group');
       // addItemToTeamsList();
 
       // var tpl = $($(this).data('template')).html();
@@ -450,6 +455,7 @@ var update_team = function(team_id,properties){
     $('.teams-create .team-create').on('click', function(event) {
       event.preventDefault();
       addItemToCarousel();
+      console.log('.teams-create .team-create');
 
 		// 	var tpl = $($(this).attr('href')).html();
 
