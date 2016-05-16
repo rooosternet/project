@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   post 'teams/remove_profile', :as => "remove_profile"
   post 'teams/archive' , :as => "team_archive"
 
+  post 'teams/update_teams_order' , :as => "update_teams_order"
 
   get 'info/about', :as => "about"
   get 'info/blog', :as => "blog"

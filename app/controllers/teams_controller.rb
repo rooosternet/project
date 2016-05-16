@@ -6,6 +6,14 @@ class TeamsController < ApplicationController
   before_action :verify_permissions , only: [:show, :edit, :update, :destroy ,:archive]
   after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy ,:archive]
 
+  def update_teams_order
+    unless (team_ids = params[:team_ids]).blank?
+      current_user.pref[:teams_order] = team_ids.map { |e| e.to_i }
+      current_user.pref.save!
+    end  
+    render :nothing => true
+  end
+
   def index
     authorize current_user
     @teams = current_user.admin? ? Team.all : Team.my

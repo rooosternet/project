@@ -108,6 +108,26 @@ var update_team = function(team_id,properties){
 	});	
 }
 
+var update_teams_order = function(team_ids){
+	console.log(team_ids);
+	
+	$.ajax({
+		url: "/teams/update_teams_order",
+		type: 'post',
+		data: {team_ids: team_ids},
+		dataType: 'script',
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){ 
+			console.log(data);
+		},
+		complete: function(data){
+			console.log(data);
+		}
+	});	
+}
+
 ;(function($, window, document, undefined) {
 	var $win = $(window);
 	var $doc = $(document);
@@ -429,6 +449,22 @@ var update_team = function(team_id,properties){
 
 		$('.teams-create .team-droppable').on('drop', function(event) {
 			$(this).find('.team-create').trigger('click');
+		});
+
+		// sort teams in search view
+		// $('.teams .team-sortable').droppable({
+		// 	drop: function( event, ui ) {
+		// 		var team_ids = $('.teams .team-sortable .team-inner').map(function() {return $(this).attr('href').match(/\d+/);}).get();
+		// 		update_teams_order(team_ids);
+		// 	}
+		// });
+
+		$('.teams.teams-sortable').sortable({
+			items: 'li.team-sortable',
+			update: function(event,ui){
+				var team_ids = $('.teams .team-sortable .team-inner').map(function() {return $(this).attr('href').match(/\d+/);}).get();
+				update_teams_order(team_ids);
+			}
 		});
 
 		// User Draggable

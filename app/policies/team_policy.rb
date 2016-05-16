@@ -30,6 +30,10 @@ class TeamPolicy
     valid? && !@team.backet?
   end
 
+  def update_teams_order?
+    user_signed_in?
+  end
+
   private
 
   def valid?
