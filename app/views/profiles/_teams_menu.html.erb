@@ -20,7 +20,7 @@
 	<div class="teams-slider">
 		<div class="teams-slides owl-carousel">
 			
-			<% current_user.teams.each do |team| %>
+			<% current_user.ordered_teams.each do |team| %>
 				<div class="teams-slide">
 					<div class="team team-droppable" data-accept=".user-draggable">
 						<%= render :partial => 'teams/team' , :locals =>  { team: team }%>
