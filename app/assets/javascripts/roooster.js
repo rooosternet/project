@@ -263,13 +263,14 @@ var update_teams_order = function(team_ids){
 		// Teams Sortable
 		var delay = $win.width() < 768 ? 300 : 0;
 
-		$('.teams-sortable').sortable({
-			items: '.team-sortable',
+		$('.teams.teams-sortable').sortable({
+			items: 'li.team-sortable',
 			delay: delay,
 			revert: 300,
-      update: function(e, ui){
-        console.log('ui ' , ui);
-      }
+		      update: function(e, ui){
+		        var team_ids = $('.teams .team-sortable .team-inner').map(function() {return $(this).attr('href').match(/\d+/);}).get();
+				update_teams_order(team_ids);
+		      }
 		});
 
 		// Create Team
@@ -452,22 +453,6 @@ var update_teams_order = function(team_ids){
 
 		$('.teams-create .team-droppable').on('drop', function(event) {
 			$(this).find('.team-create').trigger('click');
-		});
-
-		// sort teams in search view
-		// $('.teams .team-sortable').droppable({
-		// 	drop: function( event, ui ) {
-		// 		var team_ids = $('.teams .team-sortable .team-inner').map(function() {return $(this).attr('href').match(/\d+/);}).get();
-		// 		update_teams_order(team_ids);
-		// 	}
-		// });
-
-		$('.teams.teams-sortable').sortable({
-			items: 'li.team-sortable',
-			update: function(event,ui){
-				var team_ids = $('.teams .team-sortable .team-inner').map(function() {return $(this).attr('href').match(/\d+/);}).get();
-				update_teams_order(team_ids);
-			}
 		});
 
 		// User Draggable
