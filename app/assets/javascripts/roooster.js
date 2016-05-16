@@ -83,6 +83,26 @@ var update_team = function(team_id,properties){
 	});	
 }
 
+var update_teams_order = function(team_ids){
+	console.log(team_ids);
+	
+	$.ajax({
+		url: "/teams/update_teams_order",
+		type: 'post',
+		data: {team_ids: team_ids},
+		dataType: 'script',
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){ 
+			console.log(data);
+		},
+		complete: function(data){
+			console.log(data);
+		}
+	});	
+}
+
 ;(function($, window, document, undefined) {
 	var $win = $(window);
 	var $doc = $(document);
@@ -308,10 +328,14 @@ var update_team = function(team_id,properties){
 		// Teams Sortable
 		var delay = $win.width() < 768 ? 300 : 0;
 
-		$('.teams-sortable').sortable({
-			items: '.team-sortable',
+		$('.teams.teams-sortable').sortable({
+			items: 'li.team-sortable',
 			delay: delay,
-			revert: 300
+			revert: 300,
+		      update: function(e, ui){
+		        var team_ids = $('.teams .team-sortable .team-inner').map(function() {return $(this).attr('href').match(/\d+/);}).get();
+				update_teams_order(team_ids);
+		      }
 		});
 
 		// Create Team
@@ -759,8 +783,7 @@ var update_team = function(team_id,properties){
 
     $('.user-groups .show-all-teams').click(function(e) {
       e.preventDefault();
-      $('.user-groups li.hidden').removeClass('hidden');
-      $(this).hide();
+      $(this).parents('.user-groups').toggleClass('show-all');
     });
 
 	});

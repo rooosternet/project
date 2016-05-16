@@ -26,6 +26,18 @@
 		.ico-new-message { left: -2px; bottom: -5px; }
 	}
 
+	.header-actions-sign { position: absolute;z-index: 10;top: 13px;padding: 0 10px;background: #fff;}
+	.header-actions-sign .btn { width: 100px; padding: 0 5px; }
+	.header-actions-sign .btn-icon { position: absolute; left: 50%; bottom: -8px; margin-left: -7px; line-height: 1; border-radius: 50%; background: #fff; }
+	.header-actions-sign .btn-icon i { vertical-align: top; opacity: .4; transition: all .2s ease-out; }
+	.header-actions-sign > ul { list-style: none outside none;
+
+		li { float: left; margin: 0 3px; }
+		a { position: relative; display: block; height: 32px; width: 32px; line-height: 30px; border-radius: 50%; border: 1px solid #e0e8ee; color: #dae4eb; font-size: 16px; }
+		.ico-new-message { left: -2px; bottom: -5px; }
+	}
+	
+
 	.header-actions .search-alt { width: 282px; margin: 3px 0 0 10px;
 
 		.search-field { box-shadow: none; }

@@ -5,8 +5,8 @@
 			<label class="form-label">To</label>
 
 			<div class="form-controls">
-				<%#= f.text_field :to_id , {class: "form-control form-to","data-provide"=>"typeahead"}%>
-				<input type="text" name="in_message[to_id]" id="in_message_to_id" data-provide="typeahead" class="form-control form-to" placeholder="name go here..">
+				<%= f.hidden_field :to_id , {class: "form-control form-to"}%>
+				<input type="text" id="select_in_message_to_id" class="form-control form-to" placeholder="name go here..">
 			</div>
 		</div>
 
@@ -26,50 +26,15 @@
 <!-- User.all.map {|u| [u.name,u.id] unless u.id.eql?(current_user.id)}.to_json  -->
 
 <script type="text/javascript">
-  // <!-- var data = <%#=raw User.all.select {|u| [u.name,u.id] unless u.id.eql?(current_user.id)}.to_json %>; -->
-  // <!-- $("#in_message_to_id").typeahead({ source:data }); -->
-  $(function() {
-  var substringMatcher = function(strs) {
-  return function findMatches(q, cb) {
-    var matches, substringRegex;
-
-    // an array that will be populated with substring matches
-    matches = [];
-
-    // regex used to determine if a string contains the substring `q`
-    substrRegex = new RegExp(q, 'i');
-
-    // iterate through the pool of strings and for any string that
-    // contains the substring `q`, add it to the `matches` array
-    $.each(strs, function(i, str) {
-      if (substrRegex.test(str)) {
-        matches.push(str);
-      }
-    });
-
-    cb(matches);
-  };
-};
-
-var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-];
-
-$('#in_message_to_id').typeahead({
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
-{
-  name: 'states',
-  source: substringMatcher(states)
-});
-});
+   var data = <%=raw User.all.collect {|u| {value: u.name, id: u.id} unless u.id.eql?(current_user.id)}.compact.to_json %>;
+    // data = [null,{"value": "yossi edri", "id": 1},{"value": "yoav weitzman","id": 2}]
+    $(function(){
+      $("#select_in_message_to_id").autocomplete({ 
+        source:data,
+        select: function(event,ui){
+          $("#in_message_to_id").val( ui.item.id );
+          console.log($("#in_message_to_id").val());
+        } 
+      });    
+    })
 </script>

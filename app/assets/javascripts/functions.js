@@ -256,5 +256,37 @@ $(function() {
 		// 	});	
 		// });
 
+		
+
+
+		// if ($this.is(':checked')) {
+		// 	addTeamRecipent(id);
+		// } else {
+		// 	clearTeamRecipent(id);
+		// }
+
+		//click to social link
+		$('.social-link').bind('change', function(e){
+			event.preventDefault();
+			var url = $(this).data('url'),method=$(this).data('method');
+
+			if($(this).is(':checked')){
+				window.location.href = url;
+			}else{
+				$.ajax({
+					url: url,
+					type: method,
+					success: function(data){
+						console.log(data);
+					},
+					error: function(data){ 
+						console.log(data);
+					},
+					complete: function(){ 
+					}
+				});
+			}	
+		});
+
 });
 // })(jQuery, window, document);

@@ -3,8 +3,10 @@
 		<div class="header-logged">
 			<div class="user">
 				<div class="dropdown">
+					
 					<a href="#" class="user-image" data-toggle="dropdown">
-						<%=image_tag(current_user.profile_image , class: "user-main-image", :alt=>current_user.firstname)%>
+						<%#=image_tag(current_user.profile_image , class: "user-main-image", :alt=>current_user.firstname)%>
+						<%=profile_image current_user , {class: "user-main-image", :alt=>current_user.firstname,width: '100%' ,height: '100%'} %>
 					</a><!-- /.user-image -->
 
 					<a href="<%= inbox_path %>" class="user-btn">
@@ -110,20 +112,23 @@
 		<div class="header-actions visible-xs">
 			<ul>
 				<li>
-					<a href="#">
-						<i class="fa fa-envelope"></i>
-
-						<% if current_user.has_active_messages? %>
-							<i class="ico-new-message"></i>
-						<% end %>
+					<a href="<%= inbox_path %>" class="user-btn">
+						<span class="user-btn-icon">
+							<i class="fa fa-envelope"></i>
+							
+							<% if current_user.has_active_messages? %>
+								<i class="ico-new-message"></i>
+							<% end %>
+						</span>
 					</a>
 				</li>
-
+				<%- if @top_search -%>
 				<li>
 					<a href="#modal-search" data-toggle="modal">
 						<i class="fa fa-search"></i>
 					</a>
 				</li>
+				<% end %>
 			</ul>
 		</div><!-- /.header-actions -->
 	</div><!-- /.shell -->

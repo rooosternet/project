@@ -13,6 +13,7 @@
 
 	.form-label { display: block; margin: 0 0 3px; font-size: 13px; color: #535353; font-weight: normal; }
 	.form-control { height: 28px; padding: 0 13px; background: #fbfbfb; border-radius: 0; border: 1px solid #dae4eb; box-shadow: none; font-size: 13px; color: #cfcfcf; transition: all .2s ease-out; }
+	.form-control.note { resize: none; height: 100px; padding: 0 13px; background: #fbfbfb; border-radius: 0; border: 1px solid #dae4eb; box-shadow: none; font-size: 13px; color: #cfcfcf; transition: all .2s ease-out; }
 	.form-control:focus { color: #535353; }
 
 	.form-group { margin: 0; }

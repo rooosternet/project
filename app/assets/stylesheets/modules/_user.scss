@@ -66,7 +66,7 @@
 	.user-location { margin: 0 auto 8px; padding-top: 5px; border-top: 1px solid #d1d1d2; color: #707274; font-size: 11px; }
 	.user-location a { color: #707274; }
 
-	.user-socials { list-style: none outside none; text-align: center; font-size: 0; }
+	.user-socials { list-style: none outside none; text-align: center; font-size: 0;min-height: 25px; }
 	.user-socials li { display: inline-block; vertical-align: top; margin: 0 3px; }
 	.user-socials a { display: block; opacity: .6; transition: all .2s ease-out; }
 	.user-socials a:hover { opacity: 1; }
@@ -100,6 +100,43 @@
 
 	.user-groups label:hover,
 	.user-groups button:hover { color: #000; }
+
+	.user-groups {
+
+		.show-all-teams {
+			position: relative;
+			height: 0;
+      min-height: 0;
+      margin: 10px 0;
+			border-top: 1px solid #f3f3f3;
+
+			&:before {
+				content: '';
+				position: absolute;
+		    left: 50%;
+		    margin-left: -10px;
+		    top: -10px;
+				width: 20px;
+				height: 20px;
+				background: transparent url(image_path('ico-arrow-down-medium@2x.png')) no-repeat;
+				background-size: 20px;
+			}
+		}
+
+    &.show-all {
+
+      li.hidden {
+        display: block!important;
+      }
+
+      .show-all-teams {
+
+        &:before {
+          transform: rotate(180deg);
+        }
+      }
+    }
+	}
 
 	.checkbox-select { position: absolute; right: 10px; top: 10px; }
 

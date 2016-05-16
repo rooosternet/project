@@ -12,15 +12,23 @@ function toggler(divId) {
 
 $(function() {
 
+	// $("#select_in_message_to_id").autocomplete({ 
+	// 	source:data,
+	// 	select: function(event,ui){
+	// 		$("#in_message_to_id").val( ui.item.id );
+	// 		console.log($("#in_message_to_id").val());
+	// 	} 
+	// });    
+
 	$('#modal-delete').on('show.bs.modal', function(e) {
-	    var message_id = $(e.relatedTarget).data('message-id');
-	    $(e.currentTarget).find('input[name="in_message[id]"]').val(message_id);
+		var message_id = $(e.relatedTarget).data('message-id');
+		$(e.currentTarget).find('input[name="in_message[id]"]').val(message_id);
 	    // $(e.currentTarget).find('form[id="delete_message_form_id"]').attr('action','/in_messages/'+message_id)
 	});
 
 	$('#modal-delete').on('hide.bs.modal', function(e) {
-	    $(e.currentTarget).find('input[name="in_message[id]"]').val('');
-	    $(e.currentTarget).find('form[id="delete_message_form_id"]').val('');
+		$(e.currentTarget).find('input[name="in_message[id]"]').val('');
+		$(e.currentTarget).find('form[id="delete_message_form_id"]').val('');
 	});
 
 	$('#delete_message_form_id').bind('ajax:success',function(event, data, status, xhr){
@@ -110,7 +118,7 @@ $(function() {
 
 	$('.checkbox-group1').bind('change', function(e){
 		var $this = $(this),
-			id = $this.data('profile-id');
+		id = $this.data('profile-id');
 
 		if ($this.is(':checked')) {
 			addTeamRecipent(id);
@@ -188,4 +196,5 @@ $(function() {
 	//     // resize on page load
 	//     .each(resizeInput);
 
-	});
+});
+
