@@ -26,12 +26,17 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile, :allow_destroy => true #, :update_only => true, :reject_if => proc {|attributes| Profile.reject_profile(attributes)}
 
   def ordered_teams
-    # if(ids=pref[:teams_order])
-    #   teams.sort_by {|m| ids.index(m.id)}
-    # else
-    #   teams
-    # end  
-    teams
+    if(ids=pref[:teams_order])
+      teams.sort_by do |m| 
+        if ids.include?(m[:id])
+          ids.index(m[:id])
+        else
+          10000
+        end
+      end
+    else
+      teams
+    end  
   end
 
   def pref
