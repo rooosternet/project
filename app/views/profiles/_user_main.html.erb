@@ -8,7 +8,7 @@
 						<span>Add To Team</span>
 					</a>
 
-					<ul class="dropdown-menu user-groups">
+					<ul class="dropdown-menu user-groups" id="profile_<%=profile.id%>" data-profile="<%=profile.id%>">
 						
 						<% if team = current_user.my_contacts_team 
 							backet_id = "field-user#{profile.id}-group#{team.id}"

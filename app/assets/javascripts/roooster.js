@@ -257,9 +257,30 @@ var update_teams_order = function(team_ids){
       }
     }
 
-    var addItemToTeamsList = function (creatNew){
-      var tpl = $('#user-group-template').html();
-      console.log('tpl ' , tpl);
+    var addItemToTeamsList = function (options){
+      options = options || {}
+      var tpl = $('#user-group-template').html(),
+          name = options.name || '',
+          imageId = options.image || Math.round(Math.random() * 8),
+          profile_id = options.profile_id,
+          $userGroup = $(template(tpl, {
+            user: profile_id,
+            // group: $(this).closest('li').index()
+          }));
+
+      $('#profile_'+profile_id).find('.show-all-teams').parent().before($userGroup);
+      $userGroup.find('label').focus().on('blur keydown', function(event) {
+        var $this = $(this);
+        console.log('team_images[imageId] ' , team_images[imageId]);
+        if (event.keyCode === 13 || event.type === 'blur') {
+          $this.removeAttr('contentEditable');
+          create_team({name: $this.text(), image: team_images[imageId], team_profiles_attributes: {profile_id: profile_id}}, function(id){
+            var newAttr = 'field-user' + profile_id + '-group' + id;
+            $userGroup.find('input').attr({name: newAttr, id: newAttr});
+            $userGroup.find('label').attr('for', newAttr);
+          });
+        }
+      });
     }
 
 		$(".team-page-name,.team-page-description").focusout(function(){
@@ -383,7 +404,7 @@ var update_teams_order = function(team_ids){
 			$teamsSlider.trigger('to.owl.carousel', event.item.count - $teamsSlider.find('.owl-item.active').length);
 		});
 
-		$teamsSlider.on('add.owl.carousel', function(event) {
+		// $teamsSlider.on('add.owl.carousel', function(event) {
 			// var $teamNew = $(this).find('.team-new');
 			// var team_created = false;
 
@@ -414,15 +435,16 @@ var update_teams_order = function(team_ids){
 			// });
 
 			// teamDroppable($teamNew);
-		});
+		// });
 
     // Create User Group
     // teams list inside member
     $('.users').on('click', '.user-alt .user-create-group', function(event) {
       event.preventDefault();
-      addItemToCarousel();
-      console.log('.user-alt .user-create-group');
-      // addItemToTeamsList();
+      // addItemToCarousel();
+      addItemToTeamsList({
+        profile_id: $(this).data('profile')
+      });
 
       // var tpl = $($(this).data('template')).html();
       // var profile_id = $(this).data('profile');
@@ -622,29 +644,29 @@ var update_teams_order = function(team_ids){
 		});
 
 		// $('.users, .section-team-page, .section-inbox').on('submit', '.form-message form', function(event) {
-			$('.users, .section-team-page, .section-inbox').on('submit', '.form', function(event) {
-				event.preventDefault();
+		$('.users, .section-team-page, .section-inbox').on('submit', '.form', function(event) {
+			event.preventDefault();
 
-				var $target = $($(this).attr('action'));
-				var tpl = $('#message-template').html();
+			var $target = $($(this).attr('action'));
+			var tpl = $('#message-template').html();
 
-				var avatar = $(this).find('.field-message-avatar').val();
-				var author = $(this).find('.field-message-author').val();
-				var content = $(this).find('.field-message-content').val();
+			var avatar = $(this).find('.field-message-avatar').val();
+			var author = $(this).find('.field-message-author').val();
+			var content = $(this).find('.field-message-content').val();
 
-				content = '<p>' + content.replace(new RegExp('\n\n', 'g'), '</p><p>').replace(new RegExp('\n', 'g'), '<br>') + '</p>';
+			content = '<p>' + content.replace(new RegExp('\n\n', 'g'), '</p><p>').replace(new RegExp('\n', 'g'), '<br>') + '</p>';
 
-				if (content !== '') {
-					var $message = $(template(tpl, {
-						avatar: avatar,
-						author: author,
-						content: content
-					}));
+			if (content !== '') {
+				var $message = $(template(tpl, {
+					avatar: avatar,
+					author: author,
+					content: content
+				}));
 
-					$target.append($message.fadeIn(300));
-					$(this).find('.field-message-content').val('');
-				};
-			});
+				$target.append($message.fadeIn(300));
+				$(this).find('.field-message-content').val('');
+			};
+		});
 
 		// User Touch
 		$('.users').on('touchstart', '.user-alt', function(event) {
