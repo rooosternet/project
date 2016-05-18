@@ -27,7 +27,13 @@ class User < ActiveRecord::Base
 
   def ordered_teams
     if(ids=pref[:teams_order])
-      teams.sort_by {|m| ids.index(m.id)}
+      teams.sort_by do |m| 
+        if ids.include?(m[:id])
+          ids.index(m[:id])
+        else
+          10000
+        end
+      end
     else
       teams
     end  
