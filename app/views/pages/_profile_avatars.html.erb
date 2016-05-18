@@ -5,7 +5,6 @@
 				<div class="team-image">
 					<%#=image_tag current_user.profile_image, { id: "main-image" ,class: "user-main-image" , alt: "" } %>
 					<%=profile_image current_user , { id: "main-image" ,class: "user-main-image" , alt: "" } %>
-					 
 					<%= f.hidden_field :image %>
 				</div><!-- /.team-image -->
 			</div>
@@ -51,9 +50,10 @@
 								</span>
 							</div><!-- /.team-actions -->
 
-							<input type="file" name="upload-team" id="upload-team">
-
-							<label for="upload-team">Upload</label>
+							<!-- <input type="file" name="upload-team" id="upload-team"> -->
+							<%= f.file_field :avatars, multiple: true %>
+							<%= f.label :avatars ,'Upload'%>
+							<!-- <label for="upload-team">Upload</label> -->
 						</div><!-- /.team-image -->
 					</div>
 				</div><!-- /.team -->

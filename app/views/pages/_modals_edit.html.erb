@@ -9,7 +9,7 @@
 
 			<div class="modal-body">
 				<div class="form form-signup">
-					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin"}) do |f| %>
+					<%= form_for(current_user, :as => :user, :url => registration_path(:user), :html => { :method => :put, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin",:multipart => true}) do |f| %>
 					<%= f.hidden_field :edit_profile , :value => true %>
 					<div class="form-inner">
 						<div class="form-head">

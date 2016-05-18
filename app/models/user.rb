@@ -1,4 +1,9 @@
+require 'carrierwave/orm/activerecord'
+
 class User < ActiveRecord::Base
+  
+  mount_uploaders :avatars, AvatarUploader
+  serialize :avatars, Array
   
   attr_reader :raw_invitation_token
   attr_accessor :terms_of_service

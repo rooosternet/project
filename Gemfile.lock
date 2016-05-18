@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: b31f7ce006bade550be0ad946d0b993b799358e3
+  specs:
+    carrierwave (0.11.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
 PATH
   remote: vendor/omniauth_behance
   specs:
@@ -339,6 +348,7 @@ DEPENDENCIES
   capistrano-rails-console
   capistrano-rvm (~> 0.1.1)
   capybara
+  carrierwave!
   database_cleaner
   devise
   devise_invitable
