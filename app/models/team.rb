@@ -11,7 +11,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :team_profiles, :allow_destroy => true
 
   def team_image
-    self.image.blank? ? "team1.jpg" : "#{self.image}.jpg"
+    self.image.blank? ? "team1.jpg" : "#{self.image}"
   end
 
   def backet?

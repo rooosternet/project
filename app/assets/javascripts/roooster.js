@@ -197,6 +197,7 @@ var update_teams_order = function(team_ids){
 
     var create_team = function(attributes,onSeccuss){
       onSeccuss = onSeccuss || function(){};
+      console.log('attributes ' , attributes);
 
       $.ajax({
         url: "/teams/",
@@ -222,8 +223,11 @@ var update_teams_order = function(team_ids){
       var tpl = $('#template-team').html(),
           name = teamData ? teamData.name : '',
           imageId = teamData ? teamData.image : Math.round(Math.random() * 8),
+          image = team_images[imageId],
+          image_name = "team"+(imageId + 1),
           team = template(tpl, {
-            image: team_images[imageId],
+            image: image,
+            image_name: image_name,
             name:  name
           });
 
@@ -245,7 +249,7 @@ var update_teams_order = function(team_ids){
 
             var attrs = {
               name: $(this).html(),
-              image: team.image,
+              image: image,
             }
 
             create_team(attrs, function(id){
@@ -262,19 +266,25 @@ var update_teams_order = function(team_ids){
       var tpl = $('#user-group-template').html(),
           name = options.name || '',
           imageId = options.image || Math.round(Math.random() * 8),
+          image = team_images[imageId],
           profile_id = options.profile_id,
           $userGroup = $(template(tpl, {
             user: profile_id,
-            // group: $(this).closest('li').index()
           }));
 
       $('#profile_'+profile_id).find('.show-all-teams').parent().before($userGroup);
+
       $userGroup.find('label').focus().on('blur keydown', function(event) {
         var $this = $(this);
-        console.log('team_images[imageId] ' , team_images[imageId]);
         if (event.keyCode === 13 || event.type === 'blur') {
           $this.removeAttr('contentEditable');
-          create_team({name: $this.text(), image: team_images[imageId], team_profiles_attributes: {profile_id: profile_id}}, function(id){
+          if($this.html() == '') {
+            $(this).html('Team ' + leadingZero(newTeamsCount + 1));
+            newTeamsCount++;
+          }
+          $this.siblings('input').prop('disabled', false).attr("checked", "checked");
+
+          create_team({name: $this.text(), image: image, team_profiles_attributes: {profile_id: profile_id}}, function(id){
             var newAttr = 'field-user' + profile_id + '-group' + id;
             $userGroup.find('input').attr({name: newAttr, id: newAttr});
             $userGroup.find('label').attr('for', newAttr);
