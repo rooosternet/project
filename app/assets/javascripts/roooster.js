@@ -197,7 +197,6 @@ var update_teams_order = function(team_ids){
 
     var create_team = function(attributes,onSeccuss){
       onSeccuss = onSeccuss || function(){};
-      console.log('attributes ' , attributes);
 
       $.ajax({
         url: "/teams/",
@@ -220,77 +219,130 @@ var update_teams_order = function(team_ids){
     }
 
     var addItemToCarousel = function (teamData){
+      teamData = teamData || {};
       var tpl = $('#template-team').html(),
-          name = teamData ? teamData.name : '',
-          imageId = teamData ? teamData.image : Math.round(Math.random() * 8),
+          name = teamData.name || '',
+          imageId = teamData.image || Math.round(Math.random() * 8),
           image = team_images[imageId],
           image_name = "team"+(imageId + 1),
+          teamId = teamData.id || '',
           team = template(tpl, {
             image: image,
             image_name: image_name,
-            name:  name
+            name: name
           });
 
       $teamsSlider.trigger('add.owl.carousel', team);
       $teamsSlider.trigger('refresh.owl.carousel');
 
       if(name == '') {
+        var teamCreated = false;
         $('.teams-slider').find('.team-new .team-title').focus().on('blur keydown', function(event) {
+          var $this = $(this);
+          if ((event.keyCode === 13 || event.type === 'blur') && !teamCreated) {
+            teamCreated = true;
 
-          if (event.keyCode === 13 || event.type === 'blur') {
+            $this.removeAttr('contentEditable');
+            $this.closest('.team').removeClass('team-new');
 
-            $(this).removeAttr('contentEditable');
-            $(this).closest('.team').removeClass('team-new');
-
-            if ($(this).html() == '') {
-              $(this).html('Team ' + leadingZero(newTeamsCount + 1));
+            if ($this.html() == '') {
+              $this.html('Team ' + leadingZero(newTeamsCount + 1));
               newTeamsCount++;
             }
 
             var attrs = {
-              name: $(this).html(),
+              name: $this.html(),
               image: image,
             }
 
             create_team(attrs, function(id){
-              $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
+              $this.parent().attr('href',"/teams/" + id);
               teamDroppable($(team));
+              addItemToTeamsList({
+                name: attrs.name,
+                image: attrs.image,
+                id: id
+              });
             });
           }
         });
+      } else {
+        $('.teams-slider').find('.team-new .team-inner').attr('href',"/teams/" + teamId);
+        teamDroppable($(team));
       }
     }
 
-    var addItemToTeamsList = function (options){
-      options = options || {}
+    var addItemToTeamsList = function (teamData){
+      teamData = teamData || {}
       var tpl = $('#user-group-template').html(),
-          name = options.name || '',
-          imageId = options.image || Math.round(Math.random() * 8),
+          name = teamData.name || '',
+          imageId = teamData.image || Math.round(Math.random() * 8),
           image = team_images[imageId],
-          profile_id = options.profile_id,
+          profile_id = teamData.profile_id,
+          teamId = teamData.id || '',
           $userGroup = $(template(tpl, {
             user: profile_id,
+            name: name,
+            group: teamId
           }));
 
       $('#profile_'+profile_id).find('.show-all-teams').parent().before($userGroup);
 
-      $userGroup.find('label').focus().on('blur keydown', function(event) {
-        var $this = $(this);
-        if (event.keyCode === 13 || event.type === 'blur') {
-          $this.removeAttr('contentEditable');
-          if($this.html() == '') {
-            $(this).html('Team ' + leadingZero(newTeamsCount + 1));
-            newTeamsCount++;
-          }
-          $this.siblings('input').prop('disabled', false).attr("checked", "checked");
+      if(name == ''){
+        var teamCreated = false;
+        $userGroup.find('label').focus().on('blur keydown', function(event) {
+          var $this = $(this);
+          if ((event.keyCode === 13 || event.type === 'blur') && !teamCreated) {
+            teamCreated = true;
+            $this.removeAttr('contentEditable');
+            if($this.html() == '') {
+              $(this).html('Team ' + leadingZero(newTeamsCount + 1));
+              newTeamsCount++;
+            }
+            var newName = $this.text()
+            $this.siblings('input').prop('disabled', false).attr("checked", "checked");
 
-          create_team({name: $this.text(), image: image, team_profiles_attributes: {profile_id: profile_id}}, function(id){
-            var newAttr = 'field-user' + profile_id + '-group' + id;
-            $userGroup.find('input').attr({name: newAttr, id: newAttr});
-            $userGroup.find('label').attr('for', newAttr);
-          });
-        }
-      });
+            create_team({name: newName, image: image, team_profiles_attributes: {profile_id: profile_id}}, function(id){
+              var newAttr = 'field-user' + profile_id + '-group' + id;
+              $userGroup.find('input').attr({name: newAttr, id: newAttr});
+              $userGroup.find('label').attr({for: newAttr, 'data-team': id, 'data-backet': newAttr});
+              $.each($('.dropdown-menu.user-groups:not(#profile_'+profile_id +')'), function(i,list){
+                var profileId = $(list).data('profile'),
+                    tmplt = $(template(tpl, {
+                      user: profileId,
+                      group: id,
+                      name: newName
+                    }));
+
+                var attr = 'field-user' + profileId + '-group' + id;
+                tmplt.find('input').attr({name: attr, id: attr}).prop('disabled', false);
+                tmplt.find('label').attr('for', attr).removeAttr('contentEditable');
+                $(list).find('.show-all-teams').parent().before(tmplt);
+              });
+              addItemToCarousel({
+                image: imageId,
+                name: newName,
+                id: id
+              })
+            });
+          }
+        });
+      } else {
+        $.each($('.dropdown-menu.user-groups'), function(i,list){
+          var $list = $(list),
+              profileId = $list.data('profile'),
+                tmplt = $(template(tpl, {
+                  user: profileId,
+                  group: teamId,
+                  name: name
+                }));
+
+            var attr = 'field-user' + profileId + '-group' + teamId;
+            tmplt.find('input').attr({name: attr, id: attr}).prop('disabled', false);
+            tmplt.find('label').attr('for', attr).removeAttr('contentEditable');
+            $(list).find('.show-all-teams').parent().before(tmplt);
+        });
+      }
     }
 
 		$(".team-page-name,.team-page-description").focusout(function(){
