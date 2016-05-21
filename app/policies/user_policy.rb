@@ -19,9 +19,13 @@ class UserPolicy
   end
 
   def update?
-    @current_user.admin?
+    @current_user.admin? 
   end
   
+  def update_profile_image?
+    @current_user == @user
+  end
+
   def update_avatars?
     @current_user == @user
   end

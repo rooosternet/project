@@ -26,10 +26,13 @@ Rails.application.routes.draw do
     collection do
       post 'batch_invite'
     end
-    member do
-      post 'update_avatars'
-    end  
+    # member do
+    #   post 'update_avatars'
+    # end  
   end
+  post 'users/:id/update_avatars' , :controller => :users , :action => :update_avatars , :as => "update_avatars"
+  post 'users/:id/update_profile_image' , :controller => :users , :action => :update_profile_image , :as => "update_profile_image"
+
 
   # match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
   resources :in_messages

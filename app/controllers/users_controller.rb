@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars]
+  before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars,:update_profile_image]
   after_action :verify_authorized
   protect_from_forgery :except => [:update_avatars] 
 
@@ -22,7 +22,6 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    
     if @user.update_attributes(secure_params)
       # @user.profile.skills = params[:user][:profile_attributes][:skills]
       # @user.save!
@@ -39,6 +38,15 @@ class UsersController < ApplicationController
       end
     end
 
+  end
+
+  def update_profile_image
+    authorize @user
+    if @user.update_attributes(secure_params)
+      render :nothing => true
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   def update_avatars

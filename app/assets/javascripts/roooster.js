@@ -1,94 +1,94 @@
 // var create_team = function(attributes,target){
-// 	console.log(attributes);
+	// console.log(attributes);
 // 	$.ajax({
 // 		url: "/teams/",
 // 		type: 'post',
 // 		data: {team: attributes },
 // 		dataType: 'script',
 // 		success: function(data){
-// 			console.log(data);
+			// console.log(data);
 // 			$("a.team-inner").filter("[href='#']").attr('href',"/teams/" + data);
 // 			if(target){
 // 				target.attr('data-team',data);
 // 			}
 // 		},
 // 		error: function(data){ 
-// 			console.log(data);
+			// console.log(data);
 // 		},
 // 		complete: function(data){
-// 			console.log(data);
+			// console.log(data);
 // 		}
 // 	});	
 // }
 
 var create_team = function(attributes,onSeccuss){
 	onSeccuss = onSeccuss || function(){};
-	console.log(attributes);
+	// console.log(attributes);
 	$.ajax({
 		url: "/teams/",
 		type: 'post',
 		data: {team: attributes },
 		dataType: 'script',
 		success: function(data){
-			console.log(data);
+			// console.log(data);
 			onSeccuss(data);
 			// if(target){
 			// 	target.attr('data-team',data);
 			// }
 		},
 		error: function(data){ 
-			console.log(data);
+			// console.log(data);
 		},
 		complete: function(data){
-			console.log(data);
+			// console.log(data);
 		}
 	});	
 }
 
 
 var add_profile_to_team = function(profile_id,team_id){
-	console.log(profile_id +" "+ team_id);
+	// console.log(profile_id +" "+ team_id);
 	$.ajax({
 		url: "/teams/"+team_id,
 		type: 'PUT',
 		data: {team: {team_profiles_attributes: {team_id: team_id, profile_id: profile_id} }},
 		dataType: 'script',
 		success: function(data){
-			console.log(data);
+			// console.log(data);
 		},
 		error: function(data){ 
-			console.log(data);
+			// console.log(data);
 		},
 		complete: function(data){
-			console.log(data);
+			// console.log(data);
 			return data; 
 		}
 	});	
 }
 
 var remove_profile_from_team = function(profile_id,team_id){
-	console.log(profile_id +" "+ team_id);
+	// console.log(profile_id +" "+ team_id);
 	$.ajax({
 		url: "/teams/remove_profile",
 		type: 'POST',
 		data: {team_profile: {team_id: team_id, profile_id: profile_id}},
 		dataType: 'script',
 		success: function(data){
-			console.log(data);
+			// console.log(data);
 		},
 		error: function(data){ 
-			console.log(data);
+			// console.log(data);
 		},
 		complete: function(data){
-			console.log(data);
+			// console.log(data);
 			return data; 
 		}
 	});	
 }
 
 var update_team = function(team_id,properties){
-	console.log(team_id);
-	console.log(properties);
+	// console.log(team_id);
+	// console.log(properties);
 	
 	$.ajax({
 		url: "/teams/"+team_id,
@@ -96,20 +96,20 @@ var update_team = function(team_id,properties){
 		data: {team: properties},
 		dataType: 'script',
 		success: function(data){
-			console.log(data);
+			// console.log(data);
 		},
 		error: function(data){ 
-			console.log(data);
+			// console.log(data);
 		},
 		complete: function(data){
-			console.log(data);
+			// console.log(data);
 			return data; 
 		}
 	});	
 }
 
 var update_teams_order = function(team_ids){
-	console.log(team_ids);
+	// console.log(team_ids);
 	
 	$.ajax({
 		url: "/teams/update_teams_order",
@@ -117,20 +117,42 @@ var update_teams_order = function(team_ids){
 		data: {team_ids: team_ids},
 		dataType: 'script',
 		success: function(data){
-			console.log(data);
+			// console.log(data);
 		},
 		error: function(data){ 
-			console.log(data);
+			// console.log(data);
 		},
 		complete: function(data){
-			console.log(data);
+			// console.log(data);
+		}
+	});	
+}
+
+var update_profile_image = function(user_id,properties){
+	// console.log(user_id);
+	// console.log(properties);
+	
+	$.ajax({
+		url: "/users/"+user_id+"/update_profile_image",
+		type: 'post',
+		data: {user: properties},
+		dataType: 'script',
+		success: function(data){
+			// console.log(data);
+		},
+		error: function(data){ 
+			// console.log(data);
+		},
+		complete: function(data){
+			// console.log(data);
+			return data; 
 		}
 	});	
 }
 
 var update_user = function(user_id,properties){
-	console.log(user_id);
-	console.log(properties);
+	// console.log(user_id);
+	// console.log(properties);
 	
 	$.ajax({
 		url: "/users/"+user_id,
@@ -138,13 +160,13 @@ var update_user = function(user_id,properties){
 		data: {user: properties},
 		dataType: 'script',
 		success: function(data){
-			console.log(data);
+			// console.log(data);
 		},
 		error: function(data){ 
-			console.log(data);
+			// console.log(data);
 		},
 		complete: function(data){
-			console.log(data);
+			// console.log(data);
 			return data; 
 		}
 	});	
@@ -221,9 +243,9 @@ var update_user = function(user_id,properties){
 
 		$(".team-page-name,.team-page-description").focusout(function(){
 			var target = $(this).parent();
-			console.log(target);
+			// console.log(target);
 			var team_id = target.data('team-id');
-			console.log("team_id: " + team_id);
+			// console.log("team_id: " + team_id);
 			update_team(team_id,{name: target.find(".team-page-name")[0].innerText, description: target.find(".team-page-description")[0].innerText});
 		});
 
@@ -297,26 +319,31 @@ var update_user = function(user_id,properties){
 
 		// Create Team
 		var newTeamsCount = 0;
-
+		var last_team_id = 0;
 		$('.teams .team-create').on('click', function(event) {
 			event.preventDefault();
-      // console.log(1);
-      var tpl = $($(this).attr('href')).html();
-      var image_id = Math.round(Math.random() * 18);
-      var image_name = "team"+(image_id + 1);
-      var $team = $(template(tpl, {
-      	image: team_images[image_id]
-      }));
+			console.log(1);
+			var tpl = $($(this).attr('href')).html();
 
-      $(this).closest('.team').before($team);
+			if(last_team_id == 19){
+				last_team_id = 0;
+			}
+			var image_id =  last_team_id + 1;  //Math.round(Math.random() * 18);
+			var image_name =  "team"+image_id; //"team"+(image_id + 1);
+			var $team = $(template(tpl, {
+				image: team_images[image_id]
+			}));
+			last_team_id = image_id;
 
-      $(this).closest('.teams-sortable').sortable('refresh');
-      var team_created = false;
+      		$(this).closest('.team').before($team);
 
-      $team.find('.team-title').focus().on('blur keydown', function(event) {
-      	if (event.keyCode === 13 || event.type === 'blur') {
-          $(this).removeAttr('contentEditable');
-					// console.log(2);
+		    $(this).closest('.teams-sortable').sortable('refresh');
+		      var team_created = false;
+
+		    $team.find('.team-title').focus().on('blur keydown', function(event) {
+		      	if (event.keyCode === 13 || event.type === 'blur') {
+		            $(this).removeAttr('contentEditable');
+					console.log(2);
 					if ($(this).html() == '') {
 						$(this).html('Team ' + leadingZero(newTeamsCount + 1));
 						newTeamsCount++;
@@ -324,7 +351,7 @@ var update_user = function(user_id,properties){
 
 					// if(team_created == false){
 					// 	create_team({name: $(this).html(),image: image_name },$(this));
-					// 	console.log("------");
+						console.log("------");
 					// 	team_created = true
 					// }
 					create_team({name: $(this).html(),image: image_name }, function(id){
@@ -334,8 +361,8 @@ var update_user = function(user_id,properties){
 					});
 				};
 			});
-      // teamDroppable($team);
-    });
+		    //teamDroppable($team);
+		});
 
 		// Teams Slider
 		var $teamsSlider = $('.teams-slider .teams-slides').owlCarousel({
@@ -382,7 +409,7 @@ var update_user = function(user_id,properties){
 
 					if(team_created == false){
 						// create_team({name: $(this).html(),image: $(this).closest('.team').data('image')},$(this));
-						// console.log("+++++");
+						console.log("+++++");
 						// team_created = true
 						create_team({name: $(this).html(),image: $(this).closest('.team').data('image')}, function(id){
 							team_created = true
@@ -417,7 +444,7 @@ var update_user = function(user_id,properties){
 		// Delete team
 		$('.team-delete.ico-delete').on('click', function(event) {
 			event.preventDefault();
-			console.log("team-delete");
+			// console.log("team-delete");
 		});
 
 		// Team Droppable
@@ -520,7 +547,7 @@ var update_user = function(user_id,properties){
 
 						// if(team_created == false){
 						// 	create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}},$(this));
-						// 	console.log("------");
+							console.log("------");
 						// 	team_created = true
 						// 	$(this).addClass("add-profile");
 						// 	$(this).attr('data-profile',profile_id);
@@ -555,7 +582,7 @@ var update_user = function(user_id,properties){
 			var profile_id = $(this).data('profile');
 			var action = $(this).siblings('input[type=checkbox]').is(':checked');
 			var menu_backet =$("#"+$(this).data('backet'));
-			console.log("Add User To Group: " + action);
+			// console.log("Add User To Group: " + action);
 			teams_count = $('.team-count-'+team_id);
 			
 			if(action == true){
@@ -733,18 +760,18 @@ var update_user = function(user_id,properties){
 			$target.attr('src', src);
 			var user_id = $(".user-main-image").data('user-id');
 			if(user_id){
-				update_user(user_id,{image: image_name});
+				update_profile_image(user_id,{image: image_name});
 			}
 		});
 
 		$('#user_attachments').on('change', function(event) {
 			event.preventDefault();
-			console.log("user_attachments");
+			// console.log("user_attachments");
 			// var avatars = $("#user_attachments").val();
 			var user_id = $(".user-main-image").data('user-id');
 			if(user_id){
-				// update_user(user_id,{avatars: [avatars]});
-				// update_user(user_id,$('#edit_user').serialize());
+				// update_profile_image(user_id,{avatars: [avatars]});
+				// update_profile_image(user_id,$('#edit_user').serialize());
 				// $.post('users/'+user_id, $('form#edit_user_avatars_form').serialize());
 				$('form#edit_user_avatars_form').submit();
 			}
@@ -755,6 +782,28 @@ var update_user = function(user_id,properties){
 		// $('.link-mass-message').on('click', function(event) {
 		// 	event.preventDefault();
 
+		var update_user = function(user_id,properties){
+	// console.log(user_id);
+	// console.log(properties);
+	
+	$.ajax({
+		url: "/users/"+user_id,
+		type: 'PUT',
+		data: {user: properties},
+		dataType: 'script',
+		success: function(data){
+			// console.log(data);
+		},
+		error: function(data){ 
+			// console.log(data);
+		},
+		complete: function(data){
+			// console.log(data);
+			return data; 
+		}
+	});	
+}
+
 		// 	setTimeout(function() {
 		// 		$('body').one('click', function(event) {
 		// 			$('.section-team-page .section-head-close').trigger('click');
@@ -764,7 +813,51 @@ var update_user = function(user_id,properties){
 
 		$('.section-team-page .form-message').on('click', function(event) {
 			event.stopPropagation();
+
+			var update_user = function(user_id,properties){
+	// console.log(user_id);
+	// console.log(properties);
+	
+	$.ajax({
+		url: "/users/"+user_id,
+		type: 'PUT',
+		data: {user: properties},
+		dataType: 'script',
+		success: function(data){
+			// console.log(data);
+		},
+		error: function(data){ 
+			// console.log(data);
+		},
+		complete: function(data){
+			// console.log(data);
+			return data; 
+		}
+	});	
+}
 		});
+
+		var update_user = function(user_id,properties){
+	// console.log(user_id);
+	// console.log(properties);
+	
+	$.ajax({
+		url: "/users/"+user_id,
+		type: 'PUT',
+		data: {user: properties},
+		dataType: 'script',
+		success: function(data){
+			// console.log(data);
+		},
+		error: function(data){ 
+			// console.log(data);
+		},
+		complete: function(data){
+			// console.log(data);
+			return data; 
+		}
+	});	
+}
 
 		// Team Invites
 		$('.tabs-invites .tab-pane input').on('input', function(event) {
