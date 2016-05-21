@@ -1,4 +1,15 @@
 module ApplicationHelper
+	
+	def show_avatars
+		'open' if params[:avatars].eql?("true")
+	end
+
+	def profile_additional_images(user)
+		imgs = []
+		imgs += user.profile_connects.collect(&:image_url).compact 
+		imgs += user.avatars.map { |e| image_url e.url  } if user.avatars
+		imgs
+	end  
 
 	def profile_image(user,options={})
 		# "<img alt="" src='#{user.profile_image}' >".html_safe
@@ -150,7 +161,7 @@ module ApplicationHelper
 			["UV","UV"],
 			["Zbrush","Zbrush"]], selected)
 
-end
+	end
 
 end
 

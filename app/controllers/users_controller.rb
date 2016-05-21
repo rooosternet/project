@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user , :only => [:edit,:show,:update,:destroy]
+  before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars]
   after_action :verify_authorized
+  protect_from_forgery :except => [:update_avatars] 
 
   layout 'admin'
 
@@ -21,13 +22,33 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
+    
     if @user.update_attributes(secure_params)
       # @user.profile.skills = params[:user][:profile_attributes][:skills]
       # @user.save!
-      redirect_to users_path, :notice => "User updated."
+      respond_to do |format|
+        format.html { redirect_to users_path, :notice => "User updated." }
+        format.js   { render :nothing => true }
+        format.json { render :show, status: :created, locals: { user: @user } }
+      end
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      respond_to do |format|
+        format.html { redirect_to users_path, :alert => "Unable to update user." }
+        format.js { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
+
+  end
+
+  def update_avatars
+    authorize @user
+    if @user.update_attributes(secure_params)
+      prm = {profile: true,avatars: true} 
+    else
+      prm = {}  
+    end
+    redirect_to root_path(prm)
   end
 
   # "user"=>[{"firstname"=>"TestBB", "lastname"=>"asxascas", "email"=>"sada@saa.clk"}, {"firstname"=>"homfj", "lastname"=>"assdasdas", "email"=>"4yoss@sss.com"}, {"firstname"=>"", "lastname"=>"", "email"=>""}, {"firstname"=>"", "lastname"=>"", "email"=>""}, {"firstname"=>"", "lastname"=>"", "email"=>""}]}
@@ -72,8 +93,9 @@ class UsersController < ApplicationController
     @user = User.where(id: params[:id]).first
   end
 
+
   def secure_params
-    params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname,:image,:avatars,:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
+    params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname,:image,{avatars: []},:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
   end
 
 end

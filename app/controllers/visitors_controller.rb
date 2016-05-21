@@ -14,7 +14,7 @@ class VisitorsController < ApplicationController
 
 		end	
 
-		@blog_intro = generate_blog_posts_intro
+		@blog_intro = Rails.env.development? ? [] : generate_blog_posts_intro
 	end
 
 end

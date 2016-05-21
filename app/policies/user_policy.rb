@@ -21,6 +21,10 @@ class UserPolicy
   def update?
     @current_user.admin?
   end
+  
+  def update_avatars?
+    @current_user == @user
+  end
 
   def batch_invite?
     @current_user

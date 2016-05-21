@@ -6,7 +6,7 @@
 					
 					<a href="#" class="user-image" data-toggle="dropdown">
 						<%#=image_tag(current_user.profile_image , class: "user-main-image", :alt=>current_user.firstname)%>
-						<%=profile_image current_user , {class: "user-main-image", :alt=>current_user.firstname,width: '100%' ,height: '100%'} %>
+						<%=profile_image current_user , {class: "user-main-image", "data-user-id": current_user.id  ,:alt=>current_user.firstname,width: '100%' ,height: '100%'} %>
 					</a><!-- /.user-image -->
 
 					<a href="<%= inbox_path %>" class="user-btn">

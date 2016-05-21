@@ -1,4 +1,6 @@
-<div class="dropdown dropdown-avatar">
+<%= form_for(current_user, :url => update_avatars_user_path(current_user.id),:remote => true , :html => { :id => "edit_user_avatars_form" ,:method => :post, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin",:multipart => true}) do |f| %>
+
+<div class="dropdown dropdown-avatar <%= show_avatars %>">
 	<a href="#" data-toggle="dropdown">
 		<div class="team team-sortable">
 			<div class="team-inner">
@@ -16,7 +18,7 @@
 			
 			<li>
 				<div class="team">
-					<a href=".user-main-image" class="team-inner change-image" data-image="user_default">
+					<a href=".user-main-image" class="team-inner change-user-image" data-image="user_default.jpg">
 						<div class="team-image">
 							<%=image_tag "user_default.jpg", { alt: "" } %>
 						</div><!-- /.team-image -->
@@ -24,10 +26,10 @@
 				</div><!-- /.team -->
 			</li>
 
-			<% current_user.profile_additional_images.each do |image| %>
+			<% profile_additional_images(current_user).each do |image| %>
 			<li>
 				<div class="team">
-					<a href=".user-main-image" class="team-inner change-image" data-image="<%=image%>">
+					<a href=".user-main-image" class="team-inner change-user-image" data-image="<%=image%>">
 						<div class="team-image">
 							<%#=image_tag image, { alt: "" } %>
 							<img alt="" src="<%=image%>">
@@ -61,3 +63,4 @@
 		</ul><!-- /.list-avatars -->
 	</div><!-- /.dropdown-menu -->
 </div><!-- /.dropdown -->
+<% end %>

@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     collection do
       post 'batch_invite'
     end
+    member do
+      post 'update_avatars'
+    end  
   end
 
   # match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
