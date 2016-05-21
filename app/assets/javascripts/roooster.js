@@ -128,6 +128,28 @@ var update_teams_order = function(team_ids){
 	});	
 }
 
+var update_user = function(user_id,properties){
+	console.log(user_id);
+	console.log(properties);
+	
+	$.ajax({
+		url: "/users/"+user_id,
+		type: 'PUT',
+		data: {user: properties},
+		dataType: 'script',
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){ 
+			console.log(data);
+		},
+		complete: function(data){
+			console.log(data);
+			return data; 
+		}
+	});	
+}
+
 ;(function($, window, document, undefined) {
 	var $win = $(window);
 	var $doc = $(document);
@@ -683,7 +705,7 @@ var update_teams_order = function(team_ids){
 			$(this).closest('.section-inbox').removeClass('has-selected');
 		});
 
-		// Change Image
+		// Change Team Image
 		$('.change-image').on('click', function(event) {
 			event.preventDefault();
 
@@ -698,6 +720,36 @@ var update_teams_order = function(team_ids){
 				update_team(team_id,{image: image_name});
 			}
 		});
+
+		// Change User Image
+		$('.change-user-image').on('click', function(event) {
+			event.preventDefault();
+
+			var src = $(this).find('img').first().attr('src');
+			var $target = $($(this).attr('href'));
+			var image_name = $(this).data('image');
+			$("#user_image").val(image_name);
+
+			$target.attr('src', src);
+			var user_id = $(".user-main-image").data('user-id');
+			if(user_id){
+				update_user(user_id,{image: image_name});
+			}
+		});
+
+		$('#user_attachments').on('change', function(event) {
+			event.preventDefault();
+			console.log("user_attachments");
+			// var avatars = $("#user_attachments").val();
+			var user_id = $(".user-main-image").data('user-id');
+			if(user_id){
+				// update_user(user_id,{avatars: [avatars]});
+				// update_user(user_id,$('#edit_user').serialize());
+				// $.post('users/'+user_id, $('form#edit_user_avatars_form').serialize());
+				$('form#edit_user_avatars_form').submit();
+			}
+		});
+		
 
 		// Mass Message
 		// $('.link-mass-message').on('click', function(event) {
