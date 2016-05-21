@@ -1,5 +1,8 @@
 class Team < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User', :foreign_key => 'owner_id'
+  
+  has_many :attachments, :class_name => 'TeamAttachment', :foreign_key => 'team_id'
+  accepts_nested_attributes_for :attachments
 
   has_many :team_profiles
   has_many :profiles, through: :team_profiles
