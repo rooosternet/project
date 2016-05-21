@@ -737,10 +737,10 @@ var update_user = function(user_id,properties){
 			}
 		});
 
-		$('#user_avatars').on('change', function(event) {
+		$('#user_attachments').on('change', function(event) {
 			event.preventDefault();
-			console.log("user_avatars");
-			var avatars = $("#user_avatars").val();
+			console.log("user_attachments");
+			// var avatars = $("#user_attachments").val();
 			var user_id = $(".user-main-image").data('user-id');
 			if(user_id){
 				// update_user(user_id,{avatars: [avatars]});

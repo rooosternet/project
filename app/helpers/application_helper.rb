@@ -7,7 +7,7 @@ module ApplicationHelper
 	def profile_additional_images(user)
 		imgs = []
 		imgs += user.profile_connects.collect(&:image_url).compact 
-		imgs += user.avatars.map { |e| image_url e.url  } if user.avatars
+		imgs += user.attachments.map { |e| image_url e.attachment.url  } if user.attachments
 		imgs
 	end  
 

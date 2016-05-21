@@ -43,10 +43,9 @@ class UsersController < ApplicationController
 
   def update_avatars
     authorize @user
-    if @user.update_attributes(secure_params)
-      prm = {profile: true,avatars: true} 
-    else
-      prm = {}  
+    prm = params[:user][:attachments].blank? ? {} : {profile: true,avatars: true} 
+    params[:user][:attachments].each do |attachment|
+      @post_attachment = @user.attachments.create!(:user_id => @user.id , :attachment => attachment,:attachment_type => 'avatar')
     end
     redirect_to root_path(prm)
   end

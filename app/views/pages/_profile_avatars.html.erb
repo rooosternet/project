@@ -53,8 +53,14 @@
 							</div><!-- /.team-actions -->
 
 							<!-- <input type="file" name="upload-team" id="upload-team"> -->
-							<%= f.file_field :avatars, multiple: true %>
-							<%= f.label :avatars ,'Upload'%>
+							<%#= f.fields_for :attachments do |builder| %>
+								<%#= builder.file_field :attachment, multiple: true %>
+								<%#= builder.label :attachment ,'Upload'%>
+							<%# end %>
+
+							
+     					  	<%= f.file_field :attachments, :multiple => true, name: "user[attachments][]" %>
+     						<%= f.label :attachments %>
 							<!-- <label for="upload-team">Upload</label> -->
 						</div><!-- /.team-image -->
 					</div>
