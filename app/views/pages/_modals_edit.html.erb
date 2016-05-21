@@ -17,8 +17,8 @@
 
 							<h4 class="form-title">Admin Profile</h4>
 						</div>
-					<%= form_for(current_user, :as => :user, :url => registration_path(:user), :html => { :method => :put, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin",:multipart => true}) do |f| %>
-					<%= f.hidden_field :edit_profile , :value => true %>	
+						<%= form_for(current_user, :as => :user, :url => registration_path(:user), :html => { :method => :put, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin",:multipart => true}) do |f| %>
+						<%= f.hidden_field :edit_profile , :value => true %>	
 						<div class="form-body">
 							<div class="form-group">
 								<div class="row">
@@ -176,16 +176,16 @@
 
 			<div class="modal-body">
 				<div class="form form-signup">
-					<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form',"data-error-id" => "edit_user_form_err", "data-parent"=>"modal-edit-profile"}) do |f| %>
-					<%= f.hidden_field :edit_profile , :value => true %>
+					
 					<div class="form-inner">
 						<div class="form-head">
 							
-							<%= render :partial => 'pages/profile_avatars' , :locals =>  { f: f } %>
+							<%= render :partial => 'pages/profile_avatars'  %>
 
 							<h4 class="form-title">My Profile</h4><!-- /.form-title -->
 						</div><!-- /.form-head -->
-
+						<%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form',"data-error-id" => "edit_user_form_err", "data-parent"=>"modal-edit-profile"}) do |f| %>
+						<%= f.hidden_field :edit_profile , :value => true %>
 						<div class="form-body">
 							<div class="form-group">
 								<div class="row">
@@ -450,11 +450,11 @@
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+	</div><!-- /.modal -->
 
-<% end  %>
+	<% end  %>
 
-<div class="modal modal-small fade" id="modal-edit-profile-passowrd" data-backdrop="static">
+	<div class="modal modal-small fade" id="modal-edit-profile-passowrd" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
@@ -512,4 +512,4 @@
 				</div>
 			</div>
 		</div>
-</div>
+	</div>
