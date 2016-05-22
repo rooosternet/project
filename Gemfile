@@ -72,13 +72,12 @@ group :development do
 end
 
 group :development, :test do
-  gem 'byebug'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
 end
 
-group :staging do
+group :development, :test, :staging do
   gem 'byebug'
 end
 
