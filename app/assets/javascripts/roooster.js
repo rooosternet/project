@@ -339,9 +339,12 @@ var update_user = function(user_id,properties){
         teamDroppable($(team));
       }
     }
-
+	
+	// Add new added team to the teams list on the profile card
     var addItemToTeamsList = function (teamData){
       teamData = teamData || {}
+      var backetid = $("a.team-inner").attr('href').match(/\d+/)[0];
+
       var tpl = $('#user-group-template').html(),
           name = teamData.name || '',
           imageId = teamData.image || Math.round(Math.random() * 8),
@@ -354,6 +357,22 @@ var update_user = function(user_id,properties){
             group: teamId
           }));
 
+      // var tpl = $('#user-group-template').html(),
+      //     name = teamData.name || '',
+      //     imageId = teamData.image || Math.round(Math.random() * 8),
+      //     image = team_images[imageId],
+      //     profile_id = teamData.profile_id,
+      //     teamId = teamData.id || '',
+      //     backet = backetid || '',
+      //     $userGroup = $(template(tpl, {
+      //       user: profile_id,
+      //       name: name,
+      //       group: teamId,
+      //       backet: backet
+      //     }));
+      
+      console.log($userGroup);    
+ 
       $('#profile_'+profile_id).find('.show-all-teams').parent().before($userGroup);
 
       if(name == ''){
@@ -728,63 +747,62 @@ var update_user = function(user_id,properties){
 			event.stopPropagation();
 		});
 
-<<<<<<< HEAD
-		// Create User Group
-		$('.users').on('click', '.user-alt .user-create-group', function(event) {
-			event.preventDefault();
 
-			var tpl = $($(this).data('template')).html();
-			var profile_id = $(this).data('profile');
-			var $userGroup = $(template(tpl, {
-				user: $(this).closest('.user-alt').index(),
-				group: $(this).closest('li').index()
-			}));
+		// // Create User Group
+		// $('.users').on('click', '.user-alt .user-create-group', function(event) {
+		// 	event.preventDefault();
 
-      $(this).closest('li').before($userGroup);
-      // team_created = false
-      setTimeout(function() {
-        $userGroup.find('label').focus().on('blur keydown', function(event) {
-          if (event.keyCode === 13 || event.type === 'blur') {
-            $(this).removeAttr('contentEditable');
-            $(this).siblings('input').prop('disabled', false);
+		// 	var tpl = $($(this).data('template')).html();
+		// 	var profile_id = $(this).data('profile');
+		// 	var $userGroup = $(template(tpl, {
+		// 		user: $(this).closest('.user-alt').index(),
+		// 		group: $(this).closest('li').index()
+		// 	}));
 
-            if ($(this).html() == '') {
-              $(this).html('Team ' + leadingZero(newTeamsCount + 1));
-              newTeamsCount++;
-            };
+  //     $(this).closest('li').before($userGroup);
+  //     // team_created = false
+  //     setTimeout(function() {
+  //       $userGroup.find('label').focus().on('blur keydown', function(event) {
+  //         if (event.keyCode === 13 || event.type === 'blur') {
+  //           $(this).removeAttr('contentEditable');
+  //           $(this).siblings('input').prop('disabled', false);
 
-						// if(team_created == false){
-						// 	create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}},$(this));
-							console.log("------");
-						// 	team_created = true
-						// 	$(this).addClass("add-profile");
-						// 	$(this).attr('data-profile',profile_id);
-						// 	// $(this).attr('data-team',);
-						// }
-            create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}}, function(id){
-              $(this).addClass("add-profile");
-              $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
-              $(this).attr('data-profile',id);
-              teamDroppable(sliderTeam);
-              // $(sliderTeam).find('.team-title').html($(this).html());
-              // var sliderTpl   = $('#template-team').html(),
-              //     image_id    = Math.round(Math.random() * 18),
-              //     image_name  = "team"+(image_id + 1),
-              //     sliderTeam  = $(template(sliderTpl, {
-              //       image: team_images[image_id],
-              //       image_name: image_name
-              //     }));
+  //           if ($(this).html() == '') {
+  //             $(this).html('Team ' + leadingZero(newTeamsCount + 1));
+  //             newTeamsCount++;
+  //           };
 
-              // $teamsSlider.trigger('add.owl.carousel', sliderTeam);
-              // $teamsSlider.trigger('refresh.owl.carousel');
-            });
-					};
-				});
-			}, 100);
-		});
+		// 				// if(team_created == false){
+		// 				// 	create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}},$(this));
+		// 					console.log("------");
+		// 				// 	team_created = true
+		// 				// 	$(this).addClass("add-profile");
+		// 				// 	$(this).attr('data-profile',profile_id);
+		// 				// 	// $(this).attr('data-team',);
+		// 				// }
+  //           create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}}, function(id){
+  //             $(this).addClass("add-profile");
+  //             $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
+  //             $(this).attr('data-profile',id);
+  //             teamDroppable(sliderTeam);
+  //             // $(sliderTeam).find('.team-title').html($(this).html());
+  //             // var sliderTpl   = $('#template-team').html(),
+  //             //     image_id    = Math.round(Math.random() * 18),
+  //             //     image_name  = "team"+(image_id + 1),
+  //             //     sliderTeam  = $(template(sliderTpl, {
+  //             //       image: team_images[image_id],
+  //             //       image_name: image_name
+  //             //     }));
 
-=======
->>>>>>> b2aea4728e08e217c53039a438bdb1bb17ce77fd
+  //             // $teamsSlider.trigger('add.owl.carousel', sliderTeam);
+  //             // $teamsSlider.trigger('refresh.owl.carousel');
+  //           });
+		// 			};
+		// 		});
+		// 	}, 100);
+		// });
+
+
 		// Add User To Group
 		$('.users').on('click', '.add-profile', function(event) {
 			// event.preventDefault();
