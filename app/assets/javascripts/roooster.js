@@ -502,40 +502,35 @@ var update_user = function(user_id,properties){
 			if(last_team_id == 19){
 				last_team_id = 0;
 			}
-			var image_id =  last_team_id + 1;  //Math.round(Math.random() * 18);
-			var image_name =  "team"+image_id; //"team"+(image_id + 1);
-			var $team = $(template(tpl, {
-				image: team_images[image_id]
-			}));
-			last_team_id = image_id;
+      var image_id =  Math.round(Math.random() * 18),
+          image_name =  team_images[image_id], //"team"+(image_id + 1);
+          last_team_id = image_id,
+          $team = $(template(tpl, {
+            image: team_images[image_id],
+            name: ''
+          }));
+      $(this).closest('.team').before($team);
 
-      		$(this).closest('.team').before($team);
+      $(this).closest('.teams-sortable').sortable('refresh');
+      var team_created = false;
 
-		    $(this).closest('.teams-sortable').sortable('refresh');
-		      var team_created = false;
+      $team.find('.team-title').focus().on('blur keydown', function(event) {
+        if ((event.keyCode === 13 || event.type === 'blur') && !team_created) {
+          team_created = true
+          $(this).removeAttr('contentEditable');
+          if ($(this).html() == '') {
+            $(this).html('Team ' + leadingZero(newTeamsCount + 1));
+            newTeamsCount++;
+          }
 
-		    $team.find('.team-title').focus().on('blur keydown', function(event) {
-          if (event.keyCode === 13 || event.type === 'blur') {
-            $(this).removeAttr('contentEditable');
-            if ($(this).html() == '') {
-              $(this).html('Team ' + leadingZero(newTeamsCount + 1));
-              newTeamsCount++;
-            };
-
-					// if(team_created == false){
-					// 	create_team({name: $(this).html(),image: image_name },$(this));
-						console.log("------");
-					// 	team_created = true
-					// }
-					create_team({name: $(this).html(),image: image_name }, function(id){
-						team_created = true
-						$("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
-						teamDroppable($team);
-					});
-				};
-			});
-		    //teamDroppable($team);
-		});
+          create_team({name: $(this).html(),image: image_name }, function(id){
+            $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
+            teamDroppable($team);
+          });
+        };
+      });
+      //teamDroppable($team);
+    });
 
 		$teamsSlider.on('refreshed.owl.carousel', function(event) {
 			$teamsSlider.trigger('to.owl.carousel', event.item.count - $teamsSlider.find('.owl-item.active').length);
