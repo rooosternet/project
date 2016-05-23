@@ -1,24 +1,24 @@
 // var create_team = function(attributes,target){
-// console.log(attributes);
-// 	$.ajax({
-// 		url: "/teams/",
-// 		type: 'post',
-// 		data: {team: attributes },
-// 		dataType: 'script',
-// 		success: function(data){
-			// console.log(data);
-// 			$("a.team-inner").filter("[href='#']").attr('href',"/teams/" + data);
-// 			if(target){
-// 				target.attr('data-team',data);
-// 			}
-// 		},
-// 		error: function(data){ 
-			// console.log(data);
-// 		},
-// 		complete: function(data){
-			// console.log(data);
-// 		}
-// 	});	
+  // console.log(attributes);
+  // 	$.ajax({
+  // 		url: "/teams/",
+  // 		type: 'post',
+  // 		data: {team: attributes },
+  // 		dataType: 'script',
+  // 		success: function(data){
+  			// console.log(data);
+  // 			$("a.team-inner").filter("[href='#']").attr('href',"/teams/" + data);
+  // 			if(target){
+  // 				target.attr('data-team',data);
+  // 			}
+  // 		},
+  // 		error: function(data){ 
+  			// console.log(data);
+  // 		},
+  // 		complete: function(data){
+  			// console.log(data);
+  // 		}
+  // 	});	
 // }
 
 var create_team = function(attributes,onSeccuss){
@@ -325,7 +325,7 @@ var update_user = function(user_id,properties){
 
             create_team(attrs, function(id){
               $this.parent().attr('href',"/teams/" + id);
-              teamDroppable($(team));
+              teamDroppable($this.parents('.team-droppable'));
               addItemToTeamsList({
                 name: attrs.name,
                 image: attrs.image,
@@ -336,11 +336,11 @@ var update_user = function(user_id,properties){
         });
       } else {
         $('.teams-slider').find('.team-new .team-inner').attr('href',"/teams/" + teamId);
-        teamDroppable($(team));
+        teamDroppable(team);
       }
     }
 	
-	// Add new added team to the teams list on the profile card
+    // Add new added team to the teams list on the profile card
     var addItemToTeamsList = function (teamData){
       teamData = teamData || {}
       var backetid = $("a.team-inner").attr('href').match(/\d+/)[0];
@@ -356,22 +356,6 @@ var update_user = function(user_id,properties){
             name: name,
             group: teamId
           }));
-
-      // var tpl = $('#user-group-template').html(),
-      //     name = teamData.name || '',
-      //     imageId = teamData.image || Math.round(Math.random() * 8),
-      //     image = team_images[imageId],
-      //     profile_id = teamData.profile_id,
-      //     teamId = teamData.id || '',
-      //     backet = backetid || '',
-      //     $userGroup = $(template(tpl, {
-      //       user: profile_id,
-      //       name: name,
-      //       group: teamId,
-      //       backet: backet
-      //     }));
-      
-      console.log($userGroup);    
  
       $('#profile_'+profile_id).find('.show-all-teams').parent().before($userGroup);
 
@@ -392,7 +376,7 @@ var update_user = function(user_id,properties){
             create_team({name: newName, image: image, team_profiles_attributes: {profile_id: profile_id}}, function(id){
               var newAttr = 'field-user' + profile_id + '-group' + id;
               $userGroup.find('input').attr({name: newAttr, id: newAttr});
-              $userGroup.find('label').attr({for: newAttr, 'data-team': id, 'data-backet': newAttr});
+              $userGroup.find('label').attr({for: newAttr, 'data-team': id});
               $.each($('.dropdown-menu.user-groups:not(#profile_'+profile_id +')'), function(i,list){
                 var profileId = $(list).data('profile'),
                     tmplt = $(template(tpl, {
@@ -531,13 +515,12 @@ var update_user = function(user_id,properties){
 		      var team_created = false;
 
 		    $team.find('.team-title').focus().on('blur keydown', function(event) {
-		      	if (event.keyCode === 13 || event.type === 'blur') {
-		            $(this).removeAttr('contentEditable');
-					console.log(2);
-					if ($(this).html() == '') {
-						$(this).html('Team ' + leadingZero(newTeamsCount + 1));
-						newTeamsCount++;
-					};
+          if (event.keyCode === 13 || event.type === 'blur') {
+            $(this).removeAttr('contentEditable');
+            if ($(this).html() == '') {
+              $(this).html('Team ' + leadingZero(newTeamsCount + 1));
+              newTeamsCount++;
+            };
 
 					// if(team_created == false){
 					// 	create_team({name: $(this).html(),image: image_name },$(this));
