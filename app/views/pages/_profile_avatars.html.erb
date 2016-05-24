@@ -1,6 +1,6 @@
 <%= form_for(current_user, :url => update_avatars_path(current_user.id),:remote => true , :html => { :id => "edit_user_avatars_form" ,:method => :post, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin",:multipart => true}) do |f| %>
 
-<div class="dropdown dropdown-avatar <%= show_avatars %>">
+<div class="dropdown dropdown-avatar <%=show_avatars(@user_avatars) %>">
 	<a href="#" data-toggle="dropdown">
 		<div class="team team-sortable">
 			<div class="team-inner">

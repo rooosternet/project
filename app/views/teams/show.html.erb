@@ -297,7 +297,7 @@
 
 <%= javascript_tag do %>
 $(function(){
-	<% if user_signed_in? && params[:team_avatar].eql?("true") %>
+	<% if user_signed_in? && @team_avatar.eql?(true) %>
 		$("#modal-avatar").modal({show: true});
 	<% end %>
 });

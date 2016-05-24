@@ -1,7 +1,13 @@
 module ApplicationHelper
 	
-	def show_avatars
-		'open' if params[:avatars].eql?("true")
+	def team_additional_images(team)
+		imgs = []
+		imgs += team.attachments.map { |e| image_url e.attachment.url  } if team.attachments
+		imgs
+	end  
+
+	def show_avatars(user_avatars)
+		'open' if user_avatars.eql?(true)
 	end
 
 	def profile_additional_images(user)

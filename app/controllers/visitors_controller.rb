@@ -11,7 +11,8 @@ class VisitorsController < ApplicationController
 				sign_out(:user)
 				redirect_to root_path
 			end
-
+			@user_avatars = session[:user_avatars]
+			session[:user_avatars] = false
 		end	
 
 		@blog_intro = Rails.env.development? ? [] : generate_blog_posts_intro

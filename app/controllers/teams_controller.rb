@@ -8,16 +8,15 @@ class TeamsController < ApplicationController
   protect_from_forgery :except => [:update_team_avatar] 
 
   def update_team_avatar
-    byebug
-    prm = params[:team][:attachments].blank? ? {} : {team_avatar: true} 
-    attachment = params[:team][:attachments]
-    begin
-    @post_attachment = @team.attachments.create!(:team_id => @team.id , :attachment => attachment[0],:attachment_type => 'avatar') if attachment      
-    rescue Exception => e
-      byebug      
+    
+    begin 
+    params[:team][:attachments].each do |attachment|
+      @post_attachment = @team.attachments.create!(:team_id => @team.id , :attachment => attachment,:attachment_type => 'avatar')
     end
-    byebug
-    redirect_to @team,prm
+    session[:team_avatar] = !params[:team][:attachments].blank?
+    rescue
+    end
+    redirect_to @team
   end
 
   def update_teams_order
@@ -79,6 +78,8 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @team_avatar = session[:team_avatar]
+    session[:team_avatar] = false
     @profiles = @team.profiles
     @profiles_count = @profiles.any? ? @profiles.count : 'No'
   end
