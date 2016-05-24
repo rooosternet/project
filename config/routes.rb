@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   post 'users/:id/update_avatars' , :controller => :users , :action => :update_avatars , :as => "update_avatars"
   post 'users/:id/update_profile_image' , :controller => :users , :action => :update_profile_image , :as => "update_profile_image"
 
+  post 'teams/:id/update_team_avatar' , :controller => :teams , :action => :update_team_avatar , :as => "update_team_avatar"
 
   # match 'account/register', :to => 'account#register', :via => [:post,:get], :as => 'register'
   resources :in_messages

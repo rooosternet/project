@@ -292,3 +292,13 @@
 		</div><!-- /.form-invite -->
 	</div><!-- /.section-body -->
 </section><!-- /.section-results -->
+
+
+
+<%= javascript_tag do %>
+$(function(){
+	<% if user_signed_in? && params[:team_avatar].eql?("true") %>
+		$("#modal-avatar").modal({show: true});
+	<% end %>
+});
+<% end %>

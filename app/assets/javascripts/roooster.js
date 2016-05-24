@@ -983,6 +983,17 @@ var update_user = function(user_id,properties){
 			}
 		});
 		
+    $('#team_attachments').on('change', function(event) {
+      event.preventDefault();
+      console.log("team_attachments");
+      var avatars = $("#team_attachments").val();
+
+      var team_id = $(".team-image-selected")[0].id;
+      if(team_id){
+        $('form#edit_team_avatars_form').attr('action',"/teams/"+team_id+"/update_team_avatar");
+        $('form#edit_team_avatars_form').submit();
+      }
+    });
 
 		// Mass Message
 		// $('.link-mass-message').on('click', function(event) {

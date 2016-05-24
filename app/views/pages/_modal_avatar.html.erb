@@ -1,4 +1,5 @@
-<div class="modal modal-medium fade" id="modal-avatar">
+	
+<div class="modal modal-medium fade" id="modal-avatar" data-show="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
@@ -7,48 +8,54 @@
 
 			<div class="modal-body">
 				<div class="form form-avatar">
-					<form action="?" method="post">
-						<div class="form-inner">
-							<div class="form-head">
-								<div class="team team-sortable">
-									<div class="team-inner">
-										<div class="team-image">
-											<%=image_tag current_user.profile.profile_image , { class: "team-image-selected" ,  alt: "" } %>
-										</div><!-- /.team-image -->
-									</div>
-								</div><!-- /.team -->
-							</div><!-- /.form-head -->
 
-							<div class="form-body">
-								<ul class="list-avatars">
+					<%=form_for(Team.new, :url => update_team_avatar_path(1),
+						:remote => true , :html => { :id => "edit_team_avatars_form" ,
+						:method => :post, :role => 'form',:multipart => true}) do |f| %>	
+							<div class="form-inner">
+								<div class="form-head">
+									<div class="team team-sortable">
+										<div class="team-inner">
+											<div class="team-image">
+												<%=image_tag current_user.profile.profile_image , { class: "team-image-selected" ,  alt: "" } %>
+											</div><!-- /.team-image -->
+										</div>
+									</div><!-- /.team -->
+								</div><!-- /.form-head -->
 
-									<% (1..20).each_with_index do |index| %>
-									<li>
-										<div class="team">
-											<a href=".team-image-selected" class="team-inner change-image" data-image="team<%=index%>">
-												<div class="team-image">
-													<%=image_tag "team#{index}.jpg", { alt: "" } %>
-												</div><!-- /.team-image -->
-											</a>
-										</div><!-- /.team -->
-									</li>
-									<%	end	%>
+								<div class="form-body">
+									<ul class="list-avatars">
+
+										<% (1..20).each_with_index do |index| %>
+										<li>
+											<div class="team">
+												<a href=".team-image-selected" class="team-inner change-image" data-image="team<%=index%>">
+													<div class="team-image">
+														<%=image_tag "team#{index}.jpg", { alt: "" } %>
+													</div><!-- /.team-image -->
+												</a>
+											</div><!-- /.team -->
+										</li>
+										<%	end	%>
 
 
-									<li>
-										<div class="team team-alt">
-											<div class="team-inner">
-												<div class="team-image">
-													<%=image_tag "team-default.jpg" , { alt: "" } %>
-													<div class="team-actions">
-														<span class="team-add">
-															<i class="ico-plus"></i>
-														</span>
-													</div><!-- /.team-actions -->
+										<li>
+											<div class="team team-alt">
+												<div class="team-inner">
+													<div class="team-image">
+														<%=image_tag "team-default.jpg" , { alt: "" } %>
+														<div class="team-actions">
+															<span class="team-add">
+																<i class="ico-plus"></i>
+															</span>
+														</div><!-- /.team-actions -->
 
-													<input type="file" name="upload-team" id="upload-team">
 
-													<label for="upload-team">Upload</label>
+													<!-- <input type="file" name="upload-team" id="upload-team">
+													<label for="upload-team">Upload</label> -->
+													<%= f.file_field :attachments, name: "team[attachments][]" %>
+													<%= f.label :attachments,'Upload' %>
+
 												</div><!-- /.team-image -->
 											</div>
 										</div><!-- /.team -->
@@ -58,9 +65,9 @@
 								<div class="form-hint">choose new image</div><!-- /.form-hint -->
 							</div><!-- /.form-body -->
 						</div><!-- /.form-inner -->
-					</form>
-				</div><!-- /.form-action -->
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+						<% end %> <!-- </form> -->
+					</div><!-- /.form-action -->
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->

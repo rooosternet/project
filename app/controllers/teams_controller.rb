@@ -1,10 +1,24 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: [:show, :edit, :update ,:destroy]
+  before_action :set_team, only: [:show, :edit, :update ,:destroy,:update_team_avatar]
   before_action :find_team, only: [:archive]
   before_action :set_menu #, only: [:show, :edit, :update, :destroy]
   before_action :verify_permissions , only: [:show, :edit, :update, :destroy ,:archive]
   after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy ,:archive]
+  protect_from_forgery :except => [:update_team_avatar] 
+
+  def update_team_avatar
+    byebug
+    prm = params[:team][:attachments].blank? ? {} : {team_avatar: true} 
+    attachment = params[:team][:attachments]
+    begin
+    @post_attachment = @team.attachments.create!(:team_id => @team.id , :attachment => attachment[0],:attachment_type => 'avatar') if attachment      
+    rescue Exception => e
+      byebug      
+    end
+    byebug
+    redirect_to @team,prm
+  end
 
   def update_teams_order
     unless (team_ids = params[:team_ids]).blank?
