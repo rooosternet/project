@@ -35,6 +35,7 @@ gem 'omniauth-dribbble', '~> 0.0.1'
 
 gem 'acts_as_tree', '~> 2.4'
 gem 'carrierwave'
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 
 # gem 'avatars_for_rails', path: "vendor/avatars_for_rails"
 
