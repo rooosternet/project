@@ -103,6 +103,14 @@
 
 	.user-groups {
 
+    li:nth-child(n+8) + li {
+      display: none;
+    }
+
+    li:nth-last-child(1) {
+      display: block !important
+    }
+
 		.show-all-teams {
 			position: relative;
 			height: 0;
@@ -125,7 +133,7 @@
 
     &.show-all {
 
-      li.hidden {
+      li {
         display: block!important;
       }
 

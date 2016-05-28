@@ -263,6 +263,22 @@ var update_user = function(user_id,properties){
       }
     });
 
+    // handle long team list
+    var checkShowAllToggle = function(){
+      var lists = $('.user-groups');
+
+      $.each(lists, function(i,l) {
+        var length = $(l).find('li').length,
+            allButton = $(l).find('.show-all-teams');
+        if (length > 10) {
+          allButton.show();
+        } else {
+          allButton.hide();
+        }
+      });
+    };
+    checkShowAllToggle();
+
     var create_team = function(attributes,onSeccuss){
       onSeccuss = onSeccuss || function(){};
 
@@ -338,6 +354,8 @@ var update_user = function(user_id,properties){
         $('.teams-slider').find('.team-new .team-inner').attr('href',"/teams/" + teamId);
         teamDroppable(team);
       }
+
+      checkShowAllToggle();
     }
 	
     // Add new added team to the teams list on the profile card
@@ -356,8 +374,8 @@ var update_user = function(user_id,properties){
             name: name,
             group: teamId
           }));
- 
-      $('#profile_'+profile_id).find('.show-all-teams').parent().before($userGroup);
+
+      $('#profile_'+profile_id).find('.show-all-teams').before($userGroup);
 
       if(name == ''){
         var teamCreated = false;
@@ -377,6 +395,8 @@ var update_user = function(user_id,properties){
               var newAttr = 'field-user' + profile_id + '-group' + id;
               $userGroup.find('input').attr({name: newAttr, id: newAttr});
               $userGroup.find('label').attr({for: newAttr, 'data-team': id});
+              $userGroup.removeAttr('style')
+
               $.each($('.dropdown-menu.user-groups:not(#profile_'+profile_id +')'), function(i,list){
                 var profileId = $(list).data('profile'),
                     tmplt = $(template(tpl, {
@@ -388,7 +408,8 @@ var update_user = function(user_id,properties){
                 var attr = 'field-user' + profileId + '-group' + id;
                 tmplt.find('input').attr({name: attr, id: attr}).prop('disabled', false);
                 tmplt.find('label').attr('for', attr).removeAttr('contentEditable');
-                $(list).find('.show-all-teams').parent().before(tmplt);
+                tmplt.removeAttr('style');
+                $(list).find('.show-all-teams').before(tmplt);
               });
               addItemToCarousel({
                 image: imageId,
@@ -411,10 +432,18 @@ var update_user = function(user_id,properties){
             var attr = 'field-user' + profileId + '-group' + teamId;
             tmplt.find('input').attr({name: attr, id: attr}).prop('disabled', false);
             tmplt.find('label').attr('for', attr).removeAttr('contentEditable');
+            tmplt.removeAttr('style');
             $(list).find('.show-all-teams').parent().before(tmplt);
         });
       }
+
+      checkShowAllToggle();
     }
+
+    $('.user-groups .show-all-teams').click(function(e) {
+      e.preventDefault();
+      $(this).parents('.user-groups').toggleClass('show-all');
+    });
 
 		$(".team-page-name,.team-page-description").focusout(function(){
 			var target = $(this).parent();
@@ -989,26 +1018,26 @@ var update_user = function(user_id,properties){
 		// 	event.preventDefault();
 
 		var update_user = function(user_id,properties){
-	// console.log(user_id);
-	// console.log(properties);
-	
-	$.ajax({
-		url: "/users/"+user_id,
-		type: 'PUT',
-		data: {user: properties},
-		dataType: 'script',
-		success: function(data){
-			// console.log(data);
-		},
-		error: function(data){ 
-			// console.log(data);
-		},
-		complete: function(data){
-			// console.log(data);
-			return data; 
-		}
-	});	
-}
+    	// console.log(user_id);
+    	// console.log(properties);
+    	
+    	$.ajax({
+    		url: "/users/"+user_id,
+    		type: 'PUT',
+    		data: {user: properties},
+    		dataType: 'script',
+    		success: function(data){
+    			// console.log(data);
+    		},
+    		error: function(data){ 
+    			// console.log(data);
+    		},
+    		complete: function(data){
+    			// console.log(data);
+    			return data; 
+    		}
+    	});	
+    }
 
 		// 	setTimeout(function() {
 		// 		$('body').one('click', function(event) {
@@ -1021,49 +1050,49 @@ var update_user = function(user_id,properties){
 			event.stopPropagation();
 
 			var update_user = function(user_id,properties){
-	// console.log(user_id);
-	// console.log(properties);
-	
-	$.ajax({
-		url: "/users/"+user_id,
-		type: 'PUT',
-		data: {user: properties},
-		dataType: 'script',
-		success: function(data){
-			// console.log(data);
-		},
-		error: function(data){ 
-			// console.log(data);
-		},
-		complete: function(data){
-			// console.log(data);
-			return data; 
-		}
-	});	
-}
+      	// console.log(user_id);
+      	// console.log(properties);
+      	
+      	$.ajax({
+      		url: "/users/"+user_id,
+      		type: 'PUT',
+      		data: {user: properties},
+      		dataType: 'script',
+      		success: function(data){
+      			// console.log(data);
+      		},
+      		error: function(data){ 
+      			// console.log(data);
+      		},
+      		complete: function(data){
+      			// console.log(data);
+      			return data; 
+      		}
+      	});	
+      }
 		});
 
 		var update_user = function(user_id,properties){
-	// console.log(user_id);
-	// console.log(properties);
-	
-	$.ajax({
-		url: "/users/"+user_id,
-		type: 'PUT',
-		data: {user: properties},
-		dataType: 'script',
-		success: function(data){
-			// console.log(data);
-		},
-		error: function(data){ 
-			// console.log(data);
-		},
-		complete: function(data){
-			// console.log(data);
-			return data; 
-		}
-	});	
-}
+    	// console.log(user_id);
+    	// console.log(properties);
+    	
+    	$.ajax({
+    		url: "/users/"+user_id,
+    		type: 'PUT',
+    		data: {user: properties},
+    		dataType: 'script',
+    		success: function(data){
+    			// console.log(data);
+    		},
+    		error: function(data){ 
+    			// console.log(data);
+    		},
+    		complete: function(data){
+    			// console.log(data);
+    			return data; 
+    		}
+    	});	
+    }
 
 		// Team Invites
 		$('.tabs-invites .tab-pane input').on('input', function(event) {
@@ -1083,11 +1112,6 @@ var update_user = function(user_id,properties){
 				$tabBtn.removeClass('team-filled');
 			};
 		});
-
-    $('.user-groups .show-all-teams').click(function(e) {
-      e.preventDefault();
-      $(this).parents('.user-groups').toggleClass('show-all');
-    });
 
 	});
 
