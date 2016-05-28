@@ -36,6 +36,9 @@ gem 'omniauth-dribbble', '~> 0.0.1'
 gem 'acts_as_tree', '~> 2.4'
 gem 'carrierwave'
 
+gem 'griddler'
+gem 'griddler-sparkpost'
+
 # gem 'avatars_for_rails', path: "vendor/avatars_for_rails"
 
 # gem 'sidekiq' , '=3.3.1'#github: "mperham/sidekiq"

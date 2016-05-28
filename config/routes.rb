@@ -11,12 +11,12 @@ Rails.application.routes.draw do
   # devise_for :users
 
   devise_for :users, controllers: {
-        registrations: "users/registrations",
-        sessions: "users/sessions",
-        passwords: "users/passwords",
-        invitations: "users/invitations",
-        confirmations: "users/confirmations",
-        omniauth_callbacks: "users/omniauth_callbacks"
+    registrations: "users/registrations",
+    sessions: "users/sessions",
+    passwords: "users/passwords",
+    invitations: "users/invitations",
+    confirmations: "users/confirmations",
+    omniauth_callbacks: "users/omniauth_callbacks"
   }#,:path_names => { :sign_up => "account/register" }
   
   resources :users
@@ -62,5 +62,15 @@ Rails.application.routes.draw do
   %w( 404 422 500 503 ).each do |code|
     get code, :to => "errors#show", :code => code
   end
-    
+  
+
+  
+  # mount using default path: /email_processor
+  mount_griddler
+
+  # mount using a custom path
+  # mount_griddler('/email/incoming')
+
+  # # the DIY approach:
+  # post '/email_processor' => 'griddler/emails#create' 
 end
