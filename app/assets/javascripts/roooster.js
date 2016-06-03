@@ -22,29 +22,29 @@
 // }
 
 
-var create_team = function(attributes,onSeccuss){
-	onSeccuss = onSeccuss || function(){};
-	// console.log(attributes);
-	$.ajax({
-		url: "/teams/",
-		type: 'post',
-		data: {team: attributes },
-		dataType: 'script',
-		success: function(data){
-			// console.log(data);
-			onSeccuss(data);
-			// if(target){
-			// 	target.attr('data-team',data);
-			// }
-		},
-		error: function(data){ 
-			// console.log(data);
-		},
-		complete: function(data){
-			// console.log(data);
-		}
-	});	
-}
+// var create_team = function(attributes,onSeccuss){
+// 	onSeccuss = onSeccuss || function(){};
+// 	// console.log(attributes);
+// 	$.ajax({
+// 		url: "/teams/",
+// 		type: 'post',
+// 		data: {team: attributes },
+// 		dataType: 'script',
+// 		success: function(data){
+// 			// console.log(data);
+// 			onSeccuss(data);
+// 			// if(target){
+// 			// 	target.attr('data-team',data);
+// 			// }
+// 		},
+// 		error: function(data){ 
+// 			// console.log(data);
+// 		},
+// 		complete: function(data){
+// 			// console.log(data);
+// 		}
+// 	});	
+// }
 
 var add_profile_to_team = function(profile_id,team_id){
 	// console.log(profile_id +" "+ team_id);
