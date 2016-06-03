@@ -21,6 +21,7 @@
   // 	});	
 // }
 
+
 var create_team = function(attributes,onSeccuss){
 	onSeccuss = onSeccuss || function(){};
 	// console.log(attributes);
