@@ -317,6 +317,8 @@ var update_user = function(user_id,properties){
 
             create_team(attrs, function(id){
               $this.parent().attr('href',"/teams/" + id);
+              // $this.siblings().first().addClass('team-image-'+id);
+              $this.siblings().find('.team-count').addClass('team-count-'+id);
               teamDroppable($this.parents('.team-droppable'));
               addItemToTeamsList({
                 name: attrs.name,
@@ -328,6 +330,7 @@ var update_user = function(user_id,properties){
         });
       } else {
         $('.teams-slider').find('.team-new .team-inner').attr('href',"/teams/" + teamId);
+        $('.teams-slider').find('.team-new .team-count').addClass('team-count-'+teamId);
         teamDroppable(team);
       }
 
