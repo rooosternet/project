@@ -409,7 +409,7 @@ var update_user = function(user_id,properties){
             tmplt.find('input').attr({name: attr, id: attr}).prop('disabled', false);
             tmplt.find('label').attr('for', attr).removeAttr('contentEditable');
             tmplt.removeAttr('style');
-            $(list).find('.show-all-teams').parent().before(tmplt);
+            $(list).find('.show-all-teams').before(tmplt);
         });
       }
 
@@ -742,49 +742,48 @@ var update_user = function(user_id,properties){
 		// 		group: $(this).closest('li').index()
 		// 	}));
 
-  //     $(this).closest('li').before($userGroup);
-  //     // team_created = false
-  //     setTimeout(function() {
-  //       $userGroup.find('label').focus().on('blur keydown', function(event) {
-  //         if (event.keyCode === 13 || event.type === 'blur') {
-  //           $(this).removeAttr('contentEditable');
-  //           $(this).siblings('input').prop('disabled', false);
+    // $(this).closest('li').before($userGroup);
+      //     // team_created = false
+      //     setTimeout(function() {
+      //       $userGroup.find('label').focus().on('blur keydown', function(event) {
+      //         if (event.keyCode === 13 || event.type === 'blur') {
+      //           $(this).removeAttr('contentEditable');
+      //           $(this).siblings('input').prop('disabled', false);
 
-  //           if ($(this).html() == '') {
-  //             $(this).html('Team ' + leadingZero(newTeamsCount + 1));
-  //             newTeamsCount++;
-  //           };
+      //           if ($(this).html() == '') {
+      //             $(this).html('Team ' + leadingZero(newTeamsCount + 1));
+      //             newTeamsCount++;
+      //           };
 
-		// 				// if(team_created == false){
-		// 				// 	create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}},$(this));
-		// 					console.log("------");
-		// 				// 	team_created = true
-		// 				// 	$(this).addClass("add-profile");
-		// 				// 	$(this).attr('data-profile',profile_id);
-		// 				// 	// $(this).attr('data-team',);
-		// 				// }
-  //           create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}}, function(id){
-  //             $(this).addClass("add-profile");
-  //             $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
-  //             $(this).attr('data-profile',id);
-  //             teamDroppable(sliderTeam);
-  //             // $(sliderTeam).find('.team-title').html($(this).html());
-  //             // var sliderTpl   = $('#template-team').html(),
-  //             //     image_id    = Math.round(Math.random() * 18),
-  //             //     image_name  = "team"+(image_id + 1),
-  //             //     sliderTeam  = $(template(sliderTpl, {
-  //             //       image: team_images[image_id],
-  //             //       image_name: image_name
-  //             //     }));
+      // 				// if(team_created == false){
+      // 				// 	create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}},$(this));
+      // 					console.log("------");
+      // 				// 	team_created = true
+      // 				// 	$(this).addClass("add-profile");
+      // 				// 	$(this).attr('data-profile',profile_id);
+      // 				// 	// $(this).attr('data-team',);
+      // 				// }
+      //           create_team({name: $(this).html(),image: "team1" ,team_profiles_attributes: {profile_id: profile_id}}, function(id){
+      //             $(this).addClass("add-profile");
+      //             $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
+      //             $(this).attr('data-profile',id);
+      //             teamDroppable(sliderTeam);
+      //             // $(sliderTeam).find('.team-title').html($(this).html());
+      //             // var sliderTpl   = $('#template-team').html(),
+      //             //     image_id    = Math.round(Math.random() * 18),
+      //             //     image_name  = "team"+(image_id + 1),
+      //             //     sliderTeam  = $(template(sliderTpl, {
+      //             //       image: team_images[image_id],
+      //             //       image_name: image_name
+      //             //     }));
 
-  //             // $teamsSlider.trigger('add.owl.carousel', sliderTeam);
-  //             // $teamsSlider.trigger('refresh.owl.carousel');
-  //           });
-		// 			};
-		// 		});
-		// 	}, 100);
-		// });
-
+      //             // $teamsSlider.trigger('add.owl.carousel', sliderTeam);
+      //             // $teamsSlider.trigger('refresh.owl.carousel');
+      //           });
+      // 			};
+      // 		});
+      // 	}, 100);
+    // });
 
 		// Add User To Group
 		$('.users').on('click', '.add-profile', function(event) {
@@ -928,7 +927,6 @@ var update_user = function(user_id,properties){
 				};
 			});
 		});
-
 
 		// Section Inbox
 		$('.conversation > a, .conversation-compose > a').on('click', function(event) {
