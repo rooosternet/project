@@ -158,7 +158,7 @@ var update_user = function(user_id,properties){
 
 	$doc.ready(function() {
 
-	  // 		// Scroll To
+	  //// Scroll To
   		// $('[data-scroll-to]').on('click', function(event) {
   		// 	event.preventDefault();
 
@@ -289,7 +289,8 @@ var update_user = function(user_id,properties){
           team = template(tpl, {
             image: image,
             image_name: image_name,
-            name: name
+            name: name,
+            team_id: teamId
           });
 
       $teamsSlider.trigger('add.owl.carousel', team);
@@ -369,8 +370,8 @@ var update_user = function(user_id,properties){
 
             create_team({name: newName, image: image, team_profiles_attributes: {profile_id: profile_id}}, function(id){
               var newAttr = 'field-user' + profile_id + '-group' + id;
-              $userGroup.find('input').attr({name: newAttr, id: newAttr});
               $userGroup.find('label').attr({for: newAttr, 'data-team': id});
+              $userGroup.find('input').attr({name: newAttr, id: newAttr, 'data-team': id}).trigger('change');
               $userGroup.removeAttr('style')
 
               $.each($('.dropdown-menu.user-groups:not(#profile_'+profile_id +')'), function(i,list){
@@ -391,7 +392,8 @@ var update_user = function(user_id,properties){
                 image: imageId,
                 name: newName,
                 id: id
-              })
+              });
+              $userGroup.find('input').trigger('change');
             });
           }
         });
@@ -786,16 +788,27 @@ var update_user = function(user_id,properties){
     // });
 
 		// Add User To Group
-		$('.users').on('click', '.add-profile', function(event) {
+		$('.users').on('change', '.checkbox input[type="checkbox"]', function(event) {
 			// event.preventDefault();
 			var team_id = $(this).data('team');
 			var profile_id = $(this).data('profile');
-			var action = $(this).siblings('input[type=checkbox]').is(':checked');
-			var menu_backet =$("#"+$(this).data('backet'));
+			var action = $(this).is(':checked');
+			var menu_backet = $("#"+$(this).data('backet'));
 			// console.log("Add User To Group: " + action);
 			teams_count = $('.team-count-'+team_id);
 			
 			if(action == true){
+        add_profile_to_team(profile_id,team_id);
+        teams_count.text(parseInt(teams_count.text()) + 1).css('color','#fff'); 
+
+        if(!(teams_count.hasClass('team-count-backet'))){
+          var top_backet = $('.team-count-backet');
+          top_backet.text(parseInt(top_backet.text()) + 1).css('color','#fff');                     
+        }
+        if(menu_backet && !menu_backet.is(':checked')){
+          menu_backet.each(function(){ this.checked = true; });
+        }
+      } else {
 				remove_profile_from_team(profile_id,team_id);
 				teams_count.text(parseInt(teams_count.text()) - 1).css('color','#fff');
 
@@ -803,21 +816,8 @@ var update_user = function(user_id,properties){
 					var top_backet = $('.team-count-backet');
 					top_backet.text(parseInt(top_backet.text()) - 1).css('color','#fff');											
 				}
-
-			}else{
-				add_profile_to_team(profile_id,team_id);
-				teams_count.text(parseInt(teams_count.text()) + 1).css('color','#fff');	
-
-				if(!(teams_count.hasClass('team-count-backet'))){
-					var top_backet = $('.team-count-backet');
-					top_backet.text(parseInt(top_backet.text()) + 1).css('color','#fff');											
-				}
-				if(menu_backet && !menu_backet.is(':checked')){
-					menu_backet.each(function(){ this.checked = true; });
-				}
 			}
 		});
-
 
 		// User Messages
 		$('.users').on('click', '.user-alt .user-message', function(event) {
