@@ -350,7 +350,7 @@ var update_user = function(user_id,properties){
             name: name,
             group: teamId
           }));
-
+          
       $('#profile_'+profile_id).find('.show-all-teams').before($userGroup);
 
       if(name == ''){
