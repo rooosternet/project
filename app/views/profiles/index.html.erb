@@ -34,7 +34,7 @@
 				<script type="text/template" id="user-group-template">
 					<li style="display:block!important;">
 						<div class="checkbox">
-							<input type="checkbox" name="field-user{{user}}-group{{group}}" id="field-user{{user}}-group{{group}}" disabled >
+							<input type="checkbox" data-team="{{group}}" name="field-user{{user}}-group{{group}}" id="field-user{{user}}-group{{group}}" disabled data-profile="{{user}}" data-backet="field-user{{user}}-group<%=current_user.my_contacts_team.id%>">
 							<label class="add-profile" for="field-user{{user}}-group{{group}}" data-profile="{{user}}" data-team="{{group}}" 
 								contentEditable data-backet="field-user{{user}}-group<%=current_user.my_contacts_team.id%>">{{name}}</label>
 						</div>

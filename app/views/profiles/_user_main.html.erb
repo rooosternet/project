@@ -24,7 +24,7 @@
 						<% current_user.teams.each_with_index do |team, i| %>
 						<li class="<%= i >= 7 ? 'hidden' : ''%>">
 							<div class="checkbox">
-								<%=check_box_tag("field-user#{profile.id}-group#{team.id}",nil,team.profiles.pluck(:id).include?(profile.id),{:id=>"field-user#{profile.id}-group#{team.id}"})%>
+								<%=check_box_tag("field-user#{profile.id}-group#{team.id}",nil,team.profiles.pluck(:id).include?(profile.id),{:id=>"field-user#{profile.id}-group#{team.id}", 'data-profile' => profile.id, 'data-team' => team.id, 'data-backet' => backet_id})%>
 								<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" data-backet="<%=backet_id%>" class="add-profile"><%=team.name%></label>
 							</div><!-- /.checkbox -->
 						</li>
