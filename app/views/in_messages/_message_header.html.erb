@@ -1,4 +1,4 @@
-<li class="conversation <%='new-message' if (message.active? || message.descendants_active?) %>" data-url="<%=message_touch_path(message)%>">
+<li class="conversation <%=active %> <%='new-message' if (message.active? || message.descendants_active?) %>" data-url="<%=message_touch_path(message)%>">
 	<a href="#conversation<%=message.id%>" class="conversation-inner clearfix" data-toggle="tab">
 		<div class="conversation-avatar">
 			<!-- <img src="../images/temp/user2.jpg" alt=""> -->

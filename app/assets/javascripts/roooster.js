@@ -811,6 +811,7 @@ var update_user = function(user_id,properties){
         if(menu_backet && !menu_backet.is(':checked')){
           menu_backet.each(function(){ this.checked = true; });
         }
+        $(this).closest('.user-main').find('a.user-image').addClass('g-'+team_id);
       } else {
 				remove_profile_from_team(profile_id,team_id);
 				teams_count.text(parseInt(teams_count.text()) - 1).css('color','#fff');
@@ -819,6 +820,7 @@ var update_user = function(user_id,properties){
 					var top_backet = $('.team-count-backet');
 					top_backet.text(parseInt(top_backet.text()) - 1).css('color','#fff');											
 				}
+        $(this).closest('.user-main').find('a.user-image').removeClass('g-'+team_id);
 			}
 		});
 

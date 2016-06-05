@@ -12,7 +12,7 @@
 				</header><!-- /.section-head -->
 
 				<div class="section-body">
-					<ul class="conversations">
+					<ul class="conversations <%='active' if @messages.blank? %>">
 						<li class="conversation-compose">
 							<a href="#conversation-compose" data-toggle="tab">
 								<i class="ico-message-add"></i>
@@ -21,8 +21,8 @@
 							</a>
 						</li><!-- /.conversation-new -->
 
-						<% @messages.each do |message| %>
-							<%= render :partial => 'message_header' , :locals =>  { message: message }%>
+						<% @messages.each_with_index do |message,index| %>
+							<%= render :partial => 'message_header' , :locals =>  { message: message ,active: (index == 0) ? 'active' : ''}%>
 						<% end %>
 		
 					</ul><!-- /.conversations -->
@@ -31,7 +31,7 @@
 
 			<div class="section-content">
 				<div class="tab-content">
-					<div class="tab-pane" id="conversation-compose">
+					<div class="tab-pane <%='active' if @messages.blank? %>"  id="conversation-compose">
 						<div class="messages">
 							<div class="messages-inner">
 								<div class="form-message">
@@ -41,8 +41,8 @@
 						</div><!-- /.messages -->
 					</div><!-- /.tab-pane -->
 
-					<% @messages.each do |message| %>
-						<%= render :partial => 'message_content' , :locals =>  { message: message }%>
+					<% @messages.each_with_index do |message,index| %>
+						<%= render :partial => 'message_content' , :locals =>  { message: message ,active: (index == 0) ? 'active' : ''}%>
 					<% end %>
 
 				</div><!-- /.tab-content -->
