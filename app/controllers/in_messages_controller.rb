@@ -29,11 +29,11 @@ class InMessagesController < ApplicationController
   end
 
   def bulk_create
-    
-    recepients = secure_params[:to_ids]
-    
+    recepients = secure_params[:to_ids].try(:split,',') || secure_params[:to_id] 
+    recepients.select!{|x| x unless x.blank?}
+
     if recepients && recepients.is_a?(Array)
-      msg_attr = secure_params.dup.except(:to_ids)
+      msg_attr = secure_params.dup.except(:to_id,:to_ids)
       msg_attr.merge!(to_id: nil)
       save_messages = []
       fail_messages = []
@@ -125,6 +125,6 @@ class InMessagesController < ApplicationController
   private
 
   def secure_params
-    params.require(:in_message).permit(:id,:from_id , :to_id,:subject,:note,:token,:notify,:private,:parent_id,:to_ids =>[])
+    params.require(:in_message).permit(:id,:from_id ,:subject,:note,:token,:notify,:private,:parent_id, :to_id,:to_ids , :to_id => [])
   end
 end

@@ -1,12 +1,14 @@
-<%= form_for(message,:url => in_messages_path  ,:html => { :method => :post, :class => "message-to" ,:role => 'form', :id => 'new_message_form_id'}) do |f| %>
+<%= form_for(message,:url => bulk_create_message_path  ,:html => { :method => :post, :class => "message-to" ,:role => 'form', :id => 'new_message_form_id'}) do |f| %>
 	<%= f.hidden_field(:from_id,value: current_user.id) %>
 	<div class="form-body">
 		<div class="form-row">
 			<label class="form-label">To</label>
 
 			<div class="form-controls">
-				<%= f.hidden_field :to_id , {class: "form-control form-to"}%>
-				<input type="text" id="select_in_message_to_id" class="form-control form-to" placeholder="name go here..">
+				<%#= f.hidden_field :to_id , {class: "form-control form-to"}%>
+				<!-- <input type="text" id="select_in_message_to_id" class="form-control form-to" placeholder="name go here.."> -->
+        <%= f.select :to_id,options_for_select(current_user.my_contacts_team.profiles.includes(:user).collect {|u| [u.name,u.id] unless u.id.eql?(current_user.id)}.compact) , {} , {:multiple => true ,:no_label => true, :class => "select-autocomplete" ,:placeholder => "Name go here..."} %>
+        <%#= f.hidden_field :to_ids, :multiple => true, :value => nil %>
 			</div>
 		</div>
 
@@ -29,30 +31,86 @@
 
 <script type="text/javascript">
     // var data = <%#=raw User.all.collect {|u| {value: u.name, id: u.id} unless u.id.eql?(current_user.id)}.compact.to_json %>;
-    var data = <%=raw current_user.my_contacts_team.profiles.includes(:user).collect {|u| {value: u.name, id: u.id}}.compact.to_json %>;
+    // var data = <%#=raw current_user.my_contacts_team.profiles.includes(:user).collect {|u| {value: u.name, id: u.id}}.compact.to_json %>;
     
-    $(function(){
-      $("#select_in_message_to_id").autocomplete({ 
-        source:data,
-        select: function(event,ui){
-          $("#in_message_to_id").val( ui.item.id );
-          console.log($("#in_message_to_id").val());
-        }//,
-        // open: function( event, ui ) {
-        //     $(".ui-autocomplete").hide();
-        // } 
-      });    
-    })
+    // $(function(){
+    //   $("#select_in_message_to_id").autocomplete({ 
+    //     source:data,
+    //     select: function(event,ui){
+    //       $("#in_message_to_id").val( ui.item.id );
+    //       console.log($("#in_message_to_id").val());
+    //     }//,
+    //     // open: function( event, ui ) {
+    //     //     $(".ui-autocomplete").hide();
+    //     // } 
+    //   });    
+    // })
 
-  //  $(function() {
-  //   function split( val ) {
-  //     return val.split( /,\s*/ );
-  //   }
-  //   function extractLast( term ) {
-  //     return split( term ).pop();
-  //   }
- 
-  //   $( "#select_in_message_to_id" )
+    // function filterByName(names) {
+    //   $.grep(data, function(e){ return e.id == 4; });  
+    // }
+
+   // $(function() {
+   //  function split( val ) {
+   //    return val.split( /,\s*/ );
+   //  }
+   //  function extractLast( term ) {
+   //    return split( term ).pop();
+   //  }
+      
+   
+
+
+   //  $( "#select_in_message_to_id" )
+   //    // don't navigate away from the field on tab when selecting an item
+   //    .bind( "keydown", function( event ) {
+   //      if ( event.keyCode === $.ui.keyCode.TAB &&
+   //          $( this ).autocomplete( "instance" ).menu.active ) {
+   //        event.preventDefault();
+   //      }
+   //    })
+   //    .autocomplete({
+   //      minLength: 2,
+   //      search: function() {
+   //        // custom minLength
+   //        var term = extractLast( this.value );
+   //        if ( term.length < 2 ) {
+   //          return false;
+   //        }
+   //      },
+   //      source: function( request, response ) {
+   //        // delegate back to autocomplete, but extract the last term
+   //        response( $.ui.autocomplete.filter(
+   //          data, extractLast( request.term ) ) );
+   //      },
+   //      focus: function() {
+   //        // prevent value inserted on focus
+   //        return false;
+   //      },
+   //      select: function( event, ui ) {
+   //        var terms = split(this.value);
+   //        console.log(terms);
+   //        console.log(ui.item.value);
+
+   //        ids = $("#in_message_to_id").val().split(',');
+   //        console.log(ids);
+   //        // remove the current input
+   //        terms.pop();
+   //        // add the selected item
+   //        terms.push( ui.item.value );
+   //        ids.push( ui.item.id );
+   //        // add placeholder to get the comma-and-space at the end
+   //        terms.push( "" );
+   //        this.value = terms.join( ", " );
+   //        $("#in_message_to_id").val( ids.join(",") );
+   //        console.log($("#in_message_to_id").val());
+   //        return false;
+   //      }
+   //    });
+
+
+  //   
+// $( "#select_in_message_to_id" )
   //     .bind( "keydown", function( event ) {
   //       if ( event.keyCode === $.ui.keyCode.TAB &&
   //           $( this ).autocomplete( "instance" ).menu.active ) {
@@ -92,7 +150,6 @@
   //       }
   //     });
   // }); 
-
    // function split( val ) {
    //    return val.split( /,\s*/ );
    //  }
