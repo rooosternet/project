@@ -664,11 +664,12 @@ var update_user = function(user_id,properties){
 
 		// Team Droppable
 		function teamDroppable(that) {
-			var that_id = $(that).find('a.team-inner').attr('href').match(/\d+/);
-			that_id = that_id ? that_id[0] : 0;
+      var that = $(that),
+          that_id = that.find('a.team-inner').attr('href').match(/\d+/);
+      that_id = that_id ? that_id[0] : 0;
 			var accept = $(that).data('accept') + ':not(.g-'+that_id+')';
 
-			$(that).droppable({
+      that.droppable({
 				accept: accept,
 				hoverClass: 'team-highlighted',
 				over: function(event, ui) {
@@ -682,7 +683,7 @@ var update_user = function(user_id,properties){
 				},
 				drop: function(event, ui) {
 					
-					$(that).addClass('team-dropped');
+					that.addClass('team-dropped');
 					ui.draggable.addClass('user-dropped g-' + that_id);
 
 					setTimeout(function() {
@@ -690,16 +691,16 @@ var update_user = function(user_id,properties){
 					}, 400);
 
 					setTimeout(function() {
-						$(that).removeClass('team-dropped');
+						that.removeClass('team-dropped');
 						ui.draggable.removeClass('user-dropped');
 					}, 1000);
 
 					var user_id = ui.draggable.parents('li.user-alt').attr('id');
-					add_profile_to_team(user_id,that_id);
+          $('#' + user_id).find('#field-user'+ user_id +'-group'+ that_id).attr("checked", "checked");
 					
-					$(that).find('.team-count').text(parseInt($(that).find('.team-count').text()) + 1).css('color','#fff');
+					that.find('.team-count').text(parseInt(that.find('.team-count').text()) + 1).css('color','#fff');
 					
-					if(!($(that).find('.team-count').hasClass('team-count-backet'))){
+					if(!(that.find('.team-count').hasClass('team-count-backet'))){
 						var backet = $('.team-count-backet');
 						var team_id = backet.closest('a.team-inner').attr('href').match(/\d+/)[0];
 						if(!(ui.draggable.hasClass('g-'+team_id))){
