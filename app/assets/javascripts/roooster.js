@@ -332,6 +332,7 @@ var update_user = function(user_id,properties){
       } else {
         $('.teams-slider').find('.team-new .team-inner').attr('href',"/teams/" + teamId);
         $('.teams-slider').find('.team-new .team-count').addClass('team-count-'+teamId);
+        $('.teams-slider').find('.team-new').removeClass('team-new');
         teamDroppable(team);
       }
 
@@ -798,7 +799,7 @@ var update_user = function(user_id,properties){
 			var action = $(this).is(':checked');
 			var menu_backet = $("#"+$(this).data('backet'));
 			// console.log("Add User To Group: " + action);
-			teams_count = $('.team-count-'+team_id);
+			var teams_count = $('.team-count-'+team_id);
 			
 			if(action == true){
         add_profile_to_team(profile_id,team_id);
