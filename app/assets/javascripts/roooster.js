@@ -375,7 +375,7 @@ var update_user = function(user_id,properties){
             create_team({name: newName, image: image, team_profiles_attributes: {profile_id: profile_id}}, function(id){
               var newAttr = 'field-user' + profile_id + '-group' + id;
               $userGroup.find('label').attr({for: newAttr, 'data-team': id});
-              $userGroup.find('input').attr({name: newAttr, id: newAttr, 'data-team': id}).trigger('change');
+              $userGroup.find('input').attr({name: newAttr, id: newAttr, 'data-team': id});
               $userGroup.removeAttr('style')
 
               $.each($('.dropdown-menu.user-groups:not(#profile_'+profile_id +')'), function(i,list){
@@ -405,11 +405,11 @@ var update_user = function(user_id,properties){
         $.each($('.dropdown-menu.user-groups'), function(i,list){
           var $list = $(list),
               profileId = $list.data('profile'),
-                tmplt = $(template(tpl, {
-                  user: profileId,
-                  group: teamId,
-                  name: name
-                }));
+              tmplt = $(template(tpl, {
+                user: profileId,
+                group: teamId,
+                name: name
+              }));
 
             var attr = 'field-user' + profileId + '-group' + teamId;
             tmplt.find('input').attr({name: attr, id: attr}).prop('disabled', false);
@@ -422,7 +422,7 @@ var update_user = function(user_id,properties){
       checkShowAllToggle();
     }
 
-    $('.user-groups .show-all-teams').click(function(e) {
+    $('.infinite-scroll').on('click', '.user-groups .show-all-teams', function(e) {
       e.preventDefault();
       $(this).parents('.user-groups').toggleClass('show-all');
     });
@@ -794,7 +794,7 @@ var update_user = function(user_id,properties){
 		// Add User To Group
 		$('.users').on('change', '.checkbox input[type="checkbox"]', function(event) {
 			// event.preventDefault();
-			var team_id = $(this).data('team');
+      var team_id = $(this).data('team');
 			var profile_id = $(this).data('profile');
 			var action = $(this).is(':checked');
 			var menu_backet = $("#"+$(this).data('backet'));
@@ -899,6 +899,7 @@ var update_user = function(user_id,properties){
 						userDraggable($content.find('.user-draggable'));
 
 						$infinite.append($content);
+            checkShowAllToggle();
 					})
 					.error(function() {
 						hasNextPage = false;
