@@ -332,6 +332,7 @@ var update_user = function(user_id,properties){
       } else {
         $('.teams-slider').find('.team-new .team-inner').attr('href',"/teams/" + teamId);
         $('.teams-slider').find('.team-new .team-count').addClass('team-count-'+teamId);
+        $('.teams-slider').find('.team-new').removeClass('team-new');
         teamDroppable(team);
       }
 
@@ -374,7 +375,7 @@ var update_user = function(user_id,properties){
             create_team({name: newName, image: image, team_profiles_attributes: {profile_id: profile_id}}, function(id){
               var newAttr = 'field-user' + profile_id + '-group' + id;
               $userGroup.find('label').attr({for: newAttr, 'data-team': id});
-              $userGroup.find('input').attr({name: newAttr, id: newAttr, 'data-team': id}).trigger('change');
+              $userGroup.find('input').attr({name: newAttr, id: newAttr, 'data-team': id});
               $userGroup.removeAttr('style')
 
               $.each($('.dropdown-menu.user-groups:not(#profile_'+profile_id +')'), function(i,list){
@@ -404,11 +405,11 @@ var update_user = function(user_id,properties){
         $.each($('.dropdown-menu.user-groups'), function(i,list){
           var $list = $(list),
               profileId = $list.data('profile'),
-                tmplt = $(template(tpl, {
-                  user: profileId,
-                  group: teamId,
-                  name: name
-                }));
+              tmplt = $(template(tpl, {
+                user: profileId,
+                group: teamId,
+                name: name
+              }));
 
             var attr = 'field-user' + profileId + '-group' + teamId;
             tmplt.find('input').attr({name: attr, id: attr}).prop('disabled', false);
@@ -421,7 +422,7 @@ var update_user = function(user_id,properties){
       checkShowAllToggle();
     }
 
-    $('.user-groups .show-all-teams').click(function(e) {
+    $('.infinite-scroll').on('click', '.user-groups .show-all-teams', function(e) {
       e.preventDefault();
       $(this).parents('.user-groups').toggleClass('show-all');
     });
@@ -663,11 +664,12 @@ var update_user = function(user_id,properties){
 
 		// Team Droppable
 		function teamDroppable(that) {
-			var that_id = $(that).find('a.team-inner').attr('href').match(/\d+/);
-			that_id = that_id ? that_id[0] : 0;
+      var that = $(that),
+          that_id = that.find('a.team-inner').attr('href').match(/\d+/);
+      that_id = that_id ? that_id[0] : 0;
 			var accept = $(that).data('accept') + ':not(.g-'+that_id+')';
 
-			$(that).droppable({
+      that.droppable({
 				accept: accept,
 				hoverClass: 'team-highlighted',
 				over: function(event, ui) {
@@ -681,7 +683,7 @@ var update_user = function(user_id,properties){
 				},
 				drop: function(event, ui) {
 					
-					$(that).addClass('team-dropped');
+					that.addClass('team-dropped');
 					ui.draggable.addClass('user-dropped g-' + that_id);
 
 					setTimeout(function() {
@@ -689,16 +691,16 @@ var update_user = function(user_id,properties){
 					}, 400);
 
 					setTimeout(function() {
-						$(that).removeClass('team-dropped');
+						that.removeClass('team-dropped');
 						ui.draggable.removeClass('user-dropped');
 					}, 1000);
 
 					var user_id = ui.draggable.parents('li.user-alt').attr('id');
-					add_profile_to_team(user_id,that_id);
+          $('#' + user_id).find('#field-user'+ user_id +'-group'+ that_id).attr("checked", "checked");
 					
-					$(that).find('.team-count').text(parseInt($(that).find('.team-count').text()) + 1).css('color','#fff');
+					that.find('.team-count').text(parseInt(that.find('.team-count').text()) + 1).css('color','#fff');
 					
-					if(!($(that).find('.team-count').hasClass('team-count-backet'))){
+					if(!(that.find('.team-count').hasClass('team-count-backet'))){
 						var backet = $('.team-count-backet');
 						var team_id = backet.closest('a.team-inner').attr('href').match(/\d+/)[0];
 						if(!(ui.draggable.hasClass('g-'+team_id))){
@@ -793,12 +795,12 @@ var update_user = function(user_id,properties){
 		// Add User To Group
 		$('.users').on('change', '.checkbox input[type="checkbox"]', function(event) {
 			// event.preventDefault();
-			var team_id = $(this).data('team');
+      var team_id = $(this).data('team');
 			var profile_id = $(this).data('profile');
 			var action = $(this).is(':checked');
 			var menu_backet = $("#"+$(this).data('backet'));
 			// console.log("Add User To Group: " + action);
-			teams_count = $('.team-count-'+team_id);
+			var teams_count = $('.team-count-'+team_id);
 			
 			if(action == true){
         add_profile_to_team(profile_id,team_id);
@@ -898,6 +900,7 @@ var update_user = function(user_id,properties){
 						userDraggable($content.find('.user-draggable'));
 
 						$infinite.append($content);
+            checkShowAllToggle();
 					})
 					.error(function() {
 						hasNextPage = false;
