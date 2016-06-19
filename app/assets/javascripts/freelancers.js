@@ -1,4 +1,4 @@
-$(function() {
+// $(function() {
 
 	// $('#form-suggest').modal();
 
@@ -29,4 +29,4 @@ $(function() {
 
 	// });
 
-});
+// });
