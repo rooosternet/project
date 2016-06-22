@@ -664,10 +664,10 @@ var update_user = function(user_id,properties){
 
 		// Team Droppable
 		function teamDroppable(that) {
-      var that = $(that),
-          that_id = that.find('a.team-inner').attr('href').match(/\d+/);
-      that_id = that_id ? that_id[0] : 0;
-			var accept = $(that).data('accept') + ':not(.g-'+that_id+')';
+      var that    = $(that),
+          that_id = that.find('a.team-inner').attr('href').match(/\d+/),
+          that_id = that_id ? that_id[0] : 0,
+          accept  = $(that).data('accept') + ':not(.g-'+that_id+')';
 
       that.droppable({
 				accept: accept,
@@ -696,9 +696,9 @@ var update_user = function(user_id,properties){
 					}, 1000);
 
 					var user_id = ui.draggable.parents('li.user-alt').attr('id');
-          $('#' + user_id).find('#field-user'+ user_id +'-group'+ that_id).attr("checked", "checked");
+          $('#' + user_id).find('#field-user'+ user_id +'-group'+ that_id).attr("checked", "checked").trigger('change');
 					
-					that.find('.team-count').text(parseInt(that.find('.team-count').text()) + 1).css('color','#fff');
+					// that.find('.team-count').text(parseInt(that.find('.team-count').text()) + 1).css('color','#fff');
 					
 					if(!(that.find('.team-count').hasClass('team-count-backet'))){
 						var backet = $('.team-count-backet');
@@ -794,6 +794,7 @@ var update_user = function(user_id,properties){
 
 		// Add User To Group
 		$('.users').on('change', '.checkbox input[type="checkbox"]', function(event) {
+      console.log('change ');
 			// event.preventDefault();
       var team_id = $(this).data('team');
 			var profile_id = $(this).data('profile');
