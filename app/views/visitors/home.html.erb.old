@@ -1,0 +1,39 @@
+<!-- <div class="main">
+	<div class="shell"> -->
+
+		<% if user_signed_in? %>
+			<%= render :partial => 'pages/search' %>
+		<% else %>    
+
+		    <%= render :partial => 'pages/intro' %>
+			
+			<div class="divider">
+				<a href="#" data-scroll-to=".section-about">
+					<i class="ico-arrow-down"></i>
+				</a>
+			</div><!-- /.divider -->
+
+			<%= render :partial => 'pages/about' %>
+
+			<div class="divider"> <!-- hidden-xs -->
+				<a href="#" data-scroll-to=".section-blog">
+					<i class="ico-arrow-down"></i>
+				</a>
+			</div><!-- /.divider -->
+
+			<%= render :partial => 'pages/blog_intro' %>
+		<% end %>
+	<!--</div> /.shell -->
+<!-- </div>/.main -->
+
+
+
+<%= javascript_tag do %>
+$(function(){
+<% if user_signed_in? && (current_user.user_need_to_edit_profile? || params[:profile].eql?("true")) %>
+$('#<%= current_user.user_type_str %>').modal();
+<% elsif @confirmation %>	
+$('#confirmation_thanks').modal();
+<% end %>	
+});
+<% end %>

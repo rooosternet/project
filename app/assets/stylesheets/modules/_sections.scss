@@ -73,6 +73,17 @@
 	}
 }
 
+.section-blog-secondary { position: relative; height: 100vh; min-height: 700px; }
+.section-blog-secondary .section-body { padding-left: 21px; }
+.section-blog-secondary .article + .article { margin-top: 16px; }
+
+@media (max-width: $screen-xs-max) {
+	.section-blog-secondary { min-height: 0; height: auto; padding: 35px 0 50px; 
+
+		.section-inner { position: static; transform: translateY(0); }
+	}
+}
+
 /* ------------------------------------------------------------ *\
 	Section Search
 \* ------------------------------------------------------------ */
@@ -295,6 +306,45 @@
 		.messages .message { padding: 0; }
 
 		.form-message .form-row { margin: 10px 0; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	section-orange
+\* ------------------------------------------------------------ */
+
+.section-orange { background: #fcdcb6; position: relative; }
+.section-orange:after,
+.section-orange:before { display: inline-block; content: ''; width: 50px; height: 50px; border-radius: 0 0 25px 25px; position: absolute; top: -25px; left: 50%; margin-left: -25px; z-index: 10; background: #fbfbfb; }
+.section-orange:after { top: auto; bottom: -25px; border-radius: 25px 25px 0 0; }
+
+/* ------------------------------------------------------------ *\
+	section-how-it-works
+\* ------------------------------------------------------------ */
+
+.section-how-it-works { position: relative; height: calc(100vh); min-height: 550px; text-align: center; 
+
+	.section-inner { position: absolute; top: 50%; width: 100%; transform: translateY(-50%); left: 0; right: 0; }
+	.section-container { position: relative; }
+	.section-container:before { display: inline-block; content: ''; width: 100%; height: 130px; position: absolute; top: 30px; left: 0; right: 0; background: #fdc888; }
+	.section-container-inner { max-width: 672px; margin: 0 auto; }
+	.section-title { font-size: 18px; line-height: 1; letter-spacing: .02em; text-transform: uppercase; color: #373737; font-weight: 700; }
+
+	.section-body { margin-top: 35px; margin-bottom: 82px; }
+
+	.section-foot h2 { font-size: 33px; line-height: 1; color: #2e3641; letter-spacing: -.025em; text-transform: uppercase; font-weight: 700; margin: 0 0 8px; }
+	.section-foot p { font-size: 22px; line-height: 1.45; color: #2e3641; letter-spacing: -.025em; margin: 0; }
+}
+
+@media (max-width: $screen-xs-max) {
+	.section-how-it-works { height: auto; max-height: 100%; padding: 70px 0 60px; 
+		.section-inner { position: static; transform: translateY(0); }
+		.section-title { margin-bottom: 20px; }
+		.section-container:before { display: none; }
+		.section-body { margin-top: 0; margin-bottom: 45px; }
+		.section-foot { padding: 0 10px; }
+		.section-foot h2 { font-size: 26px; }
+		.section-foot p { font-size: 17px; }
 	}
 }
 

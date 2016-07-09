@@ -25,10 +25,15 @@
 		p { margin: 0; }
 	}
 
+	@media(max-width: 767px){
+		.footer-nav-xs-hidden { display: none; }
+		.footer-nav-xs-hidden + .footer-socials { padding-bottom: 20px; }
+	}
+
 	@media (max-width: 479px) {
 		.shell { padding: 0 5px; }
 		.footer-nav { font-size: 13px; }
 	}
 }
 
-
+.footer-fullpage { position: relative; z-index: 999; }

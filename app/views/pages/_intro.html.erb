@@ -1,40 +1,74 @@
-<div class="intro">
+<!-- <div class="intro">
 	<div class="intro-inner">
 		<div class="container">
 			<div class="row">						
 				<div class="intro-content">
 					<h2 class="intro-title">
-						<!-- CREATE TOGETHER <br>
-						THE BEST, MOST RELIABLE,<br>
-						FREELANCE TALENT POOL -->
 						Teamwork<br>for Better Projects
-					</h2><!-- /.intro-title -->
+					</h2>
 					<div class="intro-entry">
 						<p>
 						Create your dream team for any creative project
-						<!-- Roooster helps you discover awesome artists,<br>
-						recommended by other creative leaders -->
 						</p>
-					</div><!-- /.intro-entry -->
-				</div><!-- /.intro-content -->
+					</div>
+				</div>
 
 				<div class="col-sm-4 col-xs-3 pull-left">
 					<div class="intro-image">
-						<!-- <img src="images/intro-image.png" height="204" width="167" alt=""> -->
-						<%=image_tag "intro-image.png", { height: "204" ,width: "167" ,alt: "" } %>
-					</div><!-- /.intro-image -->
-				</div><!-- /.col-sm-4 col-xs-3 -->
-			</div><!-- /.row -->
+						<%#=image_tag "intro-image.png", { height: "204" ,width: "167" ,alt: "" } %>
+					</div>
+				</div>
+			</div>
 
 			<div class="intro-foot hidden-xs">
 				<a href="#modal-signup" class="btn" data-toggle="modal">Sign Up</a>
-
-				<!-- <p>Freelancer? Apply for an invite <a href="#modal-signup-freelancer" data-toggle="modal">here</a>.</p> -->
-			</div><!-- /.intro-foot -->
+			</div>
 
 			<div class="intro-actions hidden">
 				<a href="#modal-signin" class="btn btn-default" data-toggle="modal">Sign In</a>
+			</div>
+		</div>
+	</div>
+</div>
+ -->
+
+<div class="intro intro-alt test current" id="section1">
+	<header class="header header-fullpage">
+		<div class="shell">
+			<div class="header-actions hidden-xs">
+				<a href="#modal-signin" class="btn btn-default" data-toggle="modal-alt">Sign In</a>
+			</div><!-- /.header-actions -->
+			
+			<%= link_to 'roooster', root_path, class: 'logo' %>
+
+			<span class="slogan">Creatives unite</span>
+		</div><!-- /.shell -->
+	</header><!-- /.header header-fullpage -->
+
+	<div class="shell">
+		<div class="intro-inner">
+			<div class="intro-head">
+				<h1>Teamwork</h1>
+	
+				<p>for Better Creative</p>
+			</div><!-- /.intro-head -->
+	
+			<div class="intro-body">
+				<%=image_tag "characters.png", { alt: "" } %>
+			</div><!-- /.intro-body -->
+	
+			<div class="intro-body mobile">
+				<%=image_tag "characters-sm.png", { alt: "" } %>
+			</div><!-- /.intro-body -->
+			
+			<div class="intro-actions">
+				<a href="#modal-signup" class="btn btn-rounded btn-orange" data-toggle="modal">Start</a>
+				
+				<p>
+					Already a user?
+					<a href="#modal-signin"  data-toggle="modal">Sign In</a>
+				</p>
 			</div><!-- /.intro-actions -->
-		</div><!-- /.container -->
-	</div><!-- /.intro-inner -->
-</div><!-- /.intro 	-->
+		</div><!-- /.intro-inner -->
+	</div><!-- /.shell -->
+</div><!-- /.intro -->

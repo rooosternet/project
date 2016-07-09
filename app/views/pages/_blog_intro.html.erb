@@ -1,35 +1,106 @@
-<section class="section section-blog">
-	<h2 class="section-title">Blog</h2><!-- /.section-title -->
+<!-- <section class="section section-blog section-blog-secondary test" id="section3">
+			<div class="section-inner">
+				<div class="shell">
+					<h2 class="section-title">Blog</h2>
+				
+					<div class="section-body">
+						<ul class="articles">
+							<li class="article">
+								<h3 class="article-title">
+									<a href="blog-page.html">As an owner of a design studio</a>
+								</h3>
+				
+								<div class="article-entry">
+									<p>in London, I have just a few in-house employees and like many of you, heavily depended on freelances to help with ongoing projects. We are all used to waste days, browsing through hundreds of...</p>
+								</div>
+				
+								<div class="article-actions">
+									<a href="blog-page.html">
+										Read more <i class="ico-arrow-down-small-orange"></i>
+									</a>
+								</div>
+							</li>
+						
+							<li class="article">
+								<h3 class="article-title">
+									<a href="blog-page.html">Therefore, I came up with</a>
+								</h3>
+				
+								<div class="article-entry">
+									<p>the idea of sharing the best freelance contacts with my fellow creative leaders, in hope that others would contribute and together we can build tmate list to help ev help everyone...</p>
+								</div>
+				
+								<div class="article-actions">
+									<a href="blog-page.html">
+										Read more <i class="ico-arrow-down-small-orange"></i>
+									</a>
+								</div>
+							</li>
+						
+							<li class="article">
+								<h3 class="article-title">
+									<a href="blog-page.html">You must all agree</a>
+								</h3>
+				
+								<div class="article-entry">
+									<p>That finding good, reliable reative leaders, in hope that otfreel Fances for a project is every creative leader’s worst mate list to help evnightmare...</p>
+								</div>
+				
+								<div class="article-actions">
+									<a href="blog-page.html">
+										Read more <i class="ico-arrow-down-small-orange"></i>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				
+					<footer class="section-foot">
+						<a href="#">
+							More posts <i class="ico-arrow-right-small-orange"></i>
+						</a>
+					</footer>
+				</div>
+			</div>
+		</section> -->
 
-	<div class="section-body">
-		<ul class="articles">
 
-		<% (@blog_intro || []).each do |post| %>
-			
-			<li class="article">
-				<h3 class="article-title">
-					<a href='<%=post[:link]%>' target="_blank"><%=post[:title].html_safe %></a>
-				</h3><!-- /.article-title -->
+<section class="section section-blog section-blog-secondary test" id="section3">
+	<div class="section-inner">
+		<div class="shell">
+			<h2 class="section-title">Blog</h2>
 
-				<div class="article-entry">
-					<p><%=post[:intro].html_safe %>...</p>
-				</div><!-- /.article-entry -->
+			<div class="section-body">
+				<ul class="articles">
 
-				<div class="article-actions">
-					<a href='<%=post[:link]%>' target="_blank">
-						Read more <i class="ico-arrow-down-small"></i>
-					</a>
-				</div><!-- /.article-actions -->
-			</li><!-- /.article -->
+					<% (@blog_intro || []).each do |post| %>
+					
+					<li class="article">
+						<h3 class="article-title">
+							<a href='<%=post[:link]%>' target="_blank"><%=post[:title].html_safe %></a>
+						</h3>
 
-		<% end %>	
+						<div class="article-entry">
+							<p><%=post[:intro].html_safe %>...</p>
+						</div>
 
-		</ul><!-- /.articles -->
-	</div><!-- /.section-body -->
+						<div class="article-actions">
+							<a href='<%=post[:link]%>' target="_blank">
+								Read more <i class="ico-arrow-down-small"></i>
+							</a>
+						</div>
+					</li>
 
-	<footer class="section-foot">
-		<a href="http://blog.roooster.co">
-			More posts <i class="ico-arrow-right-small"></i>
-		</a>
-	</footer><!-- /.section-foot -->
-</section><!-- /.section section-blog -->
+					<% end %>	
+
+				</ul>
+			</div>
+
+			<footer class="section-foot">
+				<a href="http://blog.roooster.co">
+					More posts <i class="co-arrow-right-small-orange"></i>
+				</a>
+			</footer>
+		</div>
+	</div>
+</section>

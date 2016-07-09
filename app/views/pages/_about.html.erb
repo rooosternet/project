@@ -1,29 +1,83 @@
-<section class="section section-about">
+<!-- <section class="section section-about">
 	<div class="section-inner">
 		<footer class="section-foot section-foot-alt visible-xs">
 			<a href="#modal-signup" class="btn" data-toggle="modal">Sign Up</a>
 
-			<!-- <p>Freelancer? Apply for an invite <a href="#modal-signup-freelancer" data-toggle="modal">here</a>.</p> -->
-		</footer><!-- /.section-foot -->
+			
+		</footer>
 
-		<h2 class="section-title">Don't Let Your Shortlist Run Short</h2><!-- /.section-title -->
+		<h2 class="section-title">Don't Let Your Shortlist Run Short</h2>
 
 		<div class="section-body">
 			<div class="section-entry">
 			<p>Roooster's vision is about creating the world's top creative talent force. We want to provide creative leaders the tools to expand their rosters, to compete with the biggest and baddest in the industry for the top projects and to provide them the possibility to collaborate with other studios in dynamic alliances.</p>
-			</div><!-- /.section-entry -->
+			</div>
 
 			<div class="section-image">
-				<!-- <img src="images/section-about-image.png" height="251" width="455" alt=""> -->
-				<%=image_tag "section-about-image.png", { height: "251" ,width: "455" ,alt: "" } %>
-			</div><!-- /.section-image -->
-		</div><!-- /.section-body -->
+				
+				<%#=image_tag "section-about-image.png", { height: "251" ,width: "455" ,alt: "" } %>
+			</div>
+		</div>
 		
 		<footer class="section-foot">
-			<% unless user_signed_in? %>
+			<%# unless user_signed_in? %>
 			<a href="#modal-signup" class="btn" data-toggle="modal">Sign Up</a>
-			<% end %>
-			<!-- <p>Freelancer? Apply for an invite <a href="#modal-signup-freelancer" data-toggle="modal">here</a>.</p> -->
-		</footer><!-- /.section-foot -->
-	</div><!-- /.section-inner -->
-</section><!-- /.section section-about -->
+			<%# end %>
+			
+		</footer>
+	</div>
+</section>
+ -->
+
+<section class="section-how-it-works section-orange test" id="section2">
+<div class="section-inner">
+	<h2 class="section-title">how roooster works?</h2><!-- /.section-title -->
+	
+	<div class="section-container">
+		<div class="section-container-inner">
+			<div class="section-body">
+				<ul class="steps">
+					<li class="step">
+						<div class="step-image">
+							<!-- <img src="../images/temp/step1.png" alt=""> -->
+							<%=image_tag "step1.png", { alt: "" } %>
+						</div><!-- /.step-image -->
+						
+						<strong>Create</strong>
+						
+						<p>Your profile</p>
+					</li><!-- /.step -->
+					
+					<li class="step">
+						<div class="step-image">
+							<!-- <img src="../images/temp/step2.png" alt=""> -->
+							<%=image_tag "step2.png", { alt: "" } %>
+						</div><!-- /.step-image -->
+						
+						<strong>build</strong>
+						
+						<p>Your DreamTeam</p>
+					</li><!-- /.step -->
+					
+					<li class="step">
+						<div class="step-image">
+							<!-- <img src="../images/temp/step3.png" alt=""> -->
+							<%=image_tag "step3.png", { alt: "" } %>
+						</div><!-- /.step-image -->
+						
+						<strong>work</strong>
+						
+						<p>together </p>
+					</li><!-- /.step -->
+				</ul><!-- /.steps -->
+			</div><!-- /.section-body -->
+		
+			<footer class="section-foot">
+				<h2>Teamwork, simple</h2>
+				
+				<p>Roooster allows creative professionals to form DreamTeams,<br> perfectly matching the needs of any project</p>
+			</footer><!-- /.section-foot -->
+		</div><!-- /.section-container-inner -->
+	</div><!-- /.section-container -->
+</div><!-- /.section-inner -->
+</section><!-- /.section-how-it-works -->

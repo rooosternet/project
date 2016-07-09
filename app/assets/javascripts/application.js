@@ -17,6 +17,7 @@
 //= require fastselect.standalone
 //= require jquery-ui/jquery-ui.min
 //= require jquery-ui/jquery.ui.touch-punch.min
+//= require fullPage.js-master/dist/jquery.fullpage
 //= require owl.carousel.min
 //= require bootstrap3-typeahead.min
 // require turbolinks
