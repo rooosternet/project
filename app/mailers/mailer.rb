@@ -1,5 +1,5 @@
 class Mailer < Devise::Mailer
-	default from: "info@roooster.net"
+	default from: "info@roooster.co"
 
 	helper :application # gives access to all helpers defined within `application_helper`.
   	include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
@@ -61,7 +61,7 @@ class Mailer < Devise::Mailer
 
 	def notification_mail(user,subject = "New user registered!")
 		@user = user
-		mail(to: "info@roooster.net",subject: subject)
+		mail(to: "info@roooster.co",subject: subject)
 	end
 
 	def directory_activation(user)
@@ -73,7 +73,7 @@ class Mailer < Devise::Mailer
 	def contact_us(message)
       @message = message["note"]
       @from = message["email"]
-      @to = "info@roooster.net"
+      @to = "info@roooster.co"
       @subject = message["subject"]
       @name =  message["name"]
       mail(to: @to ,from: @from, subject: @subject)

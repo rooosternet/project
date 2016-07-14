@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def set_default_role
-    self.role ||= ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ?  :admin : :user 
+    self.role ||= ["yossi@roooster.co","sam@roooster.co","rotem@roooster.co"].include?(self.email) ?  :admin : :user 
     self.profile = Profile.new unless self.profile
   end
 
@@ -182,7 +182,7 @@ class User < ActiveRecord::Base
 #   chars -= %w(0 O 1 l)
 #   _password = ''
 #   length.times {|i| _password << chars[SecureRandom.random_number(chars.size)] }
-#   _password = ["yossi@roooster.net","sam@roooster.net","rotem@roooster.net"].include?(self.email) ? "1q2w3e4r" : _password
+#   _password = ["yossi@roooster.co","sam@roooster.co","rotem@roooster.co"].include?(self.email) ? "1q2w3e4r" : _password
 #   puts "---------- #{self.email}  #{_password}"
 #   self.password = _password
 #   self.password_confirmation = _password
