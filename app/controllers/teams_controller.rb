@@ -5,11 +5,11 @@ class TeamsController < ApplicationController
   before_action :set_menu #, only: [:show, :edit, :update, :destroy]
   before_action :verify_permissions , only: [:show, :edit, :update, :destroy ,:archive]
   after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy ,:archive]
-  protect_from_forgery :except => [:update_team_avatar] 
+  protect_from_forgery :except => [:update_team_avatar]
 
   def update_team_avatar
-    
-    begin 
+
+    begin
     params[:team][:attachments].each do |attachment|
       @post_attachment = @team.attachments.create!(:team_id => @team.id , :attachment => attachment,:attachment_type => 'avatar')
     end
@@ -23,7 +23,7 @@ class TeamsController < ApplicationController
     unless (team_ids = params[:team_ids]).blank?
       current_user.pref[:teams_order] = team_ids.map { |e| e.to_i }
       current_user.pref.save!
-    end  
+    end
     render :nothing => true
   end
 
@@ -31,16 +31,16 @@ class TeamsController < ApplicationController
     authorize current_user
     @teams = current_user.admin? ? Team.all : Team.my
   end
-  
+
   def new
-    @team = Team.new 	
+    @team = Team.new
   end
 
   # def create
   #   @team = Team.new(team_params)
   #   @team.save
   #   unless @team.persisted?
-  #     msg = @team.errors.any? ? @team.errors.full_teams.join('<br>') : "fail to create team!"          
+  #     msg = @team.errors.any? ? @team.errors.full_teams.join('<br>') : "fail to create team!"
   #     puts "TeamsController::create: #{msg}"
   #     status = 503
   #     render :text => msg , :status => status
@@ -56,14 +56,14 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params.merge!({owner_id: User.current.id}).except("team_profiles_attributes"))
     respond_to do |format|
-      team_profile = params[:team][:team_profiles_attributes].except("team_id").to_hash if params[:team][:team_profiles_attributes]  
+      team_profile = params[:team][:team_profiles_attributes].except("team_id").to_hash if params[:team][:team_profiles_attributes]
       @team.team_profiles.build(team_profile) if team_profile
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
-        format.js   { 
+        format.js   {
           # render :nothing => true
           render json: @team.id.to_json , status: 200
-          # render :show, status: :created, locals: { team: @team } 
+          # render :show, status: :created, locals: { team: @team }
         }
         format.json { render :show, status: :created, locals: { team: @team } }
       else
@@ -89,7 +89,7 @@ class TeamsController < ApplicationController
       if @team.update(team_params.except("team_profiles_attributes"))
         team_profile = params[:team][:team_profiles_attributes].except("team_id").to_hash if params[:team][:team_profiles_attributes]
         if team_profile
-          @team.team_profiles.build(team_profile) 
+          @team.team_profiles.build(team_profile)
           begin
             @team.save
           rescue ActiveRecord::RecordInvalid => invalid
@@ -110,7 +110,7 @@ class TeamsController < ApplicationController
   def remove_profile
     profile_ids = params[:team_profile][:profile_id].blank? ? [] : params[:team_profile][:profile_id].split(',')
     TeamProfile.where(team_id: params[:team_profile][:team_id],profile_id: profile_ids).map(&:destroy)
-    
+
     render :nothing => true
   end
 
@@ -145,7 +145,7 @@ class TeamsController < ApplicationController
     def verify_permissions
       authorize @team
     end
-    
+
     def find_team
       @team = Team.where(id: params[:team][:id]).first
     end
