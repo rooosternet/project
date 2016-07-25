@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521162141) do
+ActiveRecord::Schema.define(version: 20160725144945) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160521162141) do
     t.boolean  "is_company",                     default: false, null: false
     t.boolean  "is_freelancer",                  default: false, null: false
     t.string   "image",            limit: 255
+    t.string   "invitation_hash",  limit: 25
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -99,10 +100,11 @@ ActiveRecord::Schema.define(version: 20160521162141) do
   end
 
   create_table "team_profiles", force: :cascade do |t|
-    t.integer  "team_id",    limit: 4
-    t.integer  "profile_id", limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "team_id",           limit: 4
+    t.integer  "profile_id",        limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "invitation_status", limit: 25
   end
 
   add_index "team_profiles", ["profile_id"], name: "index_team_profiles_on_profile_id", using: :btree

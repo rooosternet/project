@@ -21,7 +21,7 @@ class TeamPolicy
   def update?
     valid?
   end
-  
+
   def destroy?
     valid?
   end
@@ -37,6 +37,8 @@ class TeamPolicy
   private
 
   def valid?
-    @current_user.admin? || (@current_user.id == @team.owner_id)
+    @current_user.admin? ||
+    (@current_user.id == @team.owner_id) ||
+    (@current_user.profile.teams.ids.include? @team.id)
   end
 end
