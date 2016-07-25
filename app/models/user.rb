@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
 
   attr_reader :raw_invitation_token
   attr_accessor :terms_of_service
-  
+
   has_many :teams ,->{ where(backet: false , archive: false)}, :class_name => 'Team', :foreign_key => 'owner_id'
- 
+
   enum role: [:pending ,:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -28,8 +28,14 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile, :allow_destroy => true #, :update_only => true, :reject_if => proc {|attributes| Profile.reject_profile(attributes)}
 
   def ordered_teams
+    all_teams = []
+    in_teams = profile.teams.where("team_profiles.invitation_status = ? and teams.name != ?",
+                                   'accepted',
+                                   'My contacts')
+    in_teams.each { |team| all_teams << team }
+    all_teams =  teams | all_teams
     if(ids=pref[:teams_order])
-      teams.sort_by do |m| 
+      all_teams.sort_by do |m|
         if ids.include?(m[:id])
           ids.index(m[:id])
         else
@@ -37,8 +43,14 @@ class User < ActiveRecord::Base
         end
       end
     else
-      teams
-    end  
+      all_teams
+    end
+  end
+
+  def accepting_invitation
+    if params[:hash] == invitation_hash
+      TeamProfile.find_by_team_id(params[:team_id]).update(invitation_status: 'accepted')
+    end
   end
 
   def pref
@@ -49,18 +61,18 @@ class User < ActiveRecord::Base
     unless _team = Team.where(owner_id: self.id , backet: true).first
       _team = Team.where(name: 'My Contacts', owner_id: self.id , backet: true).first_or_create
     end
-    _team  
+    _team
   end
 
   def set_default_role
-    self.role ||= ["yossi@roooster.co","sam@roooster.co","rotem@roooster.co"].include?(self.email) ?  :admin : :user 
+    self.role ||= ["yossi@roooster.co","sam@roooster.co","rotem@roooster.co"].include?(self.email) ?  :admin : :user
     self.profile = Profile.new unless self.profile
   end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable, :validatable
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable , :confirmable, :validatable ,:omniauthable, omniauth_providers: [:linkedin,:twitter,:vimeo,:behance,:dribbble]
-  
+
 
   validates_presence_of :firstname,:lastname,:email
   # validates_presence_of :firstname,:email
@@ -68,9 +80,9 @@ class User < ActiveRecord::Base
   validates :terms_of_service, :acceptance => true
   # before_validation  :generate_password_if_needed
   # before_create :set_name
-  after_create :send_notification_mail 
-  # before_destroy 
-  # after_save 
+  after_create :send_notification_mail
+  # before_destroy
+  # after_save
   # after_create :create_profile , :if => lambda{|user| user.user? && user.profile.nil?}
 
   # def create_profile
@@ -86,14 +98,14 @@ class User < ActiveRecord::Base
     subject = nil
     unless User.current.nil?
       subject = "#{User.current.name} (#{User.current.email}) recommended #{self.name} (#{self.email})"
-      Mailer.notification_mail(self,subject).deliver_later  
+      Mailer.notification_mail(self,subject).deliver_later
     else
-      Mailer.notification_mail(self).deliver_later    
-    end  
+      Mailer.notification_mail(self).deliver_later
+    end
   end
 
   def profile_image
-    self.image.blank?  ? "user_default.jpg" :  self.image #(self.image.match(/http/) ? self.image : "#{self.image}.jpg")    
+    self.image.blank?  ? "user_default.jpg" :  self.image #(self.image.match(/http/) ? self.image : "#{self.image}.jpg")
   end
 
   class << self
@@ -107,24 +119,24 @@ class User < ActiveRecord::Base
   end
 
   def has_active_messages?
-    InMessage.active_messages > 0 
+    InMessage.active_messages > 0
   end
-    
+
   # def send_welcome_mail
   #   begin
   #     return true if self.role.eql?("admin")
-      
+
   #     if self.studio?
-  #       Mailer.welcome_email(self).deliver_now 
+  #       Mailer.welcome_email(self).deliver_now
   #     elsif self.freelancer?
-  #       Mailer.welcome_email_freelancer(self).deliver_now 
-  #     end  
-            
-  #   rescue Exception => e 
+  #       Mailer.welcome_email_freelancer(self).deliver_now
+  #     end
+
+  #   rescue Exception => e
   #     return false
   #   end
   #   true
-  #   #deliver_later 
+  #   #deliver_later
   # end
 
   def name
@@ -148,19 +160,19 @@ class User < ActiveRecord::Base
   end
 
   def user_type_str
-   
+
     if self.role.eql?("admin")
       "modal-edit-profile-admin"
     elsif profile
-      "modal-edit-profile"  
+      "modal-edit-profile"
     # elsif studio
     #   "modal-edit-profile-studio"
     # elsif freelancer
     #   "modal-edit-profile-freelancer"
     else
       ""
-    end      
-          
+    end
+
   end
 
   private
