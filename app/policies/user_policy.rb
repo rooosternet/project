@@ -18,10 +18,14 @@ class UserPolicy
     @current_user.admin? #or @current_user == @user
   end
 
-  def update?
-    @current_user.admin? 
+  def accepting_invitation?
+    @current_user == @user
   end
-  
+
+  def update?
+    @current_user.admin?
+  end
+
   def update_profile_image?
     @current_user == @user
   end
@@ -33,7 +37,7 @@ class UserPolicy
   def batch_invite?
     @current_user
   end
-  
+
   def destroy?
     return false if @current_user == @user
     @current_user.admin?

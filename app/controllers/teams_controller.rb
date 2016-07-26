@@ -87,9 +87,16 @@ class TeamsController < ApplicationController
   def update
     respond_to do |format|
       if @team.update(team_params.except("team_profiles_attributes"))
-        team_profile = params[:team][:team_profiles_attributes].except("team_id").to_hash if params[:team][:team_profiles_attributes]
+        parameters = params[:team][:team_profiles_attributes]
+        owner_team = Team.find(parameters['team_id'])
+        team_profile = parameters.except("team_id").to_hash if parameters
         if team_profile
+          team_profile["invitation_status"] = 'pending'
           @team.team_profiles.build(team_profile)
+          user = User.find(team_profile['profile_id'])
+          hash = Digest::MD5.hexdigest(Time.now.to_s)
+          user.profile.update(invitation_hash: hash)
+          Mailer.add_to_group_mail(hash, user.email, owner_team).deliver_later
           begin
             @team.save
           rescue ActiveRecord::RecordInvalid => invalid

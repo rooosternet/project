@@ -5,7 +5,7 @@ class Mailer < Devise::Mailer
   	include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
   	default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
 
-	
+
 	# def confirmation_instructions(record, token, opts={})
  #      @token = token
  #      devise_mail(record, :confirmation_instructions, opts)
@@ -25,7 +25,7 @@ class Mailer < Devise::Mailer
 
     def password_change(record, opts={})
       devise_mail(record, :password_change, opts)
-    end	
+    end
 
 	def confirmation_instructions(record, token, opts={})
 		@user = record
@@ -42,7 +42,7 @@ class Mailer < Devise::Mailer
       @inviter = record.invited_by
       @subject = "You have been invited to join Roooster by #{@inviter.name}"
       if (_to = record.email).blank?
-       _to= record.unconfirmed_email 
+       _to= record.unconfirmed_email
    	  end
       opts.merge!(to: _to, subject: @subject)
       devise_mail(record, :invitation_instructions, opts)
@@ -68,7 +68,7 @@ class Mailer < Devise::Mailer
 		@user = user
 		mail(to: @user.email , subject: "Congratulations, you now appear on the Roooster listings board")
 	end
-		 
+
 	 # message = {"name"=>"yossi", "email"=>"yedri@mellanox.com", "subject"=>"subject", "note"=>"message"}
 	def contact_us(message)
       @message = message["note"]
@@ -79,11 +79,20 @@ class Mailer < Devise::Mailer
       mail(to: @to ,from: @from, subject: @subject)
     end
 
+    def add_to_group_mail(hash, email, team)
+      @url = accepting_invitation_url(hash: hash, team_id: team.id)
+      @owner = team.owner.profile.name
+      @from = "info@roooster.co"
+      @to = email
+      @subject = "You have been added to group"
+      mail(to: @to ,from: @from, subject: @subject)
+    end
+
 
 	# def invite_email(inviter,invitee,token)
-	# 	@inviter = inviter 
+	# 	@inviter = inviter
 	# 	@invitee = invitee
-		
+
 	# 	@invitation_link = accept_user_invitation_url(:invitation_token => token)
 	# 	mail(to: @invitee.email ,subject: "You have been invited to join Roooster by #{@inviter.name}")
 	# end
