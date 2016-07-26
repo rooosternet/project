@@ -18,20 +18,21 @@ Rails.application.routes.draw do
         confirmations: "users/confirmations",
         omniauth_callbacks: "users/omniauth_callbacks"
   }#,:path_names => { :sign_up => "account/register" }
-  
+
   resources :users
   resources :profile_connects
-  
+
   resources :users do
     collection do
       post 'batch_invite'
     end
     # member do
     #   post 'update_avatars'
-    # end  
+    # end
   end
-  post 'users/:id/update_avatars' , :controller => :users , :action => :update_avatars , :as => "update_avatars"
-  post 'users/:id/update_profile_image' , :controller => :users , :action => :update_profile_image , :as => "update_profile_image"
+  post 'users/:id/update_avatars', :controller => :users , :action => :update_avatars , :as => "update_avatars"
+  post 'users/:id/update_profile_image', :controller => :users , :action => :update_profile_image , :as => "update_profile_image"
+  get '/accepting_invitation', :controller => :users , :action => :accepting_invitation , :as => "accepting_invitation"
 
   post 'teams/:id/update_team_avatar' , :controller => :teams , :action => :update_team_avatar , :as => "update_team_avatar"
 
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
   post 'in_messages/archive' , :controller => :in_messages , :action => :archive , :as => "message_archive"
   post "in_messages/bulk_create",:controller => :in_messages, :action => :bulk_create ,:as => :bulk_create_message
   match 'inbox', :to => 'in_messages#index', :via => [:get], :as => 'inbox'
-  
+
   resources :teams
   post 'teams/remove_profile', :as => "remove_profile"
   post 'teams/archive' , :as => "team_archive"
@@ -55,12 +56,12 @@ Rails.application.routes.draw do
   get 'info/faq', :as => "faq"
   get 'info/privacy', :as => "privacy"
   get 'info/terms', :as => "terms"
-  
+
   match 'info/contact_us' , :to => 'info#contact_us', :via => [:post,:get], :as => 'contact_us'
 
   # error pages
   %w( 404 422 500 503 ).each do |code|
     get code, :to => "errors#show", :code => code
   end
-    
+
 end
