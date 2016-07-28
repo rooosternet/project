@@ -94,7 +94,7 @@ class TeamsController < ApplicationController
           team_profile["invitation_status"] = 'pending'
           @team.team_profiles.build(team_profile)
           user = User.find(team_profile['profile_id'])
-          hash = Digest::MD5.hexdigest(Time.now.to_s)
+          hash = Digest::MD5.hexdigest(@team.name)[0...16]
           user.profile.update(invitation_hash: hash)
           Mailer.add_to_group_mail(hash, user.email, owner_team).deliver_later
           begin
