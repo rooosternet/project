@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -9,7 +10,7 @@ class ApplicationController < ActionController::Base
   # 		render :layout => false
   # 	end
   # end
-  
+
   before_filter :set_current_user
 
   def set_current_user
@@ -18,6 +19,12 @@ class ApplicationController < ActionController::Base
     logger.info(msg) if logger
   end
 
+  private
+
+  def user_not_authorized
+    flash[:alert] = "Access denied."
+    redirect_to (request.referrer || root_path)
+  end
 
   # before_filter :permitted_parameter, if: :devise_controller?
 
