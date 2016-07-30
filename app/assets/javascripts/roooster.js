@@ -255,8 +255,9 @@ var update_user = function(user_id,properties){
     };
     checkShowAllToggle();
 
-    var create_team = function(attributes,onSeccuss){
+    var create_team = function(attributes,onSeccuss,onFail){
       onSeccuss = onSeccuss || function(){};
+      onFail = onFail || function(){};
 
       $.ajax({
         url: "/teams/",
@@ -271,6 +272,8 @@ var update_user = function(user_id,properties){
         },
         error: function(data){ 
           console.log(data);
+          alert(data.responseText);
+          onFail(data.responseText);
         },
         complete: function(data){
           console.log(data);
@@ -316,17 +319,23 @@ var update_user = function(user_id,properties){
               image: image,
             }
 
-            create_team(attrs, function(id){
-              $this.parent().attr('href',"/teams/" + id);
-              // $this.siblings().first().addClass('team-image-'+id);
-              $this.siblings().find('.team-count').addClass('team-count-'+id);
-              teamDroppable($this.parents('.team-droppable'));
-              addItemToTeamsList({
-                name: attrs.name,
-                image: attrs.image,
-                id: id
+            create_team(attrs, 
+              // onSuccess
+              function(id){
+                  $this.parent().attr('href',"/teams/" + id);
+                  // $this.siblings().first().addClass('team-image-'+id);
+                  $this.siblings().find('.team-count').addClass('team-count-'+id);
+                  teamDroppable($this.parents('.team-droppable'));
+                  addItemToTeamsList({
+                    name: attrs.name,
+                    image: attrs.image,
+                    id: id
+                  });
+              },function(id){ //onFail
+                // $this.focus();
+                teamCreated = false;
+                // $this.parent().parent().remove();
               });
-            });
           }
         });
       } else {
@@ -398,6 +407,8 @@ var update_user = function(user_id,properties){
                 id: id
               });
               $userGroup.find('input').trigger('change');
+            },function(id){
+              teamCreated = false;
             });
           }
         });
@@ -503,7 +514,8 @@ var update_user = function(user_id,properties){
 		});
 
 		// Create Team
-		var newTeamsCount = 0;
+    // Moved to layout/application
+		// var newTeamsCount = 0;
 		var last_team_id = 0;
 		$('.teams .team-create').on('click', function(event) {
 			event.preventDefault();
@@ -537,6 +549,9 @@ var update_user = function(user_id,properties){
           create_team({name: $(this).html(),image: image_name }, function(id){
             $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
             teamDroppable($team);
+          },function(id){
+              team_created = false
+             $("a.team-inner").filter("[href='#']").remove();
           });
         };
       });

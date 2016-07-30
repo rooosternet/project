@@ -169,6 +169,13 @@ class User < ActiveRecord::Base
 
   end
 
+  def next_team_id
+    unless (_names = teams.order(:name).pluck(:name).select{|team| team.downcase.match(/team.\d\d+$/)}).blank?
+      _index = _names.last.try(:split," ").try(:last).try(:to_i)
+    end
+    _index.nil? ? 0 : _index
+  end
+
   private
 
   # def set_name

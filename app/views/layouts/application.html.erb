@@ -40,6 +40,9 @@
 
     </div>
 
+    <%= javascript_tag do %>
+      var newTeamsCount = <%= current_user.next_team_id %>;
+    <% end %>
   <% else %>    
   
     <div class="wrapper  wrapper-fullpage">

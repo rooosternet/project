@@ -68,7 +68,7 @@ class TeamsController < ApplicationController
         format.json { render :show, status: :created, locals: { team: @team } }
       else
         format.html { render :new }
-        format.js { render json: @team.errors, status: :unprocessable_entity }
+        format.js { render json: @team.errors.full_messages.join(',') , status: :unprocessable_entity }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end

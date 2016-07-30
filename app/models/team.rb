@@ -13,11 +13,20 @@ class Team < ActiveRecord::Base
 
   accepts_nested_attributes_for :team_profiles, :allow_destroy => true
 
+  validates_uniqueness_of :name, scope: :owner_id
+
   def team_image
     self.image.blank? ? "team1.jpg" : "#{self.image}"
   end
 
   def backet?
     !!self.backet
+  end
+
+  def self.next_id(user)
+    unless (_names = user.teams.order(:name).pluck(:name).select{|team| team.downcase.match(/team.\d\d+$/)}).blank?
+      _index = _names.last.try(:split," ").try(:last).try(:to_i)
+    end
+    _index.nil? ? 1 : (_index+1)
   end
 end
