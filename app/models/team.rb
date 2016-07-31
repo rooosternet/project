@@ -13,8 +13,10 @@ class Team < ActiveRecord::Base
 
   accepts_nested_attributes_for :team_profiles, :allow_destroy => true
 
-  validates_uniqueness_of :name, scope: :owner_id
-
+  validates_uniqueness_of :name, scope: :owner_id, :case_sensitive => false
+  
+  
+  
   def team_image
     self.image.blank? ? "team1.jpg" : "#{self.image}"
   end
