@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User', :foreign_key => 'owner_id'
-  
+
   has_many :attachments, :class_name => 'TeamAttachment', :foreign_key => 'team_id'
   accepts_nested_attributes_for :attachments
 
@@ -31,4 +31,9 @@ class Team < ActiveRecord::Base
     end
     _index.nil? ? 1 : (_index+1)
   end
+  
+  def pending_profiles
+    self.team_profiles.where(invitation_status:'pending')
+  end
+
 end

@@ -1,0 +1,69 @@
+<li class="user-alt">
+    <div class="user-main">
+        <div class="user-head">
+            <a href="#" class="user-image">
+                <%=image_tag profile.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
+            </a>
+
+            <div class="user-head-placeholder">
+                <span>
+<!--                    Drag to the<br>
+                    teams menu -->
+                </span>
+            </div><!-- /.user-head-placeholder-->
+        </div><!-- /.user-head -->
+
+        <div class="user-body">
+            <div class="user-name"><%= profile.user.name %></div><!-- /.user-name -->
+
+
+            <div class="user-title">
+                <%- unless profile.job_title.blank? -%>
+                <a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.job_title) %>"><%= profile.job_title %></a>
+                <%  else %>
+                &nbsp
+                <%- end -%>
+            </div><!-- /.user-title -->
+
+            <div class="user-location">
+                <%- unless profile.location.blank? -%>
+                <a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.location) %>"><%=profile.location%></a>
+                <% else %>
+                &nbsp
+                <%- end -%>
+            </div><!-- /.user-location -->
+
+            <ul class="user-socials">
+                <% unless profile.linkedin_profile_url.blank? -%>
+                <li>
+                    <a href="<%=toggle_url_protocole(profile.linkedin_profile_url)%>" target="_blank" <%#=profile.link_active_class('linkedin_profile')%>>
+                        <i class="ico-linkedin"></i>
+                    </a>
+                </li>
+                <% end -%>
+                <% unless profile.behance_profile_url.blank? -%>
+                <li>
+                    <a href="<%=toggle_url_protocole(profile.behance_profile_url)%>" target="_blank" <%#=profile.link_active_class('behance')%>>
+                        <i class="ico-behance"></i>
+                    </a>
+                </li>
+                <% end -%>
+                <% unless profile.vimeo_profile_url.blank? -%>
+                <li>
+                    <a href="<%=toggle_url_protocole(profile.vimeo_profile_url)%>" target="_blank" <%#=profile.link_active_class('vimeo')%> >
+                        <i class="ico-vimeo"></i>
+                    </a>
+                </li>
+                <% end -%>
+            </ul>
+        </div><!-- /.user-body -->
+
+        <div class="checkbox-select">
+            <input type="checkbox" class="checkbox-group1" name="select-user-<%=profile.id%>" id="select-user-<%=profile.id%>" data-profile-id="<%=profile.id%>">
+
+            <label for="select-user-<%=profile.id%>">
+                <i class="ico-select"></i>
+            </label>
+        </div><!-- /.checkbox-select -->
+    </div><!-- /.user-main -->
+</li><!-- /.user-alt -->

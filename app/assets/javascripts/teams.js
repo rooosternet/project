@@ -6,12 +6,16 @@ $(function() {
 		    var team_id = $(e.relatedTarget).data('team-id');
 		    var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
 		    $(e.currentTarget).find('input[name="team_profile[team_id]"]').val(team_id);
-		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val(profile_ids);	    
+		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val(profile_ids);
+		});
+
+		$('.private').click(function(){
+			$('.messages').css('background-color', '#fff8fc');
 		});
 
 		$('#modal-delete-profile-from-team').on('hide.bs.modal', function(e) {
 		    $(e.currentTarget).find('input[name="team_profile[team_id]"]').val('');
-		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val('');	    
+		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val('');
 		});
 
 		$('#delete_profile_from_team_form_id').bind('ajax:success',function(event, data, status, xhr){
@@ -27,11 +31,11 @@ $(function() {
 				// 	teamcount.css('color','#fff');
 				// }
 			}
-		});	
+		});
 
 		$('#delete_profile_from_team_form_id').bind('ajax:error', function(event, data, status, xhr) {
 		});
-		
+
 		$('#delete_profile_from_team_form_id').bind('ajax:complete', function(event, data, status, xhr) {
 		});
 
@@ -49,11 +53,11 @@ $(function() {
 		$('#delete_team_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$('#modal-delete-team').modal('hide');
 			window.location.href = "/";
-		});	
+		});
 
 		$('#delete_team_form_id').bind('ajax:error', function(event, data, status, xhr) {
 		});
-		
+
 		$('#delete_team_form_id').bind('ajax:complete', function(event, data, status, xhr) {
 		});
 
@@ -66,7 +70,7 @@ $(function() {
 
 		$('#modal-avatar').on('hide.bs.modal', function(e) {
 		    $(e.currentTarget).find(".team-image-selected").attr('src','');
-		});		
+		});
 	});
 
 });
