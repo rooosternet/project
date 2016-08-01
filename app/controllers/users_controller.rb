@@ -62,6 +62,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_group_admin user, team
+    if TeamProfile.where(profile_id: user.id, team_id: team.id).first.update(is_admin: true)
+      redirect_to team_path(team)
+    else
+      redirect_to root_path
+    end
+  end
+
   def update_avatars
     authorize @user
     prm = params[:user][:attachments].blank? ? {} : {profile: true}

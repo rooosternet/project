@@ -78,7 +78,7 @@
 .section-blog-secondary .article + .article { margin-top: 16px; }
 
 @media (max-width: $screen-xs-max) {
-	.section-blog-secondary { min-height: 0; height: auto; padding: 35px 0 50px; 
+	.section-blog-secondary { min-height: 0; height: auto; padding: 35px 0 50px;
 
 		.section-inner { position: static; transform: translateY(0); }
 	}
@@ -202,8 +202,21 @@
 	.section-bar p { margin: 0; }
 	.section-bar span { color: #ab3939; font-weight: bold; }
 
-	.section-body { margin: 0 8px; padding: 26px; background: #f8f9fb; border: 1px solid #eef2f5; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.14); }
+	.section-creatives{margin-left: 8px; padding-top: 26px; padding-bottom: 26px; display: inline-block; width: 115px; text-align: center; background: #f8f9fb; border: 1px solid #eef2f5; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.14); }
+	.section-body { display: inline-block; vertical-align: top; width: 875px; padding: 26px; background: #f8f9fb; border: 1px solid #eef2f5; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.14); }
 	.section-body .section-bar { margin: -6px 0 10px; }
+
+	.section-creatives{
+		.dropdown { position: relative; height: 90px;
+			.dropdown-menu { margin: -20px 0 0 7px; border: none; background-color: transparent; text-align: center;
+				li{display:inline; float: left; width: 25px;}
+				li:before{background:none; height: 0;}
+				.ico-message{width:20px; height:20px;}
+				.ico-delete{width:20px; height:20px;}
+			}
+		}
+		.dropdown.open { height: 110px; }
+	}
 
 	@media (max-width: $screen-md-max) {
 		.section-head .sticky-item .shell:after { left: -30px; right: -30px; }
@@ -230,7 +243,7 @@
 
 .section-team-page { position: relative; margin: 48px 8px 4px; background: #fdfdfd; border: 1px solid #e7edf1; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.2);
 
-	.section-actions { position: absolute; left: 0; top: -9px; width: 100%; text-align: center; }
+	.section-actions { position: absolute; right: 10px; top: 10px; text-align: center; }
 
 	.section-actions ul { list-style: none outside none; text-align: center; font-size: 0; }
 	.section-actions li { display: inline-block; vertical-align: top; margin: 0 4px; }
@@ -238,7 +251,7 @@
 	.section-actions span { position: absolute; z-index: 200; left: 0; top: 26px; width: 100%; font-size: 11px; color: #a7abb1; text-transform: uppercase; font-weight: bold; text-align: center; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
 	.section-actions label:hover span,
 	.section-actions a:hover span { visibility: visible; opacity: 1; }
-	.section-actions i { width: 19px; height: 19px; }
+	.section-actions i { width: 25px; height: 25px; }
 
 	.section-head-inner { padding: 8px 82px; }
 	.section-head-close { position: absolute; right: -12px; top: -12px; background: #fff; border-radius: 50%; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
@@ -322,7 +335,7 @@
 	section-how-it-works
 \* ------------------------------------------------------------ */
 
-.section-how-it-works { position: relative; height: calc(100vh); min-height: 550px; text-align: center; 
+.section-how-it-works { position: relative; height: calc(100vh); min-height: 550px; text-align: center;
 
 	.section-inner { position: absolute; top: 50%; width: 100%; transform: translateY(-50%); left: 0; right: 0; }
 	.section-container { position: relative; }
@@ -337,7 +350,7 @@
 }
 
 @media (max-width: $screen-xs-max) {
-	.section-how-it-works { height: auto; max-height: 100%; padding: 70px 0 60px; 
+	.section-how-it-works { height: auto; max-height: 100%; padding: 70px 0 60px;
 		.section-inner { position: static; transform: translateY(0); }
 		.section-title { margin-bottom: 20px; }
 		.section-container:before { display: none; }

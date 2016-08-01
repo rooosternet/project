@@ -81,6 +81,7 @@ class TeamsController < ApplicationController
     @team_avatar = session[:team_avatar]
     session[:team_avatar] = false
     @profiles = @team.profiles
+    @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
     @profiles_count = @profiles.any? ? @profiles.count : 'No'
   end
 

@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   def ordered_teams
     all_teams = []
     in_teams = profile.teams.where("team_profiles.invitation_status = ? and teams.name != ?",
-                                   ['accepted', ''],
+                                   'accepted',
                                    'My contacts')
     in_teams.each { |team| all_teams << team }
     all_teams =  teams | all_teams
