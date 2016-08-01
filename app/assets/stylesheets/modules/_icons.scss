@@ -19,7 +19,7 @@
 
 .ico-user { width: 17px; height: 16px; background-image: image-url('ico-user@2x.png'); }
 
-.ico-link { width: 26px; height: 26px; background-image: image-url('ico-link@2x.png'); } 
+.ico-link { width: 26px; height: 26px; background-image: image-url('ico-link@2x.png'); }
 .ico-linkedin { width: 25px; height: 26px; background-image: image-url('ico-linkedin@2x.png'); }
 .ico-behance { width: 26px; height: 26px; background-image: image-url('ico-behance@2x.png'); }
 .ico-vimeo { width: 26px; height: 26px; background-image: image-url('ico-vimeo@2x.png'); }
@@ -27,31 +27,37 @@
 
 .ico-dots { width: 22px; height: 5px; background-image: image-url('ico-dots@2x.png'); }
 
-.ico-plus { width: 10px; height: 10px; background-image: image-url('ico-plus@2x.png'); } 
+.ico-plus { width: 10px; height: 10px; background-image: image-url('ico-plus@2x.png'); }
 
 .ico-new-message { position: absolute; padding: 2px; background: #fafafa; border-radius: 50%; border: 1px solid #eee; }
 .ico-new-message:before { content: ''; display: block; width: 8px; height: 8px; border-radius: 50%; background: #ff0000; }
 
-.ico-prev { width: 23px; height: 23px; background-image: image-url('ico-prev@2x.png'); } 
-.ico-next { width: 23px; height: 23px; background-image: image-url('ico-next@2x.png'); } 
+.ico-prev { width: 23px; height: 23px; background-image: image-url('ico-prev@2x.png'); }
+.ico-next { width: 23px; height: 23px; background-image: image-url('ico-next@2x.png'); }
 
-.ico-add { width: 20px; height: 20px; background-image: image-url('ico-add@2x.png'); background-position: center 0; background-size: 100% auto; } 
-.ico-message { width: 19px; height: 19px; background-image: image-url('ico-message@2x.png'); background-position: center 0; background-size: 19px 39px; } 
-.ico-message-add { width: 19px; height: 19px; background-image: image-url('ico-message-add@2x.png'); background-position: center 0; background-size: 19px 39px; } 
+.ico-add { width: 20px; height: 20px; background-image: image-url('ico-add@2x.png'); background-position: center 0; background-size: 100% auto; }
+.ico-message { width: 19px; height: 19px; background-image: image-url('ico-message@2x.png'); background-position: center 0; background-size: 19px 39px; }
+.ico-message-add { width: 19px; height: 19px; background-image: image-url('ico-message-add@2x.png'); background-position: center 0; background-size: 19px 39px; }
 
 a:hover .ico-add,
 a:hover .ico-message,
 a:hover .ico-message-add { background-position: center 100%; }
 
-.ico-skills { width: 14px; height: 14px; background-image: image-url('ico-skills@2x.png'); } 
-.ico-people { width: 14px; height: 14px; background-image: image-url('ico-people@2x.png'); } 
-.ico-location { width: 14px; height: 14px; background-image: image-url('ico-location@2x.png'); } 
+.ico-skills { width: 14px; height: 14px; background-image: image-url('ico-skills@2x.png'); }
+.ico-people { width: 14px; height: 14px; background-image: image-url('ico-people@2x.png'); }
+.ico-location { width: 14px; height: 14px; background-image: image-url('ico-location@2x.png'); }
 
-.ico-delete { width: 17px; height: 17px; background-image: image-url('ico-delete@2x.png'); background-position: center 0; background-size: 100% auto; } 
-.ico-settings { width: 17px; height: 17px; background-image: image-url('ico-settings@2x.png'); background-position: center 0; background-size: 100% auto; } 
-.ico-report { width: 17px; height: 17px; background-image: image-url('ico-report@2x.png'); background-position: center 0; background-size: 100% auto; } 
-.ico-ignore { width: 17px; height: 17px; background-image: image-url('ico-ignore@2x.png'); background-position: center 0; background-size: 100% auto; } 
+.ico-bin { width: 22px; height: 22px; background-image: image-url('ico-bin@2x.png'); background-position: center 0; background-size: 100% auto; }
+.ico-admin { width: 20px; height: 20px; background-image: image-url('ico-admin@2x.png'); background-position: center 0; background-size: 100% auto; }
+.ico-profile { width: 20px; height: 20px; background-image: image-url('ico-profile@2x.png'); background-position: center 0; background-size: 100% auto; }
+.ico-delete { width: 17px; height: 17px; background-image: image-url('ico-delete@2x.png'); background-position: center 0; background-size: 100% auto; }
+.ico-settings { width: 17px; height: 17px; background-image: image-url('ico-settings@2x.png'); background-position: center 0; background-size: 100% auto; }
+.ico-report { width: 17px; height: 17px; background-image: image-url('ico-report@2x.png'); background-position: center 0; background-size: 100% auto; }
+.ico-ignore { width: 17px; height: 17px; background-image: image-url('ico-ignore@2x.png'); background-position: center 0; background-size: 100% auto; }
 
+a:hover .ico-bin {background-image: image-url('ico-bin-red@2x.png');}
+a:hover .ico-admin {background-image: image-url('ico-admin-red@2x.png');}
+a:hover .ico-profile {background-image: image-url('ico-profile-red@2x.png');}
 
 a:hover .ico-delete,
 a:hover .ico-report,
@@ -77,4 +83,4 @@ a:hover .ico-ignore { background-position: center 100%; }
 	to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
 
-.ico-loader { width: 32px; height: 32px; background-image: image-url('ico-loader.png'); -webkit-animation: 1s rotate linear infinite; animation: 1s rotate linear infinite; } 
+.ico-loader { width: 32px; height: 32px; background-image: image-url('ico-loader.png'); -webkit-animation: 1s rotate linear infinite; animation: 1s rotate linear infinite; }

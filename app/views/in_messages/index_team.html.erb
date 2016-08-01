@@ -1,0 +1,54 @@
+<div class="main">
+	<div class="shell">
+
+			<div class="section-content">
+				<div class="tab-content">
+					<div class="tab-pane <%='active' if @messages.blank? %>"  id="conversation-compose">
+						<div class="messages">
+							<div class="messages-inner">
+								<div class="form-message">
+									<%= render :partial => 'in_messages/form' , :locals =>  { message: InMessage.new }%>
+								</div><!-- /.form-message -->
+							</div><!-- /.messages-inner -->
+						</div><!-- /.messages -->
+					</div><!-- /.tab-pane -->
+
+					<% @messages.each_with_index do |message,index| %>
+						<%= render :partial => 'in_messages/message_content' , :locals =>  { message: message ,active: (index == 0) ? 'active' : ''}%>
+					<% end %>
+
+				</div><!-- /.tab-content -->
+
+				<!-- <script type="text/template" id="message-template">
+					<div class="message message-hidden">
+						<div class="message-avatar">
+							<img src="{{avatar}}" alt="" width="69" height="69">
+						</div>
+
+						<div class="message-head clearfix">
+							<div class="message-actions">
+								<ul>
+									<li>
+										<a href="#modal-delete" data-toggle="modal">
+											<i class="ico-delete"></i>
+
+											<span>Delete message</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="message-head-inner">
+								<div class="message-author">{{author}}</div>
+
+								<div class="message-date">{{date}}</div>
+							</div>
+						</div>
+
+						<div class="message-entry">{{content}}</div>
+					</div>
+				</script> -->
+
+			</div><!-- /.section-content -->
+	</div><!-- /.shell -->
+</div><!-- /.main -->

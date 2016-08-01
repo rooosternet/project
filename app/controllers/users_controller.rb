@@ -44,7 +44,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.profile.invitation_hash == params[:hash]
         @team = Team.find(params[:team_id])
-        TeamProfile.find_by_team_id(params[:team_id]).update(invitation_status: 'accepted')
+        team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: @user.profile.id).first
+        team_profile.update(invitation_status: 'accepted')
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
       else
         format.html { redirect_to root_path, notice: 'Something went wrong!' }
@@ -58,6 +59,14 @@ class UsersController < ApplicationController
       render :nothing => true
     else
       render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+  def set_group_admin user, team
+    if TeamProfile.where(profile_id: user.id, team_id: team.id).first.update(is_admin: true)
+      redirect_to team_path(team)
+    else
+      redirect_to root_path
     end
   end
 

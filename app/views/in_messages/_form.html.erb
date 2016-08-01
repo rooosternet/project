@@ -1,5 +1,5 @@
 <%= form_for(message,:url => bulk_create_message_path  ,:html => { :method => :post, :class => "message-to" ,:role => 'form', :id => 'new_message_form_id'}) do |f| %>
-	<%= f.hidden_field(:from_id,value: current_user.id) %>
+	<%= f.hidden_field(:from_id, value: current_user.id) %>
 	<div class="form-body">
 		<div class="form-row">
 			<label class="form-label">To</label>
@@ -15,8 +15,8 @@
 		<div class="form-row">
 			<label class="form-label">Message</label>
 
-			<div class="form-controls">				
-				<%= f.text_area :note ,:rows => 6, :class =>"form-control" ,:placeholder => "" %>		
+			<div class="form-controls">
+				<%= f.text_area :note ,:rows => 6, :class =>"form-control" ,:placeholder => "" %>
 			</div>
 		</div>
 	</div>
@@ -32,9 +32,9 @@
 <script type="text/javascript">
     // var data = <%#=raw User.all.collect {|u| {value: u.name, id: u.id} unless u.id.eql?(current_user.id)}.compact.to_json %>;
     // var data = <%#=raw current_user.my_contacts_team.profiles.includes(:user).collect {|u| {value: u.name, id: u.id}}.compact.to_json %>;
-    
+
     // $(function(){
-    //   $("#select_in_message_to_id").autocomplete({ 
+    //   $("#select_in_message_to_id").autocomplete({
     //     source:data,
     //     select: function(event,ui){
     //       $("#in_message_to_id").val( ui.item.id );
@@ -42,12 +42,12 @@
     //     }//,
     //     // open: function( event, ui ) {
     //     //     $(".ui-autocomplete").hide();
-    //     // } 
-    //   });    
+    //     // }
+    //   });
     // })
 
     // function filterByName(names) {
-    //   $.grep(data, function(e){ return e.id == 4; });  
+    //   $.grep(data, function(e){ return e.id == 4; });
     // }
 
    // $(function() {
@@ -57,8 +57,8 @@
    //  function extractLast( term ) {
    //    return split( term ).pop();
    //  }
-      
-   
+
+
 
 
    //  $( "#select_in_message_to_id" )
@@ -109,7 +109,7 @@
    //    });
 
 
-  //   
+  //
 // $( "#select_in_message_to_id" )
   //     .bind( "keydown", function( event ) {
   //       if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -149,16 +149,16 @@
   //         return false;
   //       }
   //     });
-  // }); 
+  // });
    // function split( val ) {
    //    return val.split( /,\s*/ );
    //  }
 
    //  $(function(){
-   //    $("#select_in_message_to_id").autocomplete({ 
+   //    $("#select_in_message_to_id").autocomplete({
    //      source:data,
    //      select: function(event,ui){
-         
+
    //        var terms = split(this.value);
    //        console.log(terms);
    //        console.log(ui.item.value);
@@ -175,9 +175,9 @@
    //        $("#in_message_to_id").val( ids.join(",") );
    //        console.log($("#in_message_to_id").val());
    //        return false;
-   //      } 
-   //    });    
+   //      }
+   //    });
    //  })
 
-   
+
 </script>
