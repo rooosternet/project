@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" st='test'>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
 <body>
 
   <% if user_signed_in? %>
-  
+
     <div class="wrapper">
 
       <%= render :partial => 'pages/header_logged' %>
@@ -26,14 +26,14 @@
         </div>
       </div>
 
-      <%= render :partial => 'pages/modals_edit' %>  
+      <%= render :partial => 'pages/modals_edit' %>
       <% if @hide_footer %>
       <%= render :partial => 'pages/modal_delete_message'%>
       <%= render :partial => 'pages/modal_report_message'%>
-      <%= render :partial => 'pages/modal_ignore_user'%>  
-      <%= render :partial => 'pages/modal_avatar'%>  
-      <%= render :partial => 'pages/modal_search'%>  
-      <% end %>         
+      <%= render :partial => 'pages/modal_ignore_user'%>
+      <%= render :partial => 'pages/modal_avatar'%>
+      <%= render :partial => 'pages/modal_search'%>
+      <% end %>
 
       <%= render :partial => 'pages/modals_alt' %>
       <%= render :partial => 'pages/footer' unless  @hide_footer %>
@@ -43,13 +43,13 @@
     <%= javascript_tag do %>
       var newTeamsCount = <%= current_user.next_team_id %>;
     <% end %>
-  <% else %>    
-  
+  <% else %>
+
     <div class="wrapper  wrapper-fullpage">
       <div class="main" id="main-landing">
           <%= yield %>
       </div>
-      <%= render :partial => 'pages/modals_sign' %>    
+      <%= render :partial => 'pages/modals_sign' %>
       <%= render :partial => 'pages/modals_alt' %>
     </div>
 
