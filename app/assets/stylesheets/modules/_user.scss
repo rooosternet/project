@@ -221,7 +221,8 @@
 
 .users { position: relative; list-style: none outside none; font-size: 0;
 
-	.user-alt { display: inline-block; vertical-align: bottom; width: 24%; margin-bottom: 10px; font-size: 14px; }
+	.user-alt { display: inline-block; vertical-align: bottom; margin-bottom: 10px; font-size: 14px; }
+	// width: 24%;
 
 	@media (max-width: $screen-md-max) {
 		.user-alt { width: 33.333%; }
