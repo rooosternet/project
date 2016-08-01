@@ -5,7 +5,7 @@
 			<li>
 				<a href="#modal-delete-team" data-toggle="modal" data-team-id="<%=@team.id%>">
 					<i class="ico-bin"></i>
-					<span>Delete Team</span>
+					<span class='remove-team'>remove team</span>
 				</a>
 			</li>
 			<% end %>
@@ -107,33 +107,34 @@
 
 <section class="section-results">
 	<div class="section-creatives">
-	<div class='slogan'>CREATIVES</div>
+	<div class='groups-label'>CREATIVES</div>
 
-	<% @profiles.each do |profile| %>
+	<% @accepting_profiles.each do |team_user| %>
         <div class="user-creatives ">
 	        <div class="dropdown">
 				<a href="#" class="user-image" data-toggle='dropdown'>
-		            <%=image_tag profile.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
+		            <%=image_tag team_user.profile.user.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
 		        </a>
+		        <span class='name-label'><%=team_user.profile.user.name%></span>
 				<ul class="dropdown-menu">
 					<li>
-						<a class='private' href="#" data-profile-id="<%=profile.user_id%>">
+						<a class='private' href="#" data-profile-id="<%=team_user.profile_id%>">
 							<i class="ico-message"></i>
 						</a>
 					</li>
 					<li>
-						<a href="<%=user_path(profile.user)%>" data-profile-id="<%=profile.user_id%>">
+						<a href="<%=user_path(team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
 							<i class="ico-profile"></i>
 						</a>
 					</li>
 					<%- if @team.owner_id == current_user.id%>
 						<li>
-							<a href="<%=set_group_admin_path(user_id: profile.user, team: @team)%>" data-profile-id="<%=profile.user_id%>">
+							<a href="<%=set_group_admin_path(user_id: team_user.profile_id, team: @team)%>" data-profile-id="<%=team_user.profile_id%>">
 								<i class="ico-admin"></i>
 							</a>
 						</li>
 						<li>
-							<a href="#" data-profile-id="<%=profile.user_id%>">
+							<a href="#" data-profile-id="<%=team_user.profile_id%>">
 								<i class="ico-delete"></i>
 							</a>
 						</li>
@@ -144,12 +145,14 @@
 	<% end %>
 
     <%- if @team.pending_profiles.count > 0%>
-		<div class='slogan'>INVITATIONS</div>
+		<div class='groups-label'>INVITATIONS</div>
 		<% @team.pending_profiles.each do |team_profile| %>
 			<div class="user-creatives" >
-				<a href="#" class="user-image">
+				<div href="#" class="user-image">
 			        <%=image_tag team_profile.profile.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
-			    </a>
+			    </div>
+			    <span class='name-label'><%=team_profile.profile.name%></span>
+			    <span class='name-label'>pending...</span>
 		    </div>
 		<%end%>
 	<%end%>

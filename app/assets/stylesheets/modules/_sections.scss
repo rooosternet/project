@@ -207,15 +207,17 @@
 	.section-body .section-bar { margin: -6px 0 10px; }
 
 	.section-creatives{
-		.dropdown { position: relative; height: 90px;
-			.dropdown-menu { margin: -20px 0 0 7px; border: none; background-color: transparent; text-align: center;
+		.name-label{font-size: 11px; display: block; color: #818181; margin-top: 5px;}
+		.groups-label{display: block; color: #484848; font-size: 11px; margin-bottom: 10px; line-height: 1; text-transform: uppercase; letter-spacing: 0.17em; font-weight: 600;}
+		.dropdown { position: relative; height: 90px; margin-bottom: 20px; vertical-align: top;
+			.dropdown-menu { margin: -5px 0 0 7px; border: none; background-color: transparent; text-align: center;
 				li{display:inline; float: left; width: 25px;}
 				li:before{background:none; height: 0;}
 				.ico-message{width:20px; height:20px;}
 				.ico-delete{width:20px; height:20px;}
 			}
 		}
-		.dropdown.open { height: 110px; }
+		.dropdown.open { height: 100px; }
 	}
 
 	@media (max-width: $screen-md-max) {
@@ -246,9 +248,10 @@
 	.section-actions { position: absolute; right: 10px; top: 10px; text-align: center; }
 
 	.section-actions ul { list-style: none outside none; text-align: center; font-size: 0; }
-	.section-actions li { display: inline-block; vertical-align: top; margin: 0 4px; }
+	.section-actions li { display: inline-block; vertical-align: top; margin: 6px 10px; }
 	.section-actions a { text-decoration: none; }
 	.section-actions span { position: absolute; z-index: 200; left: 0; top: 26px; width: 100%; font-size: 11px; color: #a7abb1; text-transform: uppercase; font-weight: bold; text-align: center; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
+	.section-actions span.remove-team {top: 35px; font-size: 9px; font-weight: 500; width: 46px; }
 	.section-actions label:hover span,
 	.section-actions a:hover span { visibility: visible; opacity: 1; }
 	.section-actions i { width: 25px; height: 25px; }
