@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     # end
   end
   post 'users/:id/update_avatars', :controller => :users , :action => :update_avatars , :as => "update_avatars"
+  get 'users/:id/profile', :controller => :users , :action => :profile , :as => "profile"
   post 'users/:id/update_profile_image', :controller => :users , :action => :update_profile_image , :as => "update_profile_image"
   get '/accepting_invitation', :controller => :users, :action => :accepting_invitation , :as => "accepting_invitation"
   get '/set_group_admin', :controller => :users, :action => :set_group_admin, :as => 'set_group_admin'

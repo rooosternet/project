@@ -13,6 +13,19 @@ $(function() {
 			$('.messages').css('background-color', '#fff8fc');
 		});
 
+		$('.private').mouseenter(function(){$(this).parents().eq(2).find('#private').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
+		$('.private').mouseleave(function(){$(this).parents().eq(2).find('#private').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
+
+		$('.profile').mouseenter(function(){$(this).parents().eq(2).find('#profile').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
+		$('.profile').mouseleave(function(){$(this).parents().eq(2).find('#profile').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
+
+		$('.admin').mouseenter(function(){$(this).parents().eq(2).find('#admin').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
+		$('.admin').mouseleave(function(){$(this).parents().eq(2).find('#admin').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
+
+		$('.delete').mouseenter(function(){$(this).parents().eq(2).find('#delete').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
+		$('.delete').mouseleave(function(){$(this).parents().eq(2).find('#delete').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
+
+
 		$('#modal-delete-profile-from-team').on('hide.bs.modal', function(e) {
 		    $(e.currentTarget).find('input[name="team_profile[team_id]"]').val('');
 		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val('');

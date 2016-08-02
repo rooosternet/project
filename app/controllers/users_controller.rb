@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars,:update_profile_image]
+  before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars,:update_profile_image, :profile]
   # after_action :verify_authorized
   protect_from_forgery :except => [:update_avatars]
 
@@ -18,6 +18,10 @@ class UsersController < ApplicationController
 
   def show
     authorize @user || current_user
+  end
+
+  def profile
+
   end
 
   def update
@@ -46,6 +50,9 @@ class UsersController < ApplicationController
         @team = Team.find(params[:team_id])
         team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: @user.profile.id).first
         team_profile.update(invitation_status: 'accepted')
+
+        Mailer.admin_invitation_notice(@user, @team).deliver_later
+
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
       else
         format.html { redirect_to root_path, notice: 'Something went wrong!' }
@@ -62,9 +69,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def set_group_admin user, team
-    if TeamProfile.where(profile_id: user.id, team_id: team.id).first.update(is_admin: true)
-      redirect_to team_path(team)
+  def set_group_admin
+    user = TeamProfile.where(profile_id: params[:user_id], team_id: params[:team_id]).first
+    (user.is_admin)? user.update(is_admin: false) : user.update(is_admin: true)
+    if params.has_key? :team_id
+      redirect_to team_path(params[:team_id])
     else
       redirect_to root_path
     end

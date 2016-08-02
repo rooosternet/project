@@ -79,12 +79,24 @@ class Mailer < Devise::Mailer
       mail(to: @to ,from: @from, subject: @subject)
     end
 
-    def add_to_group_mail(hash, email, team)
+    def add_to_group_mail(hash, user, team)
+      @user = user
+      @team = Team.find(team)
       @url = accepting_invitation_url(hash: hash, team_id: team.id)
       @owner = team.owner.profile.name
       @from = "info@roooster.co"
-      @to = email
-      @subject = "You have been added to group"
+      @to = @user.email
+      @subject = "#{@owner} added you to team #{team.name}"
+      mail(to: @to ,from: @from, subject: @subject)
+    end
+
+    def admin_invitation_notice(user, team)
+      @user = user
+      @team = Team.find(team)
+      @owner = team.owner.profile.name
+      @from = "info@roooster.co"
+      @to = @team.owner.email
+      @subject = "#{@user.lastname} #{@user.firstname} has accepted your invitation"
       mail(to: @to ,from: @from, subject: @subject)
     end
 

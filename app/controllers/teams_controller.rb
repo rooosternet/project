@@ -81,9 +81,11 @@ class TeamsController < ApplicationController
     @team_avatar = session[:team_avatar]
     session[:team_avatar] = false
     @profiles = @team.profiles
-    @accepting_profiles = @team.team_profiles.where(invitation_status: ['accepted', nil])
+    @accepting_profiles = @team.team_profiles.where(invitation_status: ['accepted', nil]).order(is_admin: :desc)
     @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
     @profiles_count = @profiles.any? ? @profiles.count : 'No'
+
+    render (@team.backet)?  'my_contacts' : 'show'
   end
 
   def update
@@ -98,7 +100,7 @@ class TeamsController < ApplicationController
           user = User.find(team_profile['profile_id'])
           hash = Digest::MD5.hexdigest(@team.name)[0...16]
           user.profile.update(invitation_hash: hash)
-          Mailer.add_to_group_mail(hash, user.email, owner_team).deliver_later
+          Mailer.add_to_group_mail(hash, user, owner_team).deliver_later
           begin
             @team.save
           rescue ActiveRecord::RecordInvalid => invalid
