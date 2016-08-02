@@ -208,18 +208,30 @@
 	.section-body { display: inline-block; vertical-align: top; width: 100%; padding: 26px; background: #f8f9fb; border: 1px solid #eef2f5; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.14); }
 	.section-body .section-bar { margin: -6px 0 10px; }
 
-	.chat.section-body { width: 875px; margin-right: 8px;
-		textarea {padding:6px 12px; height:initial;}
+	.chat.section-body {
+		.messages {
+			.message{padding-left: 0; margin-bottom: 0;
+				textarea{line-height: 1.5;padding:6px 12px; height:45px;}
+			}
+		}
 	}
 
 	.section-creatives{
-		.undericon{margin-top: 27px;font-size:11px;color: #818181;}
+		.undericon{font-size:10px;color: #818181;}
 		.admin-badge{top: 55px;position: absolute;left: 20px;}
 		.dimmed{opacity: 0.3;}
 		.name-label{font-size: 11px; display: block; color: #818181; margin-top: 5px;}
 		.groups-label{display: block; color: #484848; font-size: 11px; margin-bottom: 10px; line-height: 1; text-transform: uppercase; letter-spacing: 0.17em; font-weight: 600;}
 		.dropdown { position: relative; height: 90px; margin-bottom: 20px; vertical-align: top;
-			.dropdown-menu { margin: -5px 0 0 7px; border: none; background-color: transparent; text-align: center;
+			.dropdown-menu { margin: 0px auto;
+			    display: inline-block;
+			    position: relative;
+			    float:none;
+			    border: none;
+			    height: 25px;
+			    min-width: 55px;
+			    background-color: transparent;
+			    text-align: center;
 				li{display:inline; float: left; width: 25px;}
 				li:before{background:none; height: 0;}
 				.ico-message{width:20px; height:20px;}

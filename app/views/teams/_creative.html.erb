@@ -1,0 +1,47 @@
+<div class="user-creatives ">
+    <div class="dropdown">
+        <%-if team_user.is_admin%>
+            <i class="admin-badge ico-badge"></i>
+        <%end%>
+        <a href="#" class="user-image" data-toggle='dropdown'>
+            <%=image_tag team_user.profile.user.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
+        </a>
+        <span class='name-label'><%=team_user.profile.user.name%></span>
+        <ul class="dropdown-menu">
+            <%- if (@team.owner_id == current_user.id) or (team_user.is_admin)%>
+                <li>
+                    <a class='private' href="#" data-profile-id="<%=team_user.profile_id%>">
+                        <i class="ico-message"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="profile" href="<%=profile_path(team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
+                        <i class="ico-profile"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="admin" href="<%=set_group_admin_path(user_id: team_user.profile_id, team_id: @team)%>" data-profile-id="<%=team_user.profile_id%>">
+                        <%-if team_user.is_admin%>
+                            <i class="ico-admin-red"></i>
+                        <%else%>
+                            <i class="ico-admin"></i>
+                        <%end%>
+                    </a>
+                </li>
+                <li>
+                    <a class="delete" href="#" data-profile-id="<%=team_user.profile_id%>">
+                        <i class="ico-delete"></i>
+                    </a>
+                </li>
+            <%end%>
+        </ul>
+        <span class='hide undericon' id='private'>PRIVATE MESSAGE</span>
+        <span class='hide undericon' id='profile'>PROFILE PAGE</span>
+        <%-if team_user.is_admin == true%>
+            <span class='hide undericon' id='admin'>GROUP ADMIN</span>
+        <%else%>
+            <span class='hide undericon' id='admin'>MAKE ADMIN</span>
+        <%end%>
+        <span class='hide undericon' id='delete'>REMOVE CREATIVE</span>
+    </div>
+</div>
