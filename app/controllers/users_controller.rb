@@ -48,12 +48,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.profile.invitation_hash == params[:hash]
         @team = Team.find(params[:team_id])
-        team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: @user.profile.id).first
-        team_profile.update(invitation_status: 'accepted')
-
-        Mailer.admin_invitation_notice(@user, @team).deliver_later
-
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
+        team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: current_user.id).first
+        if team_profile.update(invitation_status: 'accepted')
+          Mailer.admin_invitation_notice(@user, @team).deliver_later
+          format.html { redirect_to @team, notice: 'Team was successfully updated.' }
+        else
+          format.html { redirect_to root_path, notice: 'Something went wrong!' }
+        end
       else
         format.html { redirect_to root_path, notice: 'Something went wrong!' }
       end

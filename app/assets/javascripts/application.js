@@ -23,4 +23,5 @@
 // require turbolinks
 // require javascripts/bootstrap-sprockets
 // require avatars_for_rails
+//= require jquery.autosize
 //= require_tree .

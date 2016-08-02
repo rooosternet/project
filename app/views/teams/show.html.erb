@@ -114,7 +114,10 @@
 	<% @accepting_profiles.each do |team_user| %>
         <div class="user-creatives ">
 	        <div class="dropdown">
-				<a href="#" class="user-image <%= 'admin-user' if team_user.is_admin%>" data-toggle='dropdown'>
+	        	<%-if team_user.is_admin%>
+					<i class="admin-badge ico-badge"></i>
+	        	<%end%>
+				<a href="#" class="user-image" data-toggle='dropdown'>
 		            <%=image_tag team_user.profile.user.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
 		        </a>
 		        <span class='name-label'><%=team_user.profile.user.name%></span>
@@ -146,14 +149,14 @@
 						</li>
 					<%end%>
 				</ul>
-				<span class='hide undericon' id='private'>private message</span>
-				<span class='hide undericon' id='profile'>profile page</span>
+				<span class='hide undericon' id='private'>PRIVATE MESSAGE</span>
+				<span class='hide undericon' id='profile'>PROFILE PAGE</span>
 				<%-if team_user.is_admin == true%>
-					<span class='hide undericon' id='admin'>group admin</span>
+					<span class='hide undericon' id='admin'>GROUP ADMIN</span>
 				<%else%>
-					<span class='hide undericon' id='admin'>make admin</span>
+					<span class='hide undericon' id='admin'>MAKE ADMIN</span>
 				<%end%>
-				<span class='hide undericon' id='delete'>remove creative</span>
+				<span class='hide undericon' id='delete'>REMOVE CREATIVE</span>
 			</div>
 	    </div>
 	<% end %>

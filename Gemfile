@@ -24,6 +24,8 @@ gem 'pundit'
 gem 'whenever', :require => false
 gem 'roo'
 
+gem 'autosize-rails'
+
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem "omniauth-vimeo"
