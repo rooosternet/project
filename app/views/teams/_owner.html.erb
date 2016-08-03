@@ -7,7 +7,7 @@
         <span class='name-label'><%=team_user.name%></span>
         <ul class="dropdown-menu">
             <li>
-                <a class='private' href="#" data-profile-id="<%=team_user.id%>">
+                <a class='private' href="<%=team_path(@team, private: true, user_id:team_user.id)%>" data-profile-id="<%=team_user.id%>">
                     <i class="ico-message"></i>
                 </a>
             </li>

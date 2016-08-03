@@ -1,0 +1,21 @@
+<div class="" id="conversation">
+    <div class="messages">
+        <%-if @private%>
+            <a href="<%= team_path(@team)%>" class='private-close'>
+                <i class="ico-close"></i>
+            </a>
+        <%end%>
+        <div class="messages-inner <%= (@private)? 'private-back' : ''%>">
+            <div class="messages-wrapper">
+
+                <% messages.each do |message| %>
+                    <%= render :partial => 'in_messages/message' , :locals =>  { message: message }%>
+                <% end %>
+
+                <div class="form-message">
+                    <%= render :partial => 'in_messages/form_team' , :locals =>  { message: InMessage.new }%>
+                </div><!-- /.form-message -->
+            </div><!-- /.messages-wrapper -->
+        </div><!-- /.messages-inner -->
+    </div><!-- /.messages -->
+</div><!-- /.tab-pane -->

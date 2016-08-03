@@ -239,22 +239,22 @@
 
 .users-flex {
 	.user-alt:nth-child(4n+1) {
-		.user-expand { margin: 0 -300% 0 0; }
+		.user-expand { margin: 0 -145% 0 0; }
 		.messages .messages-arrow { left: 0%; }
 	}
 
 	.user-alt:nth-child(4n+2) {
-		.user-expand { margin: 0 -200% 0 -100%; }
+		.user-expand { margin: 0 -100% 0 -100%; }
 		.messages .messages-arrow { left: 25%; }
 	}
 
 	.user-alt:nth-child(4n+3) {
-		.user-expand { margin: 0 -100% 0 -200%; }
+		.user-expand { margin: 0 -50% 0 -200%; }
 		.messages .messages-arrow { left: 50%; }
 	}
 
 	.user-alt:nth-child(4n+4) {
-		.user-expand { margin: 0 0 0 -300%; }
+		.user-expand { margin: 0 0 0 -145%; }
 		.messages .messages-arrow { left: 75%; }
 	}
 

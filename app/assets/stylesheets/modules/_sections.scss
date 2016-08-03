@@ -210,17 +210,22 @@
 
 	.chat.section-body {
 		.messages {
-			.message{padding-left: 0; margin-bottom: 0;
-				textarea{line-height: 1.5;padding:6px 12px; height:45px;}
+			.message{padding-left: 50px; margin-bottom: 40px;
+				textarea{line-height: 1.5;padding:6px 12px; height:36px;}
 			}
+			.input{padding-left: 0px;}
+		.send-message{margin-top: 20px;}
+		.private-back{background-color: #fff8fc;}
+		.private-close{position: absolute; right:-13px; top: -11px;background-color: #fff; border-radius: 50%;}
 		}
 	}
 
 	.section-creatives{
 		.undericon{font-size:10px;color: #818181;}
-		.admin-badge{top: 55px;position: absolute;left: 20px;}
+		.admin-badge{top: 55px;position: absolute;left: 15px;border:3px solid #fff; border-radius:50%;background-color: #fff;}
 		.dimmed{opacity: 0.3;}
 		.name-label{font-size: 11px; display: block; color: #818181; margin-top: 5px;}
+		.pending{font-size: 9px; display: block; color: #818181; margin-top: 3px;}
 		.groups-label{display: block; color: #484848; font-size: 11px; margin-bottom: 10px; line-height: 1; text-transform: uppercase; letter-spacing: 0.17em; font-weight: 600;}
 		.dropdown { position: relative; height: 90px; margin-bottom: 20px; vertical-align: top;
 			.dropdown-menu { margin: 0px auto;
@@ -229,13 +234,13 @@
 			    float:none;
 			    border: none;
 			    height: 25px;
-			    min-width: 55px;
+			    width: initial;
 			    background-color: transparent;
 			    text-align: center;
-				li{display:inline; float: left; width: 25px;}
+				li{display:inline; float: left; width: 24px;}
 				li:before{background:none; height: 0;}
-				.ico-message{width:20px; height:20px;}
-				.ico-delete{width:20px; height:20px;}
+				// .ico-message{width:20px; height:20px;}
+				// .ico-delete{width:20px; height:20px;}
 			}
 		}
 		.dropdown.open { height: 100px; }

@@ -25,6 +25,12 @@ $(function() {
 		$('.delete').mouseenter(function(){$(this).parents().eq(2).find('#delete').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
 		$('.delete').mouseleave(function(){$(this).parents().eq(2).find('#delete').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
 
+		$('.user-image').click(function(){
+			var to_id = $(this).attr('data-user-id');
+			var to_name = $(this).attr('data-user-name');
+			$('.send-message').attr('placeholder', 'Reply to ' + to_name);
+			$('.to-ids').val(to_id);
+		})
 
 		$('#modal-delete-profile-from-team').on('hide.bs.modal', function(e) {
 		    $(e.currentTarget).find('input[name="team_profile[team_id]"]').val('');

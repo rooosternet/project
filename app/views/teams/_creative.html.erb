@@ -3,14 +3,14 @@
         <%-if team_user.is_admin%>
             <i class="admin-badge ico-badge"></i>
         <%end%>
-        <a href="#" class="user-image" data-toggle='dropdown'>
+        <a href="#" data-user-id="<%=team_user.profile.user_id%>" data-user-name="<%=team_user.profile.user.name%>" class="user-image" data-toggle='dropdown'>
             <%=image_tag team_user.profile.user.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
         </a>
         <span class='name-label'><%=team_user.profile.user.name%></span>
         <ul class="dropdown-menu">
             <%- if (@team.owner_id == current_user.id) or (team_user.is_admin)%>
                 <li>
-                    <a class='private' href="#" data-profile-id="<%=team_user.profile_id%>">
+                    <a class='private' href="<%=team_path(@team, private: true, user_id:team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
                         <i class="ico-message"></i>
                     </a>
                 </li>

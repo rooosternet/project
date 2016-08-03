@@ -82,8 +82,16 @@ class TeamsController < ApplicationController
     session[:team_avatar] = false
     @profiles = @team.profiles
     @accepting_profiles = @team.team_profiles.where(invitation_status: ['accepted', nil]).order(is_admin: :desc)
-    @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
+    # @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
     @profiles_count = @profiles.any? ? @profiles.count : 'No'
+    if params.has_key?(:private)
+      @private = true
+      @to_id = params[:user_id]
+      @messages = InMessage.where(team_id: @team.id, private: true, to_id: [@to_id, current_user.id]).notarchive
+    else
+      @private = false
+      @messages = InMessage.where(team_id: @team.id, private: false).notarchive
+    end
 
     render (@team.backet)?  'my_contacts' : 'show'
   end

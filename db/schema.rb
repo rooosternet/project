@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801073710) do
+ActiveRecord::Schema.define(version: 20160802233059) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160801073710) do
     t.string   "subject",    limit: 255
     t.integer  "parent_id",  limit: 4
     t.text     "archive",    limit: 65535
+    t.string   "team_id",    limit: 255
   end
 
   add_index "in_messages", ["from_id"], name: "index_in_messages_on_from_id", using: :btree

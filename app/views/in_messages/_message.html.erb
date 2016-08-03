@@ -7,11 +7,13 @@
 		<div class="message-actions">
 			<ul>
 				<li>
-					<a href="#modal-delete" data-toggle="modal" data-message-id="<%=message.id%>">
-						<i class="ico-delete"></i>
+					<%- if current_user.id == message.from_id%>
+						<a href="#modal-delete" data-toggle="modal" data-message-id="<%=message.id%>">
+							<i class="ico-delete"></i>
 
-						<span>Delete message</span>
-					</a>
+							<span>Delete message</span>
+						</a>
+					<%end%>
 				</li>
 			</ul>
 		</div><!-- /.message-actions -->

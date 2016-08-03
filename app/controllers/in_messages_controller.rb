@@ -6,16 +6,16 @@ class InMessagesController < ApplicationController
     @top_search = true
     @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
   end
-  
+
   def new
-  	
+
   end
 
   def create
     @message = InMessage.new(secure_params)
     @message.save
     unless @message.persisted?
-      msg = @message.errors.any? ? @message.errors.full_messages.join('<br>') : "fail to create message!"          
+      msg = @message.errors.any? ? @message.errors.full_messages.join('<br>') : "fail to create message!"
       puts "MessagesController::create: #{msg}"
       status = 503
       render :text => "#{@message.to_id}_message", :status => status
@@ -29,7 +29,7 @@ class InMessagesController < ApplicationController
   end
 
   def bulk_create
-    recepients = secure_params[:to_ids].try(:split,',') || secure_params[:to_id] 
+    recepients = secure_params[:to_ids].try(:split,',') || secure_params[:to_id]
     recepients.select!{|x| x unless x.blank?}
 
     if recepients && recepients.is_a?(Array)
@@ -45,26 +45,60 @@ class InMessagesController < ApplicationController
           message.save!
           save_messages << message
         rescue StandardError => e
-          msg = message.errors.any? ? message.errors.full_messages.join(',') : "fail to create message!"          
+          msg = message.errors.any? ? message.errors.full_messages.join(',') : "fail to create message!"
           puts "MessagesController::create: #{msg}"
-          fail_messages << msg 
+          fail_messages << msg
         end
       end
-      
+
       if request.xhr?
         if fail_messages.any?
           render :text =>  fail_messages.uniq.join(",") , :status => 503
-        else  
+        else
           puts save_messages.inspect
           render :text => "Message send" , :status => 200
-        end  
+        end
       else
         redirect_to inbox_path, :notice => fail_messages.any? ? fail_messages.uniq.join(",") : "Message send."
       end
 
     else
       render :text => "Recepient cant be blank!" , :status => 503
-    end  
+    end
+  end
+
+  def bulk_create_chat_message
+    recepients = secure_params[:to_ids].try(:split,',') || secure_params[:to_id]
+    recepients.select!{|x| x unless x.blank?}
+    team = Team.find(secure_params[:team_id])
+    if recepients && recepients.is_a?(Array)
+      msg_attr = secure_params.dup.except(:to_id,:to_ids)
+      msg_attr.merge!(to_id: nil)
+      save_messages = []
+      fail_messages = []
+
+      recepients.each do |id|
+        begin
+          msg_attr[:to_id] = id
+          message = InMessage.new(msg_attr)
+          message.save!
+          save_messages << message
+        rescue StandardError => e
+          msg = message.errors.any? ? message.errors.full_messages.join(',') : "fail to create message!"
+          puts "MessagesController::create: #{msg}"
+          fail_messages << msg
+        end
+      end
+
+      if secure_params[:private] == 'false'
+        redirect_to team
+      else
+        redirect_to team_path(team, private: true, user_id: secure_params[:to_id])
+      end
+
+    else
+      render :text => "Recepient cant be blank!" , :status => 503
+    end
   end
 
 
@@ -93,7 +127,7 @@ class InMessagesController < ApplicationController
   end
 
   def archive
-    
+
     message = InMessage.find(params[:in_message][:id])
     if message.archive!
       if request.xhr?
@@ -125,6 +159,6 @@ class InMessagesController < ApplicationController
   private
 
   def secure_params
-    params.require(:in_message).permit(:id,:from_id ,:subject,:note,:token,:notify,:private,:parent_id, :to_id,:to_ids , :to_id => [])
+    params.require(:in_message).permit(:id,:from_id ,:subject,:note,:token,:notify,:private,:parent_id,:team_id, :to_id,:to_ids , :to_id => [])
   end
 end
