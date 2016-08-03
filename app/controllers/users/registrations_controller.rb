@@ -9,13 +9,13 @@ before_filter :configure_sign_up_params, only: [:create]
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-    
+
     # resource_updated = resource.update_attributes(account_update_params)
     # resource_updated = update_resource(resource, account_update_params)
     resource_updated = update_resource(resource, user_secure_params)
-    
+
     yield resource if block_given?
-    
+
     if resource_updated
       if is_flashing_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
@@ -24,7 +24,7 @@ before_filter :configure_sign_up_params, only: [:create]
       end
       sign_in resource_name, resource, bypass: true
       if request.xhr?
-        
+
         # render :text => 'User updated' , :status => 200
         render :json => { :responseText => "User updated" }.to_json , :status => 200
       else
@@ -32,7 +32,7 @@ before_filter :configure_sign_up_params, only: [:create]
       end
     else
       if request.xhr?
-        
+
         # render :text => "User update failed #{resource.errors.full_messages.join(',') if resource.errors.any?}" , :status => 500
         render :text => { :responseText => "User update failed #{resource.errors.full_messages.join(',') if resource.errors.any?}" }.to_json , :status => 500
       else
@@ -53,10 +53,10 @@ before_filter :configure_sign_up_params, only: [:create]
     begin
 
       build_resource(sign_up_params)
-      
+
       if User.find_by_email(resource.email)
         render :text => "User already registered" , :status => 500
-      else  
+      else
 
         resource.save
         yield resource if block_given?
@@ -75,7 +75,7 @@ before_filter :configure_sign_up_params, only: [:create]
           clean_up_passwords resource
           set_minimum_password_length
           # respond_with resource
-          message = resource.errors.any? ? resource.errors.full_messages.join('<br>') : "fail to create user!"          
+          message = resource.errors.any? ? resource.errors.full_messages.join('<br>') : "fail to create user!"
           render :text => message , :status => 500
         end
       end
@@ -96,7 +96,7 @@ before_filter :configure_sign_up_params, only: [:create]
       resource.update_with_password(_params)
     else
       resource.update_without_password(_params)
-    end  
+    end
   end
 
   def after_sign_up_path_for(resource)
@@ -108,12 +108,12 @@ before_filter :configure_sign_up_params, only: [:create]
   end
 
   def user_secure_params
-    params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname,:image,:avatars => [],:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
+    params.require(:user).permit(:role,:id,:password, :current_password,:password_confirmation,:edit_profile,:name,:email,:email2,:firstname,:lastname,:image,:avatars => [],:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
   end
 
   # def create
 
-    
+
   #   build_resource(params[:user])
 
   #   resource.save
