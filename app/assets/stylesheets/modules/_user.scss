@@ -221,7 +221,7 @@
 
 .users { position: relative; list-style: none outside none; font-size: 0;
 
-	.user-alt { display: inline-block; vertical-align: bottom; margin-bottom: 10px; font-size: 14px; }
+	.user-alt { display: inline-block; vertical-align: bottom; margin-bottom: 10px; font-size: 14px; width:232px;}
 	// width: 24%;
 
 	@media (max-width: $screen-md-max) {
@@ -239,22 +239,22 @@
 
 .users-flex {
 	.user-alt:nth-child(4n+1) {
-		.user-expand { margin: 0 -157% 0 0; }
+		.user-expand { margin: 0 -300% 0 0; }
 		.messages .messages-arrow { left: 0%; }
 	}
 
 	.user-alt:nth-child(4n+2) {
-		.user-expand { margin: 0 -95% 0 -67%; }
-		.messages .messages-arrow { left: 32%; }
+		.user-expand { margin: 0 -200% 0 -100%; }
+		.messages .messages-arrow { left: 25%; }
 	}
 
 	.user-alt:nth-child(4n+3) {
-		.user-expand { margin: 0 -30% 0 -130%; }
-		.messages .messages-arrow { left: 55%; }
+		.user-expand { margin: 0 -100% 0 -200%; }
+		.messages .messages-arrow { left: 50%; }
 	}
 
 	.user-alt:nth-child(4n+4) {
-		.user-expand { margin: 0 0 0 -145%; }
+		.user-expand { margin: 0 0 0 -300%; }
 		.messages .messages-arrow { left: 75%; }
 	}
 
