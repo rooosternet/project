@@ -84,6 +84,11 @@ class TeamsController < ApplicationController
     @accepting_profiles = @team.team_profiles.where(invitation_status: ['accepted', nil]).order(is_admin: :desc)
     # @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
     @profiles_count = @profiles.any? ? @profiles.count : 'No'
+    @is_current_user_admin = ((@team.owner_id == current_user.id) or
+                              @team.team_profiles
+                              .where(profile_id: current_user.id)
+                              .first
+                              .is_admin) ? true : false
     if params.has_key?(:private)
       @private = true
       @to_id = params[:user_id]

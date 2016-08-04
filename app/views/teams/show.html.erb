@@ -2,12 +2,14 @@
 	<div class="section-actions">
 		<ul>
 			<% unless @team.backet? %>
-			<li>
-				<a href="#modal-delete-team" data-toggle="modal" data-team-id="<%=@team.id%>">
-					<i class="ico-bin"></i>
-					<span class='remove-team'>remove team</span>
-				</a>
-			</li>
+				<%-if @is_current_user_admin%>
+					<li>
+						<a href="#modal-delete-team" data-toggle="modal" data-team-id="<%=@team.id%>">
+							<i class="ico-bin"></i>
+							<span class='remove-team'>remove team</span>
+						</a>
+					</li>
+				<%end%>
 			<% end %>
 		</ul>
 	</div><!-- /.section-actions -->
@@ -51,9 +53,9 @@
 				</div><!-- /.team -->
 
 				<div class="team-page-content" data-team-id="<%=@team.id%>">
-					<h4 class="team-page-name" contenteditable><%= @team.name %></h4><!-- /.team-page-name -->
+					<h4 class="team-page-name" <%='contenteditable' if @is_current_user_admin%>><%= @team.name %></h4><!-- /.team-page-name -->
 
-					<div class="team-page-description" contenteditable data-placeholder="This is where you can write a short description for this team."><%= @team.description %></div><!-- /.team-page-description -->
+					<div class="team-page-description" <%='contenteditable' if @is_current_user_admin%> data-placeholder="This is where you can write a short description for this team."><%= @team.description %></div><!-- /.team-page-description -->
 				</div><!-- /.team-page-content -->
 			</div><!-- /.team-page -->
 		</div><!-- /.section-head-inner -->
@@ -112,6 +114,7 @@
 	<%end%>
 
 	<%= render :partial => 'teams/owner' , :locals =>  { team_user: @team.owner }%>
+
 	<% @accepting_profiles.each do |team_user| %>
         <%= render :partial => 'teams/creative' , :locals =>  { team_user: team_user }%>
 	<% end %>

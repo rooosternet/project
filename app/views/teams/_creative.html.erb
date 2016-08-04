@@ -8,7 +8,7 @@
         </a>
         <span class='name-label'><%=team_user.profile.user.name%></span>
         <ul class="dropdown-menu">
-            <%- if (@team.owner_id == current_user.id) or (team_user.is_admin)%>
+            <%- if @is_current_user_admin%>
                 <li>
                     <a class='private' href="<%=team_path(@team, private: true, user_id:team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
                         <i class="ico-message"></i>
@@ -31,6 +31,17 @@
                 <li>
                     <a class="delete" href="#" data-profile-id="<%=team_user.profile_id%>">
                         <i class="ico-delete"></i>
+                    </a>
+                </li>
+            <%else%>
+                <li>
+                    <a class='private' href="<%=team_path(@team, private: true, user_id:team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
+                        <i class="ico-message"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="profile" href="<%=profile_path(team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
+                        <i class="ico-profile"></i>
                     </a>
                 </li>
             <%end%>

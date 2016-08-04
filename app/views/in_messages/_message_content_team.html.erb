@@ -12,10 +12,10 @@
                     <%= render :partial => 'in_messages/message' , :locals =>  { message: message }%>
                 <% end %>
 
-                <div class="form-message">
-                    <%= render :partial => 'in_messages/form_team' , :locals =>  { message: InMessage.new }%>
-                </div><!-- /.form-message -->
             </div><!-- /.messages-wrapper -->
         </div><!-- /.messages-inner -->
     </div><!-- /.messages -->
+    <div class="form-message">
+        <%= render :partial => 'in_messages/form_team' , :locals =>  { message: InMessage.new }%>
+    </div><!-- /.form-message -->
 </div><!-- /.tab-pane -->
