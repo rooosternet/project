@@ -240,7 +240,11 @@
 					bottom: 11px;
 				}
 			.tab-content{position:absolute; z-index:10;width: 250px;top: 20px;margin-left: 131px;
-				.tab-pane{padding: 5px 8px 5px 8px;}
+				.tab-pane{padding: 5px 8px 5px 8px;
+					-webkit-box-shadow: 5px 5px 15px -6px rgba(0,0,0,0.75);
+					-moz-box-shadow: 5px 5px 15px -6px rgba(0,0,0,0.75);
+					box-shadow: 5px 5px 15px -6px rgba(0,0,0,0.75);
+				}
 			}
 
 		}

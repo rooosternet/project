@@ -4,9 +4,10 @@ $(function() {
 
 		$('#modal-delete-profile-from-team').on('show.bs.modal', function(e) {
 		    var team_id = $(e.relatedTarget).data('team-id');
+		    var profile_id = $(e.relatedTarget).data('profile-id');
 		    var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
 		    $(e.currentTarget).find('input[name="team_profile[team_id]"]').val(team_id);
-		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val(profile_ids);
+		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val((profile_ids.lenfth>0)? profile_ids : profile_id);
 		});
 
 		$('.private').click(function(){

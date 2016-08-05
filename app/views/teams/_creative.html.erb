@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="delete" href="#" data-profile-id="<%=team_user.profile_id%>">
+                    <a href="#modal-delete-profile-from-team" class='delete' data-toggle="modal" data-team-id="<%=@team.id%>" data-profile-id="<%=team_user.profile_id%>">
                         <i class="ico-delete"></i>
                     </a>
                 </li>
@@ -40,6 +40,7 @@
                     </a>
                 </li>
                 <li>
+
                     <a class="profile" href="<%=profile_path(team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
                         <i class="ico-profile"></i>
                     </a>
