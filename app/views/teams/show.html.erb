@@ -202,13 +202,21 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.form-error').text().replace(/[\t,\n]/g,'');
-	var timerId = setInterval(function() {
+
+	function errorToField() {
 	  var a = $('.form-error').text().replace(/[\t,\n]/g,'');
 	  if(a!=''){
 	  	$('.input-message').val(a);
 	  	clearInterval(timerId);
 	  }
-	}, 1000);
+	};
+
+	$('.input-message').click(function(){
+        this.value = "";
+        $('.form-error').text('');
+        var timerId = setInterval(errorToField, 500);
+	 });
+
 	$('.invite-to-team').keydown(function(event) {
 		if (event.keyCode == 13) {
 		    $(this.form).submit();
@@ -223,7 +231,8 @@ $(document).ready(function(){
 		       this.value = "Email";
 		  }
 		});
-		$('.input-message').val($('.form-error').text());
+
+		// $('.input-message').val($('.form-error').text());
 	});
 	$(function(){
 		<% if user_signed_in? && @team_avatar.eql?(true) %>
