@@ -27,28 +27,36 @@
 						</div>
 					</a> -->
 
-					<a href="#modal-avatar" class="team-inner" data-toggle="modal" data-source-id="<%=@team.id%>" >
+					<%-if @is_current_user_admin%>
+						<a href="#modal-avatar" class="team-inner" data-toggle="modal" data-source-id="<%=@team.id%>" >
+							<div class="team-image">
+								<%=image_tag @team.team_image, { class: "team-image-selected",alt: "",id: @team.id } %>
+									<div class="team-image-change">
+										<span>
+											Change<br>
+											Image
+										</span>
+									</div><!-- /.team-image-change -->
+								<!-- <div class="team-model-delete">
+									<span>
+										Delete<br>
+										Team
+									</span>
+								</div> -->
+
+								<div class="team-actions">
+									<span class="team-count"><%= @team.team_profiles.count %></span>
+								</div><!-- /.team-actions -->
+							</div><!-- /.team-image -->
+						</a>
+					<%else%>
 						<div class="team-image">
 							<%=image_tag @team.team_image, { class: "team-image-selected",alt: "",id: @team.id } %>
-							<div class="team-image-change">
-								<span>
-									Change<br>
-									Image
-								</span>
-							</div><!-- /.team-image-change -->
-
-							<!-- <div class="team-model-delete">
-								<span>
-									Delete<br>
-									Team
-								</span>
-							</div> -->
-
 							<div class="team-actions">
 								<span class="team-count"><%= @team.team_profiles.count %></span>
 							</div><!-- /.team-actions -->
 						</div><!-- /.team-image -->
-					</a>
+					<%end%>
 
 				</div><!-- /.team -->
 
@@ -132,7 +140,7 @@
 		<%end%>
 	<%end%>
 
-	<div class="form-invite">
+	<div class="add-creative form-invite">
 			<!-- <form action="?" method="post"> -->
 			<%= form_for(User.new, :url => batch_invite_users_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
 
@@ -140,13 +148,13 @@
 				<div class="tabs-invites">
 					<ul class="tabs-nav list-avatars">
 						<li>
-							<a href="#invite" data-toggle="tab">
+							<a class='add-invite-btn'href="#invite" data-toggle="tab">
 								<div class="team team-alt">
 									<div class="team-inner">
 										<div class="team-image">
 											<%=image_tag "team-default-active.jpg", { alt: "" } %>
 											<div class="team-actions">
-												<span class="team-add">
+												<span class="team-add plus-btn">
 													<i class="ico-plus"></i>
 												</span>
 											</div><!-- /.team-actions -->
@@ -160,39 +168,22 @@
 					</ul><!-- /.tabs-nav -->
 
 					<div class="tab-content">
-						<div class="tab-pane" id="invite">
+						<div class="tab-pane invite-tab" id="invite">
 							<div class="form-row clearfix">
-								<div class="form-col">
-									<div class="form-controls">
-										<!-- <input type="text" class="form-control" name="field-first-name1" id="field-first-name1" value="" placeholder="First"> -->
-										<%= text_field_tag "user[][firstname]",'', :no_label => true, :class =>"form-control" ,:placeholder => "First Name",:pattern => "^[a-zA-Z]+( [a-zA-Z]+)*$" %>
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-col -->
-
-								<div class="form-col">
-									<div class="form-controls">
-										<!-- <input type="text" class="form-control" name="field-last-name1" id="field-last-name1" value="" placeholder="Last"> -->
-										<%= text_field_tag "user[][lastname]",'', :no_label => true, :class =>"form-control" ,:placeholder => "Last Name",:pattern => "^[a-zA-Z]+( [a-zA-Z]+)*$" %>
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-col -->
-
-								<div class="form-col form-col-medium">
-									<div class="form-controls">
+								<div class="">
+									<div class="form-controls invite-input">
 										<!-- <input type="text" class="form-control" name="field-email1" id="field-email1" value="" placeholder="Email *"> -->
-										<%= text_field_tag "user[][email]",'', :no_label => true , :class =>"form-control" ,:placeholder => "Email", :type=>"email" %>
+										<%= text_field_tag "user[][email]",'', :no_label => true , :class =>"form-control input-message" ,:placeholder => "Email", :type=>"email" %>
+										<div class="form-actions text-center">
+											<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
+										</div><!-- /.form-actions -->
+										<div class="form-error text-center" id="invite-form-error">
+											<p></p>
+										</div><!-- /.form-error -->
 									</div><!-- /.form-controls -->
 								</div><!-- /.form-col -->
 							</div><!-- /.form-row -->
 						</div><!-- /.tab-pane -->
-
-						<div class="form-actions text-center">
-							<button type="submit" class="form-btn btn">Submit</button>
-							</br>
-							<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
-						</div><!-- /.form-actions -->
-						<div class="form-error text-center" id="invite-form-error">
-							<p></p>
-						</div><!-- /.form-error -->
 					</div><!-- /.tab-content -->
 				</div><!-- /.tabs-invites -->
 			</div><!-- /.form-body -->
@@ -208,10 +199,27 @@
 
 
 
-<%= javascript_tag do %>
-$(function(){
-	<% if user_signed_in? && @team_avatar.eql?(true) %>
-		$("#modal-avatar").modal({show: true});
-	<% end %>
-});
-<% end %>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.invite-to-team').keydown(function(event) {
+		if (event.keyCode == 13) {
+		    $(this.form).submit()
+		    return false;
+		 }
+		}).focus(function(){
+		  if(this.value == "Email"){
+		       this.value = "";
+		  }
+		}).blur(function(){
+		  if(this.value==""){
+		       this.value = "Email";
+		  }
+		});
+		$('.input-message').val($('.form-error').text());
+	});
+	$(function(){
+		<% if user_signed_in? && @team_avatar.eql?(true) %>
+			$("#modal-avatar").modal({show: true});
+		<% end %>
+	});
+</script>

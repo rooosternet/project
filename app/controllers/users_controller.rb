@@ -97,6 +97,11 @@ class UsersController < ApplicationController
     @not_invited = []
     @empty = true
     params[:user].each do |user|
+      unless (user.has_key? :firstname) and (user.has_key? :lastname)
+        login = user[:email].split('@').first
+        user[:firstname] = login
+        user[:lastname] = login
+      end
       if !user[:firstname].blank? || !user[:lastname].blank? || !user[:email].blank?
         begin
           @empty = false

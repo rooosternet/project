@@ -2,9 +2,9 @@
 	Footer
 \* ------------------------------------------------------------ */
 
-.footer { position: absolute; left: 0; bottom: 0; width: 100%; padding: 20px 0 0; background: #464646; color: #fff; font-family: Arial, Helvetica, sans-serif; font-size: 14px; text-align: center; 
+.footer { position: absolute; left: 0; bottom: 0; width: 100%; padding: 20px 0 0; background: #464646; color: #fff; font-family: Arial, Helvetica, sans-serif; font-size: 14px; text-align: center;
 
-	.footer-nav { padding: 9px 0 6px; line-height: 1; letter-spacing: -0.025em; 
+	.footer-nav { padding: 9px 0 6px; line-height: 1; letter-spacing: -0.025em;
 
 		ul { list-style: none outside none; padding-bottom: 13px; }
 		li { display: inline; }
@@ -12,7 +12,7 @@
 		a { color: #fff; }
 	}
 
-	.footer-socials { padding-bottom: 35px; font-size: 0; 
+	.footer-socials { padding-bottom: 35px; font-size: 0;
 
 		ul { list-style: none outside none; text-align: center; }
 		li { display: inline-block; vertical-align: top; margin: 0 2px; }
@@ -20,7 +20,7 @@
 		a:hover { background: #464646; color: #818181; }
 	}
 
-	.footer-bar { padding: 13px 0; background: #fbfbfb; color: #8a8a8a; font-size: 13px; 
+	.footer-bar { padding: 13px 0; background: #fbfbfb; color: #8a8a8a; font-size: 13px;
 
 		p { margin: 0; }
 	}
@@ -36,4 +36,4 @@
 	}
 }
 
-.footer-fullpage { position: relative; z-index: 999; }
+.footer-fullpage { position: relative; z-index: 999; position: absolute; bottom: 0;}

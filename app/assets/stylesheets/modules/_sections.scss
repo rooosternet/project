@@ -208,6 +208,43 @@
 	.section-body { display: inline-block; vertical-align: top; width: 100%; padding: 26px; background: #f8f9fb; border: 1px solid #eef2f5; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.14); }
 	.section-body .section-bar { margin: -6px 0 10px; }
 
+	.add-creative.form-invite{
+			.tabs-invites{position:relative;
+				.tabs-nav .active:before,
+				.tabs-nav .active:after {
+					display: none;
+				}
+				.tabs-nav .active:after {
+					display: none;
+				}
+			}
+			.invite-input{height:27px;
+				.form-error{display:none;}
+			}
+
+			.invite-input:before,
+				.invite-input:after {
+					content: '';
+					position: absolute;
+				    left: -9px;
+				    bottom: 10px;
+					border-top: 10px solid transparent;
+					border-bottom: 10px solid transparent;
+					border-right:10px solid #e1e9ef;
+				}
+				.invite-input:after {
+					border-top: 9px solid transparent;
+					border-bottom: 9px solid transparent;
+					border-right:9px solid #fff;
+					left: -8px;
+					bottom: 11px;
+				}
+			.tab-content{position:absolute; z-index:10;width: 250px;top: 20px;margin-left: 131px;
+				.tab-pane{padding: 5px 8px 5px 8px;}
+			}
+
+		}
+
 	.chat.section-body {
 		textarea{line-height: 1.5;padding: 8px 12px;; height:36px;}
 		.messages { margin-bottom: 10px;

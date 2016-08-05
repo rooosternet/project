@@ -28,8 +28,25 @@ $(function() {
 		$('.user-image').click(function(){
 			var to_id = $(this).attr('data-user-id');
 			var to_name = $(this).attr('data-user-name');
-			$('.send-message').attr('placeholder', 'Reply to ' + to_name);
-			$('.to-ids').val(to_id);
+			// $('.send-message').attr('placeholder', 'Reply to ' + to_name);
+			// $('.to-ids').val(to_id);
+		})
+
+		$('.add-invite-btn').click(function(){
+			var ico = $(this).find('i');
+			var span = $(this).find('span.plus-btn');
+			var tab = $('.invite-tab');
+			if(ico.hasClass('ico-plus')){
+				span.removeClass('team-add');
+				ico.removeClass('ico-plus');
+				ico.addClass('ico-plus-red');
+				tab.show();
+			}else{
+				span.addClass('team-add');
+				ico.removeClass('ico-plus-red');
+				ico.addClass('ico-plus');
+				tab.hide();
+			}
 		})
 
 		$('#modal-delete-profile-from-team').on('hide.bs.modal', function(e) {
