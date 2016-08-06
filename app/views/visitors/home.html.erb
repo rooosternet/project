@@ -10,7 +10,9 @@
 	<%= render :partial => 'pages/footer' %>
 <% end %>
 
-
+<% if @reset_password %>
+	<%= render template: 'devise/passwords/edit' %>
+<% end %>
 
 <%= javascript_tag do %>
 $(function(){
