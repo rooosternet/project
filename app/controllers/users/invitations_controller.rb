@@ -1,7 +1,6 @@
 class Users::InvitationsController < Devise::InvitationsController
 
   def create
-    byebug
     self.resource = invite_resource
     resource_invited = resource.errors.empty?
 
