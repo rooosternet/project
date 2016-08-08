@@ -7,10 +7,12 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
+
     self.resource = resource_class.send_reset_password_instructions(resource_params)
     yield resource if block_given?
     if successfully_sent?(resource)
       render :json => { :responseText => "Your account password has been reset." }.to_json , :status => 200
+
     else
       render :text => "Reset passowrd failed!" , :status => 500
     end
@@ -29,6 +31,7 @@ class Users::PasswordsController < Devise::PasswordsController
   protected
 
   def after_resetting_password_path_for(resource)
+    byebug
     signed_in_root_path(resource)
   end
 

@@ -6,14 +6,15 @@ class InMessage < ActiveRecord::Base
 
 	belongs_to :from, :class_name => 'User', :foreign_key => 'from_id'
 	belongs_to :to, :class_name => 'User', :foreign_key => 'to_id'
-	
+
 	validates_presence_of :from_id,:to_id,:note
 	validates_presence_of :token , :if => lambda{|msg| !msg.new_record?}
-	
+
 	serialize :archive, Array
 
  	scope :archive ,lambda { select{|message| message.archive.include?(User.current.id) } }
  	scope :notarchive ,lambda { select{|message| !message.archive.include?(User.current.id) } }
+ 	scope :notchatarchive ,lambda { select{|message| message.archive.blank? } }
 	scope :inbox ,lambda { where("#{InMessage.table_name}.to_id = #{User.current.id}")}
 	scope :outbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id}")}
 	scope :allbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id} OR #{InMessage.table_name}.to_id = #{User.current.id}")}
@@ -32,8 +33,8 @@ class InMessage < ActiveRecord::Base
 
 	def my_message?
 		self.from_id == User.current.id
-	end	
-	
+	end
+
 	def active?
 		!my_message? && (self.updated_at == self.created_at)
 	end
@@ -53,7 +54,7 @@ class InMessage < ActiveRecord::Base
 	end
 	# def initialize(*args)
 	# 	super
-	# 	byebug	
+	# 	byebug
 	# 	# @token = Devise.friendly_token if @token.blank?
 	# 	# @notify  = false if @notify.blank?
 	# 	# @private = false if @private.blank?

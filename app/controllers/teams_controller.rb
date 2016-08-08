@@ -93,10 +93,10 @@ class TeamsController < ApplicationController
     if params.has_key?(:private)
       @private = true
       @to_id = params[:user_id]
-      @messages = InMessage.where(team_id: @team.id, private: true, to_id: [@to_id, current_user.id]).notarchive
+      @messages = InMessage.where(team_id: @team.id, private: true, to_id: [@to_id, current_user.id]).notchatarchive
     else
       @private = false
-      @messages = InMessage.where(team_id: @team.id, private: false).notarchive
+      @messages = InMessage.where(team_id: @team.id, private: false).notchatarchive
     end
 
     render (@team.backet)?  'my_contacts' : 'show'

@@ -7,7 +7,7 @@ $(function() {
 		    var profile_id = $(e.relatedTarget).data('profile-id');
 		    var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
 		    $(e.currentTarget).find('input[name="team_profile[team_id]"]').val(team_id);
-		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val((profile_ids.lenfth>0)? profile_ids : profile_id);
+		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val((profile_ids.length>0)? profile_ids : profile_id);
 		});
 
 		$('.private').click(function(){
@@ -117,7 +117,7 @@ $(function() {
 		var videoEmbed = {
 		    invoke: function(){
 
-		        $('.chat').html(function(i, html) {
+		        $('.message-entry').html(function(i, html) {
 		            return videoEmbed.convertMedia(html);
 		        });
 
@@ -126,6 +126,7 @@ $(function() {
 		        var pattern1 = /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(.+)/g;
 		        var pattern2 = /(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g;
 		        var pattern3 = /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:jpg|jpeg|gif|png))/gi;
+		        var pattern4 = /(https?:\/\/[^\s]+)/g;
 
 		        if(pattern1.test(html)){
 		           var replacement = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
@@ -144,6 +145,12 @@ $(function() {
 		            var replacement = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';
 		            var html = html.replace(pattern3, replacement);
 		        }
+
+		        if(pattern4.test(html)){
+		            var replacement = '<a href="$1" target="_blank">$1</a><br />';
+		            var html = html.replace(pattern4, replacement);
+		        }
+
 		        return html;
 		    }
 		}
