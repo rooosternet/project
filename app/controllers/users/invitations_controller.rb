@@ -1,6 +1,7 @@
 class Users::InvitationsController < Devise::InvitationsController
 
   def create
+    byebug
     self.resource = invite_resource
     resource_invited = resource.errors.empty?
 
@@ -17,8 +18,8 @@ class Users::InvitationsController < Devise::InvitationsController
       if resource.errors.full_messages.include?("Email has already been taken")
         message = "Great! we have already heard about #{resource.name} from other users."
       else
-        message = "Fail to sent invitation: #{resource.errors.full_messages.join(',')}" 
-      end  
+        message = "Fail to sent invitation: #{resource.errors.full_messages.join(',')}"
+      end
       render :json => { :responseText => message }.to_json , :status => 500
     end
   end

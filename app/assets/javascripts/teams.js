@@ -14,17 +14,18 @@ $(function() {
 			$('.messages').css('background-color', '#fff8fc');
 		});
 
-		$('.private').mouseenter(function(){$(this).parents().eq(2).find('#private').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
-		$('.private').mouseleave(function(){$(this).parents().eq(2).find('#private').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
+		$('.private').mouseenter(function(){$(this).parents().eq(2).find('#private').addClass('show')});
+		$('.private').mouseleave(function(){$(this).parents().eq(2).find('#private').removeClass('show')});
 
-		$('.profile').mouseenter(function(){$(this).parents().eq(2).find('#profile').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
-		$('.profile').mouseleave(function(){$(this).parents().eq(2).find('#profile').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
+		$('.profile').mouseenter(function(){$(this).parents().eq(2).find('#profile').addClass('show')});
+		$('.profile').mouseleave(function(){$(this).parents().eq(2).find('#profile').removeClass('show')});
 
-		$('.admin').mouseenter(function(){$(this).parents().eq(2).find('#admin').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
-		$('.admin').mouseleave(function(){$(this).parents().eq(2).find('#admin').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
+		$('.admin').mouseenter(function(){$(this).parents().eq(2).find('#admin').addClass('show')});
+		$('.admin').mouseleave(function(){$(this).parents().eq(2).find('#admin').removeClass('show')});
 
-		$('.delete').mouseenter(function(){$(this).parents().eq(2).find('#delete').addClass('show');$(this).parents().eq(2).css('margin-bottom','40px')});
-		$('.delete').mouseleave(function(){$(this).parents().eq(2).find('#delete').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
+		$('.delete').mouseenter(function(){$(this).parents().eq(2).find('#delete').addClass('show');});
+		$('.delete').mouseleave(function(){$(this).parents().eq(2).find('#delete').removeClass('show');});
+		// $('.delete').mouseleave(function(){$(this).parents().eq(2).find('#delete').removeClass('show');$(this).parents().eq(2).css('margin-bottom','20px')});
 
 		$('.user-image').click(function(){
 			var to_id = $(this).attr('data-user-id');
@@ -57,6 +58,7 @@ $(function() {
 
 		$('#delete_profile_from_team_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$('#modal-delete-profile-from-team').modal('hide');
+		    location.reload();
 			var count = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).closest('li.user-alt').remove();}).size();
 			if(count > 0){
 				var teamcount = $('.team-count');
@@ -90,12 +92,15 @@ $(function() {
 		$('#delete_team_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$('#modal-delete-team').modal('hide');
 			window.location.href = "/";
+			location.reload();
 		});
 
 		$('#delete_team_form_id').bind('ajax:error', function(event, data, status, xhr) {
+			location.reload();
 		});
 
 		$('#delete_team_form_id').bind('ajax:complete', function(event, data, status, xhr) {
+			location.reload();
 		});
 
 
@@ -108,6 +113,42 @@ $(function() {
 		$('#modal-avatar').on('hide.bs.modal', function(e) {
 		    $(e.currentTarget).find(".team-image-selected").attr('src','');
 		});
-	});
 
+		var videoEmbed = {
+		    invoke: function(){
+
+		        $('.chat').html(function(i, html) {
+		            return videoEmbed.convertMedia(html);
+		        });
+
+		    },
+		    convertMedia: function(html){
+		        var pattern1 = /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(.+)/g;
+		        var pattern2 = /(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g;
+		        var pattern3 = /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:jpg|jpeg|gif|png))/gi;
+
+		        if(pattern1.test(html)){
+		           var replacement = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+
+		           var html = html.replace(pattern1, replacement);
+		        }
+
+
+		        if(pattern2.test(html)){
+		              var replacement = '<iframe width="640" height="480" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+		              var html = html.replace(pattern2, replacement);
+		        }
+
+
+		        if(pattern3.test(html)){
+		            var replacement = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';
+		            var html = html.replace(pattern3, replacement);
+		        }
+		        return html;
+		    }
+		}
+		setTimeout(function(){
+		    videoEmbed.invoke();
+		},1000);
+	});
 });

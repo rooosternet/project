@@ -81,6 +81,7 @@ class TeamsController < ApplicationController
     @team_avatar = session[:team_avatar]
     session[:team_avatar] = false
     @profiles = @team.profiles
+    @chat = (@team.name == 'My Contacts')? false : true
     @accepting_profiles = @team.team_profiles.where(invitation_status: ['accepted', nil]).order(is_admin: :desc)
     # @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
     @profiles_count = @profiles.any? ? @profiles.count : 'No'
@@ -102,6 +103,7 @@ class TeamsController < ApplicationController
   end
 
   def update
+    hash = Digest::MD5.hexdigest(@team.name)[0...16]
     respond_to do |format|
       if @team.update(team_params.except("team_profiles_attributes"))
         parameters = params[:team][:team_profiles_attributes]
@@ -111,9 +113,8 @@ class TeamsController < ApplicationController
           team_profile["invitation_status"] = 'pending'
           @team.team_profiles.build(team_profile)
           user = User.find(team_profile['profile_id'])
-          hash = Digest::MD5.hexdigest(@team.name)[0...16]
           user.profile.update(invitation_hash: hash)
-          Mailer.add_to_group_mail(hash, user, owner_team).deliver_now
+          Mailer.add_to_group_mail(hash, user, owner_team, team_profile).deliver_now
           begin
             @team.save
           rescue ActiveRecord::RecordInvalid => invalid
@@ -135,7 +136,7 @@ class TeamsController < ApplicationController
     profile_ids = params[:team_profile][:profile_id].blank? ? [] : params[:team_profile][:profile_id].split(',')
     TeamProfile.where(team_id: params[:team_profile][:team_id],profile_id: profile_ids).map(&:destroy)
 
-    render :nothing => true
+    redirect_to team_path(params[:team_profile][:team_id])
   end
 
   def archive

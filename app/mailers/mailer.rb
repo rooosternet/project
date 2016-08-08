@@ -44,7 +44,7 @@ class Mailer < Devise::Mailer
       if (_to = record.email).blank?
        _to= record.unconfirmed_email
    	  end
-      opts.merge!(to: _to, subject: @subject)
+      opts.merge!(to: _to, from: 'info@roooster.co', subject: @subject)
       devise_mail(record, :invitation_instructions, opts)
     end
 
@@ -79,10 +79,11 @@ class Mailer < Devise::Mailer
       mail(to: @to ,from: @from, subject: @subject)
     end
 
-    def add_to_group_mail(hash, user, team)
+    def add_to_group_mail(hash, user, team, team_profile)
       @user = user
       @team = Team.find(team)
       @url = accepting_invitation_url(hash: hash, team_id: team.id)
+      @canceled_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
       @owner = team.owner.profile.name
       @from = "info@roooster.co"
       @to = @user.email

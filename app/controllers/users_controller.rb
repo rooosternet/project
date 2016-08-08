@@ -61,6 +61,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def canceled_invitation
+    @user = current_user
+    respond_to do |format|
+      if params[:type] == 'canceled'
+        @team_profile = TeamProfile.find(params[:team_profile_id])
+        if (@team_profile.invitation_status == 'pending') && @team_profile.delete
+          if params[:by] == 'email'
+            format.html { redirect_to root_path }
+          elsif params[:by] == 'admin'
+            format.html { redirect_to @team_profile.team, notice: 'Team was successfully updated.' }
+          end
+        else
+          format.html { redirect_to root_path, notice: 'Something went wrong!' }
+        end
+      end
+    end
+  end
+
   def update_profile_image
     authorize @user
     if @user.update_attributes(secure_params)
@@ -106,9 +124,20 @@ class UsersController < ApplicationController
         begin
           @empty = false
           _user = User.invite!({:email => user[:email] , :firstname =>user[:firstname],:lastname=> user[:lastname]},User.current)
+          if params.has_key? :team_id
+            invite_user = User.find_by_email(user[:email])
+            team = Team.find(params[:team_id].keys.first.to_i)
+            team_profile = TeamProfile.create!(team_id: team.id, profile_id: invite_user.id, invitation_status: 'pending')
+            if team_profile
+              hash = Digest::MD5.hexdigest(team.name)[0...16]
+              invite_user.profile.update(invitation_hash: hash)
+              Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
+            end
+          end
 
           if _user.errors.any?
             if _user.errors.full_messages.include?("Email has already been taken")
+              @invited << "Invitation sent to #{_user.name} "
               message = "Great! we have already heard about #{_user.name} from other users."
             else
               message = "Fail to sent invitation: #{_user.errors.full_messages.uniq.join(',')}"

@@ -32,23 +32,23 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   # Send email in development mode?
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.smtp_settings = {
-    address: Rails.application.secrets.email_server,
-    port: 587,
-    domain: Rails.application.secrets.domain_name,
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: Rails.application.secrets.email_provider_username,
-    password: Rails.application.secrets.email_provider_password
+    config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => "gmail.com",
+    :authentication => :login,
+    :user_name => "smartkrio@gmail.com",
+    :password => "seeyousoon!",
   }
-  
+
 
   config.assets.compress = false
-  config.serve_static_files = true  
+  config.serve_static_files = true
   # config.assets.serve_static_files = true
-  
+
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true

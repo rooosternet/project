@@ -1,0 +1,27 @@
+<div class="message">
+    <div class="message-avatar">
+        <a href=".user-main-image" class="team-inner change-user-image" data-image="user_default.jpg">
+            <div class="team-image">
+                <%=image_tag "user_default.jpg", { alt: "" } %>
+            </div><!-- /.team-image -->
+        </a>
+    </div><!-- /.message-avatar -->
+
+    <div class="message-head clearfix">
+        <div class="message-actions">
+            <ul>
+                <li></li>
+            </ul>
+        </div><!-- /.message-actions -->
+
+        <div class="message-head-inner">
+            <div class="message-author">Roooster</div><!-- /.message-author -->
+
+            <div class="message-date"><%=@team.created_at.strftime("%B %d, %Y - %H:%M%P") %></div><!-- /.message-date -->
+        </div><!-- /.message-head-inner -->
+    </div><!-- /.message-head -->
+
+    <div class="message-entry">
+        Welcome to team <b><%=@team.name%></b>. Why not start a conversation?
+    </div>
+</div><!-- /.message -->

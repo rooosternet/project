@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   # end
 
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    devise_mailer.send(notification, self, *args).deliver_now
   end
 
   def send_notification_mail

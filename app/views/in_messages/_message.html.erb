@@ -7,7 +7,7 @@
 		<div class="message-actions">
 			<ul>
 				<li>
-					<%- if current_user.id == message.from_id%>
+					<%- if (current_user.id == message.from_id) or @is_current_user_admin%>
 						<a href="#modal-delete" data-toggle="modal" data-message-id="<%=message.id%>">
 							<i class="ico-delete"></i>
 

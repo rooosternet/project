@@ -117,7 +117,7 @@
 
 <section class="section-results flex">
 	<div class="section-creatives col">
-	<%-if @accepting_profiles.count > 0%>
+	<%-if @accepting_profiles.count >= 0%>
 		<div class='groups-label'>CREATIVES</div>
 	<%end%>
 
@@ -127,69 +127,86 @@
         <%= render :partial => 'teams/creative' , :locals =>  { team_user: team_user }%>
 	<% end %>
 
+	<div class='groups-label'>INVITATIONS</div>
     <%- if @team.pending_profiles.count > 0%>
-		<div class='groups-label'>INVITATIONS</div>
 		<% @team.pending_profiles.each do |team_profile| %>
 			<div class="user-creatives" >
-				<div href="#" class="user-image">
-			        <%=image_tag team_profile.profile.profile_image, { alt: "" ,width: '184px' , height: '184px', class: 'dimmed'} %>
+				<div class="dropdown">
+			        <a href="#" class="user-image" data-toggle='dropdown'>
+			            <%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed', width: '184px' , height: '184px'} %>
+			        </a>
+			        <span class='name-label'><%=team_profile.profile.name%></span>
+				    <span class='pending'>(PENDING)</span>
+			        <%-if @is_current_user_admin%>
+				        <ul class="dropdown-menu">
+				            <li>
+				                <a class='delete' href="<%= canceled_invitation_url(type: 'canceled', by: 'admin', team_profile_id: team_profile.id)%>" data-profile-id="">
+				                    <i class="ico-delete"></i>
+				                </a>
+				            </li>
+				        </ul>
+				        <span class='hide undericon' id='delete'>CANCELED INVITE</span>
+				    <%end%>
 			    </div>
-			    <span class='name-label'><%=team_profile.profile.name%></span>
-			    <span class='pending'>(PENDING)</span>
 		    </div>
 		<%end%>
 	<%end%>
 
-	<div class="add-creative form-invite">
-			<!-- <form action="?" method="post"> -->
-			<%= form_for(User.new, :url => batch_invite_users_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
+	<%-if @is_current_user_admin%>
+		<div class="add-creative form-invite">
+				<!-- <form action="?" method="post"> -->
+				<%= form_for(User.new, :url => batch_invite_users_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
 
-			<div class="form-body">
-				<div class="tabs-invites">
-					<ul class="tabs-nav list-avatars">
-						<li>
-							<a class='add-invite-btn'href="#invite" data-toggle="tab">
-								<div class="team team-alt">
-									<div class="team-inner">
-										<div class="team-image">
-											<%=image_tag "team-default-active.jpg", { alt: "" } %>
-											<div class="team-actions">
-												<span class="team-add plus-btn">
-													<i class="ico-plus"></i>
-												</span>
-											</div><!-- /.team-actions -->
-										</div><!-- /.team-image -->
-									</div>
-								</div><!-- /.team -->
-							</a>
-						</li>
+				<div class="form-body">
+					<div class="tabs-invites">
+						<ul class="tabs-nav list-avatars">
+							<li>
+								<a class='add-invite-btn'href="#invite" data-toggle="tab">
+									<div class="team team-alt">
+										<div class="team-inner">
+											<div class="team-image">
+												<%=image_tag "team-default-active.jpg", { alt: "" } %>
+												<div class="team-actions">
+													<span class="team-add plus-btn">
+														<i class="ico-plus"></i>
+													</span>
+												</div><!-- /.team-actions -->
+												<span class='name-label'>Invite Creatives</span>
+											</div><!-- /.team-image -->
+										</div>
+									</div><!-- /.team -->
+								</a>
+							</li>
 
 
-					</ul><!-- /.tabs-nav -->
+						</ul><!-- /.tabs-nav -->
 
-					<div class="tab-content">
-						<div class="tab-pane invite-tab" id="invite">
-							<div class="form-row clearfix">
-								<div class="">
-									<div class="form-controls invite-input">
-										<!-- <input type="text" class="form-control" name="field-email1" id="field-email1" value="" placeholder="Email *"> -->
-										<%= text_field_tag "user[][email]",'', :no_label => true , :class =>"form-control input-message" ,:placeholder => "Email", :type=>"email" %>
-										<div class="form-actions text-center">
-											<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
-										</div><!-- /.form-actions -->
-										<div class="form-error text-center" id="invite-form-error">
-											<p></p>
-										</div><!-- /.form-error -->
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-col -->
-							</div><!-- /.form-row -->
-						</div><!-- /.tab-pane -->
-					</div><!-- /.tab-content -->
-				</div><!-- /.tabs-invites -->
-			</div><!-- /.form-body -->
-			<!-- </form> -->
-			<% end %>
-		</div><!-- /.form-invite -->
+						<div class="tab-content">
+							<div class="tab-pane invite-tab" id="invite">
+								<div class="form-row clearfix">
+									<div class="">
+										<div class="form-controls invite-input">
+											<!-- <input type="text" class="form-control" name="field-email1" id="field-email1" value="" placeholder="Email *"> -->
+											<span></span>
+											<%= text_field_tag "user[][email]",'', :no_label => true , :class =>"form-control input-message" ,:placeholder => "Email*", :type=>"email" %>
+											<%= hidden_field(:team_id, @team.id) %>
+											<div class="form-actions text-center">
+												<i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
+											</div><!-- /.form-actions -->
+											<div class="form-error text-center" id="invite-form-error">
+												<p></p>
+											</div><!-- /.form-error -->
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-col -->
+								</div><!-- /.form-row -->
+							</div><!-- /.tab-pane -->
+						</div><!-- /.tab-content -->
+					</div><!-- /.tabs-invites -->
+				</div><!-- /.form-body -->
+				<!-- </form> -->
+				<% end %>
+			</div><!-- /.form-invite -->
+		<%end%>
 
 	</div>
 	<div class="chat col section-body">
@@ -201,20 +218,25 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	var timerId;
 	$('.form-error').text().replace(/[\t,\n]/g,'');
 
 	function errorToField() {
 	  var a = $('.form-error').text().replace(/[\t,\n]/g,'');
 	  if(a!=''){
-	  	$('.input-message').val(a);
+	  	$('.form-error').text('');
+	  	$('.input-message').hide();
+	  	$('.invite-input span').css('display','block');
+	  	$('.invite-input span').text(a);
 	  	clearInterval(timerId);
+	  	setTimeout('location.reload()', 3000);
 	  }
 	};
 
-	$('.input-message').click(function(){
-        this.value = "";
-        $('.form-error').text('');
-        var timerId = setInterval(errorToField, 500);
+	$('.tab-pane').click(function(){
+        $('.input-message').show();
+        $('.invite-input span').css('display','none');
+        timerId = setInterval(errorToField, 500);
 	 });
 
 	$('.invite-to-team').keydown(function(event) {
@@ -223,12 +245,12 @@ $(document).ready(function(){
 		    return false;
 		 }
 		}).focus(function(){
-		  if(this.value == "Email"){
+		  if(this.value == "Email*"){
 		       this.value = "";
 		  }
 		}).blur(function(){
 		  if(this.value==""){
-		       this.value = "Email";
+		       this.value = "Email*";
 		  }
 		});
 

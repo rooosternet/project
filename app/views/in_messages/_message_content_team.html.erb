@@ -7,7 +7,9 @@
         <%end%>
         <div class="messages-inner <%= (@private)? 'private-back' : ''%>">
             <div class="messages-wrapper">
-
+                <%-unless @private%>
+                    <%= render :partial => 'in_messages/default_message' , :locals =>  { team: @team }%>
+                <%end%>
                 <% messages.each do |message| %>
                     <%= render :partial => 'in_messages/message' , :locals =>  { message: message }%>
                 <% end %>
