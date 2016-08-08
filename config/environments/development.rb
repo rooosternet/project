@@ -34,14 +34,14 @@ Rails.application.configure do
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true
 
-    config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => "gmail.com",
-    :authentication => :login,
-    :user_name => "smartkrio@gmail.com",
-    :password => "seeyousoon!",
+    config.action_mailer.smtp_settings =   config.action_mailer.smtp_settings = {
+      address: Rails.application.secrets.email_server,
+      port: 587,
+      domain: Rails.application.secrets.domain_name,
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: Rails.application.secrets.email_provider_username,
+      password: Rails.application.secrets.email_provider_password
   }
 
 
