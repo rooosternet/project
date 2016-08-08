@@ -104,7 +104,7 @@ Devise.setup do |config|
   # ==> Configuration for :invitable
   # The period the generated invitation token is valid, after
   # this period, the invited resource won't be able to accept the invitation.
-  # When invite_for is 0 (the default), the invitation won't expire.
+  # When invited_for is 0 (the default), the invitation won't expire.
   # config.invite_for = 2.weeks
 
   # Number of invitations users can send.
@@ -238,7 +238,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 8..72
+  config.password_length = 6..20
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -284,7 +284,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 6.hours
+  config.reset_password_within = 24.hours
 
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.

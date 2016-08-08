@@ -13,7 +13,8 @@
   <%# end %>
 </div> -->
 
-<div class="modal modal-small fade" id="modal-change-password" data-show="true" data-backdrop="static">
+<div class="modal modal-small fade preview-modal" data-backdrop="" id="modal-change-password"  role="dialog" aria-labelledby="preview-modal" aria-hidden="true">
+<!-- <div class="modal modal-small fade" id="modal-change-password" data-show="true" data-backdrop="static"> -->
   <div class="modal-dialog">
     <div class="modal-content">
       <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
@@ -44,7 +45,8 @@
             </div>
 
             <div class="form-actions">
-              <%= f.submit 'Change my Password', :class => 'btn form-bt', :"data-dismiss"=>"modal"%>
+              <%#= f.submit 'Change my Password', :class => 'btn form-bt', :"data-dismiss"=>"modal"%>
+              <%= f.submit 'Change my Password', :class => 'btn form-bt' %>
             </div>
 
             <div class="form-error form-change-password-error">
