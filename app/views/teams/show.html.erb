@@ -127,8 +127,8 @@
         <%= render :partial => 'teams/creative' , :locals =>  { team_user: team_user }%>
 	<% end %>
 
-	<div class='groups-label'>INVITATIONS</div>
     <%- if @team.pending_profiles.count > 0%>
+		<div class='groups-label'>INVITATIONS</div>
 		<% @team.pending_profiles.each do |team_profile| %>
 			<div class="user-creatives" >
 				<div class="dropdown">
