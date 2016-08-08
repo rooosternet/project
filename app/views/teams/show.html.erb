@@ -127,32 +127,32 @@
         <%= render :partial => 'teams/creative' , :locals =>  { team_user: team_user }%>
 	<% end %>
 
-    <%- if @team.pending_profiles.count > 0%>
-		<div class='groups-label'>INVITATIONS</div>
-		<% @team.pending_profiles.each do |team_profile| %>
-			<div class="user-creatives" >
-				<div class="dropdown">
-			        <a href="#" class="user-image" data-toggle='dropdown'>
-			            <%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed', width: '184px' , height: '184px'} %>
-			        </a>
-			        <span class='name-label'><%=team_profile.profile.name%></span>
-				    <span class='pending'>(PENDING)</span>
-			        <%-if @is_current_user_admin%>
-				        <ul class="dropdown-menu">
-				            <li>
-				                <a class='delete' href="<%= canceled_invitation_url(type: 'canceled', by: 'admin', team_profile_id: team_profile.id)%>" data-profile-id="">
-				                    <i class="ico-delete"></i>
-				                </a>
-				            </li>
-				        </ul>
-				        <span class='hide undericon' id='delete'>CANCELED INVITE</span>
-				    <%end%>
-			    </div>
-		    </div>
-		<%end%>
-	<%end%>
-
 	<%-if @is_current_user_admin%>
+	    <%- if @team.pending_profiles.count > 0%>
+			<div class='groups-label'>INVITATIONS</div>
+			<% @team.pending_profiles.each do |team_profile| %>
+				<div class="user-creatives" >
+					<div class="dropdown">
+				        <a href="#" class="user-image" data-toggle='dropdown'>
+				            <%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed', width: '184px' , height: '184px'} %>
+				        </a>
+				        <span class='name-label'><%=team_profile.profile.name%></span>
+					    <span class='pending'>(PENDING)</span>
+				        <%-if @is_current_user_admin%>
+					        <ul class="dropdown-menu">
+					            <li>
+					                <a class='delete' href="<%= canceled_invitation_url(type: 'canceled', by: 'admin', team_profile_id: team_profile.id)%>" data-profile-id="">
+					                    <i class="ico-delete"></i>
+					                </a>
+					            </li>
+					        </ul>
+					        <span class='hide undericon' id='delete'>CANCELED INVITE</span>
+					    <%end%>
+				    </div>
+			    </div>
+			<%end%>
+		<%end%>
+
 		<div class="add-creative form-invite">
 				<!-- <form action="?" method="post"> -->
 				<%= form_for(User.new, :url => batch_invite_users_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
