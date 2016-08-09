@@ -125,28 +125,20 @@ $(function() {
 		    convertMedia: function(html){
 		        var pattern1 = /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(.+)/g;
 		        var pattern2 = /(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g;
-		        var pattern3 = /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:jpg|jpeg|gif|png))/gi;
+		        var pattern3 = /(https?:\/\/.*\.[png,jpg,gif,jpeg]+)/g;
 		        var pattern4 = /(https?:\/\/[^\s]+)/g;
+
 
 		        if(pattern1.test(html)){
 		           var replacement = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-
 		           var html = html.replace(pattern1, replacement);
-		        }
-
-
-		        if(pattern2.test(html)){
+		        }else if(pattern2.test(html)){
 		              var replacement = '<iframe width="640" height="480" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
 		              var html = html.replace(pattern2, replacement);
-		        }
-
-
-		        if(pattern3.test(html)){
+		        }else if(pattern3.test(html)){
 		            var replacement = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';
 		            var html = html.replace(pattern3, replacement);
-		        }
-
-		        if(pattern4.test(html)){
+		        }else if(pattern4.test(html)){
 		            var replacement = '<a href="$1" target="_blank">$1</a><br />';
 		            var html = html.replace(pattern4, replacement);
 		        }
