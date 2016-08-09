@@ -4,7 +4,7 @@ class InMessagesController < ApplicationController
   def index
     @hide_footer = true
     @top_search = true
-    @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
+    @messages = InMessage.allbox.roots.includes(:children).notchat.notarchive.reverse #InMessage.allbox
   end
 
   def new

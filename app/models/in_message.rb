@@ -15,6 +15,7 @@ class InMessage < ActiveRecord::Base
  	scope :archive ,lambda { select{|message| message.archive.include?(User.current.id) } }
  	scope :notarchive ,lambda { select{|message| !message.archive.include?(User.current.id) } }
  	scope :notchatarchive ,lambda { select{|message| message.archive.blank? } }
+ 	scope :notchat ,lambda { where("#{InMessage.table_name}.team_id is ? or #{InMessage.table_name}.team_id = ''", nil) }
 	scope :inbox ,lambda { where("#{InMessage.table_name}.to_id = #{User.current.id}")}
 	scope :outbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id}")}
 	scope :allbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id} OR #{InMessage.table_name}.to_id = #{User.current.id}")}
