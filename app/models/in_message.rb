@@ -29,7 +29,9 @@ class InMessage < ActiveRecord::Base
 	after_create :send_in_mail
 
 	def send_in_mail
-		email = Mailer.in_mail(self.from,self.to,self.token,self.note).deliver_later
+		unless self.from == self.to
+			email = Mailer.in_mail(self.from,self.to,self.token,self.note).deliver_later
+		end
 	end
 
 	def my_message?
