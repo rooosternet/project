@@ -91,16 +91,15 @@ $(function() {
 
 		$('#delete_team_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$('#modal-delete-team').modal('hide');
-			window.location.href = "/";
-			location.reload();
+			window.location.replace("/");
 		});
 
 		$('#delete_team_form_id').bind('ajax:error', function(event, data, status, xhr) {
-			location.reload();
+			window.location.replace("/");
 		});
 
 		$('#delete_team_form_id').bind('ajax:complete', function(event, data, status, xhr) {
-			location.reload();
+			window.location.replace("/");
 		});
 
 
@@ -144,10 +143,12 @@ $(function() {
 		        }
 
 		        return html;
+
 		    }
 		}
 		setTimeout(function(){
 		    videoEmbed.invoke();
+			$('.chat .messages').scrollTop($('.chat .messages')[0].scrollHeight+600);
 		},1000);
 	});
 });

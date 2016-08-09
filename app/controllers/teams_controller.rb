@@ -159,10 +159,11 @@ class TeamsController < ApplicationController
   def destroy
     @team.destroy
     respond_to do |format|
-      format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Team was successfully destroyed.' }
       format.js { render :text => params[:id] , :status => 200 }
       format.json { head :no_content }
     end
+    redirect_to root_path
   end
 
   private
