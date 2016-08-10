@@ -190,7 +190,7 @@
 	Section Results
 \* ------------------------------------------------------------ */
 .flex.section-results{display: flex; margin: auto;
-	.col { flex: 1; flex-basis: auto; margin-right: 4px;}
+	.col { flex: 1; flex-basis: auto;}
 }
 
 .section-results { padding-bottom: 45px; margin: 0 8px;
@@ -268,7 +268,7 @@
 
 		}
 
-	.chat.section-body {
+	.chat.section-body { margin-right: 8px;
 		textarea{line-height: 1.5;padding: 8px 12px;; height:36px;}
 		.messages { margin-bottom: 10px;
 			height: 600px;
@@ -281,7 +281,7 @@
 		}
 	}
 
-	.section-creatives{
+	.section-creatives{ margin: 0 8px;
 		.undericon{font-size:10px;color: #818181;}
 		.admin-badge{top: 55px;position: absolute;left: 15px;border:3px solid #fff; border-radius:50%;background-color: #fff;}
 		.dimmed{opacity: 0.3;}
