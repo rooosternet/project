@@ -82,9 +82,9 @@ class Mailer < Devise::Mailer
     def add_to_group_mail(hash, user, team, team_profile)
       @user = user
       @team = Team.find(team)
-      @url = accepting_invitation_url(hash: hash, team_id: team.id)
+      @url = accepting_invitation_url(hash: hash, team_id: @team.id)
       @canceled_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
-      @owner = team.owner.profile.name
+      @owner = @team.owner.profile.name
       @from = "info@roooster.co"
       @to = @user.email
       @subject = "#{@owner} added you to team #{team.name}"

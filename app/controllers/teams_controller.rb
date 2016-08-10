@@ -112,9 +112,9 @@ class TeamsController < ApplicationController
         if team_profile
           team_profile["invitation_status"] = 'pending'
           @team.team_profiles.build(team_profile)
-          user = User.find(team_profile['profile_id'])
-          user.profile.update(invitation_hash: hash)
-          Mailer.add_to_group_mail(hash, user, owner_team, team_profile).deliver_now
+          profile = Profile.find(team_profile['profile_id'])
+          profile.update(invitation_hash: hash)
+          Mailer.add_to_group_mail(hash, profile.user, owner_team, profile).deliver_now
           begin
             @team.save
           rescue ActiveRecord::RecordInvalid => invalid
