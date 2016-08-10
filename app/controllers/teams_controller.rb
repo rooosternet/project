@@ -87,7 +87,7 @@ class TeamsController < ApplicationController
     @profiles_count = @profiles.any? ? @profiles.count : 'No'
     @is_current_user_admin = ((@team.owner_id == current_user.id) or
                               @team.team_profiles
-                              .where(profile_id: current_user.id)
+                              .where(profile_id: current_user.profile.id)
                               .first
                               .is_admin) ? true : false
     if params.has_key?(:private)

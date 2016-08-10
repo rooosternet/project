@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.profile.invitation_hash == params[:hash]
         @team = Team.find(params[:team_id])
-        team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: current_user.id).first
+        team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: current_user.profile.id).first
         if team_profile.update(invitation_status: 'accepted')
           message = "Hey guys! I'm glad to say that #{@user.firstname} with us now!"
           InMessage.create(from_id: @team.owner.id, to_id: @team.owner.id, note: message, team_id: @team.id)
