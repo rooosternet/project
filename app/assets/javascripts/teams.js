@@ -116,7 +116,7 @@ $(function() {
 		var videoEmbed = {
 		    invoke: function(){
 
-		        $('.message-entry').html(function(i, html) {
+		        $('.chat .message-entry').html(function(i, html) {
 		            return videoEmbed.convertMedia(html);
 		        });
 

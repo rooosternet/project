@@ -50,6 +50,8 @@ class UsersController < ApplicationController
         @team = Team.find(params[:team_id])
         team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: current_user.id).first
         if team_profile.update(invitation_status: 'accepted')
+          message = "Hey guys! I'm glad to say that #{@user.firstname} with us now!"
+          InMessage.create(from_id: @team.owner.id, to_id: @team.owner.id, note: message, team_id: @team.id)
           Mailer.admin_invitation_notice(@user, @team).deliver_now
           format.html { redirect_to @team, notice: 'Team was successfully updated.' }
         else
@@ -131,23 +133,35 @@ class UsersController < ApplicationController
             if team_profile
               hash = Digest::MD5.hexdigest(team.name)[0...16]
               invite_user.profile.update(invitation_hash: hash)
+              @url = accepting_invitation_url(hash: hash, team_id: team.id)
+              @declain_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
+              message = "Hello, you've been invited to #{team.name} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>declain</a>"
+              InMessage.create(from_id: team.owner.id, to_id: invite_user.id, note: message)
               Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
             end
           end
 
           if _user.errors.any?
             if _user.errors.full_messages.include?("Email has already been taken")
-              @invited << "Invitation sent to #{_user.name} "
-              message = "Great! we have already heard about #{_user.name} from other users."
-            else
-              message = "Fail to sent invitation: #{_user.errors.full_messages.uniq.join(',')}"
+              message = "Invitation sent to #{_user.firstname}"
+            end
+
+            if _user.email == current_user.email
+              message = "Good joke! But you can't invite yourself!"
             end
             @not_invited << message
           else
-            @invited << "Invitation sent to #{_user.name}"
+            @invited << "Invitation sent to #{_user.firstname}"
           end
         rescue Exception => e
-          @not_invited << "Fail to sent invitation: #{e.message}"
+          if e.message.include?("Validation failed: Profile has already been taken")
+            if _user.email == current_user.email
+              message = "Good joke! But you can't invite yourself!"
+            end
+          else
+            message = e.message
+          end
+          @not_invited << "#{message}"
         end
       end
     end
