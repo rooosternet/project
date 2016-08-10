@@ -129,7 +129,7 @@ class UsersController < ApplicationController
           if params.has_key? :team_id
             invite_user = User.find_by_email(user[:email])
             team = Team.find(params[:team_id].keys.first.to_i)
-            team_profile = TeamProfile.create!(team_id: team.id, profile_id: invite_user.id, invitation_status: 'pending')
+            team_profile = TeamProfile.create!(team_id: team.id, profile_id: invite_user.profile.id, invitation_status: 'pending')
             if team_profile
               hash = Digest::MD5.hexdigest(team.name)[0...16]
               invite_user.profile.update(invitation_hash: hash)
