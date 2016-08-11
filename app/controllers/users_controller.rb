@@ -137,7 +137,7 @@ class UsersController < ApplicationController
                 invite_user.profile.update(invitation_hash: hash)
                 @url = accepting_invitation_url(hash: hash, team_id: team.id)
                 @declain_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
-                message = "Hi #{_user.firstname}, you've been invited to #{team.name} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>decline</a>"
+                message = "Hi #{_user.firstname}, you've been invited to #{team.name.upcase} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>decline</a>"
                 InMessage.create(from_id: team.owner.id, to_id: invite_user.id, note: message)
                 Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
               end
