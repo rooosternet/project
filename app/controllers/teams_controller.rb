@@ -110,15 +110,17 @@ class TeamsController < ApplicationController
         owner_team = Team.find(parameters['team_id'])
         team_profile = parameters.except("team_id").to_hash if parameters
         if team_profile
-          team_profile["invitation_status"] = 'pending'
-          @team.team_profiles.build(team_profile)
           profile = Profile.find(team_profile['profile_id'])
-          profile.update(invitation_hash: hash)
-          Mailer.add_to_group_mail(hash, profile.user, owner_team, profile).deliver_now
-          begin
-            @team.save
-          rescue ActiveRecord::RecordInvalid => invalid
-            puts invalid.message
+          unless profile.user.email == current_user.email
+            team_profile["invitation_status"] = 'pending'
+            @team.team_profiles.build(team_profile)
+            profile.update(invitation_hash: hash)
+            Mailer.add_to_group_mail(hash, profile.user, owner_team, profile).deliver_now
+            begin
+              @team.save
+            rescue ActiveRecord::RecordInvalid => invalid
+              puts invalid.message
+            end
           end
         end
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }

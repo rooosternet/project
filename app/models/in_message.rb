@@ -27,12 +27,22 @@ class InMessage < ActiveRecord::Base
 	end
 
 	after_create :send_in_mail
+	# after_create :send_in_mail_from_chat
 
 	def send_in_mail
-		unless self.from == self.to
-			email = Mailer.in_mail(self.from,self.to,self.token,self.note).deliver_later
+		unless (self.from == self.to) or
+				self.note.include?("you've been invited to") or
+				self.note.include?("Hi everyone, please welcome")
+
+			email = Mailer.in_mail(self.from,self.to,self.token,self.note).deliver_now
 		end
 	end
+
+	# def send_in_mail_from_chat
+	# 	if self.team_id
+	# 		email = Mailer.in_chat_mail(self.from,self.to,self.token,self.note).deliver_now
+	# 	end
+	# end
 
 	def my_message?
 		self.from_id == User.current.id

@@ -49,8 +49,9 @@ class UsersController < ApplicationController
       if @user.profile.invitation_hash == params[:hash]
         @team = Team.find(params[:team_id])
         team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: current_user.profile.id).first
-        if team_profile.update(invitation_status: 'accepted')
-          message = "Hey guys! I'm glad to say that #{@user.firstname} with us now!"
+
+        if team_profile && team_profile.update(invitation_status: 'accepted')
+          message = "Hi everyone, please welcome #{@user.firstname} to the team!"
           InMessage.create(from_id: @team.owner.id, to_id: @team.owner.id, note: message, team_id: @team.id)
           Mailer.admin_invitation_notice(@user, @team).deliver_now
           format.html { redirect_to @team, notice: 'Team was successfully updated.' }
@@ -127,17 +128,19 @@ class UsersController < ApplicationController
           @empty = false
           _user = User.invite!({:email => user[:email] , :firstname =>user[:firstname],:lastname=> user[:lastname]},User.current)
           if params.has_key? :team_id
-            invite_user = User.find_by_email(user[:email])
-            team = Team.find(params[:team_id].keys.first.to_i)
-            team_profile = TeamProfile.create!(team_id: team.id, profile_id: invite_user.profile.id, invitation_status: 'pending')
-            if team_profile
-              hash = Digest::MD5.hexdigest(team.name)[0...16]
-              invite_user.profile.update(invitation_hash: hash)
-              @url = accepting_invitation_url(hash: hash, team_id: team.id)
-              @declain_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
-              message = "Hello, you've been invited to #{team.name} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>declain</a>"
-              InMessage.create(from_id: team.owner.id, to_id: invite_user.id, note: message)
-              Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
+            unless _user.email == current_user.email
+              invite_user = User.find_by_email(user[:email])
+              team = Team.find(params[:team_id].keys.first.to_i)
+              team_profile = TeamProfile.create!(team_id: team.id, profile_id: invite_user.profile.id, invitation_status: 'pending')
+              if team_profile
+                hash = Digest::MD5.hexdigest(team.name)[0...16]
+                invite_user.profile.update(invitation_hash: hash)
+                @url = accepting_invitation_url(hash: hash, team_id: team.id)
+                @declain_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
+                message = "Hi #{_user.firstname}, you've been invited to #{team.name} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>decline</a>"
+                InMessage.create(from_id: team.owner.id, to_id: invite_user.id, note: message)
+                Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
+              end
             end
           end
 
@@ -147,7 +150,7 @@ class UsersController < ApplicationController
             end
 
             if _user.email == current_user.email
-              message = "Good joke! But you can't invite yourself!"
+              message = "You are only on this team!"
             end
             @not_invited << message
           else

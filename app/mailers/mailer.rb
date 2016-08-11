@@ -6,10 +6,10 @@ class Mailer < Devise::Mailer
   	default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
 
 
-	# def confirmation_instructions(record, token, opts={})
- #      @token = token
- #      devise_mail(record, :confirmation_instructions, opts)
- #    end
+    # def confirmation_instructions(record, token, opts={})
+    #      @token = token
+    #      devise_mail(record, :confirmation_instructions, opts)
+    #    end
 
     def reset_password_instructions(record, token, opts={})
       @token = token
