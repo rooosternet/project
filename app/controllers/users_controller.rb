@@ -69,10 +69,12 @@ class UsersController < ApplicationController
     respond_to do |format|
       if params[:type] == 'canceled'
         @team_profile = TeamProfile.find(params[:team_profile_id])
-        if (@team_profile.invitation_status == 'pending') && @team_profile.delete
+        if (['pending','declined'].include? @team_profile.invitation_status)
           if params[:by] == 'email'
+            @team_profile.update(invitation_status: 'declined')
             format.html { redirect_to root_path }
           elsif params[:by] == 'admin'
+            @team_profile.delete
             format.html { redirect_to @team_profile.team, notice: 'Team was successfully updated.' }
           end
         else
@@ -137,7 +139,7 @@ class UsersController < ApplicationController
                 invite_user.profile.update(invitation_hash: hash)
                 @url = accepting_invitation_url(hash: hash, team_id: team.id)
                 @declain_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
-                message = "Hi #{_user.firstname}, you've been invited to #{team.name.upcase} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>decline</a>"
+                message = "Hi #{_user.firstname}, you've been invited to team #{team.name.upcase} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>decline</a>"
                 InMessage.create(from_id: team.owner.id, to_id: invite_user.id, note: message)
                 Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
               end
@@ -159,7 +161,7 @@ class UsersController < ApplicationController
         rescue Exception => e
           if e.message.include?("Validation failed: Profile has already been taken")
             if _user.email == current_user.email
-              message = "Good joke! But you can't invite yourself!"
+              message = "You are only on this team!"
             end
           else
             message = e.message

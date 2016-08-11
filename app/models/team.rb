@@ -14,9 +14,9 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :team_profiles, :allow_destroy => true
 
   validates_uniqueness_of :name, scope: :owner_id, :case_sensitive => false
-  
-  
-  
+
+
+
   def team_image
     self.image.blank? ? "team1.jpg" : "#{self.image}"
   end
@@ -31,9 +31,9 @@ class Team < ActiveRecord::Base
     end
     _index.nil? ? 1 : (_index+1)
   end
-  
+
   def pending_profiles
-    self.team_profiles.where(invitation_status:'pending')
+    self.team_profiles.where(invitation_status:['pending','declined'])
   end
 
 end

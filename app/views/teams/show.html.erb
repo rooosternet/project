@@ -136,8 +136,13 @@
 					        <a href="#" class="user-image" data-toggle='dropdown'>
 					            <%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed', width: '184px' , height: '184px'} %>
 					        </a>
-					        <span class='name-label'><%=team_profile.profile.name%></span>
-						    <span class='pending'>(PENDING)</span>
+					        <span class='name-label'><%=team_profile.profile.email%></span>
+						    <%- if team_profile.invitation_status == 'pending'%>
+							    <span class='pending'>(PENDING)</span>
+							<%end%>
+						    <%- if team_profile.invitation_status == 'declined'%>
+							    <span class='pending'>(DECLINE)</span>
+							<%end%>
 					        <%-if @is_current_user_admin%>
 						        <ul class="dropdown-menu">
 						            <li>
@@ -146,7 +151,7 @@
 						                </a>
 						            </li>
 						        </ul>
-						        <span class='hide undericon' id='delete'>CANCELED INVITE</span>
+						        <span class='hide undericon' id='delete'>DECLINE INVITE</span>
 						    <%end%>
 					    </div>
 				    </div>
