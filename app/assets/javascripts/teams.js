@@ -130,10 +130,10 @@ $(function() {
 
 
 		        if(pattern1.test(html)){
-		           var replacement = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		           var replacement = '<iframe width="100%" height="320" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 		           var html = html.replace(pattern1, replacement);
 		        }else if(pattern2.test(html)){
-		              var replacement = '<iframe width="640" height="480" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+		              var replacement = '<iframe width="100%" height="320" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
 		              var html = html.replace(pattern2, replacement);
 		        }else if(pattern3.test(html)){
 		            var replacement = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';

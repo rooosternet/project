@@ -123,7 +123,7 @@ class UsersController < ApplicationController
       unless (user.has_key? :firstname) and (user.has_key? :lastname)
         login = user[:email].split('@').first
         user[:firstname] = login
-        user[:lastname] = login
+        user[:lastname] = "-"
       end
       if !user[:firstname].blank? || !user[:lastname].blank? || !user[:email].blank?
         begin
