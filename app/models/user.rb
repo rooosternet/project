@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
 
   enum role: [:pending ,:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
-  validates :lastname, length: {is: 25}, allow_blank: true
 
   # has_one :studio
   # has_one :freelancer

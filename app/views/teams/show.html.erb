@@ -136,7 +136,11 @@
 					        <a href="#" class="user-image" data-toggle='dropdown'>
 					            <%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed', width: '184px' , height: '184px'} %>
 					        </a>
-					        <span class='name-label'><%=team_profile.profile.email%></span>
+					        <%-if team_profile.profile.user.lastname == '-'%>
+                                <span class='name-label'><%=team_profile.profile.user.email%></span>
+                            <%else%>
+                                <span class='name-label'><%=team_profile.profile.user.name%></span>
+                            <%end%>
 						    <%- if team_profile.invitation_status == 'pending'%>
 							    <span class='pending'>(PENDING)</span>
 							<%end%>

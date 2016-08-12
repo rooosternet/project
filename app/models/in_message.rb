@@ -27,7 +27,7 @@ class InMessage < ActiveRecord::Base
 	end
 
 	after_create :send_in_mail
-	# after_create :send_in_mail_from_chat
+	after_create :send_in_mail_from_chat
 
 	def send_in_mail
 		unless (self.from == self.to) or
@@ -38,11 +38,20 @@ class InMessage < ActiveRecord::Base
 		end
 	end
 
-	# def send_in_mail_from_chat
-	# 	if self.team_id
-	# 		email = Mailer.in_chat_mail(self.from,self.to,self.token,self.note).deliver_now
-	# 	end
-	# end
+	def send_in_mail_from_chat
+		if self.team_id
+			team = Team.find(self.team_id)
+			sender = User.current
+			if sender.id != team.owner_id
+				Mailer.in_chat_mail(sender, team.owner,team,self.note).deliver_now
+			end
+			team.profiles.each do |profile|
+				if profile.user_id != sender.id
+					Mailer.in_chat_mail(sender, profile.user,team,self.note).deliver_now
+				end
+			end
+		end
+	end
 
 	def my_message?
 		self.from_id == User.current.id

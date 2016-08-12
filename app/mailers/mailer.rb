@@ -49,14 +49,21 @@ class Mailer < Devise::Mailer
     end
 
 
-    def in_mail(from,to,token,note)
-      @token_url = message_show_url(token: token)
+  def in_mail(from,to,token,note)
+    @token_url = message_show_url(token: token)
+    @message = note
+    @from = from
+    @to = to
+    @subject = "#{@from.name} sent you a message via Roooster."
+    mail(to: to.email ,from: from.email, subject: @subject)
+    # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
+  end
+
+  def in_chat_mail(sender,to,team,note)
       @message = note
-      @from = from
-      @to = to
-      @subject = "#{@from.name} sent you a message via Roooster."
-      mail(to: to.email ,from: from.email, subject: @subject)
-      # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
+      @from = "info@roooster.co"
+      @subject = "#{sender.name} sent you a message in team #{team.name.upcase}."
+      mail(to: to.email ,from: @from, subject: @subject)
     end
 
 	def notification_mail(user,subject = "New user registered!")
