@@ -21,6 +21,12 @@
   // 	});	
 // }
 
+var alertMsg = function(title,message){
+  $("#modal-alert-message-alt .form-head h4").text(title);
+  $("#modal-alert-message-alt .form-head p").text(message);
+  $("#modal-alert-message-alt").modal('show');
+};
+
 var add_profile_to_team = function(profile_id,team_id){
 	// console.log(profile_id +" "+ team_id);
 	$.ajax({
@@ -272,7 +278,7 @@ var update_user = function(user_id,properties){
         },
         error: function(data){ 
           console.log(data);
-          alert(data.responseText);
+          // alert(data.responseText);
           onFail(data.responseText);
         },
         complete: function(data){
@@ -331,9 +337,14 @@ var update_user = function(user_id,properties){
                     image: attrs.image,
                     id: id
                   });
-              },function(id){ //onFail
+              },function(message){ //onFail
                 // $this.focus();
                 teamCreated = false;
+                alertMsg("Create Team Failed!",message);
+                index = $(".owl-item.active").last().index();
+                $teamsSlider.trigger('remove.owl.carousel', index).trigger('refresh.owl.carousel')
+
+                // $(".owl-item.active .team-title").last().focus();
                 // $this.parent().parent().remove();
               });
           }
@@ -369,6 +380,7 @@ var update_user = function(user_id,properties){
 
       if(name == ''){
         var teamCreated = false;
+        var selected_profile_id = profile_id;
         $userGroup.find('label').focus().on('blur keydown', function(event) {
           var $this = $(this);
           if ((event.keyCode === 13 || event.type === 'blur') && !teamCreated) {
@@ -407,8 +419,10 @@ var update_user = function(user_id,properties){
                 id: id
               });
               $userGroup.find('input').trigger('change');
-            },function(id){
+            },function(message){
               teamCreated = false;
+              $("#field-user"+selected_profile_id+"-group").parent().parent().remove();
+              alertMsg("Create Team Failed!",message);
             });
           }
         });
@@ -549,9 +563,10 @@ var update_user = function(user_id,properties){
           create_team({name: $(this).html(),image: image_name }, function(id){
             $("a.team-inner").filter("[href='#']").attr('href',"/teams/" + id);
             teamDroppable($team);
-          },function(id){
+          },function(message){
               team_created = false
-             $("a.team-inner").filter("[href='#']").remove();
+             $("a.team-inner").filter("[href='#']").parent().remove();
+             alertMsg("Create Team Failed!",message);
           });
         };
       });
