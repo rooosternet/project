@@ -500,7 +500,8 @@ var update_user = function(user_id,properties){
 			var placeholderText = $(this).data('placeholder');
 			$(this).fastselect({
 				choiceRemoveClass: 'ico-remove btn-remove',
-				placeholder: placeholderText
+				placeholder: placeholderText,
+        noResultsText: 'No results'
 			});
 		});
 
