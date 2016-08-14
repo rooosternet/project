@@ -93,7 +93,9 @@ class TeamsController < ApplicationController
     if params.has_key?(:private)
       @private = true
       @to_id = params[:user_id]
-      @messages = InMessage.where(team_id: @team.id, private: true, to_id: [@to_id, current_user.id]).notchatarchive
+      @in = InMessage.where(team_id: @team.id, private: true, to_id: current_user.id, from_id: @to_id).notchatarchive
+      @out = InMessage.where(team_id: @team.id, private: true, to_id: @to_id, from_id: current_user.id).notchatarchive
+      @messages = (@in + @out).uniq
     else
       @private = false
       @messages = InMessage.where(team_id: @team.id, private: false).notchatarchive

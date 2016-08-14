@@ -270,6 +270,14 @@
 		}
 
 	.chat.section-body { margin-right: 8px;
+		#conversation{position: relative;
+			a.private-close{position: absolute;
+						    right: -12px;
+						    top: -15px;
+						    z-index: 2;
+						    background-color: #f8f9fb;
+						    border-radius: 50%;}
+		}
 		textarea{line-height: 1.5;padding: 8px 12px;; height:36px;}
 		.messages { margin-bottom: 10px;
 			height: 600px;
@@ -277,29 +285,31 @@
 			.message{padding-left: 50px; margin-bottom: 40px;}
 			.input{padding-left: 0px;}
 		.send-message{margin-top: 20px;}
-		.private-back{background-color: #fff8fc;}
-		.private-close{position: absolute; right:-13px; top: -11px;background-color: #fff; border-radius: 50%;}
+		.private-back{background-color: #fff8fc; height:100%;}
 		}
 	}
 
 	.section-creatives{ margin: 0 5px 0 8px;
-		.undericon{font-size:10px;color: #818181;}
+		.undericon{font-size:10px;color: #818181; margin-bottom: 5px;}
 		.admin-badge{top: 55px;position: absolute;left: 15px;border:3px solid #fff; border-radius:50%;background-color: #fff;}
 		.dimmed{opacity: 0.3;}
-		.name-label{font-size: 10px; display: block; color: #818181; margin-top: 5px;}
+		.name-label{font-size: 10px; display: block; color: #818181; margin: 5px 0;}
 		.pending{font-size: 9px; display: block; color: #818181; margin-top: 3px;}
 		.groups-label{display: block; color: #484848; font-size: 11px; margin-bottom: 10px; line-height: 1; text-transform: uppercase; letter-spacing: 0.17em; font-weight: 600;}
-		.dropdown { position: relative; /*margin-bottom: 20px;*/ vertical-align: top;
-			.dropdown-menu { margin: 0px auto;
-			    display: inline-block;
-			    position: relative;
-			    float:none;
-			    border: none;
-			    height: 25px;
-			    width: initial;
-			    background-color: transparent;
+		.dropdown-actions { position: relative; /*margin-bottom: 20px;*/ vertical-align: top;
+			.dropdown-menu-actions {
+				margin-bottom: 15px;
+			    height: 17px;
+			    display: none;
+			    // position: relative;
+			    // float:none;
+			    // border: none;
+			    // height: 25px;
+			    // width: initial;
+			    // background-color: transparent;
 			    text-align: center;
-				li{display:inline; float: left; width: 23px;}
+				li{display:inline-block;
+				   height: 17px;}
 				li:before{background:none; height: 0;}
 				// .ico-message{width:20px; height:20px;}
 				// .ico-delete{width:20px; height:20px;}

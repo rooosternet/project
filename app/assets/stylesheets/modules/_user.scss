@@ -92,7 +92,7 @@
 	.user-draggable-over { -webkit-transform: scale(.42); transform: scale(.42); }
 	.user-dropped { z-index: 200; -webkit-animation: .8s dropped; animation: .8s dropped; }
 
-	.user-name { margin-bottom: 4px; font-size: 14px; font-weight: bold; }
+	.user-name { margin-bottom: 4px; font-size: 14px; font-weight: bold; min-height: 34px;}
 
 	.user-title { margin-bottom: 8px; font-size: 11px; }
 	.user-title a { color: #36393b; }

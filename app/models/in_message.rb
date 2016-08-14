@@ -32,7 +32,8 @@ class InMessage < ActiveRecord::Base
 	def send_in_mail
 		unless (self.from == self.to) or
 				self.note.include?("you've been invited to") or
-				self.note.include?("Hi everyone, please welcome")
+				self.note.include?("Hi everyone, please welcome") or
+				self.private
 
 			email = Mailer.in_mail(self.from,self.to,self.token,self.note).deliver_now
 		end
@@ -43,11 +44,11 @@ class InMessage < ActiveRecord::Base
 			team = Team.find(self.team_id)
 			sender = User.current
 			if sender.id != team.owner_id
-				Mailer.in_chat_mail(sender, team.owner,team,self.note).deliver_now
+				Mailer.in_chat_mail(sender, team.owner,team,self.note, self.private).deliver_now
 			end
 			team.profiles.each do |profile|
 				if profile.user_id != sender.id
-					Mailer.in_chat_mail(sender, profile.user,team,self.note).deliver_now
+					Mailer.in_chat_mail(sender, profile.user,team,self.note,self.private).deliver_now
 				end
 			end
 		end

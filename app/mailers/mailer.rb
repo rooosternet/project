@@ -59,9 +59,12 @@ class Mailer < Devise::Mailer
     # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
   end
 
-  def in_chat_mail(sender,to,team,note)
+  def in_chat_mail(sender,to,team,note,privat)
       @message = note
+      @private = privat
       @from = "info@roooster.co"
+      @team = team
+      @sender = sender
       @subject = "#{sender.name} sent you a message in team #{team.name.upcase}."
       mail(to: to.email ,from: @from, subject: @subject)
     end
