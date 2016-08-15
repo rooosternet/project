@@ -145,7 +145,7 @@
 							    <span class='pending'>(PENDING)</span>
 							<%end%>
 						    <%- if team_profile.invitation_status == 'declined'%>
-							    <span class='pending'>(DECLINE)</span>
+							    <span class='pending'>(DECLINED)</span>
 							<%end%>
 					        <%-if @is_current_user_admin%>
 						        <ul class="dropdown-menu-actions">
@@ -155,7 +155,7 @@
 						                </a>
 						            </li>
 						        </ul>
-						        <span class='undericon' id='delete'>CANCEL INVITE</span>
+						        <span class='undericon hide' id='delete'>CANCEL INVITE</span>
 						    <%end%>
 					    </div>
 				    </div>
@@ -247,6 +247,7 @@ $(document).ready(function(){
 		if(menu.css('display') =='block'){
 			menu.hide();
 		}else{
+			$('.dropdown-menu-actions').hide();
 			menu.show();
 		}
 	});

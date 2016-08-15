@@ -30,12 +30,15 @@ class InMessage < ActiveRecord::Base
 	after_create :send_in_mail_from_chat
 
 	def send_in_mail
-		unless (self.from == self.to) or
+		unless (self.from_id == self.to_id) or
 				self.note.include?("you've been invited to") or
 				self.note.include?("Hi everyone, please welcome") or
 				self.private
 
-			email = Mailer.in_mail(self.from,self.to,self.token,self.note).deliver_now
+			from = Profile.find(self.from_id).user
+			to = Profile.find(self.to_id).user
+
+			email = Mailer.in_mail(from, to, self.token, self.note).deliver_now
 		end
 	end
 
