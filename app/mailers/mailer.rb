@@ -55,7 +55,6 @@ class Mailer < Devise::Mailer
     @from = from
     @to = to
     @subject = "#{@from.name} sent you a message via Roooster."
-    byebug
     mail(to: to.email ,from: from.email, subject: @subject)
     # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
   end
