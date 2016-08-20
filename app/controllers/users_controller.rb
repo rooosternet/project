@@ -48,8 +48,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.profile.invitation_hash == params[:hash]
         @team = Team.find(params[:team_id])
-        team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: current_user.id).first
-        if team_profile.update(invitation_status: 'accepted')
+        team_profile = TeamProfile.where(team_id: params[:team_id], profile_id: current_user.profile.id).first
+
+        if team_profile && team_profile.update(invitation_status: 'accepted')
+          message = "Hi everyone, please welcome #{@user.firstname} to the team!"
+          InMessage.create(from_id: @team.owner.id, to_id: @team.owner.id, note: message, team_id: @team.id)
           Mailer.admin_invitation_notice(@user, @team).deliver_now
           format.html { redirect_to @team, notice: 'Team was successfully updated.' }
         else
@@ -66,10 +69,12 @@ class UsersController < ApplicationController
     respond_to do |format|
       if params[:type] == 'canceled'
         @team_profile = TeamProfile.find(params[:team_profile_id])
-        if (@team_profile.invitation_status == 'pending') && @team_profile.delete
+        if (['pending','declined'].include? @team_profile.invitation_status)
           if params[:by] == 'email'
+            @team_profile.update(invitation_status: 'declined')
             format.html { redirect_to root_path }
           elsif params[:by] == 'admin'
+            @team_profile.delete
             format.html { redirect_to @team_profile.team, notice: 'Team was successfully updated.' }
           end
         else
@@ -118,36 +123,50 @@ class UsersController < ApplicationController
       unless (user.has_key? :firstname) and (user.has_key? :lastname)
         login = user[:email].split('@').first
         user[:firstname] = login
-        user[:lastname] = login
+        user[:lastname] = "-"
       end
       if !user[:firstname].blank? || !user[:lastname].blank? || !user[:email].blank?
         begin
           @empty = false
           _user = User.invite!({:email => user[:email] , :firstname =>user[:firstname],:lastname=> user[:lastname]},User.current)
           if params.has_key? :team_id
-            invite_user = User.find_by_email(user[:email])
-            team = Team.find(params[:team_id].keys.first.to_i)
-            team_profile = TeamProfile.create!(team_id: team.id, profile_id: invite_user.id, invitation_status: 'pending')
-            if team_profile
-              hash = Digest::MD5.hexdigest(team.name)[0...16]
-              invite_user.profile.update(invitation_hash: hash)
-              Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
+            unless _user.email == current_user.email
+              invite_user = User.find_by_email(user[:email])
+              team = Team.find(params[:team_id].keys.first.to_i)
+              team_profile = TeamProfile.create!(team_id: team.id, profile_id: invite_user.profile.id, invitation_status: 'pending')
+              if team_profile
+                hash = Digest::MD5.hexdigest(team.name)[0...16]
+                invite_user.profile.update(invitation_hash: hash)
+                @url = accepting_invitation_url(hash: hash, team_id: team.id)
+                @declain_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
+                message = "Hi #{_user.firstname}, you've been invited to team #{team.name.upcase} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>decline</a>"
+                InMessage.create(from_id: team.owner.id, to_id: invite_user.id, note: message)
+                Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
+              end
             end
           end
 
           if _user.errors.any?
             if _user.errors.full_messages.include?("Email has already been taken")
-              @invited << "Invitation sent to #{_user.name} "
-              message = "Great! we have already heard about #{_user.name} from other users."
-            else
-              message = "Fail to sent invitation: #{_user.errors.full_messages.uniq.join(',')}"
+              message = "Invitation sent to #{_user.firstname}"
+            end
+
+            if _user.email == current_user.email
+              message = "You are only on this team!"
             end
             @not_invited << message
           else
-            @invited << "Invitation sent to #{_user.name}"
+            @invited << "Invitation sent to #{_user.firstname}"
           end
         rescue Exception => e
-          @not_invited << "Fail to sent invitation: #{e.message}"
+          if e.message.include?("Validation failed: Profile has already been taken")
+            if _user.email == current_user.email
+              message = "You are only on this team!"
+            end
+          else
+            message = e.message
+          end
+          @not_invited << "#{message}"
         end
       end
     end

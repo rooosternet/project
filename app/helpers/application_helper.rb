@@ -1,10 +1,10 @@
 module ApplicationHelper
-	
+
 	def team_additional_images(team)
 		imgs = []
 		imgs += team.attachments.map { |e| image_url e.attachment.url  } if team.attachments
 		imgs
-	end  
+	end
 
 	def show_avatars(user_avatars)
 		'open' if user_avatars.eql?(true)
@@ -12,10 +12,10 @@ module ApplicationHelper
 
 	def profile_additional_images(user)
 		imgs = []
-		imgs += user.profile_connects.collect(&:image_url).compact 
+		imgs += user.profile_connects.collect(&:image_url).compact
 		imgs += user.attachments.map { |e| image_url e.attachment.url  } if user.attachments
 		imgs
-	end  
+	end
 
 	def profile_image(user,options={})
 		# "<img alt="" src='#{user.profile_image}' >".html_safe
@@ -24,19 +24,24 @@ module ApplicationHelper
 	end
 
 	def profile_teams_classes(profile)
-		profile.teams.pluck(:id).inject([]) do |memo,id|
+		mem = profile.teams.pluck(:id).inject([]) do |memo,id|
 			memo << "g-#{id}"
 			memo
-		end.flatten.join(' ') 
+		end
+		own = Team.where(owner_id: profile.user_id).pluck(:id).inject([]) do |memo, id|
+			memo << "g-#{id}"
+			memo
+		end
+		(mem + own).uniq.flatten.join(' ')
 	end
 
 	def team_images
 		arr = []
 		image = 1
-		20.times do 
+		20.times do
 			arr << image_url("team#{image}.jpg")
 			image+=1
-		end	
+		end
 		arr
 	end
 
@@ -51,17 +56,17 @@ module ApplicationHelper
 	def toggle_url_protocole(url = "#")
 		unless url =~ /\A#{URI::regexp(['http', 'https'])}\z/
 			url = "http://#{url}"
-		end	
+		end
 		# puts "URL: #{url}" if Rails.env.development?
 		url
 	end
 
 	def generate_blog_posts_intro
-		fetch_blog_posts[0..2]		
+		fetch_blog_posts[0..2]
 	end
 
 	def fetch_blog_posts
-		Rails.cache.fetch("intro_posts", expires_in: 24.hours) do 
+		Rails.cache.fetch("intro_posts", expires_in: 24.hours) do
 			normalize_posts(Post.intros.to_a)
 		end
 	end
@@ -80,7 +85,7 @@ module ApplicationHelper
 		else
 			link_to("Link", user_omniauth_authorize_path(provider), target: '_blank', class: "btn btn-not-connected")
 		end
-	end	
+	end
 
 	def profile_connect(provider,profile)
 		if profile.connected_class(provider) == "btn-connected"
@@ -90,7 +95,7 @@ module ApplicationHelper
 			check_box_tag "field-connect-#{provider}",'', false , class: "btn-not-connected social-link", :"data-url" => user_omniauth_authorize_path(provider),:"date-method" => :get
 			# link_to("Link", user_omniauth_authorize_path(provider), target: '_blank', class: "btn btn-not-connected")
 		end
-	end	
+	end
 
 	def normalize_posts(posts)
 		posts.inject([]) do |memo,post|
@@ -101,7 +106,7 @@ module ApplicationHelper
 			rescue Exception => e
 			end
 			memo
-		end	
+		end
 	end
 
 	def skills_options_for_select(selected)

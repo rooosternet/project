@@ -34,7 +34,7 @@ Rails.application.configure do
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true
 
-    config.action_mailer.smtp_settings =   config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings =   config.action_mailer.smtp_settings = {
       address: Rails.application.secrets.email_server,
       port: 465,
       ssl: true,

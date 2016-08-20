@@ -239,7 +239,9 @@
 	Form Invite
 \* ------------------------------------------------------------ */
 
-.form-invite { max-width: 670px; margin: 0 auto; padding: 10px 0;
+.form-invite { max-width: 670px; margin: 0 auto;
+			   padding: 0px 0;
+			   // padding: 10px 0;
 
 	.form-head { margin-bottom: 18px; text-align: center; }
 	.form-head p { color: #9a9a9b; font-size: 12px; }

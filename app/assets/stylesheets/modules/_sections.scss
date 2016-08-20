@@ -190,7 +190,7 @@
 	Section Results
 \* ------------------------------------------------------------ */
 .flex.section-results{display: flex; margin: auto;
-	.col { flex: 1; flex-basis: auto; margin-right: 4px;}
+	.col { flex: 1; flex-basis: auto;}
 }
 
 .section-results { padding-bottom: 45px; margin: 0 8px;
@@ -205,7 +205,19 @@
 	.section-bar span { color: #ab3939; font-weight: bold; }
 
 	.section-creatives{margin-left: 8px; padding-top: 26px; padding-bottom: 26px; display: inline-block; width: 115px; text-align: center; background: #f8f9fb; border: 1px solid #eef2f5; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.14); }
-	.section-body { display: inline-block; vertical-align: top; width: 100%; padding: 26px; background: #f8f9fb; border: 1px solid #eef2f5; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.14); }
+
+	.section-body { display: inline-block; vertical-align: top; width: 100%; padding: 26px; background: #f8f9fb; border: 1px solid #eef2f5; box-shadow: inset 0 0 5px 0 rgba(193, 207, 217, 0.14);
+		.ico-actions{
+			a:hover .ico-message{ background-position: center 100%; }
+			a .ico-message {
+			    width: 19px;
+			    height: 19px;
+			    background-position: center 0;
+			    background-size: 19px 39px;
+			}
+		}
+	}
+
 	.section-body .section-bar { margin: -6px 0 10px; }
 
 	.add-creative.form-invite{
@@ -257,35 +269,47 @@
 
 		}
 
-	.chat.section-body {
+	.chat.section-body { margin-right: 8px;
+		#conversation{position: relative;
+			a.private-close{position: absolute;
+						    right: -12px;
+						    top: -15px;
+						    z-index: 2;
+						    background-color: #f8f9fb;
+						    border-radius: 50%;}
+		}
 		textarea{line-height: 1.5;padding: 8px 12px;; height:36px;}
 		.messages { margin-bottom: 10px;
+			height: 600px;
+		    overflow: scroll;
 			.message{padding-left: 50px; margin-bottom: 40px;}
 			.input{padding-left: 0px;}
 		.send-message{margin-top: 20px;}
-		.private-back{background-color: #fff8fc;}
-		.private-close{position: absolute; right:-13px; top: -11px;background-color: #fff; border-radius: 50%;}
+		.private-back{background-color: #fff8fc; height:100%;}
 		}
 	}
 
-	.section-creatives{
-		.undericon{font-size:10px;color: #818181;}
+	.section-creatives{ margin: 0 5px 0 8px;
+		.undericon{font-size:10px;color: #818181; margin-bottom: 5px;}
 		.admin-badge{top: 55px;position: absolute;left: 15px;border:3px solid #fff; border-radius:50%;background-color: #fff;}
 		.dimmed{opacity: 0.3;}
-		.name-label{font-size: 10px; display: block; color: #818181; margin-top: 5px;}
+		.name-label{font-size: 10px; display: block; color: #818181; margin: 5px 0;}
 		.pending{font-size: 9px; display: block; color: #818181; margin-top: 3px;}
 		.groups-label{display: block; color: #484848; font-size: 11px; margin-bottom: 10px; line-height: 1; text-transform: uppercase; letter-spacing: 0.17em; font-weight: 600;}
-		.dropdown { position: relative; /*margin-bottom: 20px;*/ vertical-align: top;
-			.dropdown-menu { margin: 0px auto;
-			    display: inline-block;
-			    position: relative;
-			    float:none;
-			    border: none;
-			    height: 25px;
-			    width: initial;
-			    background-color: transparent;
+		.dropdown-actions { position: relative; /*margin-bottom: 20px;*/ vertical-align: top;
+			.dropdown-menu-actions {
+				margin-bottom: 15px;
+			    height: 17px;
+			    display: none;
+			    // position: relative;
+			    // float:none;
+			    // border: none;
+			    // height: 25px;
+			    // width: initial;
+			    // background-color: transparent;
 			    text-align: center;
-				li{display:inline; float: left; width: 24px;}
+				li{display:inline-block;
+				   height: 17px;}
 				li:before{background:none; height: 0;}
 				// .ico-message{width:20px; height:20px;}
 				// .ico-delete{width:20px; height:20px;}
@@ -330,7 +354,7 @@
 	.section-actions span { position: absolute; z-index: 200; left: 0; top: 26px; width: 100%; font-size: 11px; color: #a7abb1; text-transform: uppercase; font-weight: bold; text-align: center; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
 	.section-actions label:hover span,
 	.section-actions a:hover span { visibility: visible; opacity: 1; }
-	.section-actions i { width: 19px; height: 19px; }
+	.section-actions i { width: 17px; height: 17px; }
 
 	.section-head-inner { padding: 8px 82px; }
 	.section-head-close { position: absolute; right: -12px; top: -12px; background: #fff; border-radius: 50%; visibility: hidden; opacity: 0; transition: all .2s ease-out; }

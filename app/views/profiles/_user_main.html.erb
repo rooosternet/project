@@ -1,4 +1,4 @@
-<div class="user-main">
+<div class="user-main ico-actions">
 	<div class="user-actions">
 		<ul>
 			<li>
@@ -9,8 +9,8 @@
 					</a>
 
 					<ul class="dropdown-menu user-groups" id="profile_<%=profile.id%>" data-profile="<%=profile.id%>">
-						
-						<% if team = current_user.my_contacts_team 
+
+						<% if team = current_user.my_contacts_team
 							backet_id = "field-user#{profile.id}-group#{team.id}"
 							%>
 						<li>
@@ -19,7 +19,7 @@
 								<label for="field-user<%=profile.id%>-group<%=team.id%>" data-profile="<%=profile.id%>" data-team="<%=team.id%>" class="add-profile"><%=team.name%></label>
 							</div><!-- /.checkbox -->
 						</li>
-						<% end %>	
+						<% end %>
 
 						<% current_user.teams.each_with_index do |team, i| %>
 						<li class="<%= i >= 7 ? 'hidden' : ''%>">
@@ -71,7 +71,7 @@
 			<a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.job_title) %>"><%= profile.job_title %></a>
 		<%  else %>
 			&nbsp
-		<%- end -%>	
+		<%- end -%>
 		</div><!-- /.user-title -->
 
 		<div class="user-location">

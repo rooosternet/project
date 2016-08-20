@@ -87,16 +87,18 @@ class TeamsController < ApplicationController
     @profiles_count = @profiles.any? ? @profiles.count : 'No'
     @is_current_user_admin = ((@team.owner_id == current_user.id) or
                               @team.team_profiles
-                              .where(profile_id: current_user.id)
+                              .where(profile_id: current_user.profile.id)
                               .first
                               .is_admin) ? true : false
     if params.has_key?(:private)
       @private = true
       @to_id = params[:user_id]
-      @messages = InMessage.where(team_id: @team.id, private: true, to_id: [@to_id, current_user.id]).notarchive
+      @in = InMessage.where(team_id: @team.id, private: true, to_id: current_user.id, from_id: @to_id).notchatarchive
+      @out = InMessage.where(team_id: @team.id, private: true, to_id: @to_id, from_id: current_user.id).notchatarchive
+      @messages = (@in + @out).uniq
     else
       @private = false
-      @messages = InMessage.where(team_id: @team.id, private: false).notarchive
+      @messages = InMessage.where(team_id: @team.id, private: false).notchatarchive
     end
 
     render (@team.backet)?  'my_contacts' : 'show'
@@ -110,15 +112,17 @@ class TeamsController < ApplicationController
         owner_team = Team.find(parameters['team_id'])
         team_profile = parameters.except("team_id").to_hash if parameters
         if team_profile
-          team_profile["invitation_status"] = 'pending'
-          @team.team_profiles.build(team_profile)
-          user = User.find(team_profile['profile_id'])
-          user.profile.update(invitation_hash: hash)
-          Mailer.add_to_group_mail(hash, user, owner_team, team_profile).deliver_now
-          begin
-            @team.save
-          rescue ActiveRecord::RecordInvalid => invalid
-            puts invalid.message
+          profile = Profile.find(team_profile['profile_id'])
+          unless profile.user.email == current_user.email
+            team_profile["invitation_status"] = 'pending'
+            @team.team_profiles.build(team_profile)
+            profile.update(invitation_hash: hash)
+            Mailer.add_to_group_mail(hash, profile.user, owner_team, profile).deliver_now
+            begin
+              @team.save
+            rescue ActiveRecord::RecordInvalid => invalid
+              puts invalid.message
+            end
           end
         end
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
@@ -159,10 +163,11 @@ class TeamsController < ApplicationController
   def destroy
     @team.destroy
     respond_to do |format|
-      format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Team was successfully destroyed.' }
       format.js { render :text => params[:id] , :status => 200 }
       format.json { head :no_content }
     end
+    redirect_to root_path
   end
 
   private

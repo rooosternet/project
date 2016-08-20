@@ -6,14 +6,16 @@ class InMessage < ActiveRecord::Base
 
 	belongs_to :from, :class_name => 'User', :foreign_key => 'from_id'
 	belongs_to :to, :class_name => 'User', :foreign_key => 'to_id'
-	
+
 	validates_presence_of :from_id,:to_id,:note
 	validates_presence_of :token , :if => lambda{|msg| !msg.new_record?}
-	
+
 	serialize :archive, Array
 
  	scope :archive ,lambda { select{|message| message.archive.include?(User.current.id) } }
  	scope :notarchive ,lambda { select{|message| !message.archive.include?(User.current.id) } }
+ 	scope :notchatarchive ,lambda { select{|message| message.archive.blank? } }
+ 	scope :notchat ,lambda { where("#{InMessage.table_name}.team_id is ? or #{InMessage.table_name}.team_id = ''", nil) }
 	scope :inbox ,lambda { where("#{InMessage.table_name}.to_id = #{User.current.id}")}
 	scope :outbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id}")}
 	scope :allbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id} OR #{InMessage.table_name}.to_id = #{User.current.id}")}
@@ -25,15 +27,40 @@ class InMessage < ActiveRecord::Base
 	end
 
 	after_create :send_in_mail
+	after_create :send_in_mail_from_chat
 
 	def send_in_mail
-		email = Mailer.in_mail(self.from,self.to,self.token,self.note).deliver_later
+		unless (self.from_id == self.to_id) or
+				self.note.include?("you've been invited to") or
+				self.note.include?("Hi everyone, please welcome") or
+				self.private
+
+			from = Profile.find(self.from_id).user
+			to = Profile.find(self.to_id).user
+
+			email = Mailer.in_mail(from, to, self.token, self.note).deliver_now
+		end
+	end
+
+	def send_in_mail_from_chat
+		if self.team_id
+			team = Team.find(self.team_id)
+			sender = User.current
+			if sender.id != team.owner_id
+				Mailer.in_chat_mail(sender, team.owner,team,self.note, self.private).deliver_now
+			end
+			team.profiles.each do |profile|
+				if profile.user_id != sender.id
+					Mailer.in_chat_mail(sender, profile.user,team,self.note,self.private).deliver_now
+				end
+			end
+		end
 	end
 
 	def my_message?
 		self.from_id == User.current.id
-	end	
-	
+	end
+
 	def active?
 		!my_message? && (self.updated_at == self.created_at)
 	end
@@ -53,7 +80,7 @@ class InMessage < ActiveRecord::Base
 	end
 	# def initialize(*args)
 	# 	super
-	# 	byebug	
+	# 	byebug
 	# 	# @token = Devise.friendly_token if @token.blank?
 	# 	# @notify  = false if @notify.blank?
 	# 	# @private = false if @private.blank?

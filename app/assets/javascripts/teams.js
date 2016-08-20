@@ -7,7 +7,7 @@ $(function() {
 		    var profile_id = $(e.relatedTarget).data('profile-id');
 		    var profile_ids = $('input:checkbox:checked.checkbox-group1').map(function() {return $(this).data('profile-id');}).get();
 		    $(e.currentTarget).find('input[name="team_profile[team_id]"]').val(team_id);
-		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val((profile_ids.lenfth>0)? profile_ids : profile_id);
+		    $(e.currentTarget).find('input[name="team_profile[profile_id]"]').val((profile_ids.length>0)? profile_ids : profile_id);
 		});
 
 		$('.private').click(function(){
@@ -91,16 +91,15 @@ $(function() {
 
 		$('#delete_team_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$('#modal-delete-team').modal('hide');
-			window.location.href = "/";
-			location.reload();
+			window.location.replace("/");
 		});
 
 		$('#delete_team_form_id').bind('ajax:error', function(event, data, status, xhr) {
-			location.reload();
+			window.location.replace("/");
 		});
 
 		$('#delete_team_form_id').bind('ajax:complete', function(event, data, status, xhr) {
-			location.reload();
+			window.location.replace("/");
 		});
 
 
@@ -117,7 +116,7 @@ $(function() {
 		var videoEmbed = {
 		    invoke: function(){
 
-		        $('.chat').html(function(i, html) {
+		        $('.chat .message-entry').html(function(i, html) {
 		            return videoEmbed.convertMedia(html);
 		        });
 
@@ -125,30 +124,35 @@ $(function() {
 		    convertMedia: function(html){
 		        var pattern1 = /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(.+)/g;
 		        var pattern2 = /(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g;
-		        var pattern3 = /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:jpg|jpeg|gif|png))/gi;
+		        var pattern3 = /(https?:\/\/(.+)\.(png|jpg|gif|jpeg)+)/g;
+		        var pattern4 = /((https?\:\/\/)(?:www\.)?(.+))/g;
+		        var pattern5 = /([ ,\t,\n](?:www\.)(.+))/g;
+
 
 		        if(pattern1.test(html)){
-		           var replacement = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-
+		           var replacement = '<iframe width="100%" height="320" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 		           var html = html.replace(pattern1, replacement);
-		        }
-
-
-		        if(pattern2.test(html)){
-		              var replacement = '<iframe width="640" height="480" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+		        }else if(pattern2.test(html)){
+		              var replacement = '<iframe width="100%" height="320" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
 		              var html = html.replace(pattern2, replacement);
-		        }
-
-
-		        if(pattern3.test(html)){
+		        }else if(pattern3.test(html)){
 		            var replacement = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';
 		            var html = html.replace(pattern3, replacement);
+		        }else if(pattern4.test(html)){
+		            var replacement = '<a href="$1" target="_blank">$1</a><br />';
+		            var html = html.replace(pattern4, replacement);
+		        }else if(pattern5.test(html)){
+		            var replacement = '<a href="http://$1" target="_blank">$1</a><br />';
+		            var html = html.replace(pattern5, replacement);
 		        }
+
 		        return html;
+
 		    }
 		}
 		setTimeout(function(){
 		    videoEmbed.invoke();
+			$('.chat .messages').scrollTop($('.chat .messages')[0].scrollHeight+600);
 		},1000);
 	});
 });

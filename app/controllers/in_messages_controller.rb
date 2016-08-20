@@ -4,7 +4,7 @@ class InMessagesController < ApplicationController
   def index
     @hide_footer = true
     @top_search = true
-    @messages = InMessage.allbox.roots.includes(:children).notarchive.reverse #InMessage.allbox
+    @messages = InMessage.allbox.roots.includes(:children).notchat.notarchive.reverse #InMessage.allbox
   end
 
   def new
@@ -79,7 +79,7 @@ class InMessagesController < ApplicationController
 
       recepients.each do |id|
         begin
-          msg_attr[:to_id] = id
+          msg_attr[:to_id] = id.match(/[0-9]+/)[0]
           message = InMessage.new(msg_attr)
           message.save!
           save_messages << message

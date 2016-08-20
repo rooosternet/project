@@ -12,13 +12,13 @@
   // 				target.attr('data-team',data);
   // 			}
   // 		},
-  // 		error: function(data){ 
+  // 		error: function(data){
   			// console.log(data);
   // 		},
   // 		complete: function(data){
   			// console.log(data);
   // 		}
-  // 	});	
+  // 	});
 // }
 
 var alertMsg = function(title,message){
@@ -37,14 +37,14 @@ var add_profile_to_team = function(profile_id,team_id){
 		success: function(data){
 			// console.log(data);
 		},
-		error: function(data){ 
+		error: function(data){
 			// console.log(data);
 		},
 		complete: function(data){
 			// console.log(data);
-			return data; 
+			return data;
 		}
-	});	
+	});
 }
 
 var remove_profile_from_team = function(profile_id,team_id){
@@ -57,20 +57,20 @@ var remove_profile_from_team = function(profile_id,team_id){
 		success: function(data){
 			// console.log(data);
 		},
-		error: function(data){ 
+		error: function(data){
 			// console.log(data);
 		},
 		complete: function(data){
 			// console.log(data);
-			return data; 
+			return data;
 		}
-	});	
+	});
 }
 
 var update_team = function(team_id,properties){
 	// console.log(team_id);
 	// console.log(properties);
-	
+
 	$.ajax({
 		url: "/teams/"+team_id,
 		type: 'PUT',
@@ -79,19 +79,19 @@ var update_team = function(team_id,properties){
 		success: function(data){
 			// console.log(data);
 		},
-		error: function(data){ 
+		error: function(data){
 			// console.log(data);
 		},
 		complete: function(data){
 			// console.log(data);
-			return data; 
+			return data;
 		}
-	});	
+	});
 }
 
 var update_teams_order = function(team_ids){
 	// console.log(team_ids);
-	
+
 	$.ajax({
 		url: "/teams/update_teams_order",
 		type: 'post',
@@ -100,19 +100,19 @@ var update_teams_order = function(team_ids){
 		success: function(data){
 			// console.log(data);
 		},
-		error: function(data){ 
+		error: function(data){
 			// console.log(data);
 		},
 		complete: function(data){
 			// console.log(data);
 		}
-	});	
+	});
 }
 
 var update_profile_image = function(user_id,properties){
 	// console.log(user_id);
 	// console.log(properties);
-	
+
 	$.ajax({
 		url: "/users/"+user_id+"/update_profile_image",
 		type: 'post',
@@ -121,20 +121,20 @@ var update_profile_image = function(user_id,properties){
 		success: function(data){
 			// console.log(data);
 		},
-		error: function(data){ 
+		error: function(data){
 			// console.log(data);
 		},
 		complete: function(data){
 			// console.log(data);
-			return data; 
+			return data;
 		}
-	});	
+	});
 }
 
 var update_user = function(user_id,properties){
 	// console.log(user_id);
 	// console.log(properties);
-	
+
 	$.ajax({
 		url: "/users/"+user_id,
 		type: 'PUT',
@@ -143,14 +143,14 @@ var update_user = function(user_id,properties){
 		success: function(data){
 			// console.log(data);
 		},
-		error: function(data){ 
+		error: function(data){
 			// console.log(data);
 		},
 		complete: function(data){
 			// console.log(data);
-			return data; 
+			return data;
 		}
-	});	
+	});
 }
 
 ;(function($, window, document, undefined) {
@@ -276,7 +276,7 @@ var update_user = function(user_id,properties){
           //  target.attr('data-team',data);
           // }
         },
-        error: function(data){ 
+        error: function(data){
           console.log(data);
           // alert(data.responseText);
           onFail(data.responseText);
@@ -284,7 +284,7 @@ var update_user = function(user_id,properties){
         complete: function(data){
           console.log(data);
         }
-      }); 
+      });
     }
 
     var addItemToCarousel = function (teamData){
@@ -325,7 +325,7 @@ var update_user = function(user_id,properties){
               image: image,
             }
 
-            create_team(attrs, 
+            create_team(attrs,
               // onSuccess
               function(id){
                   $this.parent().attr('href',"/teams/" + id);
@@ -358,7 +358,7 @@ var update_user = function(user_id,properties){
 
       checkShowAllToggle();
     }
-	
+
     // Add new added team to the teams list on the profile card
     var addItemToTeamsList = function (teamData){
       teamData = teamData || {}
@@ -375,7 +375,7 @@ var update_user = function(user_id,properties){
             name: name,
             group: teamId
           }));
-          
+
       $('#profile_'+profile_id).find('.show-all-teams').before($userGroup);
 
       if(name == ''){
@@ -583,7 +583,7 @@ var update_user = function(user_id,properties){
 			// var team_created = false;
 
 			// $teamNew.find('.team-title').focus().on('blur keydown', function(event) {
-				
+
 			// 	if (event.keyCode === 13 || event.type === 'blur') {
 			// 		$(this).removeAttr('contentEditable');
 			// 		$(this).closest('.team').removeClass('team-new');
@@ -699,7 +699,6 @@ var update_user = function(user_id,properties){
           that_id = that.find('a.team-inner').attr('href').match(/\d+/),
           that_id = that_id ? that_id[0] : 0,
           accept  = $(that).data('accept') + ':not(.g-'+that_id+')';
-
       that.droppable({
 				accept: accept,
 				hoverClass: 'team-highlighted',
@@ -713,7 +712,6 @@ var update_user = function(user_id,properties){
 					ui.draggable.removeClass('user-draggable-over');
 				},
 				drop: function(event, ui) {
-					
 					that.addClass('team-dropped');
 					ui.draggable.addClass('user-dropped g-' + that_id);
 
@@ -728,14 +726,14 @@ var update_user = function(user_id,properties){
 
 					var user_id = ui.draggable.parents('li.user-alt').attr('id');
           $('#' + user_id).find('#field-user'+ user_id +'-group'+ that_id).attr("checked", "checked").trigger('change');
-					
+
 					// that.find('.team-count').text(parseInt(that.find('.team-count').text()) + 1).css('color','#fff');
-					
+
 					if(!(that.find('.team-count').hasClass('team-count-backet'))){
 						var backet = $('.team-count-backet');
 						var team_id = backet.closest('a.team-inner').attr('href').match(/\d+/)[0];
 						if(!(ui.draggable.hasClass('g-'+team_id))){
-							backet.text(parseInt(backet.text()) + 1).css('color','#fff');											
+							backet.text(parseInt(backet.text()) + 1).css('color','#fff');
 							ui.draggable.addClass('g-' + team_id);
 						}
 					}
@@ -833,14 +831,14 @@ var update_user = function(user_id,properties){
 			var menu_backet = $("#"+$(this).data('backet'));
 			// console.log("Add User To Group: " + action);
 			var teams_count = $('.team-count-'+team_id);
-			
-			if(action == true){
+
+      if(action == true){
         add_profile_to_team(profile_id,team_id);
-        teams_count.text(parseInt(teams_count.text()) + 1).css('color','#fff'); 
+        teams_count.text(parseInt(teams_count.text()) + 1).css('color','#fff');
 
         if(!(teams_count.hasClass('team-count-backet'))){
           var top_backet = $('.team-count-backet');
-          top_backet.text(parseInt(top_backet.text()) + 1).css('color','#fff');                     
+          top_backet.text(parseInt(top_backet.text()) + 1).css('color','#fff');
         }
         if(menu_backet && !menu_backet.is(':checked')){
           menu_backet.each(function(){ this.checked = true; });
@@ -852,7 +850,7 @@ var update_user = function(user_id,properties){
 
 				if(!(teams_count.hasClass('team-count-backet'))){
 					var top_backet = $('.team-count-backet');
-					top_backet.text(parseInt(top_backet.text()) - 1).css('color','#fff');											
+					top_backet.text(parseInt(top_backet.text()) - 1).css('color','#fff');
 				}
         $(this).closest('.user-main').find('a.user-image').removeClass('g-'+team_id);
 			}
@@ -1025,7 +1023,7 @@ var update_user = function(user_id,properties){
 				$('form#edit_user_avatars_form').submit();
 			}
 		});
-		
+
     $('#team_attachments').on('change', function(event) {
       event.preventDefault();
       console.log("team_attachments");
@@ -1045,7 +1043,7 @@ var update_user = function(user_id,properties){
 		var update_user = function(user_id,properties){
     	// console.log(user_id);
     	// console.log(properties);
-    	
+
     	$.ajax({
     		url: "/users/"+user_id,
     		type: 'PUT',
@@ -1054,14 +1052,14 @@ var update_user = function(user_id,properties){
     		success: function(data){
     			// console.log(data);
     		},
-    		error: function(data){ 
+    		error: function(data){
     			// console.log(data);
     		},
     		complete: function(data){
     			// console.log(data);
-    			return data; 
+    			return data;
     		}
-    	});	
+    	});
     }
 
 		// 	setTimeout(function() {
@@ -1077,7 +1075,7 @@ var update_user = function(user_id,properties){
 			var update_user = function(user_id,properties){
       	// console.log(user_id);
       	// console.log(properties);
-      	
+
       	$.ajax({
       		url: "/users/"+user_id,
       		type: 'PUT',
@@ -1086,21 +1084,21 @@ var update_user = function(user_id,properties){
       		success: function(data){
       			// console.log(data);
       		},
-      		error: function(data){ 
+      		error: function(data){
       			// console.log(data);
       		},
       		complete: function(data){
       			// console.log(data);
-      			return data; 
+      			return data;
       		}
-      	});	
+      	});
       }
 		});
 
 		var update_user = function(user_id,properties){
     	// console.log(user_id);
     	// console.log(properties);
-    	
+
     	$.ajax({
     		url: "/users/"+user_id,
     		type: 'PUT',
@@ -1109,14 +1107,14 @@ var update_user = function(user_id,properties){
     		success: function(data){
     			// console.log(data);
     		},
-    		error: function(data){ 
+    		error: function(data){
     			// console.log(data);
     		},
     		complete: function(data){
     			// console.log(data);
-    			return data; 
+    			return data;
     		}
-    	});	
+    	});
     }
 
 		// Team Invites

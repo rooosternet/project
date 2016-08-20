@@ -6,10 +6,10 @@ class Mailer < Devise::Mailer
   	default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
 
 
-	# def confirmation_instructions(record, token, opts={})
- #      @token = token
- #      devise_mail(record, :confirmation_instructions, opts)
- #    end
+    # def confirmation_instructions(record, token, opts={})
+    #      @token = token
+    #      devise_mail(record, :confirmation_instructions, opts)
+    #    end
 
     def reset_password_instructions(record, token, opts={})
       @token = token
@@ -49,14 +49,24 @@ class Mailer < Devise::Mailer
     end
 
 
-    def in_mail(from,to,token,note)
-      @token_url = message_show_url(token: token)
+  def in_mail(from,to,token,note)
+    @token_url = message_show_url(token: token)
+    @message = note
+    @from = from
+    @to = to
+    @subject = "#{@from.name} sent you a message via Roooster."
+    mail(to: to.email ,from: from.email, subject: @subject)
+    # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
+  end
+
+  def in_chat_mail(sender,to,team,note,privat)
       @message = note
-      @from = from
-      @to = to
-      @subject = "#{@from.name} sent you a message via Roooster."
-      mail(to: to.email ,from: from.email, subject: @subject)
-      # mail(to: "4yossiedri@gmail.com" ,from: "4yossiedri@gmail.com", subject: @subject)
+      @private = privat
+      @from = "info@roooster.co"
+      @team = team
+      @sender = sender
+      @subject = "#{sender.name} sent you a message in team #{team.name.upcase}."
+      mail(to: to.email ,from: @from, subject: @subject)
     end
 
 	def notification_mail(user,subject = "New user registered!")
@@ -82,9 +92,9 @@ class Mailer < Devise::Mailer
     def add_to_group_mail(hash, user, team, team_profile)
       @user = user
       @team = Team.find(team)
-      @url = accepting_invitation_url(hash: hash, team_id: team.id)
+      @url = accepting_invitation_url(hash: hash, team_id: @team.id)
       @canceled_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
-      @owner = team.owner.profile.name
+      @owner = @team.owner.profile.name
       @from = "info@roooster.co"
       @to = @user.email
       @subject = "#{@owner} added you to team #{team.name}"
