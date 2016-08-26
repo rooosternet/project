@@ -43,6 +43,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
+      
       if Devise.sign_in_after_reset_password
         flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
         set_flash_message(:notice, flash_message) if is_flashing_format?
@@ -50,10 +51,19 @@ class Users::PasswordsController < Devise::PasswordsController
       else
         set_flash_message(:notice, :updated_not_active) if is_flashing_format?
       end
-      respond_with resource, location: after_resetting_password_path_for(resource)
+      
+      if request.xhr?
+        render :nothing => true
+      else  
+        respond_with resource, location: after_resetting_password_path_for(resource)
+      end
     else
       set_minimum_password_length
-      respond_with resource
+      if request.xhr?
+        render :text => resource.errors.full_messages.join('<br>') , :status => 500
+      else  
+        respond_with resource
+      end
     end
   end
   # protected
