@@ -195,7 +195,6 @@ GEM
       omniauth-oauth2
     orm_adapter (0.5.0)
     pkg-config (1.1.7)
-    puma (3.6.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -360,7 +359,6 @@ DEPENDENCIES
   omniauth-linkedin
   omniauth-twitter
   omniauth-vimeo
-  puma
   pundit
   quiet_assets
   rails (= 4.2.4)
