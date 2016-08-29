@@ -3,8 +3,9 @@
     <div class="form-body">
         <div class="form-row">
             <div class="form-controls message input">
-                <%= f.text_area :note ,:rows => 1, :class =>"form-control send-message" ,:placeholder => "Write your message here" %>
+                <%= f.text_area :note ,:rows => 1, :class =>"form-control send-message" ,:placeholder => "Write your message here", :data => {:chan => "#{@team.id.to_s}"} %>
             </div>
+            <div class='system-area'></div>
             <%= f.hidden_field :to_id, :multiple => true, :value => "#{(@private)? @to_id : current_user.id}", class: 'to-ids' %>
             <%= f.hidden_field :team_id, :value => "#{@team.id}", class: 'team_id' %>
             <%= f.hidden_field :private, :value => "#{@private}", class: 'team_id' %>
@@ -18,20 +19,6 @@
 <% end %>
 <script type="text/javascript">
     $(document).ready(function(){
-      $('.send-message').keydown(function(event) {
-        if (event.keyCode == 13) {
-            $(this.form).submit()
-            return false;
-         }
-      }).focus(function(){
-          if(this.value == "Write your comment here..."){
-               this.value = "";
-          }
-      }).blur(function(){
-          if(this.value==""){
-               this.value = "Write your comment here...";
-          }
-      });
       $('textarea').autosize();
       $('textarea').css('height', '36px');
     });

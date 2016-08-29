@@ -8,7 +8,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'susy'
 
 gem 'uglifier', '>= 1.3.0'
-# gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
@@ -23,6 +23,8 @@ gem 'mysql2', '~> 0.3.18'
 gem 'pundit'
 gem 'whenever', :require => false
 gem 'roo'
+gem 'faye-websocket', '0.10.0'
+gem 'websocket-rails'
 
 gem 'autosize-rails'
 
@@ -38,6 +40,7 @@ gem 'omniauth-dribbble', '~> 0.0.1'
 gem 'acts_as_tree', '~> 2.4'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+gem 'puma'
 
 # gem 'avatars_for_rails', path: "vendor/avatars_for_rails"
 

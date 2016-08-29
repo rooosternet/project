@@ -1,4 +1,4 @@
-<div class="" id="conversation">
+<div class="chat-channel" id="conversation" data-chan="team-<%=@team.id.to_s%>">
     <%-if @private%>
         <a href="<%= team_path(@team)%>" class='private-close'>
             <i class="ico-close"></i>

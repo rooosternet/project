@@ -1,4 +1,4 @@
-class InMessagesController < ApplicationController
+class InMessagesController < WebsocketRails::BaseController
   before_action :authenticate_user!
 
   def index
@@ -12,6 +12,7 @@ class InMessagesController < ApplicationController
   end
 
   def create
+    byebug
     @message = InMessage.new(secure_params)
     @message.save
     unless @message.persisted?
@@ -82,7 +83,7 @@ class InMessagesController < ApplicationController
           msg_attr[:to_id] = id.match(/[0-9]+/)[0]
           message = InMessage.new(msg_attr)
           message.save!
-          save_messages << message
+          save_messages << @message
         rescue StandardError => e
           msg = message.errors.any? ? message.errors.full_messages.join(',') : "fail to create message!"
           puts "MessagesController::create: #{msg}"
@@ -91,9 +92,10 @@ class InMessagesController < ApplicationController
       end
 
       if secure_params[:private] == 'false'
-        redirect_to team
+        # redirect_to team
       else
-        redirect_to team_path(team, private: true, user_id: secure_params[:to_id])
+        # send_message :create_success, message, :namespace => :chat
+        # redirect_to team_path(team, private: true, user_id: secure_params[:to_id])
       end
 
     else

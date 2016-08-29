@@ -6,8 +6,9 @@ class InMessage < ActiveRecord::Base
 
 	belongs_to :from, :class_name => 'User', :foreign_key => 'from_id'
 	belongs_to :to, :class_name => 'User', :foreign_key => 'to_id'
+	# belongs_to :team, :class_name => 'Team', :foreign_key => 'team_id'
 
-	validates_presence_of :from_id,:to_id,:note
+	validates_presence_of :from_id, :to_id, :note
 	validates_presence_of :token , :if => lambda{|msg| !msg.new_record?}
 
 	serialize :archive, Array
