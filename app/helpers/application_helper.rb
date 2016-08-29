@@ -88,13 +88,13 @@ module ApplicationHelper
 	end
 
 	def profile_connect(provider,profile)
-		if profile.connected_class(provider) == "btn-connected"
-			check_box_tag "field-connect-#{provider}",'', true , class: "btn-connected social-link" , :"data-url" => profile_connect_path(profile.connected(provider).first),:"date-method" => :delete
-			# link_to("Unlink", profile_connect_path(profile.connected(provider).first),method: :delete, target: '_blank', class: "btn btn-connected")
-		else
-			check_box_tag "field-connect-#{provider}",'', false , class: "btn-not-connected social-link", :"data-url" => user_omniauth_authorize_path(provider),:"date-method" => :get
-			# link_to("Link", user_omniauth_authorize_path(provider), target: '_blank', class: "btn btn-not-connected")
-		end
+		# if profile.connected_class(provider) == "btn-connected"
+		# 	check_box_tag "field-connect-#{provider}",'', true , class: "btn-connected social-link" , :"data-url" => profile_connect_path(profile.connected(provider).first),:"date-method" => :delete
+		# 	# link_to("Unlink", profile_connect_path(profile.connected(provider).first),method: :delete, target: '_blank', class: "btn btn-connected")
+		# else
+		# 	check_box_tag "field-connect-#{provider}",'', false , class: "btn-not-connected social-link", :"data-url" => user_omniauth_authorize_path(provider),:"date-method" => :get
+		# 	# link_to("Link", user_omniauth_authorize_path(provider), target: '_blank', class: "btn btn-not-connected")
+		# end
 	end
 
 	def normalize_posts(posts)
