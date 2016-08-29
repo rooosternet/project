@@ -12,7 +12,6 @@ class InMessagesController < WebsocketRails::BaseController
   end
 
   def create
-    byebug
     @message = InMessage.new(secure_params)
     @message.save
     unless @message.persisted?
