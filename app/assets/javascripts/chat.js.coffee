@@ -84,6 +84,7 @@ class @ChatApp
     if message.text
       if (message.channel == @currentChannel.name)
         $('.messages-wrapper').append @messageTemplate(message, @currentChannel.name, message.message_id)
+        $('.chat .messages').scrollTop($('.chat .messages')[0].scrollHeight)
     else
       alert "Enter the message"
 

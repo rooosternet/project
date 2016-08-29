@@ -170,7 +170,6 @@ $(function() {
 
 		});
 
-
 		$('.signin_form').bind('ajax:success',function(event, data, status, xhr){
 
 			fid = $(this).data("parent");
@@ -179,24 +178,38 @@ $(function() {
 		});
 
 		$('.signin_form').bind('ajax:complete',function(event, data, status, xhr){
-			fid = $(this).data("parent");
-			$("#"+fid).modal('hide');
-			window.location.href = "/";
-		});
+			if(data.status == 200){
+				fid = $(this).data("parent");
+				$("#"+fid).modal('hide');
+				window.location.href = "/";
+			}else{
+				var msg = "Sign-in resolved in error!!";
+				if(data.responseText=="Your account is pending approval!"){
+					$("#modal-signin").modal('hide');
+					$("#modal-signin-pending-alt").modal('show');
+				}else if(data.responseText=="Invalid email or password."){
+					msg = "Invalid email or password.";
+				}else if( xhr == "Unauthorized"){
+					msg = data.responseText;
+				}
 
-		$('.signin_form').bind('ajax:error', function(event, data, status, xhr) {
-			var msg = "Sign-in resolved in error!!";
-			if(data.responseText=="Your account is pending approval!"){
-				$("#modal-signin").modal('hide');
-				$("#modal-signin-pending-alt").modal('show');
-			}else if(data.responseText=="Invalid email or password."){
-				msg = "Invalid email or password.";
-			}else if( xhr == "Unauthorized"){
-				msg = data.responseText;
+				$("#sign-in-form-error").text(msg);
 			}
-
-			$("#sign-in-form-error").text(msg);
 		});
+
+		// $('.signin_form').bind('ajax:error', function(event, data, status, xhr) {
+		// 	var msg = "Sign-in resolved in error!!";
+		// 	if(data.responseText=="Your account is pending approval!"){
+		// 		$("#modal-signin").modal('hide');
+		// 		$("#modal-signin-pending-alt").modal('show');
+		// 	}else if(data.responseText=="Invalid email or password."){
+		// 		msg = "Invalid email or password.";
+		// 	}else if( xhr == "Unauthorized"){
+		// 		msg = data.responseText;
+		// 	}
+
+		// 	$("#sign-in-form-error").text(msg);
+		// });
 
 
 		$('#forget_password_form_id').bind('ajax:success',function(event, data, status, xhr){
