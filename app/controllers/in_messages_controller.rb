@@ -1,4 +1,4 @@
-class InMessagesController < WebsocketRails::BaseController
+class InMessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index

@@ -3,7 +3,7 @@
 // 		fid = $(this).data("parent");
 // 		$("#"+fid).modal('hide');
 // 		window.location.href = "/";
-// 	});	
+// 	});
 
 // 	$('.signin_form').bind('ajax:error', function(event, data, status, xhr) {
 // 		var msg = "Sign-in resolved in error!!";
@@ -13,7 +13,7 @@
 // 		}else if(data.responseText=="Invalid email or password."){
 // 			msg = "Invalid email or password.";
 // 		}
-// 		$("#sign-in-form-error").text(msg);	
+// 		$("#sign-in-form-error").text(msg);
 // 	});
 // };
 
@@ -81,10 +81,10 @@ $(document).ready(setupAjaxIndicator);
 function validatePassword(){
 	var password = document.getElementById("user_password")
 	, confirm_password = document.getElementById("user_password_confirmation");
-	
+
 	if(password.value != confirm_password.value) {
 		confirm_password.setCustomValidity("Passwords Don't Match");
-	} else {	
+	} else {
 		confirm_password.setCustomValidity('');
 	}
 };
@@ -99,8 +99,8 @@ $(function() {
 				scrollingSpeed: 1000
 			});
 		};
-			
-		// console.log("--- ready");	
+
+		// console.log("--- ready");
 		$('#user_password').on('change', function(event) {
 			event.preventDefault();
 			validatePassword();
@@ -115,7 +115,7 @@ $(function() {
 		// // Scroll To
 		// $('[data-scroll-to]').on('click', function(event) {
 		// 	event.preventDefault();
-			
+
 		// 	var target = $(this).data('scroll-to');
 
 		// 	$('html, body').animate({
@@ -159,7 +159,7 @@ $(function() {
 			fid = $(this).data("parent");
 			$("#"+fid).modal('hide');
 			$("#"+fid+"-alt").modal('show');
-		});	
+		});
 
 		$('.register_form').bind('ajax:error', function(event, data, status, xhr) {
 			fid = $(this).data("error-id");
@@ -172,10 +172,17 @@ $(function() {
 
 
 		$('.signin_form').bind('ajax:success',function(event, data, status, xhr){
+
 			fid = $(this).data("parent");
 			$("#"+fid).modal('hide');
 			window.location.href = "/";
-		});	
+		});
+
+		$('.signin_form').bind('ajax:complete',function(event, data, status, xhr){
+			fid = $(this).data("parent");
+			$("#"+fid).modal('hide');
+			window.location.href = "/";
+		});
 
 		$('.signin_form').bind('ajax:error', function(event, data, status, xhr) {
 			var msg = "Sign-in resolved in error!!";
@@ -188,14 +195,14 @@ $(function() {
 				msg = data.responseText;
 			}
 
-			$("#sign-in-form-error").text(msg);	
+			$("#sign-in-form-error").text(msg);
 		});
 
 
 		$('#forget_password_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$("#modal-forget-password").modal('hide');
 			$("#modal-reset-password-alt").modal('show');
-		});	
+		});
 
 		$('#forget_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
 			$(".form-forget-password-error").text(data.responseText);
@@ -203,13 +210,13 @@ $(function() {
 
 		$('.modal').on('show.bs.modal', function (e) {
 			$(this).find(".form-error").html("");
-			// $(this).modal({ backdrop: 'static' });	
+			// $(this).modal({ backdrop: 'static' });
 		});
 
 		$('#change_password_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$("#modal-change-password").modal('hide');
 			window.location.href = "/";
-		});	
+		});
 
 		$('#change_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
 			$(".form-change-password-error").text(data.responseText);
@@ -219,7 +226,7 @@ $(function() {
 		$('#create_password_form_id').bind('ajax:success',function(event, data, status, xhr){
 			$("#modal-create-password").modal('hide');
 			window.location.href = "/";
-		});	
+		});
 
 		$('#create_password_form_id').bind('ajax:error', function(event, data, status, xhr) {
 			$(".form-create-password-error").text(data.responseText);
@@ -234,13 +241,13 @@ $(function() {
 		$('.radio-btn').on('click', function(e){
 			// e.preventDefault();
 		    // $('.radio-btn').removeClass('active active-btn');
-		    // $(this).addClass('active-btn');        
+		    // $(this).addClass('active-btn');
 		    var id = this.id;
-		    if(id == "field-company"){ 
-		    	$("#user_profile_attributes_is_company").attr('value',true);	
+		    if(id == "field-company"){
+		    	$("#user_profile_attributes_is_company").attr('value',true);
 		    	$("#user_profile_attributes_is_freelancer").attr('value',false);
 		    }else{
-		        $("#user_profile_attributes_is_company").attr('value',false);	
+		        $("#user_profile_attributes_is_company").attr('value',false);
 		    	$("#user_profile_attributes_is_freelancer").attr('value',true);
 		    }
 		});
@@ -256,16 +263,16 @@ $(function() {
 		// 			$("#signin_form_id").replaceWith(sign_in_form);
 		// 			$("#modal-signin").modal('show');
 		// 		},
-		// 		error: function(data){ 
+		// 		error: function(data){
 		// 			console.log(data);
 		// 		},
-		// 		complete: function(){ 
+		// 		complete: function(){
 		// 			trigger_signin_form();
 		// 		}
-		// 	});	
+		// 	});
 		// });
 
-		
+
 
 
 		// if ($this.is(':checked')) {
@@ -288,13 +295,13 @@ $(function() {
 					success: function(data){
 						console.log(data);
 					},
-					error: function(data){ 
+					error: function(data){
 						console.log(data);
 					},
-					complete: function(){ 
+					complete: function(){
 					}
 				});
-			}	
+			}
 		});
 
 });
