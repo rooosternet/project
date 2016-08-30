@@ -13,6 +13,7 @@ require 'capistrano/rails/migrations'
 # require 'capistrano/sidekiq'
 require "whenever/capistrano"
 #require 'sidekiq/capistrano'
+require 'capistrano/websocket-rails'
 
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
@@ -62,13 +63,13 @@ end
 
 namespace :cache do
   desc "Clear memcach after deployment"
-	task :clear do 
+	task :clear do
 		on roles(:app) do
 			within release_path do
 				with rails_env: fetch(:rails_env) do
 					execute :rake, "cache:clear_memcached"
 				end
-			end		 
+			end
 		end
 	end
 end
@@ -84,12 +85,12 @@ namespace :roooster do
 			info "Executing command: #{command}"
 			execute command
 		end
-	end  
+	end
 end
 
 
 
- 
+
 
 
 namespace :deploy do
@@ -106,13 +107,13 @@ namespace :deploy do
 		run_locally do
 			command = "grep -r 'byebug' app plugins lib | grep -v '#.*byebug'"
 			value = `#{command}`
-			if value != "" 
+			if value != ""
 				error "YOU ARE DEPLOYING WITH BYEBUG \n " + `#{command}`
 				exit 1
 			end
 		end
 	end
-	
+
 	after :restart, :clear_cache do
 		on roles(:web), in: :groups, limit: 3, wait: 10 do
 	      # Here we can do anything such as:
@@ -120,7 +121,7 @@ namespace :deploy do
 	      #   execute :rake, 'cache:clear'
 	      # end
 	  end
-	end   
+	end
 
 
 
@@ -148,23 +149,23 @@ namespace :deploy do
 	    end
 	  end
 
-  
+
   	# before :starting, 'deploy:clear_assets'
 	before :starting, 'deploy:check_byebug'
 	after :finishing, 'deploy:cleanup'
 	after :finishing, 'roooster:chown_root_dir'
 	after 'deploy:finished', 'deploy:notify_deploy'
 	after 'deploy:publishing', 'deploy:restart'
-	
+
 end
 
 
-namespace :rake do  
-	desc "Run a task on a remote server."  
-  # run like: cap staging rake:invoke task=a_certain_task  
-  task :invoke do  
+namespace :rake do
+	desc "Run a task on a remote server."
+  # run like: cap staging rake:invoke task=a_certain_task
+  task :invoke do
   	run_remote_rake(ENV['task'])
-  end  
+  end
 end
 
 # check if remote file exist
