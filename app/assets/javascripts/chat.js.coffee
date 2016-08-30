@@ -46,7 +46,8 @@ class @ChatApp
     <i>#{user} #{action}</i>
     """
   constructor: (@currentChannel = undefined, @username = undefined) ->
-    @dispatcher = new WebSocketRails(window.location.hostname + ":3245" + "/websocket")
+    @dispatcher = new WebSocketRails(window.location.hostname + ":3001" + "/websocket")
+
     @team = $(".chat").data('team')
     @bindEvents()
 

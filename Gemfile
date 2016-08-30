@@ -37,6 +37,8 @@ gem 'omniauth-linkedin'
 gem 'omniauth-behance', path: "vendor/omniauth_behance"
 gem 'omniauth-dribbble', '~> 0.0.1'
 
+gem 'redis', '~>3.2'
+
 gem 'acts_as_tree', '~> 2.4'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
