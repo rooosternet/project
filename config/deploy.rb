@@ -30,7 +30,7 @@ set :bundle_flags, '--deployment '                       # this is default '--de
 # set :sidekiq_options, ->{ "-e #{fetch(:stage)} -C #{current_path}/config/sidekiq.yml -L #{current_path}/log/sidekiq.log" }
 
 set :rvm_type, :system
-set :rvm_map_bins ,  %w{bundle gem rake ruby whenever sidekiq sidekiqctl :websocket}
+set :rvm_map_bins ,  %w{bundle gem rake ruby whenever sidekiq sidekiqctl}
 set :rvm_custom_path, "/usr/local/rvm/" #/usr/local/rvm/scripts/rvm
 set :rvm_ruby_version, '2.2.0'
 
@@ -47,7 +47,7 @@ set :normalize_asset_timestamps, %{public/images public/javascripts public/style
 # after :published, 'sidekiq:restart'
 
 SSHKit.config.command_map[:rake] = "bundle exec rake"
-SSHKit.config.command_map[:websocket] = "bundle exec rake websocket_rails:start_server"
+# SSHKit.config.command_map[:websocket] = "bundle exec rake websocket_rails:start_server"
 # SSHKit.config.command_map[:whenever] = "bundle exec whenever"
 # SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
 # SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"

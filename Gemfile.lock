@@ -370,7 +370,6 @@ DEPENDENCIES
   rb-fchange
   rb-fsevent
   rb-inotify
-  redis (~> 3.2)
   roo
   rspec-rails
   sass-rails (~> 5.0)
