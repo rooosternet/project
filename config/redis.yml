@@ -1,14 +1,30 @@
-#config/redis.yml
-default:
-  host: localhost
-  port: 6379
-development:
-  db: dev
-#  namespace: appname_dev
-test:
-  db: test
-#  namespace: appname_test
-production:
-  db: prod
+# #config/redis.yml
+# default:
+#   host: localhost
+#   port: 6379
+# development:
+#   db: dev
+# #  namespace: appname_dev
+# test:
+#   db: test
+# #  namespace: appname_test
+# production:
+#   db: prod
+#   host: 127.0.0.1
+# #  namespace: appname_prod
+
+defaults: &defaults
   host: 127.0.0.1
-#  namespace: appname_prod
+  port: 6379
+
+development:
+  <<: *defaults 
+
+test:
+  <<: *defaults 
+
+staging:
+  <<: *defaults 
+
+production:
+  <<: *defaults 

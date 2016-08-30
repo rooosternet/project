@@ -34,17 +34,17 @@ Rails.application.configure do
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.smtp_settings = {
-    address: Rails.application.secrets.email_server,
-    port: 465,
-    ssl: true,
-    domain: Rails.application.secrets.domain_name,
-    authentication: 'plain',
-    enable_starttls_auto: true,
-    user_name: Rails.application.secrets.email_provider_username,
-    password: Rails.application.secrets.email_provider_password
+  config.action_mailer.smtp_settings =   config.action_mailer.smtp_settings = {
+      address: Rails.application.secrets.email_server,
+      # port: 465,
+      port: 587,
+      # ssl: true,
+      domain: Rails.application.secrets.domain_name,
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: Rails.application.secrets.email_provider_username,
+      password: Rails.application.secrets.email_provider_password
   }
-
 
 
   config.assets.compress = false

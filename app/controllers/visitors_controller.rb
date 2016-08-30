@@ -13,7 +13,7 @@ class VisitorsController < ApplicationController
 			end
 			@user_avatars = session[:user_avatars]
 			session[:user_avatars] = false
-		end	
+		end
 
 		@blog_intro = generate_blog_posts_intro #Rails.env.development? ? [] : generate_blog_posts_intro
 	end

@@ -15,6 +15,7 @@
 /vendor/bundle/
 /vendor/ruby/
 /vendor/devise/
+/vendor/devise*/
 /vendor/devise_invitable/
 /vendor/will_paginate/
 /vendor/avatars_for_rails/
