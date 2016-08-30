@@ -37,6 +37,8 @@ gem 'omniauth-linkedin'
 gem 'omniauth-behance', path: "vendor/omniauth_behance"
 gem 'omniauth-dribbble', '~> 0.0.1'
 
+gem 'redis', '~>3.2'
+
 gem 'acts_as_tree', '~> 2.4'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
@@ -64,6 +66,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-rails-console'
   gem 'capistrano-rvm', '~> 0.1.1'
+  gem 'capistrano-websocket-rails'
   # gem 'capistrano-sidekiq'
   # gem 'guard-bundler'
   # gem 'guard-rails'

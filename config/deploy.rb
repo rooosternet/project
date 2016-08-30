@@ -11,7 +11,7 @@ set :scm, :git
 set :format, :pretty
 set :repo_url, 'git@github.com:rooosterteam/roooster.git'
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system files public/uploads}
-set :linked_files, %w{config/database.yml config/secrets.yml config/initializers/session_store.rb config/omniauth.yml} 
+set :linked_files, %w{config/database.yml config/secrets.yml config/initializers/session_store.rb config/omniauth.yml}
 
 # set :bundle_bins, fetch(:bundle_bins, []).push('my_new_binary')
 # set :bundle_roles, :all                                         # this is default
@@ -20,7 +20,7 @@ set :linked_files, %w{config/database.yml config/secrets.yml config/initializers
 # set :bundle_gemfile, -> { release_path.join('Gemfile') }        # default: nil
 # set :bundle_path, -> { shared_path.join('bundle') }             # this is default
 # set :bundle_without, %w{development test}.join(' ')             # this is default
-set :bundle_flags, '--deployment '                       # this is default '--deployment --quiet' 
+set :bundle_flags, '--deployment '                       # this is default '--deployment --quiet'
 # set :bundle_env_variables, {}                                   # this is default
 
 # set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
@@ -32,7 +32,7 @@ set :bundle_flags, '--deployment '                       # this is default '--de
 set :rvm_type, :system
 set :rvm_map_bins ,  %w{bundle gem rake ruby whenever sidekiq sidekiqctl}
 set :rvm_custom_path, "/usr/local/rvm/" #/usr/local/rvm/scripts/rvm
-set :rvm_ruby_version, '2.2.0' 
+set :rvm_ruby_version, '2.2.0'
 
 
 # set :rails_env, 'staging'                  # If the environment differs from the stage name
@@ -47,6 +47,7 @@ set :normalize_asset_timestamps, %{public/images public/javascripts public/style
 # after :published, 'sidekiq:restart'
 
 SSHKit.config.command_map[:rake] = "bundle exec rake"
+# SSHKit.config.command_map[:websocket] = "bundle exec rake websocket_rails:start_server"
 # SSHKit.config.command_map[:whenever] = "bundle exec whenever"
 # SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
 # SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"

@@ -73,6 +73,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-websocket-rails (0.2.0)
+      capistrano (>= 3.0.0)
+      websocket-rails (>= 0.7.0)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -336,6 +339,7 @@ DEPENDENCIES
   capistrano-rails (~> 1.1.0)
   capistrano-rails-console
   capistrano-rvm (~> 0.1.1)
+  capistrano-websocket-rails
   capybara
   carrierwave
   coffee-rails (~> 4.1.0)
@@ -364,6 +368,7 @@ DEPENDENCIES
   rb-fchange
   rb-fsevent
   rb-inotify
+  redis (~> 3.2)
   roo
   rspec-rails
   sass-rails (~> 5.0)

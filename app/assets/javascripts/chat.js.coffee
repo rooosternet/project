@@ -46,7 +46,8 @@ class @ChatApp
     <i>#{user} #{action}</i>
     """
   constructor: (@currentChannel = undefined, @username = undefined) ->
-    @dispatcher = new WebSocketRails(window.location.host + "/websocket")
+    @dispatcher = new WebSocketRails(window.location.hostname + ":3001" + "/websocket")
+
     @team = $(".chat").data('team')
     @bindEvents()
 
@@ -84,6 +85,7 @@ class @ChatApp
     if message.text
       if (message.channel == @currentChannel.name)
         $('.messages-wrapper').append @messageTemplate(message, @currentChannel.name, message.message_id)
+        $('.chat .messages').scrollTop($('.chat .messages')[0].scrollHeight)
     else
       alert "Enter the message"
 
