@@ -19,37 +19,42 @@ puts "REDIS_CONFIG: #{REDIS_CONFIG}"
 require 'redis'
 require 'redis/objects'
 
-if defined?(PhusionPassenger)
-  PhusionPassenger.on_event(:starting_worker_process) do |forked|
-    if forked
-      $redis.client.disconnect
-      $redis = Redis.new(REDIS_CONFIG)
-      # $redis = Redis.new(:host => 'localhost', :port => YAML.load(File.open("#{rails_root}/config/redis.yml")).with_indifferent_access[rails_env][:port])
-      Rails.logger.info "Reconnecting to redis"
-    else
-      # We're in conservative spawning mode. We don't need to do anything.
-    end
-  end
-end
+$redis = Redis.new(REDIS_CONFIG)
+$redis.ping
+Redis::Objects.redis = $redis
+print "Redis connection established...\n" 
 
-unless defined?($redis)
+# if defined?(PhusionPassenger)
+#   PhusionPassenger.on_event(:starting_worker_process) do |forked|
+#     if forked
+#       $redis.client.disconnect
+#       $redis = Redis.new(REDIS_CONFIG)
+#       # $redis = Redis.new(:host => 'localhost', :port => YAML.load(File.open("#{rails_root}/config/redis.yml")).with_indifferent_access[rails_env][:port])
+#       Rails.logger.info "Reconnecting to redis"
+#     else
+#       # We're in conservative spawning mode. We don't need to do anything.
+#     end
+#   end
+# end
 
-  begin 
-    print "Connecting to Redis...\n" 
-    $redis = Redis.new(REDIS_CONFIG)
-    $redis.ping
-    Redis::Objects.redis = $redis
-    print "Redis connection established...\n" 
-  rescue Redis::CannotConnectError => e
-    print "Error: Redis server unavailable...." 
-    puts e.message
-    puts e.backtrace
-    $redis = nil
-  end 
+# unless defined?($redis)
 
-# Redis::Objects.redis = Redis.new(REDIS_CONFIG)
-# require 'rails_feature_management'    
-# Rails.feature_manager.engine = $redis
-#Rails.feature_manager.safe_mode!
-end
+#   begin 
+#     print "Connecting to Redis...\n" 
+#     $redis = Redis.new(REDIS_CONFIG)
+#     $redis.ping
+#     Redis::Objects.redis = $redis
+#     print "Redis connection established...\n" 
+#   rescue Redis::CannotConnectError => e
+#     print "Error: Redis server unavailable...." 
+#     puts e.message
+#     puts e.backtrace
+#     $redis = nil
+#   end 
+
+# # Redis::Objects.redis = Redis.new(REDIS_CONFIG)
+# # require 'rails_feature_management'    
+# # Rails.feature_manager.engine = $redis
+# #Rails.feature_manager.safe_mode!
+# end
 
