@@ -24,7 +24,7 @@
 // require javascripts/bootstrap-sprockets
 // require avatars_for_rails
 //= require jquery.autosize
-//= require websocket_rails/main
 //= require_tree .
+//= require websocket_rails/main
 
 
