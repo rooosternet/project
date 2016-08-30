@@ -17,7 +17,7 @@
 REDIS_CONFIG = YAML.load(File.open("#{Rails.root}/config/redis.yml")).with_indifferent_access[Rails.env].merge(:thread_safe => true)
 puts "REDIS_CONFIG: #{REDIS_CONFIG}"
 require 'redis'
-# require 'redis/objects'
+require 'redis/objects'
 
 if defined?(PhusionPassenger)
   PhusionPassenger.on_event(:starting_worker_process) do |forked|
@@ -38,7 +38,7 @@ unless defined?($redis)
     print "Connecting to Redis...\n" 
     $redis = Redis.new(REDIS_CONFIG)
     $redis.ping
-    # Redis::Objects.redis = $redis
+    Redis::Objects.redis = $redis
     print "Redis connection established...\n" 
   rescue Redis::CannotConnectError => e
     print "Error: Redis server unavailable...." 
