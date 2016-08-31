@@ -7,6 +7,8 @@ class TeamsController < ApplicationController
   after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy ,:archive]
   protect_from_forgery :except => [:update_team_avatar]
 
+  before_filter :check_for_mobile, :only => [:show]
+
   def update_team_avatar
 
     begin
