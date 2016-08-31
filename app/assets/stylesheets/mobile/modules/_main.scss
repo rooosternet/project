@@ -1,0 +1,9 @@
+/* ------------------------------------------------------------ *\
+	Main
+\* ------------------------------------------------------------ */
+
+.main-toggle { 
+	& { position: relative; left: 0; transform: translateX(0); transition: all .3s; }
+
+	&.pushed { left: 63px; transform: translateX(-100%); }
+}

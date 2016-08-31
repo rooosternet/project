@@ -1,0 +1,43 @@
+/* ------------------------------------------------------------ *\
+	Creatives
+\* ------------------------------------------------------------ */
+
+.creatives-add {
+	& { padding: 50px 0 20px; text-align: center; }
+
+	h4 { margin: 0; font-size: 18px; color: #a9acb1; font-weight: bold; letter-spacing: 0.02em; text-transform: uppercase; }
+
+	.team {
+		& { width: 177px; }
+
+		.team-image { width: 177px; height: 177px; margin-bottom: 13px; }
+
+		.team-actions { left: 5px; bottom: 3px; width: auto; height: auto; }
+
+		.team-add { width: auto; height: auto; border-radius: 50%; border: 0 none; }
+	}	
+
+	.form {
+		& { position: relative; padding-right: 64px; }
+
+		.form-control { height: 27px; border-radius: 0; font-size: 13px; }	
+
+		.form-actions { position: absolute; right: 0; top: 0; padding: 0; margin: 0; }
+
+		.btn { height: 27px; width: 57px; padding: 0; text-align: center; line-height: 27px; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Creatives
+\* ------------------------------------------------------------ */
+
+.creatives {
+	& { position: absolute; top: 0; left: 100%; width: calc(100% - 126px); text-align: center; }
+
+	.user-alt {
+		.user-head { display: inline-block; }
+	}
+
+	h4 { text-transform: uppercase; font-weight: bold; font-size: 17px; letter-spacing: 0.02em; }
+}

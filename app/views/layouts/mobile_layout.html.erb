@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Roooster" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Roooster" %>">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700italic,700,500italic,500,400italic,300,300italic">
+  <%= csrf_meta_tags %>
+  <%= favicon %>
+  <%= stylesheet_link_tag 'mobile_application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= google_analytics %>
+</head>
+<body>
+    <% if user_signed_in? %>
+
+    <div class="wrapper">
+
+      <%= render :partial => 'pages/header_logged' %>
+
+      <div class="main">
+        <div class="shell">
+          <%= yield %>
+        </div>
+      </div>
+
+      <%= render :partial => 'pages/modals_edit' %>
+      <% if @hide_footer %>
+      <%= render :partial => 'pages/modal_delete_message'%>
+      <%= render :partial => 'pages/modal_report_message'%>
+      <%= render :partial => 'pages/modal_ignore_user'%>
+      <%= render :partial => 'pages/modal_avatar'%>
+      <%= render :partial => 'pages/modal_search'%>
+      <% end %>
+
+      <%= render :partial => 'pages/modals_alt' %>
+      <%= render :partial => 'pages/footer' unless  @hide_footer %>
+
+    </div>
+
+    <%= javascript_tag do %>
+      var newTeamsCount = <%= current_user.next_team_id %>;
+    <% end %>
+  <% else %>
+
+    <div class="wrapper  wrapper-fullpage">
+      <div class="main" id="main-landing">
+          <%= yield %>
+      </div>
+      <%= render :partial => 'pages/modals_sign' %>
+      <%= render :partial => 'pages/modals_alt' %>
+    </div>
+
+  <% end %>
+</body>
+</html>

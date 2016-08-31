@@ -1,0 +1,92 @@
+/* ------------------------------------------------------------ *\
+	Icons
+\* ------------------------------------------------------------ */
+
+[class^=ico-] { display: inline-block; vertical-align: middle; background-size: 100% 100%; background-repeat: no-repeat; background-position: 0 0; }
+
+.ico-arrow-down { width: 38px; height: 38px; background-image: url(../images/ico-arrow-down@2x.png); }
+
+.ico-arrow-down-medium { width: 23px; height: 23px; background-image: url(../images/ico-arrow-down-medium@2x.png); }
+
+.ico-arrow-down-small { width: 14px; height: 14px; background-image: url(../images/ico-arrow-down-small@2x.png); }
+.ico-arrow-right-small { width: 14px; height: 14px; background-image: url(../images/ico-arrow-right-small@2x.png); }
+.ico-arrow-left-small { width: 14px; height: 14px; background-image: url(../images/ico-arrow-left-small@2x.png); }
+.ico-arrow-down-small-orange { background: url(../images/ico-arrow-down-small-orange@2x.png) no-repeat 0 0; background-size: 100% auto; width: 14px; height: 14px; }
+.ico-arrow-right-small-orange { background: url(../images/ico-arrow-right-small-orange@2x.png) no-repeat 0 0; background-size: 100% auto; width: 14px; height: 14px; }
+
+.ico-close { width: 25px; height: 24px; background-image: url(../images/ico-close@2x.png); }
+.ico-remove { width: 14px; height: 14px; background-image: url(../images/ico-remove@2x.png); }
+
+.ico-user { width: 17px; height: 16px; background-image: url(../images/ico-user@2x.png); }
+
+.ico-link { width: 26px; height: 26px; background-image: url(../images/ico-link@2x.png); }
+.ico-linkedin { width: 25px; height: 26px; background-image: url(../images/ico-linkedin@2x.png); }
+.ico-behance { width: 26px; height: 26px; background-image: url(../images/ico-behance@2x.png); }
+.ico-vimeo { width: 26px; height: 26px; background-image: url(../images/ico-vimeo@2x.png); }
+
+.ico-dots { width: 22px; height: 5px; background-image: url(../images/ico-dots@2x.png); }
+
+.ico-plus { width: 10px; height: 10px; background-image: url(../images/ico-plus@2x.png); }
+
+.ico-new-message { position: absolute; padding: 2px; background: #fafafa; border-radius: 50%; border: 1px solid #eee; }
+.ico-new-message:before { content: ''; display: block; width: 8px; height: 8px; border-radius: 50%; background: #ff0000; }
+
+.ico-prev { width: 23px; height: 23px; background-image: url(../images/ico-prev@2x.png); }
+.ico-next { width: 23px; height: 23px; background-image: url(../images/ico-next@2x.png); }
+
+.ico-add { width: 20px; height: 20px; background-image: url(../images/ico-add@2x.png); background-position: center 0; background-size: 100% auto; }
+.ico-message { width: 19px; height: 19px; background-image: url(../images/ico-message@2x.png); background-position: center 0; background-size: 19px 39px; }
+.ico-message-add { width: 19px; height: 19px; background-image: url(../images/ico-message-add@2x.png); background-position: center 0; background-size: 19px 39px; }
+
+.ico-settings { width: 19px; height: 19px; background-image: url(../images/ico-settings@2x.png); background-position: center 0; background-size: 19px 38px; }
+
+a:hover .ico-settings,
+a:hover .ico-add,
+a:hover .ico-message,
+a:hover .ico-message-add { background-position: center 100%; }
+
+.ico-skills { width: 14px; height: 14px; background-image: url(../images/ico-skills@2x.png); }
+.ico-people { width: 14px; height: 14px; background-image: url(../images/ico-people@2x.png); }
+.ico-location { width: 14px; height: 14px; background-image: url(../images/ico-location@2x.png); }
+
+.ico-delete { width: 17px; height: 17px; background-image: url(../images/ico-delete@2x.png); background-position: center 0; background-size: 100% auto; }
+.ico-report { width: 17px; height: 17px; background-image: url(../images/ico-report@2x.png); background-position: center 0; background-size: 100% auto; }
+.ico-ignore { width: 17px; height: 17px; background-image: url(../images/ico-ignore@2x.png); background-position: center 0; background-size: 100% auto; }
+
+a:hover .ico-delete,
+a:hover .ico-report,
+a:hover .ico-ignore { background-position: center 100%; }
+
+.ico-select { width: 19px; height: 19px; padding: 6px; background: #fff; border: 1px solid #a2a2a2; border-radius: 50%; transition: all .2s ease-out; }
+.ico-select:before { content: ''; display: block; width: 100%; height: 100%; border: 1px solid #b6b6b6; border-radius: 50%; transition: all .2s ease-out; }
+.ico-select:hover:before { background: #b6b6b6; }
+
+.ico-admin { width: 15px; height: 15px; background-image: url(../images/ico-admin@2x.png); background-size: 15px 15px; }
+.ico-plus-red { width: 34px; height: 34px; background-image: url(../images/ico-plus-red@2x.png); background-size: 34px 34px; }
+.ico-arrow-left-gray { width: 34px; height: 34px; background-image: url(../images/ico-arrow-left-gray@2x.png); background-size: 34px 34px; }
+
+.ico-message-mobile { width: 29px; height: 29px; background-image: url(../images/ico-message-mobile@2x.png); background-position: center 0; background-size: 100% auto; }
+.ico-profile-mobile { width: 29px; height: 29px; background-image: url(../images/ico-profile-mobile@2x.png); background-position: center 0; background-size: 100% auto; }
+.ico-admin-mobile { width: 29px; height: 29px; background-image: url(../images/ico-admin-mobile@2x.png); background-position: center 0; background-size: 100% auto; }
+.ico-remove-mobile { width: 29px; height: 29px; background-image: url(../images/ico-remove-mobile@2x.png); background-position: center 0; background-size: 100% auto; }
+
+a:hover .ico-message-mobile,
+a:hover .ico-admin-mobile,
+a:hover .ico-profile-mobile,
+a:hover .ico-remove-mobile { background-position: center 100%; }
+
+/* ------------------------------------------------------------ *\
+	Icon Loading
+\* ------------------------------------------------------------ */
+
+@-webkit-keyframes rotate {
+	from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+	to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@keyframes rotate {
+	from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+	to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+.ico-loader { width: 32px; height: 32px; background-image: url(../images/ico-loader.png); -webkit-animation: 1s rotate linear infinite; animation: 1s rotate linear infinite; }

@@ -14,5 +14,6 @@ Rails.application.config.assets.paths << Rails.root.join("app", "assets", "boots
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "fastselect")
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "font-awesome")
 Rails.application.config.assets.precompile  += ['*.png','*.ico','*.jpg','*.jpeg','*.gif','*.woff2']
+Rails.application.config.assets.precompile += %w( mobile_application.css )
 # Rails.application.config.assets.precompile  = ['*.js', '*.scss' , '*.css','*.png','*.ico','*.jpg','*.jpeg','*.gif','*.woff2']
 Rails.application.config.assets.precompile  << /\.(?:svg|eot|woff|ttf)\z/

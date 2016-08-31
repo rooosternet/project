@@ -1,0 +1,333 @@
+/* ------------------------------------------------------------ *\
+	Form
+\* ------------------------------------------------------------ */
+
+.form {
+
+	.form-head { padding: 10px 0; text-align: center; font-size: 12px; color: #5b5b5b; }
+	.form-title { max-width: 256px; margin: 0 auto 8px; padding: 9px 0; font-weight: bold; text-transform: uppercase; color: #000; border-bottom: 1px solid #f0f0f0; }
+
+	.form-row { margin-bottom: 10px; font-size: 12px; }
+	.form-row a { color: #7b7b7b; }
+	.form-row-alt { margin: 15px 0 -5px; }
+
+	.form-label { display: block; margin: 0 0 3px; font-size: 13px; color: #535353; font-weight: normal; }
+	.form-control { height: 28px; padding: 0 13px; background: #fbfbfb; border-radius: 0; border: 1px solid #dae4eb; box-shadow: none; font-size: 13px; color: #cfcfcf; transition: all .2s ease-out; }
+	.form-control:focus { color: #535353; }
+
+	.form-group { margin: 0; }
+	.form-group h5 { font-size: 15px; font-weight: bold; color: #000; text-transform: uppercase; }
+
+	.form-asterisk { color: #aa3939; }
+
+	.form-group + .form-group { border-top: 1px solid #f0f0f0; margin-top: 25px; padding-top: 15px; }
+
+	.form-actions { max-width: 256px; margin: 0 auto; padding: 18px 0;
+
+		.btn { width: 100%; margin-bottom: 6px; }
+	}
+
+	.form-error { margin-bottom: 25px; font-size: 15px; color: #7c7c7c; text-align: center; letter-spacing: -0.025em; }
+
+	.form-foot { font-size: 11px; color: #bdbdbd;
+
+		p { margin: 0; }
+		a { color: inherit; text-decoration: underline; }
+		a:hover { text-decoration: none; }
+	}
+
+	.form-foot-entry { max-width: 395px; margin: 0 auto; font-size: 11px; color: #c6c6c6; text-align: center; }
+
+	.form-thanks { padding: 10px 0; margin: 120px 0 270px; border-width: 1px 0; border-style: solid; border-color: #f0f0f0; text-align: center;
+
+		h4 { margin: 0 0 10px; font-weight: bold; text-transform: uppercase; }
+		p { margin: 0; font-size: 14px; }
+	}
+
+	.form-type { position: relative; margin: 22px 0; text-align: center; overflow: hidden;
+
+		&:before { content: ''; position: absolute; left: 0; top: 14px; width: 100%; height: 1px; background: #dce3e9; }
+
+		ul { position: relative; z-index: 5; padding: 0 10px; background: #fff; list-style: none outside none; display: inline-block; vertical-align: top; overflow: hidden; }
+		li { float: left; margin: 0 2px; }
+
+		.radio-type { position: relative; z-index: 5; }
+		.radio-type input { position: absolute; left: -4000px; top: 0; opacity: 0; }
+		.radio-type label { display: block; margin: 0; width: 100px; line-height: 28px; padding: 0 8px; background: #fff; border: 1px solid #dce3e9; font-size: 11px; font-weight: bold; text-transform: uppercase; color: #969aa0; cursor: pointer; }
+		.radio-type input:checked + label { color: #000; }
+	}
+
+	.form-socials { margin: 22px 0 0; }
+	.form-socials-expand { position: relative; border-top: 1px solid #f0f0f0; }
+	.form-socials-expand a { position: relative; top: -15px; display: block; text-decoration: none; text-align: center; }
+	.form-socials-expand i { display: block; width: 24px; height: 24px; margin: 0 auto; transition: all .2s ease-out; }
+	.form-socials-expand span { display: block; margin-top: 4px; font-size: 11px; color: #bdbdbd; }
+
+	.in + .form-socials-expand i { transform: rotate(180deg); }
+
+	.dropdown-avatar { display: block; width: auto; margin-top: -40px;
+
+		> a { display: block; }
+
+		.dropdown-menu { width: 100%; padding: 12px 10px; margin: 0; background: #fbfbfb; border-color: #dae4eb; }
+		.dropdown-menu li + li:before { content: none; }
+		.dropdown-menu:before,
+		.dropdown-menu:after { content: ''; position: absolute; bottom: 100%; left: 50%; margin-left: -10px; border-width: 0 10px 10px; border-style: solid; border-color: #dae4eb transparent; }
+		.dropdown-menu:after { border-width: 0 9px 9px; margin-left: -9px; margin-bottom: -1px; border-color: #fbfbfb transparent; }
+	}
+
+	.checkbox { position: relative; margin: 0 0 5px; line-height: 1.4;
+
+		input { position: absolute; left: -4000px; top: 0; opacity: 0; }
+		label { position: relative; min-height: 0; padding-left: 22px; color: #7b7b7b; }
+		label a { color: #d46a6b; }
+		label:before { content: ''; position: absolute; left: 0; top: 1px; width: 14px; height: 14px; line-height: 10px; border-radius: 50%; border: 2px solid #226666; text-align: center; color: #fff; font-size: 9px; font-family: FontAwesome; }
+		input:checked + label:before { content: '\f00c'; background: #226666; }
+	}
+
+	.radio { position: relative;  margin: 0;
+
+		input { position: absolute; left: -4000px; top: 0; opacity: 0; }
+		label { min-height: 0; margin: 0; font-size: 13px; color: #b3b2b2; padding-left: 16px; }
+		label:before { content: ''; position: absolute; left: 0; top: 2px; width: 11px; height: 11px; padding: 2px; border-radius: 50%; border: 2px solid #226666; background-clip: content-box; }
+		input:checked + label:before { background-color: #226666; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Form Sign Up
+\* ------------------------------------------------------------ */
+
+.form-signup {
+	.form-inner { max-width: 520px; margin: 0 auto; }
+	.form-inner-alt { max-width: 256px; margin: 0 auto; }
+
+	.form-row-alt { margin-top: 22px; }
+	.form-actions { padding: 24px 0 18px; }
+
+	&-alt .form-head p { text-align: justify; color: #9d9d9d; letter-spacing: -0.028em; line-height: 1.67; }
+
+	.fstElement { height: 28px; padding: 0 2px; background: #fbfbfb; border-radius: 0; border: 1px solid #dae4eb; font-size: 13px; color: #cfcfcf; }
+	.fstMultipleMode .fstQueryInput { height: 26px; }
+	.fstChoiceItem { height: 26px; line-height: 26px; }
+
+	@media (max-width: $screen-xs-max) {
+		.form-inner { max-width: 240px; }
+	}
+}
+/* ------------------------------------------------------------ *\
+	Form Sign In
+\* ------------------------------------------------------------ */
+
+.form-signin {
+	.form-inner { max-width: 256px; margin: 0 auto; }
+	.form-actions { padding-top: 2px; }
+}
+
+/* ------------------------------------------------------------ *\
+	Form Suggest
+\* ------------------------------------------------------------ */
+
+.form-suggest {
+
+	.form-inner { position: relative; padding: 0 60px 20px; background: #fdfdfd; border: 1px solid #dfe8e8; }
+	.form-inner-actions { position: absolute; left: 50%; bottom: -12px; transform: translateX(-50%); }
+	.form-inner-actions .collapsed i { transform: rotate(0deg); transition: all .2s ease-out; }
+	.form-inner-actions a i { transform: rotate(180deg); }
+	.form-control { height: 22px; padding: 0 10px; background: #fff; }
+
+	.row { position: relative; }
+	.row-icon { position: absolute; right: 100%; top: 4px; margin-right: 12px; }
+	.row-icon i { vertical-align: top; }
+
+	.form-group-row { overflow: hidden; }
+	.form-group-aside { float: left; margin-right: 8px; }
+	.form-group-inner { overflow: hidden; }
+
+	.form-row-icon { float: left; margin: -3px 6px -3px 0; }
+	.form-row-icon + .form-controls { overflow: hidden; }
+
+	.form-foot { position: relative; text-align: center; margin-top: 8px; font-size: 13px; }
+	.form-foot p { padding: 8px 0; }
+	.form-actions { position: absolute; right: 0; top: 0; width: 256px; padding: 0; }
+
+	.list-radios { padding: 3px 0; list-style: none outside none; overflow: hidden;
+
+		li { float: left; margin-right: 9px; }
+	}
+
+	@media (max-width: $screen-md-max) {
+		.form-group-aside { float: none; margin-right: 0; overflow: hidden; margin-bottom: 5px; }
+		.form-row-icon { display: none; }
+		.form-actions { position: static; margin: 30px auto 0; }
+	}
+
+	@media (max-width: $screen-xs-max) {
+		.form-inner { padding: 0 20px 20px; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Form Action
+\* ------------------------------------------------------------ */
+
+.form-action {
+
+	.form-entry { padding-top: 10px; font-size: 15px; color: #7c7c7c; text-align: center; }
+
+	.form-actions { text-align: center; }
+	.form-actions .form-btn { width: 115px; }
+
+	.form-body { padding: 0 20px; }
+}
+
+/* ------------------------------------------------------------ *\
+	Form Avatar
+\* ------------------------------------------------------------ */
+
+.form-avatar {
+
+	.form-head .team { margin: -44px 0 0; }
+
+	.form-hint { margin-bottom: 10px; font-weight: bold; text-transform: uppercase; font-size: 9px; color: #8c9197; opacity: .55; text-align: center; }
+}
+
+
+/* ------------------------------------------------------------ *\
+	Form Message
+\* ------------------------------------------------------------ */
+
+.form-message { position: relative; padding-bottom: 35px; font-size: 14px;
+
+	.messages { border: 0; margin-bottom: 0; }
+	.messages .message:last-child { margin-bottom: 50px; }
+
+	.form-avatar { position: absolute; left: -37px; top: -20px; width: 78px; height: 78px; padding: 4px; background: #fff; border-radius: 50%; border: 1px dashed #dbe5ec; }
+	.form-avatar img { border-radius: 50%; }
+
+	.form-body { position: relative; }
+
+	.form-label { display: block; margin: 0 46px 3px; }
+	.form-control { height: 178px; padding: 13px 46px; margin-bottom: 5px; background: #fbfbfb; border-radius: 0; border: 1px solid #dae4eb; font-size: 14px; box-shadow: none; resize: none; }
+	input.form-control { height: 32px; }
+
+	.form-actions { text-align: center; }
+	.form-actions .btn { width: 256px; }
+
+	.form-recipients { position: absolute; left: 0; bottom: -14px; width: 100%; text-align: center; font-size: 0; }
+	.form-recipients ul { list-style: none outside none; }
+	.form-recipients li { position: relative; display: inline-block; vertical-align: top; width: 28px; margin: 0 2px; }
+	.form-recipients img { border-radius: 50%; }
+	.form-recipients span { position: absolute; z-index: 200; left: 50%; top: -20px; font-size: 11px; color: #a7abb1; text-transform: uppercase; font-weight: bold; text-align: center; white-space: nowrap; visibility: hidden; opacity: 0; transform: translateX(-50%); transition: all .2s ease-out; }
+	.form-recipients li:hover span { visibility: visible; opacity: 1; }
+
+	.checkbox-select { margin: -14px 0 10px; text-align: center; font-size: 10px; color: #abafb3; }
+	.checkbox-select .checkbox-select-label { display: block; margin-top: 4px; font-weight: bold; text-transform: uppercase; }
+	.checkbox-select .checkbox-select-label-checked { display: none; margin-top: 4px; font-weight: normal; }
+	.checkbox-select input:checked + label .checkbox-select-label { display: none; }
+	.checkbox-select input:checked + label .checkbox-select-label-checked { display: block; }
+
+	@media (max-width: $screen-xs-max) {
+		.form-avatar { display: none; }
+		.form-label { margin: 0 0 3px; }
+		.form-control { padding: 8px; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Form Invite
+\* ------------------------------------------------------------ */
+
+.form-invite { max-width: 670px; margin: 0 auto; padding: 10px 0;
+
+	.form-head { margin-bottom: 18px; text-align: center; }
+	.form-head p { color: #9a9a9b; font-size: 12px; }
+
+	.form-title { margin: 0 0 5px; font-size: 18px; font-weight: bold; text-transform: uppercase; overflow: hidden; color: #000; text-align: center; }
+	.form-title span { display: inline-block; vertical-align: top; position: relative; padding: 0 10px; }
+
+	.form-title span:before,
+	.form-title span:after { content: ''; position: absolute; top: 10px; width: 600px; height: 1px; background: #d5d6d7; }
+	.form-title span:before { left: 100%; }
+	.form-title span:after { right: 100%; }
+
+	.form-row { margin: 0 -3px; }
+	.form-col { float: left; width: 28.5%; padding: 0 3px; }
+	.form-col-medium { width: 43%; }
+	.form-control { height: 27px; padding: 0 12px; border-radius: 0; background: #fbfbfb; border: 1px solid #dae4eb; font-size: 13px; color: #b4b3b3; box-shadow: none; }
+
+	.form-actions { display: none; margin-top: 12px; text-align: center; }
+	.active ~ .form-actions { display: block; }
+
+	.form-btn { width: 208px; }
+	.form-error { padding: 8px 0; color: #7a7b7b; font-size: 14px; }
+
+	.form-sent { font-size: 12px; color: #5b5b5b; text-align: center; }
+	.form-sent h5 { margin: 0 0 4px; font-size: 14px; font-weight: bold; }
+	.form-sent p { margin: 0; }
+
+	@media (max-width: $screen-xs-max) {
+		.form-col { float: none; width: auto; }
+		.form-col + .form-col { margin-top: 10px; }
+		.list-avatars .team { width: 52px; }
+		.list-avatars .team .team-image { width: 52px; height: 52px; }
+		.list-avatars .team .team-image img { border-width: 2px; }
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Autocomplete Field
+\* ------------------------------------------------------------ */
+
+.fstMultipleMode .fstControls { width: auto; padding: 0 5px; }
+.fstMultipleMode .fstQueryInput { height: 22px; padding: 0 5px; margin: 0; font-size: 13px; color: #b4b3b3; }
+.fstMultipleMode.fstActive .fstResults { border-color: #dae4eb; box-shadow: none; }
+.fstMultipleMode.fstActive { box-shadow: none; }
+.fstElement { display: block; border-color: #dae4eb; font-size: 12px; }
+.fstResultItem { padding: 0 10px; color: #b4b3b3; font-size: 13px; line-height: 1.62; }
+.fstResultItem.fstSelected { display: none; }
+.fstChoiceItem { height: 20px; line-height: 20px; margin: 1px 0 1px 5px; padding: 0 16px 0 0; border: 0; background: transparent; color: #b4b3b3; font-size: 13px; }
+.fstChoiceItem .btn-remove { position: absolute; right: 0; top: 50%; width: 14px; height: 14px; padding: 0; margin-top: -6px; border: 0; background-color: transparent; font-size: 0; line-height: 0; text-indent: -4004px; }
+.fstResultItem.fstFocused { background: transparent; color: #a4a3a3; border-color: transparent; }
+
+.fstNoResults { padding: 5px 10px; font-size: 13px; }
+
+/* ------------------------------------------------------------ *\
+	Checkbox Select
+\* ------------------------------------------------------------ */
+
+.checkbox-select {
+
+	input { position: absolute; left: -4000px; opacity: 0; }
+	label { cursor: pointer; }
+
+	input:checked + label .ico-select { padding: 4px; }
+	input:checked + label .ico-select:before { background: #b6b6b6; }
+}
+
+/* ------------------------------------------------------------ *\
+	List Socials
+\* ------------------------------------------------------------ */
+
+.list-socials { list-style: none outside none; }
+
+.list-socials li { position: relative; padding: 7px 0; border-top: 1px solid #f0f0f0; font-size: 13px; color: #535353; }
+.list-socials li > i { margin-right: 16px; }
+.list-socials li > span { display: inline-block; vertical-align: middle; }
+
+/* ------------------------------------------------------------ *\
+	Checkbox Link
+\* ------------------------------------------------------------ */
+
+.checkbox-link { position: absolute; right: 0; top: 50%; margin-top: -11px; width: 74px;
+
+	input { position: absolute; left: -4000px; top: 0; opacity: 0; }
+	label { display: block; margin: 0; cursor: pointer; }
+	label span { display: block; line-height: 22px; background: #000; color: #fff; font-size: 10px; text-align: center; }
+
+	.checkbox-label { text-transform: uppercase; }
+	.checkbox-label-checked { display: none; background: transparent; color: #535353; font-size: 13px; font-weight: normal; }
+
+	input:checked + label .checkbox-label { display: none; }
+	input:checked + label .checkbox-label-checked { display: block; }
+}

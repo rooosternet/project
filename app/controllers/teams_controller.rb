@@ -7,7 +7,7 @@ class TeamsController < ApplicationController
   after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy ,:archive]
   protect_from_forgery :except => [:update_team_avatar]
 
-  before_filter :check_for_mobile, :only => [:show]
+  # before_filter :check_for_mobile, :only => [:show]
 
   def update_team_avatar
 
@@ -105,8 +105,11 @@ class TeamsController < ApplicationController
             @private = false
             @messages = InMessage.where(team_id: @team.id, private: false).notchatarchive
           end
-
-          render (@team.backet)?  'my_contacts' : 'show'
+          if mobile_device?
+            render template: "teams/mobile/show", layout: "mobile_layout"
+          else
+            render (@team.backet)?  'my_contacts' : 'show'
+          end
         end
       }
 
