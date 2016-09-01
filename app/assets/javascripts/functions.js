@@ -93,13 +93,6 @@ $(function() {
 		var $win = $(window);
 		var $doc = $(document);
 
-		if ( $win.width() > 1024 ) {
-			$('#main-landing').fullpage({
-				sectionSelector: '.test',
-				scrollingSpeed: 1000
-			});
-		};
-
 		// console.log("--- ready");
 		$('#user_password').on('change', function(event) {
 			event.preventDefault();
