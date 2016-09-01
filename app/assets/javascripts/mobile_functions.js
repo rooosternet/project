@@ -52,21 +52,21 @@
 		})
 
 		// Modal Fix
-		$('.header [data-toggle="modal-alt"]').on('click', function(event) {
-			event.preventDefault();
+		// $('.header [data-toggle="modal-alt"]').on('click', function(event) {
+		// 	event.preventDefault();
 
-			var target = $(this).attr('href');
+		// 	var target = $(this).attr('href');
 
-			if(!$('.modal-backdrop').length) {
-				$(target).modal('show');
-				return;
-			}
+		// 	if(!$('.modal-backdrop').length) {
+		// 		$(target).modal('show');
+		// 		return;
+		// 	}
 
-			$('.modal').modal('hide');
-			setTimeout(function() {
-				$(target).modal('show');
-			}, 400);
-		});
+		// 	$('.modal').modal('hide');
+		// 	setTimeout(function() {
+		// 		$(target).modal('show');
+		// 	}, 400);
+		// });
 
 		// Autocomplete
 		$('.select-autocomplete').each(function(index, el) {
