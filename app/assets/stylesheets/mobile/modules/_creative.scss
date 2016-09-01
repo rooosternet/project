@@ -15,12 +15,12 @@
 		.team-actions { left: 5px; bottom: 3px; width: auto; height: auto; }
 
 		.team-add { width: auto; height: auto; border-radius: 50%; border: 0 none; }
-	}	
+	}
 
 	.form {
 		& { position: relative; padding-right: 64px; }
 
-		.form-control { height: 27px; border-radius: 0; font-size: 13px; }	
+		.form-control { height: 27px; border-radius: 0; font-size: 13px; }
 
 		.form-actions { position: absolute; right: 0; top: 0; padding: 0; margin: 0; }
 
@@ -35,8 +35,13 @@
 .creatives {
 	& { position: absolute; top: 0; left: 100%; width: calc(100% - 126px); text-align: center; }
 
-	.user-alt {
-		.user-head { display: inline-block; }
+	.user-alt { margin-bottom: 35px;
+		.user-head { display: inline-block;}
+		.user-alt-label {
+		    margin-top: 10px;
+		    display: block;
+		    font-size: 15px;
+		}
 	}
 
 	h4 { text-transform: uppercase; font-weight: bold; font-size: 17px; letter-spacing: 0.02em; }

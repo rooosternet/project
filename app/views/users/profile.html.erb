@@ -153,45 +153,15 @@
                             <h5 class="section-content-title">My Teams</h5>
 
                             <ul class="list-teams">
-                                <li>
-                                    <span>John’ys Team</span>
+                                <%- @teams.each do |team|%>
+                                    <li>
+                                        <span><%=team.name%></span>
 
-                                    <div class="image">
-                                        <img src="/assets/temp/team.jpg" alt="" width="53" height="53">
-                                    </div><!-- /.image -->
-                                </li>
-
-                                <li>
-                                    <span>project X</span>
-
-                                    <div class="image">
-                                        <img src="/assets/temp/team.jpg" alt="" width="53" height="53">
-                                    </div><!-- /.image -->
-                                </li>
-
-                                <li>
-                                    <span>illustrators</span>
-
-                                    <div class="image">
-                                        <img src="/assets/temp/team.jpg" alt="" width="53" height="53">
-                                    </div><!-- /.image -->
-                                </li>
-
-                                <li>
-                                    <span>John’ys Team</span>
-
-                                    <div class="image">
-                                        <img src="/assets/temp/team.jpg" alt="" width="53" height="53">
-                                    </div><!-- /.image -->
-                                </li>
-
-                                <li>
-                                    <span>2D guys</span>
-
-                                    <div class="image">
-                                        <img src="/assets/temp/team.jpg" alt="" width="53" height="53">
-                                    </div><!-- /.image -->
-                                </li>
+                                        <div class="image">
+                                            <%=image_tag team.image, { alt: "" ,width: '53', height: '53'} %>
+                                        </div><!-- /.image -->
+                                    </li>
+                                <%end%>
                             </ul><!-- /.list-teams -->
                         </div><!-- /.section-content-inner -->
                     </div><!-- /.section-content -->

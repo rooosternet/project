@@ -103,9 +103,9 @@
 	.checkbox-select { position: absolute; right: 10px; top: 10px; }
 
 	.user-actions-alt {
-		ul { position: relative; padding: 16px 0 32px; ist-style: none outside none; }
+		ul { position: relative; padding: 30px 0 0; margin: 10px 0px -20px 0; ist-style: none outside none; }
 		li { display: inline-block; vertical-align: middle; margin: 0 2px; }
-		span { position: absolute; left: 0; bottom: 0; width: 100%; line-height: 32px; color: #a9acb1; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
+		span { position: absolute; left: 0; bottom: -25px; width: 100%; line-height: 32px; color: #a9acb1; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; visibility: hidden; opacity: 0; transition: all .2s ease-out; }
 		li:hover span { visibility: visible; opacity: 1; }
 	}
 

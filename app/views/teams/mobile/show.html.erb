@@ -4,28 +4,39 @@
 				<div class="section-head">
 					<div class="section-head-inner">
 						<div class="team-page team-page-mobile">
-							<div class="team team-sortable">
-								<a href="#modal-avatar" class="team-inner" data-toggle="modal">
-									<div class="team-image">
-										<%=image_tag @team.image, { alt: "" ,class: "team-image-selected"} %>
-										<div class="team-image-change">
-											<span>
-												Change<br>
-												Image
-											</span>
-										</div><!-- /.team-image-change -->
+							<%-if @is_current_user_admin%>
+								<div class="team team-sortable">
+									<a href="#modal-avatar" class="team-inner" data-toggle="modal">
+										<div class="team-image">
+											<%=image_tag @team.image, { alt: "" ,class: "team-image-selected"} %>
+											<div class="team-image-change">
+												<span>
+													Change<br>
+													Image
+												</span>
+											</div><!-- /.team-image-change -->
 
+											<div class="team-actions">
+												<span class="team-count team-count-alt"><i class="ico-admin"></i></span>
+											</div><!-- /.team-actions -->
+										</div><!-- /.team-image -->
+									</a>
+								</div><!-- /.team -->
+							<%else%>
+								<div class="team team-sortable">
+									<div class="team-image">
+										<%=image_tag @team.image, { alt: "" ,class: ""} %>
 										<div class="team-actions">
-											<span class="team-count team-count-alt"><i class="ico-admin"></i></span>
+											<span class="team-count"><%= @team.team_profiles.count %></span>
 										</div><!-- /.team-actions -->
 									</div><!-- /.team-image -->
-								</a>
-							</div><!-- /.team -->
+								</div><!-- /.team -->
+							<%end%>
 
 							<div class="team-page-content">
-								<h4 class="team-page-name" contenteditable><%= @team.name %></h4><!-- /.team-page-name -->
+								<h4 class="team-page-name" <%='contenteditable' if @is_current_user_admin%>><%= @team.name %></h4><!-- /.team-page-name -->
 
-								<div class="team-page-description" contenteditable data-placeholder="This is where you can write a short description for this team."><%= @team.description %></div><!-- /.team-page-description -->
+								<div class="team-page-description" <%='contenteditable' if @is_current_user_admin%> data-placeholder="This is where you can write a short description for this team."><%= @team.description %></div><!-- /.team-page-description -->
 							</div><!-- /.team-page-content -->
 
 							<div class="team-page-actions">
@@ -125,7 +136,7 @@
 							<a href="#owner-actions" class="user-image" data-toggle="collapse">
 								<%=image_tag @team.owner.profile.user.profile_image, { alt: "" } %>
 							</a>
-							<%= @team.owner.name%>
+							<div class='user-alt-label'><%= @team.owner.name%></div>
 							<div class="user-head-placeholder">
 								<span>
 									Drag to the<br>
@@ -176,7 +187,7 @@
 							<a href="#user<%=team_user.id%>-actions" class="user-image" data-toggle="collapse">
 								<%=image_tag team_user.profile.user.profile_image, { alt: "" } %>
 							</a>
-							<%= team_user.profile.user.name%>
+							<div class='user-alt-label'><%= team_user.profile.user.name%></div>
 							<div class="user-head-placeholder">
 								<span>
 									Drag to the<br>

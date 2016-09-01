@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find(params[:id])
+    @teams = @user.teams
     render layout: 'mobile_layout'
   end
 
