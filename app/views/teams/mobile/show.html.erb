@@ -7,7 +7,7 @@
 							<div class="team team-sortable">
 								<a href="#modal-avatar" class="team-inner" data-toggle="modal">
 									<div class="team-image">
-										<%=image_tag @team.owner.profile_image, { alt: "" ,class: "team-image-selected"} %>
+										<%=image_tag @team.image, { alt: "" ,class: "team-image-selected"} %>
 										<div class="team-image-change">
 											<span>
 												Change<br>
@@ -122,10 +122,10 @@
 			<ul class="users">
 				<li class="user-alt">
 						<div class="user-head">
-							<a href="#user1-actions" class="user-image" data-toggle="collapse">
+							<a href="#owner-actions" class="user-image" data-toggle="collapse">
 								<%=image_tag @team.owner.profile.user.profile_image, { alt: "" } %>
 							</a>
-
+							<%= @team.owner.name%>
 							<div class="user-head-placeholder">
 								<span>
 									Drag to the<br>
@@ -134,7 +134,7 @@
 							</div><!-- /.user-head-placeholder -->
 						</div><!-- /.user-head -->
 
-						<div class="user-actions-alt collapse" id="user1-actions">
+						<div class="user-actions-alt collapse" id="owner-actions">
 							<ul>
 								<li>
 									<a href="#">
@@ -173,10 +173,10 @@
 				<% @accepting_profiles.each do |team_user| %>
 					<li class="user-alt">
 						<div class="user-head">
-							<a href="#user1-actions" class="user-image" data-toggle="collapse">
+							<a href="#user<%=team_user.id%>-actions" class="user-image" data-toggle="collapse">
 								<%=image_tag team_user.profile.user.profile_image, { alt: "" } %>
 							</a>
-
+							<%= team_user.profile.user.name%>
 							<div class="user-head-placeholder">
 								<span>
 									Drag to the<br>
@@ -184,40 +184,57 @@
 								</span>
 							</div><!-- /.user-head-placeholder -->
 						</div><!-- /.user-head -->
-
-						<div class="user-actions-alt collapse" id="user1-actions">
+						<div class="user-actions-alt collapse" id="user<%=team_user.id%>-actions">
 							<ul>
-								<li>
-									<a href="#">
-										<i class="ico-message-mobile"></i>
+								<%- if @is_current_user_admin%>
+									<li>
+										<a href="#">
+											<i class="ico-message-mobile"></i>
 
-										<span>Private Message</span>
-									</a>
-								</li>
+											<span>Private Message</span>
+										</a>
+									</li>
 
-								<li>
-									<a href="#">
-										<i class="ico-profile-mobile"></i>
+									<li>
+										<a href="<%=profile_path(team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
+											<i class="ico-profile-mobile"></i>
 
-										<span>Profile Page</span>
-									</a>
-								</li>
+											<span>Profile Page</span>
+										</a>
+									</li>
 
-								<li>
-									<a href="#">
-										<i class="ico-admin-mobile"></i>
+									<li>
+										<a href="<%=set_group_admin_path(user_id: team_user.profile_id, team_id: @team)%>" data-profile-id="<%=team_user.profile_id%>">
+											<i class="ico-admin-mobile"></i>
 
-										<span>Make Admin</span>
-									</a>
-								</li>
+											<span>Make Admin</span>
+										</a>
+									</li>
 
-								<li>
-									<a href="#">
-										<i class="ico-remove-mobile"></i>
+									<li>
+										<a href="#modal-delete-profile-from-team" class='delete' data-toggle="modal" data-team-id="<%=@team.id%>" data-profile-id="<%=team_user.profile_id%>">
+											<i class="ico-remove-mobile"></i>
 
-										<span>Remove creative</span>
-									</a>
-								</li>
+											<span>Remove creative</span>
+										</a>
+									</li>
+								<%else%>
+									<li>
+										<a href="#">
+											<i class="ico-message-mobile"></i>
+
+											<span>Private Message</span>
+										</a>
+									</li>
+
+									<li>
+										<a href="<%=profile_path(team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
+											<i class="ico-profile-mobile"></i>
+
+											<span>Profile Page</span>
+										</a>
+									</li>
+								<%end%>
 							</ul>
 						</div><!-- /.user-actions-alt -->
 					</li><!-- /.user-alt -->
@@ -230,10 +247,9 @@
 				<% @team.pending_profiles.each do |team_profile| %>
 					<li class="user-alt">
 						<div class="user-head">
-							<a href="#user1-actions" class="user-image" data-toggle="collapse">
+							<a href="#user<%=team_profile.id%>-actions" class="user-image" data-toggle="collapse">
 								<%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed'} %>
 							</a>
-
 							<div class="user-head-placeholder">
 								<span>
 									Drag to the<br>
@@ -241,41 +257,29 @@
 								</span>
 							</div><!-- /.user-head-placeholder -->
 						</div><!-- /.user-head -->
+						<%-if team_profile.profile.user.lastname == '-'%>
+                                <span class='name-label'><%=team_profile.profile.user.email%></span>
+                            <%else%>
+                                <span class='name-label'><%=team_profile.profile.user.name%></span>
+                            <%end%>
+						    <%- if team_profile.invitation_status == 'pending'%>
+							    <span class='pending'>(PENDING)</span>
+							<%end%>
+						    <%- if team_profile.invitation_status == 'declined'%>
+							    <span class='pending'>(DECLINED)</span>
+							<%end%>
+						<div class="user-actions-alt collapse" id="user<%=team_profile.id%>-actions">
 
-						<div class="user-actions-alt collapse" id="user1-actions">
-							<ul>
-								<li>
-									<a href="#">
-										<i class="ico-message-mobile"></i>
-
-										<span>Private Message</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="ico-profile-mobile"></i>
-
-										<span>Profile Page</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="ico-admin-mobile"></i>
-
-										<span>Make Admin</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="ico-remove-mobile"></i>
-
-										<span>Remove creative</span>
-									</a>
-								</li>
-							</ul>
+					        <%-if @is_current_user_admin%>
+						        <ul class="dropdown-menu-actions">
+						            <li>
+						                <a class='delete' href="<%= canceled_invitation_url(type: 'canceled', by: 'admin', team_profile_id: team_profile.id)%>" data-profile-id="">
+						                    <i class="ico-remove-mobile"></i>
+						                </a>
+						            </li>
+						        </ul>
+						        <span class='undericon hide' id='delete'>CANCEL INVITE</span>
+						    <%end%>
 						</div><!-- /.user-actions-alt -->
 					</li><!-- /.user-alt -->
 				<%end%>
