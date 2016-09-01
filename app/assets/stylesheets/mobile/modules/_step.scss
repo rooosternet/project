@@ -2,13 +2,13 @@
 	Steps
 \* ------------------------------------------------------------ */
 
-.steps { list-style: none; margin: 0px; 
+.steps { list-style: none; margin: 0px;
 
 	&:after { content: ''; display: table; clear: both; }
 
 	.step { float: left; width: 28%; position: relative; }
 	.step + .step { margin-left: 8%; }
-	.step + .step:before { display: inline-block; content: ''; background: url(../images/ico-arrow-orange@2x.png) no-repeat 0 0; width: 34px; height: 27px; background-size: 100% auto; position: absolute; left: -42px; top: 80px; }
+	.step + .step:before { display: inline-block; content: ''; background: url(/assets/ico-arrow-orange@2x.png) no-repeat 0 0; width: 34px; height: 27px; background-size: 100% auto; position: absolute; left: -42px; top: 80px; }
 	.step-image { margin-bottom: 9px; }
 	.step-image img { max-width: 188px; height: auto; }
 
@@ -17,7 +17,7 @@
 }
 
 @media (max-width: $screen-xs-max) {
-	.steps { position: relative; 
+	.steps { position: relative;
 
 		&:before { display: inline-block; content: ''; height: calc(100% - 70px); width: 150px; background: #fdc888; position: absolute; top: 90px; left: 50%; margin-left: -75px; }
 

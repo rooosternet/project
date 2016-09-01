@@ -21,7 +21,8 @@ class UsersController < ApplicationController
   end
 
   def profile
-
+    @user = User.find(params[:id])
+    render layout: 'mobile_layout'
   end
 
   def update

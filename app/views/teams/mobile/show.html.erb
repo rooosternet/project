@@ -7,8 +7,7 @@
 							<div class="team team-sortable">
 								<a href="#modal-avatar" class="team-inner" data-toggle="modal">
 									<div class="team-image">
-										<img src="../images/temp/team1.jpg" class="team-image-selected" alt="">
-
+										<%=image_tag @team.owner.profile_image, { alt: "" ,class: "team-image-selected"} %>
 										<div class="team-image-change">
 											<span>
 												Change<br>
@@ -24,9 +23,9 @@
 							</div><!-- /.team -->
 
 							<div class="team-page-content">
-								<h4 class="team-page-name" contenteditable>Team London</h4><!-- /.team-page-name -->
+								<h4 class="team-page-name" contenteditable><%= @team.name %></h4><!-- /.team-page-name -->
 
-								<div class="team-page-description" contenteditable data-placeholder="This is where you can write a short description for this team."></div><!-- /.team-page-description -->
+								<div class="team-page-description" contenteditable data-placeholder="This is where you can write a short description for this team."><%= @team.description %></div><!-- /.team-page-description -->
 							</div><!-- /.team-page-content -->
 
 							<div class="team-page-actions">
@@ -38,77 +37,30 @@
 			</section><!-- /.section-team-page -->
 
 			<div class="chat-messages">
-				<div class="chat-messages-section">
-					<div class="chat-messages-section-head">
-						<h6><span>November 26, 2015 • 11:23pm</span></h6>
-					</div><!-- /.chat-messages-section-head -->
+				<% @messages.each do |message| %>
+					<div class="chat-messages-section">
+						<div class="chat-messages-section-head">
+							<h6><span><%=message.updated_at.strftime("%B %d, %Y - %H:%M%P") %></span></h6>
+						</div><!-- /.chat-messages-section-head -->
 
-					<div class="chat-messages-section-body">
-						<div class="chat-message">
-							<div class="chat-message-avatar">
-								<img src="../images/temp/team1.jpg" alt="" width="110" height="110">
-							</div><!-- /.chat-message-avatar -->
+						<div class="chat-messages-section-body">
+							<div class="chat-message">
+								<div class="chat-message-avatar">
+									<%=image_tag message.try(:from).try(:profile_image), { alt: "" ,width: "110" , height: "110"} %>
+								</div><!-- /.chat-message-avatar -->
 
-							<div class="chat-message-content">
-								<h4 class="chat-message-name">Tony Zagoraios</h4><!-- /.chat-message-name -->
+								<div class="chat-message-content">
+									<h4 class="chat-message-name"><%=message.from.try(:name) if message.from %></h4><!-- /.chat-message-name -->
 
-								<div class="chat-message-entry">
-									<p>Hi Yana, My name is Rotem and I am the creative director at Kazoo - a London based balh, blah.</p>
-								</div><!-- /.chat-message-entry -->
-							</div><!-- /.chat-message-content -->
-						</div><!-- /.chat-message -->
-					</div><!-- /.chat-messages-section-body -->
-				</div><!-- /.chat-message-section -->
+									<div class="chat-message-entry">
+										<%=message.note.html_safe %>
+									</div><!-- /.chat-message-entry -->
+								</div><!-- /.chat-message-content -->
+							</div><!-- /.chat-message -->
+						</div><!-- /.chat-messages-section-body -->
+					</div><!-- /.chat-message-section -->
+				<%end%>
 
-				<div class="chat-messages-section">
-					<div class="chat-messages-section-head">
-						<h6><span>November 27, 2015 • 11:23pm</span></h6>
-					</div><!-- /.chat-messages-section-head -->
-
-					<div class="chat-messages-section-body">
-						<div class="chat-message">
-							<div class="chat-message-avatar">
-								<img src="../images/temp/team1.jpg" alt="" width="110" height="110">
-							</div><!-- /.chat-message-avatar -->
-
-							<div class="chat-message-content">
-								<h4 class="chat-message-name">Moomy Tomy</h4><!-- /.chat-message-name -->
-
-								<div class="chat-message-entry">
-									<p>Hi Yana, My name is Rotem and I am the creative director at Kazoo - a London based balh, blah.</p>
-								</div><!-- /.chat-message-entry -->
-							</div><!-- /.chat-message-content -->
-						</div><!-- /.chat-message -->
-
-						<div class="chat-message">
-							<div class="chat-message-avatar">
-								<img src="../images/temp/team1.jpg" alt="" width="110" height="110">
-							</div><!-- /.chat-message-avatar -->
-
-							<div class="chat-message-content">
-								<h4 class="chat-message-name">Ben Ben Bassat</h4><!-- /.chat-message-name -->
-
-								<div class="chat-message-entry">
-									<p>Hi Yana, My name is Rotem and I am the creative director at Kazoo - a London based balh, blah.</p>
-								</div><!-- /.chat-message-entry -->
-							</div><!-- /.chat-message-content -->
-						</div><!-- /.chat-message -->
-
-						<div class="chat-message">
-							<div class="chat-message-avatar">
-								<img src="../images/temp/team1.jpg" alt="" width="110" height="110">
-							</div><!-- /.chat-message-avatar -->
-
-							<div class="chat-message-content">
-								<h4 class="chat-message-name">Miriam Ben Porat</h4><!-- /.chat-message-name -->
-
-								<div class="chat-message-entry">
-									<p>Hi Yana, My name is Rotem and I am the creative director at Kazoo - a London based balh, blah.</p>
-								</div><!-- /.chat-message-entry -->
-							</div><!-- /.chat-message-content -->
-						</div><!-- /.chat-message -->
-					</div><!-- /.chat-messages-section-body -->
-				</div><!-- /.chat-message-section -->
 			</div><!-- /.chat-messages -->
 
 			<div class="chat-reply form">
@@ -128,7 +80,7 @@
 							<div class="team team-alt">
 								<div class="team-inner">
 									<div class="team-image">
-										<img src="../images/rooster-placeholder.png" alt="">
+										<img src="/assets/rooster-placeholder.png" alt="">
 
 										<div class="team-actions">
 											<span class="team-add">
@@ -169,211 +121,165 @@
 
 			<ul class="users">
 				<li class="user-alt">
-					<div class="user-head">
-						<a href="#user1-actions" class="user-image" data-toggle="collapse">
-							<img src="../images/temp/user1.jpg" alt="">
-						</a>
+						<div class="user-head">
+							<a href="#user1-actions" class="user-image" data-toggle="collapse">
+								<%=image_tag @team.owner.profile.user.profile_image, { alt: "" } %>
+							</a>
 
-						<div class="user-head-placeholder">
-							<span>
-								Drag to the<br>
-								teams menu
-							</span>
-						</div><!-- /.user-head-placeholder -->
-					</div><!-- /.user-head -->
+							<div class="user-head-placeholder">
+								<span>
+									Drag to the<br>
+									teams menu
+								</span>
+							</div><!-- /.user-head-placeholder -->
+						</div><!-- /.user-head -->
 
-					<div class="user-actions-alt collapse" id="user1-actions">
-						<ul>
-							<li>
-								<a href="#">
-									<i class="ico-message-mobile"></i>
+						<div class="user-actions-alt collapse" id="user1-actions">
+							<ul>
+								<li>
+									<a href="#">
+										<i class="ico-message-mobile"></i>
 
-									<span>Private Message</span>
-								</a>
-							</li>
+										<span>Private Message</span>
+									</a>
+								</li>
 
-							<li>
-								<a href="#">
-									<i class="ico-profile-mobile"></i>
+								<li>
+									<a href="#">
+										<i class="ico-profile-mobile"></i>
 
-									<span>Profile Page</span>
-								</a>
-							</li>
+										<span>Profile Page</span>
+									</a>
+								</li>
 
-							<li>
-								<a href="#">
-									<i class="ico-admin-mobile"></i>
+								<li>
+									<a href="#">
+										<i class="ico-admin-mobile"></i>
 
-									<span>Make Admin</span>
-								</a>
-							</li>
+										<span>Make Admin</span>
+									</a>
+								</li>
 
-							<li>
-								<a href="#">
-									<i class="ico-remove-mobile"></i>
+								<li>
+									<a href="#">
+										<i class="ico-remove-mobile"></i>
 
-									<span>Remove creative</span>
-								</a>
-							</li>
-						</ul>
-					</div><!-- /.user-actions-alt -->
-				</li><!-- /.user-alt -->
+										<span>Remove creative</span>
+									</a>
+								</li>
+							</ul>
+						</div><!-- /.user-actions-alt -->
+					</li><!-- /.user-alt -->
+				<% @accepting_profiles.each do |team_user| %>
+					<li class="user-alt">
+						<div class="user-head">
+							<a href="#user1-actions" class="user-image" data-toggle="collapse">
+								<%=image_tag team_user.profile.user.profile_image, { alt: "" } %>
+							</a>
 
-				<li class="user-alt">
-					<div class="user-head">
-						<a href="#user2-actions" class="user-image" data-toggle="collapse">
-							<img src="../images/temp/user2.jpg" alt="">
-						</a>
+							<div class="user-head-placeholder">
+								<span>
+									Drag to the<br>
+									teams menu
+								</span>
+							</div><!-- /.user-head-placeholder -->
+						</div><!-- /.user-head -->
 
-						<div class="user-head-placeholder">
-							<span>
-								Drag to the<br>
-								teams menu
-							</span>
-						</div><!-- /.user-head-placeholder -->
-					</div><!-- /.user-head -->
+						<div class="user-actions-alt collapse" id="user1-actions">
+							<ul>
+								<li>
+									<a href="#">
+										<i class="ico-message-mobile"></i>
 
-					<div class="user-actions-alt collapse" id="user2-actions">
-						<ul>
-							<li>
-								<a href="#">
-									<i class="ico-message-mobile"></i>
+										<span>Private Message</span>
+									</a>
+								</li>
 
-									<span>Private Message</span>
-								</a>
-							</li>
+								<li>
+									<a href="#">
+										<i class="ico-profile-mobile"></i>
 
-							<li>
-								<a href="#">
-									<i class="ico-profile-mobile"></i>
+										<span>Profile Page</span>
+									</a>
+								</li>
 
-									<span>Profile Page</span>
-								</a>
-							</li>
+								<li>
+									<a href="#">
+										<i class="ico-admin-mobile"></i>
 
-							<li>
-								<a href="#">
-									<i class="ico-admin-mobile"></i>
+										<span>Make Admin</span>
+									</a>
+								</li>
 
-									<span>Make Admin</span>
-								</a>
-							</li>
+								<li>
+									<a href="#">
+										<i class="ico-remove-mobile"></i>
 
-							<li>
-								<a href="#">
-									<i class="ico-remove-mobile"></i>
+										<span>Remove creative</span>
+									</a>
+								</li>
+							</ul>
+						</div><!-- /.user-actions-alt -->
+					</li><!-- /.user-alt -->
+				<% end %>
 
-									<span>Remove creative</span>
-								</a>
-							</li>
-						</ul>
-					</div><!-- /.user-actions-alt -->
-				</li><!-- /.user-alt -->
-
-				<li class="user-alt">
-					<div class="user-head">
-						<a href="#user3-actions" class="user-image" data-toggle="collapse">
-							<img src="../images/temp/user3.jpg" alt="">
-						</a>
-
-						<div class="user-head-placeholder">
-							<span>
-								Drag to the<br>
-								teams menu
-							</span>
-						</div><!-- /.user-head-placeholder -->
-					</div><!-- /.user-head -->
-
-					<div class="user-actions-alt collapse" id="user3-actions">
-						<ul>
-							<li>
-								<a href="#">
-									<i class="ico-message-mobile"></i>
-
-									<span>Private Message</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="ico-profile-mobile"></i>
-
-									<span>Profile Page</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="ico-admin-mobile"></i>
-
-									<span>Make Admin</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="ico-remove-mobile"></i>
-
-									<span>Remove creative</span>
-								</a>
-							</li>
-						</ul>
-					</div><!-- /.user-actions-alt -->
-				</li><!-- /.user-alt -->
-
-				<li class="user-alt">
-					<div class="user-head">
-						<a href="#user4-actions" class="user-image" data-toggle="collapse">
-							<img src="../images/temp/user4.jpg" alt="">
-						</a>
-
-						<div class="user-head-placeholder">
-							<span>
-								Drag to the<br>
-								teams menu
-							</span>
-						</div><!-- /.user-head-placeholder -->
-					</div><!-- /.user-head -->
-
-					<div class="user-actions-alt collapse" id="user4-actions">
-						<ul>
-							<li>
-								<a href="#">
-									<i class="ico-message-mobile"></i>
-
-									<span>Private Message</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="ico-profile-mobile"></i>
-
-									<span>Profile Page</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="ico-admin-mobile"></i>
-
-									<span>Make Admin</span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#">
-									<i class="ico-remove-mobile"></i>
-
-									<span>Remove creative</span>
-								</a>
-							</li>
-						</ul>
-					</div><!-- /.user-actions-alt -->
-				</li><!-- /.user-alt -->
 			</ul><!-- /.users -->
 
 			<h4>Invitations</h4>
+			<ul class='users'>
+				<% @team.pending_profiles.each do |team_profile| %>
+					<li class="user-alt">
+						<div class="user-head">
+							<a href="#user1-actions" class="user-image" data-toggle="collapse">
+								<%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed'} %>
+							</a>
+
+							<div class="user-head-placeholder">
+								<span>
+									Drag to the<br>
+									teams menu
+								</span>
+							</div><!-- /.user-head-placeholder -->
+						</div><!-- /.user-head -->
+
+						<div class="user-actions-alt collapse" id="user1-actions">
+							<ul>
+								<li>
+									<a href="#">
+										<i class="ico-message-mobile"></i>
+
+										<span>Private Message</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="ico-profile-mobile"></i>
+
+										<span>Profile Page</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="ico-admin-mobile"></i>
+
+										<span>Make Admin</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="ico-remove-mobile"></i>
+
+										<span>Remove creative</span>
+									</a>
+								</li>
+							</ul>
+						</div><!-- /.user-actions-alt -->
+					</li><!-- /.user-alt -->
+				<%end%>
+			</ul>
 		</div><!-- /.creatives -->
 	</div><!-- /.main -->
 
@@ -497,7 +403,7 @@
 									<div class="team team-sortable">
 										<div class="team-inner">
 											<div class="team-image">
-												<img src="../images/temp/team1.jpg" class="team-image-selected" alt="">
+												<img src="/assets/temp/team1.jpg" class="team-image-selected" alt="">
 											</div><!-- /.team-image -->
 										</div>
 									</div><!-- /.team -->
@@ -509,7 +415,7 @@
 											<div class="team">
 												<a href=".team-image-selected" class="team-inner change-image">
 													<div class="team-image">
-														<img src="../images/temp/team-image1.jpg" alt="">
+														<img src="/assets/temp/team-image1.jpg" alt="">
 													</div><!-- /.team-image -->
 												</a>
 											</div><!-- /.team -->
@@ -519,7 +425,7 @@
 											<div class="team">
 												<a href=".team-image-selected" class="team-inner change-image">
 													<div class="team-image">
-														<img src="../images/temp/team-image2.jpg" alt="">
+														<img src="/assets/temp/team-image2.jpg" alt="">
 													</div><!-- /.team-image -->
 												</a>
 											</div><!-- /.team -->
@@ -529,7 +435,7 @@
 											<div class="team">
 												<a href=".team-image-selected" class="team-inner change-image">
 													<div class="team-image">
-														<img src="../images/temp/team-image3.jpg" alt="">
+														<img src="/assets/temp/team-image3.jpg" alt="">
 													</div><!-- /.team-image -->
 												</a>
 											</div><!-- /.team -->
@@ -539,7 +445,7 @@
 											<div class="team">
 												<a href=".team-image-selected" class="team-inner change-image">
 													<div class="team-image">
-														<img src="../images/temp/team-image4.jpg" alt="">
+														<img src="/assets/temp/team-image4.jpg" alt="">
 													</div><!-- /.team-image -->
 												</a>
 											</div><!-- /.team -->
@@ -549,7 +455,7 @@
 											<div class="team team-alt">
 												<div class="team-inner">
 													<div class="team-image">
-														<img src="../images/temp/team-default.jpg" alt="">
+														<img src="/assets/temp/team-default.jpg" alt="">
 
 														<div class="team-actions">
 															<span class="team-add">
@@ -593,7 +499,7 @@
 											<div class="team team-sortable">
 												<div class="team-inner">
 													<div class="team-image">
-														<img src="../images/temp/team-default.jpg" id="main-image" alt="">
+														<img src="/assets/temp/team-default.jpg" id="main-image" alt="">
 													</div><!-- /.team-image -->
 												</div>
 											</div><!-- /.team -->
@@ -605,7 +511,7 @@
 													<div class="team">
 														<a href="#main-image" class="team-inner change-image">
 															<div class="team-image">
-																<img src="../images/temp/team-image1.jpg" alt="">
+																<img src="/assets/temp/team-image1.jpg" alt="">
 															</div><!-- /.team-image -->
 														</a>
 													</div><!-- /.team -->
@@ -615,7 +521,7 @@
 													<div class="team">
 														<a href="#main-image" class="team-inner change-image">
 															<div class="team-image">
-																<img src="../images/temp/team-image2.jpg" alt="">
+																<img src="/assets/temp/team-image2.jpg" alt="">
 															</div><!-- /.team-image -->
 														</a>
 													</div><!-- /.team -->
@@ -625,7 +531,7 @@
 													<div class="team">
 														<a href="#main-image" class="team-inner change-image">
 															<div class="team-image">
-																<img src="../images/temp/team-image3.jpg" alt="">
+																<img src="/assets/temp/team-image3.jpg" alt="">
 															</div><!-- /.team-image -->
 														</a>
 													</div><!-- /.team -->
@@ -635,7 +541,7 @@
 													<div class="team">
 														<a href="#main-image" class="team-inner change-image">
 															<div class="team-image">
-																<img src="../images/temp/team-image4.jpg" alt="">
+																<img src="/assets/temp/team-image4.jpg" alt="">
 															</div><!-- /.team-image -->
 														</a>
 													</div><!-- /.team -->
@@ -645,7 +551,7 @@
 													<div class="team team-alt">
 														<div class="team-inner">
 															<div class="team-image">
-																<img src="../images/temp/team-default.jpg" alt="">
+																<img src="/assets/temp/team-default.jpg" alt="">
 
 																<div class="team-actions">
 																	<span class="team-add">
