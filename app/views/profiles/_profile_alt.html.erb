@@ -1,7 +1,7 @@
 <li class="user-alt">
 	<div class="user-main">
 		<div class="user-head">
-			<a href="#" class="user-image">
+			<a href="<%=profile_path(profile.user)%>" class="user-image">
 				<%=image_tag profile.profile_image, { alt: "" ,width: '184px' , height: '184px'} %>
 			</a>
 
@@ -16,13 +16,13 @@
 		<div class="user-body">
 			<div class="user-name"><%= profile.user.name %></div><!-- /.user-name -->
 
-			
+
 			<div class="user-title">
 				<%- unless profile.job_title.blank? -%>
 				<a href="<%=profiles_index_path(:search=>params[:search],:skills=>params[:skills],:search_by=>params[:search_by],:location => profile.job_title) %>"><%= profile.job_title %></a>
 				<%  else %>
 				&nbsp
-				<%- end -%>	
+				<%- end -%>
 			</div><!-- /.user-title -->
 
 			<div class="user-location">

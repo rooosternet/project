@@ -180,7 +180,7 @@ class User < ActiveRecord::Base
       strategy = Devise.omniauth_configs[:behance].strategy
       access_token = strategy.client_id
       client = Behance::Client.new(access_token: access_token)
-      client.user_appreciations(profile.behance.split('/').last)
+      client.user_projects(profile.behance.split('/').last)
     end
   end
 

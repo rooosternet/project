@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
     #integrations
     bh_connect = User.behance_adapter @user.profile
+    @is_owner = (current_user == @user)
     @behance_projects = (bh_connect.present?)? bh_connect[1..3] : nil
 
     render layout: 'mobile_layout'

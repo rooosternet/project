@@ -28,8 +28,11 @@
 					<ul class="dropdown-menu">
 						<% if current_user.admin?  %>
 						<li><%= link_to 'Users', users_path %></li>
-						<li>
+						<!-- <li>
 							<a href="#modal-edit-profile-admin" data-toggle="modal">Edit</a>
+						</li> -->
+						<li>
+							<a href="<%=profile_path(current_user.id)%>" data-toggle="modal">Profile</a>
 						</li>
 						<% elsif current_user.profile?  %>
 						<li>

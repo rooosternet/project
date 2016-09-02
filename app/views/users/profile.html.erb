@@ -2,13 +2,22 @@
             <section class="section-team-page section-team-page-alt">
                 <div class="section-actions">
                     <ul>
-                        <li>
-                            <a href="#mass-message" class="link-mass-message" data-toggle="collapse">
-                                <i class="ico-message"></i>
+                        <%-if @is_owner%>
+                            <li>
+                                <a href="#modal-edit-profile-admin" class="link-profile" data-toggle="modal">
+                                    <i class="ico-settings"></i>
+                                    <span>settings</span>
+                                </a>
+                            </li>
+                        <%else%>
+                            <li>
+                                <a href="#mass-message" class="link-mass-message" data-toggle="collapse">
+                                    <i class="ico-message"></i>
 
-                                <span>message</span>
-                            </a>
-                        </li>
+                                    <span>message</span>
+                                </a>
+                            </li>
+                        <%end%>
                     </ul>
                 </div><!-- /.section-actions -->
 
@@ -17,16 +26,32 @@
                         <div class="team-page">
                             <div class="team team-sortable">
                                 <span class="team-inner">
-                                    <div class="team-image">
-                                        <%=image_tag @user.profile_image, { alt: "" ,class: "team-image-selected"} %>
-                                    </div><!-- /.team-image -->
+                                    <%-if @is_owner%>
+                                        <a href="#modal-avatar" class="team-inner" data-toggle="modal">
+                                            <div class="team-image">
+                                                <%=image_tag @user.profile_image, { alt: "" ,class: "team-image-selected"} %>
+                                                <div class="team-image-change">
+                                                    <span>
+                                                        Change<br>
+                                                        Image
+                                                    </span>
+                                                </div><!-- /.team-image-change -->
+                                            </div><!-- /.team-image -->
+                                        </a>
+                                    <%else%>
+                                        <div class="team-image">
+                                            <%=image_tag @user.profile_image, { alt: "" ,class: "team-image-selected"} %>
+                                        </div><!-- /.team-image -->
+                                    <%end%>
                                 </span>
                             </div><!-- /.team -->
 
                             <div class="team-page-content">
-                                <h4 class="team-page-name"><%=@user.name%><small><%=@user.profile.job_title%></small></h4><!-- /.team-page-name -->
+                                <h4 class="team-page-name" <%='contenteditable' if @is_owner%>><%=@user.name%>
+                                    <small <%='contenteditable' if @is_owner%>><%=@user.profile.job_title%></small>
+                                </h4><!-- /.team-page-name -->
 
-                                <div class="team-page-location"><%=@user.profile.location%></div><!-- /.team-page-location -->
+                                <div class="team-page-location" <%='contenteditable' if @is_owner%>><%=@user.profile.location%></div><!-- /.team-page-location -->
                             </div><!-- /.team-page-content -->
 
                             <ul class="user-socials">
@@ -181,8 +206,8 @@
                                     <ul class="list-media">
                                         <%- @behance_projects.each do |item|%>
                                             <li>
-                                                <a href="<%=item['project']['url']%>" >
-                                                    <img src="<%=item['project']['covers'].first[1]%>" width="181" height="135" alt="<%=item['project']['name']%>">
+                                                <a href="<%=item['url']%>" >
+                                                    <img src="<%=item['covers'].first[1]%>" width="181" height="135" alt="<%=item['name']%>">
                                                 </a>
                                             </li>
                                         <%end%>

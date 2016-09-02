@@ -51,22 +51,22 @@
 			$(this).closest('.user-alt').siblings().find('.user-image[aria-expanded="true"]').trigger('click');
 		})
 
-		// Modal Fix
-		// $('.header [data-toggle="modal-alt"]').on('click', function(event) {
-		// 	event.preventDefault();
+		//Modal Fix
+		$('.header [data-toggle="modal-alt"]').on('click', function(event) {
+			event.preventDefault();
 
-		// 	var target = $(this).attr('href');
+			var target = $(this).attr('href');
 
-		// 	if(!$('.modal-backdrop').length) {
-		// 		$(target).modal('show');
-		// 		return;
-		// 	}
+			if(!$('.modal-backdrop').length) {
+				$(target).modal('show');
+				return;
+			}
 
-		// 	$('.modal').modal('hide');
-		// 	setTimeout(function() {
-		// 		$(target).modal('show');
-		// 	}, 400);
-		// });
+			$('.modal').modal('hide');
+			setTimeout(function() {
+				$(target).modal('show');
+			}, 400);
+		});
 
 		// Autocomplete
 		$('.select-autocomplete').each(function(index, el) {
@@ -401,6 +401,7 @@
 
 			$target.attr('src', src);
 		});
+
 
 		// Mass Message
 		$('.link-mass-message').on('click', function(event) {
