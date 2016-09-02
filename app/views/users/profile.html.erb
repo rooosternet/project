@@ -30,29 +30,37 @@
                             </div><!-- /.team-page-content -->
 
                             <ul class="user-socials">
-                                <li>
-                                    <a href="#">
-                                        <i class="ico-link"></i>
-                                    </a>
-                                </li>
+                                <%-if @user.profile.online_portfolio.present?%>
+                                    <li>
+                                        <a href="<%=@user.profile.online_portfolio%>">
+                                            <i class="ico-link"></i>
+                                        </a>
+                                    </li>
+                                <%end%>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="ico-linkedin"></i>
-                                    </a>
-                                </li>
+                                <%-if @user.profile.linkedin_profile.present?%>
+                                    <li>
+                                        <a href="<%=@user.profile.linkedin_profile%>">
+                                            <i class="ico-linkedin"></i>
+                                        </a>
+                                    </li>
+                                <%end%>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="ico-behance"></i>
-                                    </a>
-                                </li>
+                                <%-if @user.profile.behance.present?%>
+                                    <li>
+                                        <a href="<%=@user.profile.behance%>">
+                                            <i class="ico-behance"></i>
+                                        </a>
+                                    </li>
+                                <%end%>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="ico-vimeo"></i>
-                                    </a>
-                                </li>
+                                <%-if @user.profile.vimeo.present?%>
+                                    <li>
+                                        <a href="<%=@user.profile.vimeo%>">
+                                            <i class="ico-vimeo"></i>
+                                        </a>
+                                    </li>
+                                <%end%>
                             </ul>
                         </div><!-- /.team-page -->
                     </div><!-- /.section-head-inner -->
@@ -167,29 +175,20 @@
                     </div><!-- /.section-content -->
 
                     <div class="section-media">
-                        <div class="section-media-inner">
-                            <h5>behance</h5>
-
-                            <ul class="list-media">
-                                <li>
-                                    <a href="#">
-                                        <img src="/assets/temp/media.jpg" alt="" width="181" height="135">
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="/assets/temp/media.jpg" alt="" width="181" height="135">
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="/assets/temp/media.jpg" alt="" width="181" height="135">
-                                    </a>
-                                </li>
-                            </ul><!-- /.list-media -->
-                        </div><!-- /.section-media-inner -->
+                        <%- if @behance_projects.present?%>
+                            <div class="section-media-inner">
+                                <h5>behance</h5>
+                                    <ul class="list-media">
+                                        <%- @behance_projects.each do |item|%>
+                                            <li>
+                                                <a href="<%=item['project']['url']%>" >
+                                                    <img src="<%=item['project']['covers'].first[1]%>" width="181" height="135" alt="<%=item['project']['name']%>">
+                                                </a>
+                                            </li>
+                                        <%end%>
+                                    </ul><!-- /.list-media -->
+                            </div><!-- /.section-media-inner -->
+                        <%end%>
 
                         <div class="section-media-inner">
                             <h5>Dribble</h5>

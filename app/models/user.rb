@@ -175,6 +175,15 @@ class User < ActiveRecord::Base
     _index.nil? ? 0 : _index
   end
 
+  def self.behance_adapter profile
+    if profile.behance.present?
+      strategy = Devise.omniauth_configs[:behance].strategy
+      access_token = strategy.client_id
+      client = Behance::Client.new(access_token: access_token)
+      client.user_appreciations(profile.behance.split('/').last)
+    end
+  end
+
   private
 
   # def set_name

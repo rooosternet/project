@@ -23,6 +23,11 @@ class UsersController < ApplicationController
   def profile
     @user = User.find(params[:id])
     @teams = @user.teams
+
+    #integrations
+    bh_connect = User.behance_adapter @user.profile
+    @behance_projects = (bh_connect.present?)? bh_connect[1..3] : nil
+
     render layout: 'mobile_layout'
   end
 

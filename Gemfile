@@ -28,6 +28,9 @@ gem 'websocket-rails'
 
 gem 'autosize-rails'
 
+#integrations
+gem 'behance'
+
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem "omniauth-vimeo"
