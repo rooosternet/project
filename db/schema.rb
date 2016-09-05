@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904231615) do
+ActiveRecord::Schema.define(version: 20160905091932) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 20160904231615) do
     t.string   "image",            limit: 255
     t.string   "invitation_hash",  limit: 40
     t.string   "dribbble",         limit: 255
+    t.text     "description",      limit: 65535
+    t.text     "about_me",         limit: 65535
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

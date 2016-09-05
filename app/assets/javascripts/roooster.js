@@ -460,6 +460,48 @@ var update_user = function(user_id,properties){
 			update_team(team_id,{name: target.find(".team-page-name")[0].innerText, description: target.find(".team-page-description")[0].innerText});
 		});
 
+    //editable fields////////////////////////////
+    $(".user-description").focusout(function(){
+      var target = $(this).parent();
+      var user_id = target.data('user-id');
+
+      update_profile(user_id,{description: target.find(".user-description")[0].innerText});
+    });
+
+    $(".user-location").focusout(function(){
+      var target = $(this).parent();
+      var user_id = target.data('user-id');
+
+      update_profile(user_id,{location: target.find(".user-location")[0].innerText});
+    });
+
+    $(".user-about-me").focusout(function(){
+      var target = $(this).parent();
+      var user_id = target.data('user-id');
+
+      update_profile(user_id,{about_me: target.find(".user-about-me")[0].innerText});
+    });
+
+    update_profile = function(user_id, properties){
+      $.ajax({
+        url: "/users/"+user_id+"/update_profile",
+        type: 'PUT',
+        data: {profile: properties},
+        dataType: 'script',
+        success: function(data){
+          // console.log(data);
+        },
+        error: function(data){
+          // console.log(data);
+        },
+        complete: function(data){
+          // console.log(data);
+          return data;
+        }
+      });
+    }
+    ///////////////////////////////////////////////
+
 		// Scroll To
 		$('[data-scroll-to]').on('click', function(event) {
 			event.preventDefault();
@@ -1095,27 +1137,27 @@ var update_user = function(user_id,properties){
       }
 		});
 
-		var update_user = function(user_id,properties){
-    	// console.log(user_id);
-    	// console.log(properties);
+		// var update_user = function(user_id,properties){
+  //   	// console.log(user_id);
+  //   	// console.log(properties);
 
-    	$.ajax({
-    		url: "/users/"+user_id,
-    		type: 'PUT',
-    		data: {user: properties},
-    		dataType: 'script',
-    		success: function(data){
-    			// console.log(data);
-    		},
-    		error: function(data){
-    			// console.log(data);
-    		},
-    		complete: function(data){
-    			// console.log(data);
-    			return data;
-    		}
-    	});
-    }
+  //   	$.ajax({
+  //   		url: "/users/"+user_id,
+  //   		type: 'PUT',
+  //   		data: {user: properties},
+  //   		dataType: 'script',
+  //   		success: function(data){
+  //   			// console.log(data);
+  //   		},
+  //   		error: function(data){
+  //   			// console.log(data);
+  //   		},
+  //   		complete: function(data){
+  //   			// console.log(data);
+  //   			return data;
+  //   		}
+  //   	});
+  //   }
 
 		// Team Invites
 		$('.tabs-invites .tab-pane input').on('input', function(event) {

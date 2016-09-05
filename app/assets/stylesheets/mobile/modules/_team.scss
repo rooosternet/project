@@ -20,7 +20,7 @@
 
 .teams { list-style: none outside none; text-align: center; font-size: 0; }
 
-.team { display: inline-block; vertical-align: top; width: 124px; margin: 0 3px 11px;
+.team { display: block; vertical-align: top; width: 124px; margin: auto; margin-top: -35px;
 
 	.team-inner,
 	.team-inner:hover { text-decoration: none; }
@@ -170,8 +170,7 @@
 	.team-page-description:empty:before { content: attr(data-placeholder); }
 	.team-page-description:focus:before { content: ''; }
 
-	.team-page-name small { display: block; padding-bottom: 5px; font-size: 14px; line-height: 1.29; color: #818181; text-transform: none; }
-
+	.team-page-name small { display: block; padding-bottom: 5px; font-size: 14px; line-height: 1.29; color: #818181; text-transform: none; outline: 0; }
 	.team-page-location { font-size: 11px; color: #717375; outline: 0; }
 
 	.user-socials {

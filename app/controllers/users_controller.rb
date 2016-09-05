@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars,:update_profile_image, :profile]
+  before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars, :update_profile_avatar, :update_profile_image, :profile]
   # after_action :verify_authorized
-  protect_from_forgery :except => [:update_avatars]
+  protect_from_forgery :except => [:update_avatars, :update_profile_avatar]
 
   layout 'admin'
 
@@ -34,6 +34,13 @@ class UsersController < ApplicationController
     @vimeo_video = (vm_connect.present?)? vm_connect.first : nil
 
     render layout: 'mobile_layout'
+  end
+
+  def update_profile
+    @user = User.find(params[:id])
+    @profile = @user.profile
+    @profile.update(profile_params)
+    render :nothing => true
   end
 
   def update
@@ -125,6 +132,15 @@ class UsersController < ApplicationController
     redirect_to root_path(prm)
   end
 
+  def update_profile_avatar
+    params[:user][:attachments].each do |attachment|
+      @post_attachment = @user.attachments.create!(:user_id => @user.id , :attachment => attachment,:attachment_type => 'avatar')
+      @user.image = @post_attachment.attachment.url
+      @user.save
+    end
+    redirect_to profile_path(@user)
+  end
+
   # "user"=>[{"firstname"=>"TestBB", "lastname"=>"asxascas", "email"=>"sada@saa.clk"}, {"firstname"=>"homfj", "lastname"=>"assdasdas", "email"=>"4yoss@sss.com"}, {"firstname"=>"", "lastname"=>"", "email"=>""}, {"firstname"=>"", "lastname"=>"", "email"=>""}, {"firstname"=>"", "lastname"=>"", "email"=>""}]}
   def batch_invite
     authorize User.current
@@ -197,9 +213,12 @@ class UsersController < ApplicationController
     @user = User.where(id: params[:id]).first
   end
 
+  def profile_params
+    params.require(:profile).permit(:description, :location, :about_me)
+  end
 
   def secure_params
-    params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname,:image,{avatars: []},:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
+    params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname, :profile_page, :image,{avatars: []},:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
   end
 
 end

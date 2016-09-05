@@ -1,0 +1,66 @@
+<%= form_for(current_user, :url => update_profile_avatar_path(current_user.id),:remote => true , :html => { :id => "edit_user_avatars_form" ,:method => :post, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin",:multipart => true}) do |f| %>
+
+        <div class="team team-sortable">
+            <div class="team-inner">
+                <div class="team-image">
+                    <%#=image_tag current_user.profile_image, { id: "main-image" ,class: "user-main-image" , alt: "" } %>
+                    <%=profile_image current_user , { id: "main-image" ,class: "user-main-image" , alt: "" } %>
+                    <%= f.hidden_field :image %>
+                </div><!-- /.team-image -->
+            </div>
+        </div><!-- /.team -->
+
+        <ul class="list-avatars">
+
+            <li>
+                <div class="team">
+                    <a href=".user-main-image" class="team-inner change-user-image" data-image="user_default.jpg">
+                        <div class="team-image">
+                            <%=image_tag "user_default.jpg", { alt: "" } %>
+                        </div><!-- /.team-image -->
+                    </a>
+                </div><!-- /.team -->
+            </li>
+
+            <% profile_additional_images(current_user).each do |image| %>
+            <li>
+                <div class="team">
+                    <a href=".user-main-image" class="team-inner change-user-image" data-image="<%=image%>">
+                        <div class="team-image">
+                            <%#=image_tag image, { alt: "" } %>
+                            <img alt="" src="<%=image%>">
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <% end %>
+
+
+            <li>
+                <div class="team team-alt">
+                    <div class="team-inner">
+                        <div class="team-image">
+                            <%=image_tag "team-default.jpg", { alt: "" } %>
+
+                            <div class="team-actions">
+                                <span class="team-add">
+                                    <i class="ico-plus"></i>
+                                </span>
+                            </div><!-- /.team-actions -->
+
+                            <!-- <input type="file" name="upload-team" id="upload-team"> -->
+                            <%#= f.fields_for :attachments do |builder| %>
+                                <%#= builder.file_field :attachment, multiple: true %>
+                                <%#= builder.label :attachment ,'Upload'%>
+                            <%# end %>
+
+
+                            <%= f.file_field :attachments, :multiple => true, name: "user[attachments][]" %>
+                            <%= f.label :attachments,'Upload' %>
+                            <!-- <label for="upload-team">Upload</label> -->
+                        </div><!-- /.team-image -->
+                    </div>
+                </div><!-- /.team -->
+            </li>
+        </ul><!-- /.list-avatars -->
+<% end %>
