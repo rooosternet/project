@@ -30,6 +30,8 @@ gem 'autosize-rails'
 
 #integrations
 gem 'behance'
+gem 'dribbble', '~> 1.0', '>= 1.0.4'
+gem 'vimeo'
 
 gem 'omniauth'
 gem 'omniauth-twitter'

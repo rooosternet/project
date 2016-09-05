@@ -184,6 +184,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.dribbble_adapter profile
+    if profile.dribbble.present?
+      strategy = Devise.omniauth_configs[:dribbble].strategy
+      access_token = strategy.client_id
+      Dribbble::User.find(access_token, profile.dribbble.split('/').last).shots
+    end
+  end
+
+  def self.vimeo_adapter profile
+    if profile.vimeo.present?
+      strategy = Devise.omniauth_configs[:vimeo].strategy
+      access_token = strategy.client_id
+      Vimeo::Simple::User.all_videos(profile.vimeo.split('/').last)
+    end
+  end
+
   private
 
   # def set_name

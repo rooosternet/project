@@ -26,8 +26,12 @@ class UsersController < ApplicationController
 
     #integrations
     bh_connect = User.behance_adapter @user.profile
+    dr_connect = User.dribbble_adapter @user.profile
+    vm_connect = User.vimeo_adapter @user.profile
     @is_owner = (current_user == @user)
     @behance_projects = (bh_connect.present?)? bh_connect[1..3] : nil
+    @dribbble_shots = (dr_connect.present?)? dr_connect[1..3] : nil
+    @vimeo_video = (vm_connect.present?)? vm_connect.first : nil
 
     render layout: 'mobile_layout'
   end

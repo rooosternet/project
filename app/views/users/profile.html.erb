@@ -214,38 +214,31 @@
                                     </ul><!-- /.list-media -->
                             </div><!-- /.section-media-inner -->
                         <%end%>
+                        <%- if @dribbble_shots.present?%>
+                            <div class="section-media-inner">
+                                <h5>Dribble</h5>
 
-                        <div class="section-media-inner">
-                            <h5>Dribble</h5>
+                                <ul class="list-media">
+                                    <%- @dribbble_shots.each do |item|%>
+                                        <li>
+                                            <a href="<%=item.html_url%>">
+                                                <img src="<%=item.images['normal']%>" alt="" width="181" height="135">
+                                            </a>
+                                        </li>
+                                    <%end%>
 
-                            <ul class="list-media">
-                                <li>
-                                    <a href="#">
-                                        <img src="/assets/temp/media.jpg" alt="" width="181" height="135">
-                                    </a>
-                                </li>
+                                </ul><!-- /.list-media -->
+                            </div><!-- /.section-media-inner -->
+                        <%end%>
+                        <%- if @vimeo_video.present?%>
+                            <div class="section-media-inner">
+                                <h5>Vimeo</h5>
 
-                                <li>
-                                    <a href="#">
-                                        <img src="/assets/temp/media.jpg" alt="" width="181" height="135">
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="/assets/temp/media.jpg" alt="" width="181" height="135">
-                                    </a>
-                                </li>
-                            </ul><!-- /.list-media -->
-                        </div><!-- /.section-media-inner -->
-
-                        <div class="section-media-inner">
-                            <h5>Vimeo</h5>
-
-                            <div class="video">
-                                <iframe src="https://player.vimeo.com/video/87110435" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                            </div><!-- /.video -->
-                        </div><!-- /.section-media-inner -->
+                                <div class="video">
+                                    <iframe src="https://player.vimeo.com/video/<%=@vimeo_video['id']%>" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                </div><!-- /.video -->
+                            </div><!-- /.section-media-inner -->
+                        <%end%>
                     </div><!-- /.section-media -->
                 </div><!-- /.section-inner -->
             </section><!-- /.section-about -->
