@@ -482,6 +482,10 @@ var update_user = function(user_id,properties){
       update_profile(user_id,{about_me: target.find(".user-about-me")[0].innerText});
     });
 
+    // $("#edit_user").focusout(function(){
+    //   this.submit();
+    // });
+
     update_profile = function(user_id, properties){
       $.ajax({
         url: "/users/"+user_id+"/update_profile",

@@ -29,7 +29,7 @@
                                     <%-if @is_owner%>
                                         <a href="#modal-avatar" class="team-inner" data-toggle="modal">
                                             <div class="team-image">
-                                                <%=image_tag @user.profile_image, { alt: "" ,class: "team-image-selected"} %>
+                                                <%=image_tag @user.profile_image, { alt: "" ,class: "user-main-image"} %>
                                                 <div class="team-image-change">
                                                     <span>
                                                         Change<br>
@@ -189,9 +189,19 @@
                         </div><!-- /.section-content-inner -->
 
                         <div class="section-content-inner">
-                            <h5 class="section-content-title">expertise</h5>
-
-                            <p>Illusration, 2d Animation, Art direction, character design</p>
+                            <%- if @is_owner%>
+                                <h5 class="section-content-title">expertise</h5>
+                                <%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form',"data-error-id" => "edit_user_form_err", "data-parent"=>"modal-edit-profile"}) do |f| %>
+                                    <%= f.fields_for :profile do |builder| %>
+                                        <%= builder.select :skills, skills_options_for_select(builder.object.skills) , {} , {:multiple => true ,:no_label => true, :class => "select-autocomplete" ,:placeholder => "Pick your skills"} %>
+                                    <%end%>
+                                <%end%>
+                            <%else%>
+                                <%-if @user.profile.skills.present?%>
+                                    <h5 class="section-content-title">expertise</h5>
+                                    <%=@user.profile.skills.join(' ')%>
+                                <%end%>
+                            <%end%>
                         </div><!-- /.section-content-inner -->
 
                         <div class="section-content-inner">

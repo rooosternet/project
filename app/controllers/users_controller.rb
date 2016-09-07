@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
   before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars, :update_profile_avatar, :update_profile_image, :profile]
   # after_action :verify_authorized
   protect_from_forgery :except => [:update_avatars, :update_profile_avatar]
@@ -20,9 +21,16 @@ class UsersController < ApplicationController
     authorize @user || current_user
   end
 
+
+
   def profile
     @user = User.find(params[:id])
     @teams = @user.teams
+
+    #linkedin_synch
+    if @user.profile.linkedin_profile.present?
+      @user.linkedin_synch
+    end
 
     #integrations
     bh_connect = User.behance_adapter @user.profile

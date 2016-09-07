@@ -200,6 +200,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def linkedin_synch
+    need_request = (profile.description.blank?) ||
+                  (profile.about_me.blank?) ||
+                  (profile.location.blank?)
+
+    if need_request
+      adapter = Linkedin::Profile.new(profile.linkedin_profile)
+
+      profile.description = adapter.title
+      profile.about_me = adapter.summary
+      profile.location = adapter.location
+
+      profile.save!
+    end
+  end
+
   private
 
   # def set_name
