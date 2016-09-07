@@ -208,9 +208,9 @@ class User < ActiveRecord::Base
     if need_request
       adapter = Linkedin::Profile.new(profile.linkedin_profile)
 
-      profile.description = adapter.title
-      profile.about_me = adapter.summary
-      profile.location = adapter.location
+      profile.description = adapter.title if profile.description.blank?
+      profile.about_me = adapter.summary if profile.about_me.blank?
+      profile.location = adapter.location if profile.location.blank?
 
       profile.save!
     end
