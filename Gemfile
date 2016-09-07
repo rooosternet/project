@@ -33,6 +33,7 @@ gem 'behance'
 gem 'dribbble', '~> 1.0', '>= 1.0.4'
 gem 'vimeo'
 gem 'linkedin-scraper'
+gem 'linkedin'
 
 gem 'omniauth'
 gem 'omniauth-twitter'

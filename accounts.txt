@@ -1,4 +1,4 @@
-Mailchimp: 
+Mailchimp:
 yossi@roooster.net
 1q!QMTLX
 
@@ -10,5 +10,10 @@ Sd2343s@#3xsf
 yossi@roooster.co
 pass: ')6R?Ae%8SOR]!'
 
-info@roooster.co 
+info@roooster.co
 '?taY15FH8JCj%'
+
+
+linkedin
+
+["a30df11c-02a6-48a2-9b11-c3f68b253cf2", "fb49e6a8-e8b1-4926-a148-166e590d14a3"]

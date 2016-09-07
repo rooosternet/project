@@ -201,18 +201,27 @@ class User < ActiveRecord::Base
   end
 
   def linkedin_synch
+    require 'linkedin'
+
     need_request = (profile.description.blank?) ||
                   (profile.about_me.blank?) ||
                   (profile.location.blank?)
 
     if need_request
-      adapter = Linkedin::Profile.new(profile.linkedin_profile)
+      # adapter = Linkedin::Profile.new(profile.linkedin_profile)
+      strategy = Devise.omniauth_configs[:linkedin].strategy
+      client = LinkedIn::Client.new(strategy.consumer_key, strategy.consumer_secret)
+      if client.authorize_from_access("a30df11c-02a6-48a2-9b11-c3f68b253cf2",
+                                      "fb49e6a8-e8b1-4926-a148-166e590d14a3")
 
-      profile.description = adapter.title if profile.description.blank?
-      profile.about_me = adapter.summary if profile.about_me.blank?
-      profile.location = adapter.location if profile.location.blank?
+        adapter = client.profile(:url => profile.linkedin_profile, :fields => %w(positions))
 
-      profile.save!
+        profile.description = adapter.positions.all.first.title if profile.description.blank?
+        profile.about_me = adapter.positions.all.first.summary if profile.about_me.blank?
+        profile.location = adapter.positions.all.first.location.name if profile.location.blank?
+
+        profile.save!
+      end
     end
   end
 
