@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 before_filter :configure_sign_up_params, only: [:create]
+skip_before_filter :verify_authenticity_token
 # before_filter :configure_account_update_params, only: [:update]
 # before_filter :configure_permitted_parameters
 
@@ -7,6 +8,7 @@ before_filter :configure_sign_up_params, only: [:create]
   # We need to use a copy of the resource because we don't want to change
   # the current user in place.
   def update
+
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
@@ -24,7 +26,6 @@ before_filter :configure_sign_up_params, only: [:create]
       end
       sign_in resource_name, resource, bypass: true
       if request.xhr?
-
         # render :text => 'User updated' , :status => 200
         render :json => { :responseText => "User updated" }.to_json , :status => 200
       else

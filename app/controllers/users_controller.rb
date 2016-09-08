@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :find_user , :only => [:edit,:show,:update,:destroy,:update_avatars, :update_profile_avatar, :update_profile_image, :profile]
   # after_action :verify_authorized
   protect_from_forgery :except => [:update_avatars, :update_profile_avatar]
+  skip_before_action :verify_authenticity_token
 
   layout 'admin'
 

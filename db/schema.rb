@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905091932) do
+ActiveRecord::Schema.define(version: 20160908022308) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
@@ -168,6 +168,8 @@ ActiveRecord::Schema.define(version: 20160905091932) do
     t.boolean  "edit_profile",                       default: false, null: false
     t.boolean  "subscribe",                          default: false, null: false
     t.string   "image",                  limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

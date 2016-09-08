@@ -9,16 +9,16 @@
 
 			<div class="modal-body">
 				<div class="form form-signup">
-					
+
 					<div class="form-inner">
 						<div class="form-head">
-							
-							<%= render :partial => 'pages/profile_avatars'  %>	
+
+							<%= render :partial => 'pages/profile_avatars'  %>
 
 							<h4 class="form-title">Admin Profile</h4>
 						</div>
-						<%= form_for(current_user, :as => :user, :url => registration_path(:user), :html => { :method => :put, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin",:multipart => true}) do |f| %>
-						<%= f.hidden_field :edit_profile , :value => true %>	
+						<%= form_for(current_user, :as => :user, :url => registration_path(:user), :html => { :method => :put, remote: true, :role => 'form',"data-error-id" => "edit_admin_form_err", "data-parent"=>"modal-edit-profile-admin",:multipart => true}) do |f| %>
+						<%= f.hidden_field :edit_profile , :value => true %>
 						<div class="form-body">
 							<div class="form-group">
 								<div class="row">
@@ -37,11 +37,11 @@
 									<div class="col-sm-6">
 										<div class="form-row">
 											<label for="field-email2" class="form-label">Additional Email</label>
-											
+
 											<div class="form-controls">
 												<%= f.text_field :email2, :no_label => true , :class =>"form-control" ,:placeholder => "" , :type=>"email" %>
 											</div>
-											
+
 										</div>
 									</div>
 								</div>
@@ -85,22 +85,6 @@
 												</label>
 											</div><!-- /.checkbox-link -->
 										</li>
-
-										<li>
-											<i class="ico-twitter"></i>
-
-											<span>Twitter</span>
-
-											<div class="checkbox-link">
-												<%= profile_connect("twitter",current_user.profile) %>
-
-												<label for="field-connect-twitter">
-													<span class="checkbox-label">Link</span>
-
-													<span class="checkbox-label-checked">Unlink</span>
-												</label>
-											</div><!-- /.checkbox-link -->
-										</li>
 									</ul><!-- /.list-socials -->
 
 									<ul class="list-socials collapse" id="additional-socials">
@@ -111,7 +95,7 @@
 											<span>Vimeo</span>
 
 											<div class="checkbox-link">
-												<%= profile_connect("vimeo",current_user.profile) %>	
+												<%= profile_connect("vimeo",current_user.profile) %>
 												<label for="field-connect-vimeo">
 													<span class="checkbox-label">Link</span>
 
@@ -144,7 +128,7 @@
 										</a>
 									</div><!-- /.form-socials-expand -->
 								</div><!-- /.form-socials -->
-								
+
 							</div>
 						</div>
 
@@ -176,10 +160,10 @@
 
 			<div class="modal-body">
 				<div class="form form-signup">
-					
+
 					<div class="form-inner">
 						<div class="form-head">
-							
+
 							<%= render :partial => 'pages/profile_avatars'  %>
 
 							<h4 class="form-title">My Profile</h4><!-- /.form-title -->
@@ -355,7 +339,7 @@
 										</ul><!-- /.list-socials -->
 
 										<ul class="list-socials collapse" id="additional-socials">
-											
+
 											<li>
 												<i class="ico-vimeo"></i>
 
@@ -363,7 +347,7 @@
 
 												<div class="checkbox-link">
 													<!-- <input type="checkbox" name="field-link5" id="field-link5"> -->
-													<%= profile_connect("vimeo",current_user.profile) %>	
+													<%= profile_connect("vimeo",current_user.profile) %>
 													<label for="field-connect-vimeo">
 														<span class="checkbox-label">Link</span>
 

@@ -4,7 +4,11 @@
                     <ul>
                         <%-if @is_owner%>
                             <li>
-                                <a href="#modal-profile-edit" class="team-inner" data-toggle="modal">
+                                <%- if current_user.admin?%>
+                                    <a id='settings-modal-admin' href="#" data-toggle="modal">
+                                <%else%>
+                                    <a id='settings-modal' href="#" data-toggle="modal">
+                                <%end%>
                                     <i class="ico-settings"></i>
                                     <span>settings</span>
                                 </a>
@@ -188,13 +192,19 @@
                             </article><!-- /.article -->
                         </div><!-- /.section-content-inner -->
 
-                        <div class="section-content-inner">
+                        <div class="section-content-inner profile-skills">
                             <%- if @is_owner%>
                                 <h5 class="section-content-title">expertise</h5>
-                                <%= form_for(current_user, :as => :user, :url => registration_path(:user),:remote => true , :html => { :method => :put, :role => 'form',"data-error-id" => "edit_user_form_err", "data-parent"=>"modal-edit-profile"}) do |f| %>
+                                <%= form_for(current_user, :as => :user, :url => registration_path(:user), :html => { :method => :put, remote: true, :authenticity_token => true, :role => 'form',"data-error-id" => "edit_user_form_err", "data-parent"=>"modal-edit-profile"}) do |f| %>
+                                    <%=f.hidden_field :user_id, value: @user.id%>
                                     <%= f.fields_for :profile do |builder| %>
                                         <%= builder.select :skills, skills_options_for_select(builder.object.skills) , {} , {:multiple => true ,:no_label => true, :class => "select-autocomplete" ,:placeholder => "Pick your skills"} %>
                                     <%end%>
+                                    <div class="form-actions text-center">
+                                        <i class="fa fa-spinner fa-1x fa-pulse hidden"></i>
+                                        <br>
+                                        <input type="submit" value="Update" class="btn form-btn">
+                                    </div><!-- /.form-actions -->
                                 <%end%>
                             <%else%>
                                 <%-if @user.profile.skills.present?%>
@@ -284,3 +294,4 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+<%= render :partial => 'pages/modals_edit'  %>

@@ -36,7 +36,8 @@
 						</li>
 						<% elsif current_user.profile?  %>
 						<li>
-							<a href="#modal-edit-profile" data-toggle="modal">Edit Profile</a>
+							<a href="<%=profile_path(current_user.id)%>" data-toggle="modal">Profile</a>
+							<!-- <a href="#modal-edit-profile" data-toggle="modal">Edit Profile</a> -->
 						</li>
 						<% end %>
 
