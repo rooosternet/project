@@ -4,7 +4,7 @@
 			<% unless @team.backet? %>
 				<%-if @is_current_user_admin%>
 					<li>
-						<a href="#modal-delete-team" data-toggle="modal" data-team-id="<%=@team.id%>">
+						<a id='team-delete-modal' href="#" data-toggle="modal" data-team-id="<%=@team.id%>">
 							<i class="ico-bin"></i>
 							<span class='remove-team'>remove team</span>
 						</a>

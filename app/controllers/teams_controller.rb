@@ -3,8 +3,8 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update ,:destroy,:update_team_avatar]
   before_action :find_team, only: [:archive]
   before_action :set_menu #, only: [:show, :edit, :update, :destroy]
-  before_action :verify_permissions , only: [:show, :edit, :update, :destroy ,:archive]
-  after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy ,:archive]
+  before_action :verify_permissions , only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized , only: [:index , :show, :edit, :update, :destroy]
   protect_from_forgery :except => [:update_team_avatar]
 
   # before_filter :check_for_mobile, :only => [:show]
@@ -157,6 +157,9 @@ class TeamsController < ApplicationController
   end
 
   def archive
+    if params['team'].has_key? 'team_id'
+      @team = Team.find(params['team']['team_id']) if @team.blank?
+    end
     @team.archive = true
     if @team.save
       if request.xhr?

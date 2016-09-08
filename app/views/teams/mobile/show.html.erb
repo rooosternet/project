@@ -75,13 +75,31 @@
 			</div><!-- /.chat-messages -->
 
 			<div class="chat-reply form">
-				<form action="#" method="post">
-					<input type="text" class="form-control" id="reply" name="reply" placeholder="Reply to Tony Zagoraios">
+				<%= form_for(message,:url => bulk_create_chat_message_path  ,:html => { :method => :post, :class => "message-to" ,:role => 'form', :id => 'new_message_form_id'}) do |f| %>
+				    <%= f.hidden_field(:from_id, value: current_user.id) %>
+				    <div class="form-body">
+				        <div class="form-row">
+				            <div class="form-controls message input">
+				                <%= f.text_area :note ,:rows => 1, :class =>"form-control send-message" ,:placeholder => "Write your message here", :data => {:chan => "#{@team.id.to_s}"} %>
+				            </div>
+				            <div class='system-area'></div>
+				            <%= f.hidden_field :to_id, :multiple => true, :value => "#{(@private)? @to_id : current_user.id}", class: 'to-ids' %>
+				            <%= f.hidden_field :team_id, :value => "#{@team.id}", class: 'team_id' %>
+				            <%= f.hidden_field :private, :value => "#{@private}", class: 'team_id' %>
+				        </div>
+				    </div>
 
-					<div class="form-actions">
-						<input type="submit" value="Send" class="btn">
-					</div><!-- /.form-actions -->
-				</form>
+				    <div class="form-actions">
+				        <%= f.submit 'Send Message' , class: 'btn' %>
+				        <i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
+				    </div>
+				<% end %>
+				<script type="text/javascript">
+				    $(document).ready(function(){
+				      $('textarea').autosize();
+				      $('textarea').css('height', '36px');
+				    });
+				</script>
 			</div><!-- /.chat-reply -->
 
 			<div class="tabs-invites creatives-add">
@@ -207,7 +225,7 @@
 									</li>
 
 									<li>
-										<a href="<%=profile_path(team_user.profile_id)%>" data-profile-id="<%=team_user.profile_id%>">
+										<a href="<%=profile_path(team_user.id)%>" data-profile-id="<%=team_user.profile_id%>">
 											<i class="ico-profile-mobile"></i>
 
 											<span>Profile Page</span>
@@ -215,7 +233,7 @@
 									</li>
 
 									<li>
-										<a href="<%=set_group_admin_path(user_id: team_user.profile_id, team_id: @team)%>" data-profile-id="<%=team_user.profile_id%>">
+										<a href="<%=set_group_admin_path(user_id: team_user.id, team_id: @team)%>" data-profile-id="<%=team_user.profile_id%>">
 											<i class="ico-admin-mobile"></i>
 
 											<span>Make Admin</span>

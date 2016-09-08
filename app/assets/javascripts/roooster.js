@@ -492,6 +492,11 @@ var update_user = function(user_id,properties){
       $('#modal-edit-profile').modal('show');
     });
 
+    $('#team-delete-modal').click(function(e){
+      e.preventDefault();
+      $('#modal-delete-team').modal('show');
+    });
+
     update_profile = function(user_id, properties){
       $.ajax({
         url: "/users/"+user_id+"/update_profile",
