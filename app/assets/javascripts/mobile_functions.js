@@ -3,18 +3,19 @@
 	var $doc = $(document);
 
 	// Simple Templates
-	function template(tpl, vars) {
-		return tpl.replace(/{{([^}]+)}}/g, function(match, property) {
-			var arr = property.split('.');
-			var obj = vars[arr.shift()];
+	// function template(tpl, vars) {
+	// 	debugger;
+	// 	return tpl.replace(/{{([^}]+)}}/g, function(match, property) {
+	// 		var arr = property.split('.');
+	// 		var obj = vars[arr.shift()];
 
-			while(arr.length > 0 && typeof obj === 'object') {
-				obj = obj[arr.shift()];
-			}
+	// 		while(arr.length > 0 && typeof obj === 'object') {
+	// 			obj = obj[arr.shift()];
+	// 		}
 
-			return typeof obj === 'undefined' ? match : obj;
-		});
-	};
+	// 		return typeof obj === 'undefined' ? match : obj;
+	// 	});
+	// };
 
 	// Leading Zero
 	function leadingZero(number) {
@@ -105,31 +106,31 @@
 		});*/
 
 		// Create Team
-		var newTeamsCount = 0;
+		// var newTeamsCount = 0;
 
-		$('.teams .team-create').on('click', function(event) {
-			event.preventDefault();
+		// $('.teams .team-create').on('click', function(event) {
+		// 	event.preventDefault();
 
-			var tpl = $($(this).attr('href')).html();
-			var $team = $(template(tpl, {
-				image: Math.round(Math.random() * 8) + 1
-			}));
+		// 	var tpl = $($(this).attr('href')).html();
+		// 	var $team = $(template(tpl, {
+		// 		image: Math.round(Math.random() * 8) + 1
+		// 	}));
 
-			$(this).closest('.team').before($team);
+		// 	$(this).closest('.team').before($team);
 
-			$(this).closest('.teams-sortable').sortable('refresh');
+		// 	$(this).closest('.teams-sortable').sortable('refresh');
 
-			$team.find('.team-title').focus().on('blur keydown', function(event) {
-				if (event.keyCode === 13 || event.type === 'blur') {
-					$(this).removeAttr('contentEditable');
+		// 	$team.find('.team-title').focus().on('blur keydown', function(event) {
+		// 		if (event.keyCode === 13 || event.type === 'blur') {
+		// 			$(this).removeAttr('contentEditable');
 
-					if ($(this).html() == '') {
-						$(this).html('Team ' + leadingZero(newTeamsCount + 1));
-						newTeamsCount++;
-					};
-				};
-			});
-		});
+		// 			if ($(this).html() == '') {
+		// 				$(this).html('Team ' + leadingZero(newTeamsCount + 1));
+		// 				newTeamsCount++;
+		// 			};
+		// 		};
+		// 	});
+		// });
 
 		// Teams Slider
 		/*var $teamsSlider = $('.teams-slider .teams-slides').owlCarousel({
@@ -229,7 +230,7 @@
 		});
 
 		// User Draggable
-		/*function userDraggable($items) {
+		function userDraggable($items) {
 			$items.draggable({
 				revert: 'invalid',
 				stop: function(event, ui) {
@@ -238,7 +239,7 @@
 			});
 		};
 
-		userDraggable($('.user-draggable'));*/
+		userDraggable($('.user-draggable'));
 
 		// User Groups
 		$('.users').on('click', '.user-alt .user-groups', function(event) {

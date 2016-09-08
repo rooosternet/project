@@ -95,6 +95,14 @@
                                     </li>
                                 <%end%>
 
+                                <%-if @user.profile.dribbble.present?%>
+                                    <li>
+                                        <a href="<%=@user.profile.dribbble%>">
+                                            <i class="ico-dribbble"></i>
+                                        </a>
+                                    </li>
+                                <%end%>
+
                                 <%-if @user.profile.vimeo.present?%>
                                     <li>
                                         <a href="<%=@user.profile.vimeo%>">
