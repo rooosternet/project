@@ -27,13 +27,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
 
   prepend_before_action { request.env["devise.skip_timeout"] = true }
-  
+
   def linkedin
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
     redirect_to root_path(profile: true)
   end
-  
+
   def twitter
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
@@ -45,7 +45,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     ProfileConnect.create_with_auth_hash(auth_hash)
     redirect_to root_path(profile: true)
   end
-  
+
   def behance
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
