@@ -16,11 +16,11 @@ class InMessage < ActiveRecord::Base
  	scope :archive ,lambda { select{|message| message.archive.include?(User.current.id) } }
  	scope :notarchive ,lambda { select{|message| !message.archive.include?(User.current.id) } }
  	scope :notchatarchive ,lambda { select{|message| message.archive.blank? } }
- 	scope :notchat ,lambda { where("#{InMessage.table_name}.team_id is ? or #{InMessage.table_name}.team_id = ''", nil) }
+ 	scope :notchat ,lambda { where("(#{InMessage.table_name}.team_id is NULL OR #{InMessage.table_name}.team_id = '') AND NOT(#{InMessage.table_name}.to_id = #{InMessage.table_name}.from_id)") }
 	scope :inbox ,lambda { where("#{InMessage.table_name}.to_id = #{User.current.id}")}
 	scope :outbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id}")}
 	scope :allbox ,lambda { where("#{InMessage.table_name}.from_id = #{User.current.id} OR #{InMessage.table_name}.to_id = #{User.current.id}")}
-	scope :active_messages , lambda { where("#{InMessage.table_name}.to_id = #{User.current.id} AND #{InMessage.table_name}.updated_at = #{InMessage.table_name}.created_at AND (#{InMessage.table_name}.archive is NULL OR #{InMessage.table_name}.archive NOT LIKE '% #{User.current.id} %')").count}
+	scope :active_messages , lambda { where("#{InMessage.table_name}.to_id = #{User.current.id} AND #{InMessage.table_name}.updated_at = #{InMessage.table_name}.created_at AND (#{InMessage.table_name}.archive is NULL OR #{InMessage.table_name}.archive NOT LIKE '% #{User.current.id} %') AND NOT(#{InMessage.table_name}.to_id = #{InMessage.table_name}.from_id)")}
 	scope :intercept ,lambda { |profile| where("(#{InMessage.table_name}.from_id = #{User.current.id} and #{InMessage.table_name}.to_id = #{profile.id}) OR (#{InMessage.table_name}.to_id = #{User.current.id} and #{InMessage.table_name}.from_id = #{profile.id})")}
 
 	before_create do

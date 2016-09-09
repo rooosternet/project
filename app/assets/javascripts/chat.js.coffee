@@ -21,12 +21,36 @@ class @ChatApp
 
         <div class="message-head-inner">
           <div class="message-author">#{message.user}</div>
-          <div class="message-date">August 14, 2016 - 01:33am</div>
+          <div class="message-date">#{message.time}</div>
         </div>
       </div>
 
       <div class="message-entry">
         #{message.text}
+      </div>
+    </div>
+    """
+  messageTemplateMobile: (message, channelName = '', message_id) ->
+    """
+    <div class="chat-messages-section">
+      <div class="chat-messages-section-head">
+        <h6><span>#{message.time}</span></h6>
+      </div>
+
+      <div class="chat-messages-section-body">
+        <div class="chat-message">
+          <div class="chat-message-avatar">
+            <img alt="" width="110" height="110" src="#{message.avatar}">
+          </div>
+
+          <div class="chat-message-content">
+            <h4 class="chat-message-name">#{message.user}</h4>
+
+            <div class="chat-message-entry">
+              #{message.text}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     """
@@ -48,6 +72,7 @@ class @ChatApp
   constructor: (@currentChannel = undefined, @username = undefined) ->
     @dispatcher = new WebSocketRails(window.location.host + "/websocket")
     @team = $(".chat").data('team')
+    @mobile = $(".chat").data('mobile')
     @bindEvents()
   # @dispatcher = new WebSocketRails(window.location.hostname + ":3001" + "/websocket")
   bindEvents: ->
@@ -68,6 +93,10 @@ class @ChatApp
         @sendMessage event
     ).bind(this))
 
+    $('#send-button').click(((event) ->
+        @sendMessage event
+    ).bind(this))
+
   setUserInfo: (userInfo) =>
     @username = userInfo.user_name
     # @user_id= userInfo.id
@@ -83,7 +112,10 @@ class @ChatApp
       message['avatar'] = "/assets/user_default.jpg"
     if message.text
       if (message.channel == @currentChannel.name)
-        $('.messages-wrapper').append @messageTemplate(message, @currentChannel.name, message.message_id)
+        if @mobile == true
+          $('.messages-wrapper').append @messageTemplateMobile(message, @currentChannel.name, message.message_id)
+        else
+          $('.messages-wrapper').append @messageTemplate(message, @currentChannel.name, message.message_id)
         $('.chat .messages').scrollTop($('.chat .messages')[0].scrollHeight)
     else
       alert "Enter the message"

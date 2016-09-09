@@ -25,7 +25,8 @@ class ChatController < WebsocketRails::BaseController
                                                   :text => text,
                                                   :message_id => mes.id,
                                                   :avatar => current_user.profile_image,
-                                                  :channel => message[:chan] }
+                                                  :channel => message[:chan],
+                                                  :time => mes.created_at.strftime("%B %d, %Y - %H:%M%P")}
         end
     end
 

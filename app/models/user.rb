@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
   end
 
   def has_active_messages?
-    InMessage.active_messages > 0
+    InMessage.active_messages.notchat.notarchive.count > 0
   end
 
   # def send_welcome_mail

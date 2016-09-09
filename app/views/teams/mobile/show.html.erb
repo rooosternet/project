@@ -17,7 +17,7 @@
 											</div><!-- /.team-image-change -->
 
 											<div class="team-actions">
-												<span class="team-count team-count-alt"><i class="ico-admin"></i></span>
+												<span class="team-count"><%= @team.team_profiles.count %></span>
 											</div><!-- /.team-actions -->
 										</div><!-- /.team-image -->
 									</a>
@@ -47,7 +47,7 @@
 				</div><!-- /.section-head -->
 			</section><!-- /.section-team-page -->
 
-			<div class="chat-messages">
+			<div class="chat-messages messages-wrapper">
 				<% @messages.each do |message| %>
 					<div class="chat-messages-section">
 						<div class="chat-messages-section-head">
@@ -74,75 +74,58 @@
 
 			</div><!-- /.chat-messages -->
 
-			<div class="chat-reply form">
-				<%= form_for(message,:url => bulk_create_chat_message_path  ,:html => { :method => :post, :class => "message-to" ,:role => 'form', :id => 'new_message_form_id'}) do |f| %>
-				    <%= f.hidden_field(:from_id, value: current_user.id) %>
-				    <div class="form-body">
-				        <div class="form-row">
-				            <div class="form-controls message input">
-				                <%= f.text_area :note ,:rows => 1, :class =>"form-control send-message" ,:placeholder => "Write your message here", :data => {:chan => "#{@team.id.to_s}"} %>
-				            </div>
-				            <div class='system-area'></div>
-				            <%= f.hidden_field :to_id, :multiple => true, :value => "#{(@private)? @to_id : current_user.id}", class: 'to-ids' %>
-				            <%= f.hidden_field :team_id, :value => "#{@team.id}", class: 'team_id' %>
-				            <%= f.hidden_field :private, :value => "#{@private}", class: 'team_id' %>
-				        </div>
-				    </div>
+			<div class="chat-reply form chat chat-channel" data-team='<%=@team.id%>' data-chan="team-<%=@team.id.to_s%>" data-mobile='true'>
+				<input type="text" class="form-control send-message" id="reply" name="reply" placeholder="Write your message here">
 
-				    <div class="form-actions">
-				        <%= f.submit 'Send Message' , class: 'btn' %>
-				        <i class="fa fa-spinner fa-2x fa-pulse hidden"></i>
-				    </div>
-				<% end %>
-				<script type="text/javascript">
-				    $(document).ready(function(){
-				      $('textarea').autosize();
-				      $('textarea').css('height', '36px');
-				    });
-				</script>
+				<div class="form-actions">
+					<input id='send-button' type="submit" value="Send" class="btn">
+				</div><!-- /.form-actions -->
 			</div><!-- /.chat-reply -->
+			<br>
+			<%-if @is_current_user_admin%>
+				<div class="tabs-invites creatives-add">
+					<ul class="tabs-nav">
+						<li>
+							<a href="#invite1" data-toggle="tab">
+								<div class="team team-alt">
+									<div class="team-inner">
+										<div class="team-image">
+											<img src="/assets/rooster-placeholder.png" alt="">
 
-			<div class="tabs-invites creatives-add">
-				<ul class="tabs-nav">
-					<li>
-						<a href="#invite1" data-toggle="tab">
-							<div class="team team-alt">
-								<div class="team-inner">
-									<div class="team-image">
-										<img src="/assets/rooster-placeholder.png" alt="">
+											<div class="team-actions">
+												<span class="team-add">
+													<i class="ico-plus-red"></i>
+												</span>
+											</div><!-- /.team-actions -->
+										</div><!-- /.team-image -->
+									</div>
 
-										<div class="team-actions">
-											<span class="team-add">
-												<i class="ico-plus-red"></i>
-											</span>
-										</div><!-- /.team-actions -->
-									</div><!-- /.team-image -->
-								</div>
+									<h4>ADD CREATIVES</h4>
+								</div><!-- /.team -->
+							</a>
+						</li>
+					</ul><!-- /.tabs-nav -->
 
-								<h4>ADD CREATIVES</h4>
-							</div><!-- /.team -->
-						</a>
-					</li>
-				</ul><!-- /.tabs-nav -->
+					<div class="tab-content">
+						<div class="tab-pane" id="invite1">
+							<div class="form">
+								<%= form_for(User.new, :url => batch_invite_users_path , :html => { :method => :post, :role => 'form',:remote => true , :id => 'invite_form'}) do |f| %>
+									<div class="form-row">
+										<div class="form-controls">
+											<%= text_field_tag "user[][email]",'', :no_label => true , :class =>"form-control input-message" ,:placeholder => "Email*", :type=>"email" %>
+											<%= hidden_field(:team_id, @team.id) %>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
 
-				<div class="tab-content">
-					<div class="tab-pane" id="invite1">
-						<div class="form">
-							<form action="#" method="post">
-								<div class="form-row">
-									<div class="form-controls">
-										<input type="text" class="form-control" name="field-email1" id="field-email1" value="" placeholder="Email *">
-									</div><!-- /.form-controls -->
-								</div><!-- /.form-row -->
-
-								<div class="form-actions">
-									<button type="submit" class="form-btn btn">Submit</button>
-								</div><!-- /.form-actions -->
-							</form>
-						</div><!-- /.form -->
-					</div><!-- /.tab-pane -->
-				</div><!-- /.tab-content -->
-			</div><!-- /.tabs-invites -->
+									<div class="form-actions">
+										<button type="submit" class="form-btn btn">Submit</button>
+									</div><!-- /.form-actions -->
+								<%end%>
+							</div><!-- /.form -->
+						</div><!-- /.tab-pane -->
+					</div><!-- /.tab-content -->
+				</div><!-- /.tabs-invites -->
+			<%end%>
 		</div><!-- /.shell -->
 
 		<div class="creatives">
@@ -183,7 +166,7 @@
 
 								<li>
 									<a href="#">
-										<i class="ico-admin-mobile"></i>
+										<i class="ico-badge"></i>
 
 										<span>Make Admin</span>
 									</a>
@@ -234,7 +217,7 @@
 
 									<li>
 										<a href="<%=set_group_admin_path(user_id: team_user.id, team_id: @team)%>" data-profile-id="<%=team_user.profile_id%>">
-											<i class="ico-admin-mobile"></i>
+											<i class="ico-badge"></i>
 
 											<span>Make Admin</span>
 										</a>
@@ -270,763 +253,53 @@
 				<% end %>
 
 			</ul><!-- /.users -->
+			<%- if @is_current_user_admin%>
+				<h4>Invitations</h4>
+				<ul class='users'>
+					<% @team.pending_profiles.each do |team_profile| %>
+						<li class="user-alt">
+							<div class="user-head">
+								<a href="#user<%=team_profile.id%>-actions" class="user-image" data-toggle="collapse">
+									<%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed'} %>
+								</a>
+								<div class="user-head-placeholder">
+									<span>
+										Drag to the<br>
+										teams menu
+									</span>
+								</div><!-- /.user-head-placeholder -->
+							</div><!-- /.user-head -->
+							<%-if team_profile.profile.user.lastname == '-'%>
+	                                <span class='name-label'><%=team_profile.profile.user.email%></span>
+	                            <%else%>
+	                                <span class='name-label'><%=team_profile.profile.user.name%></span>
+	                            <%end%>
+							    <%- if team_profile.invitation_status == 'pending'%>
+								    <span class='pending'>(PENDING)</span>
+								<%end%>
+							    <%- if team_profile.invitation_status == 'declined'%>
+								    <span class='pending'>(DECLINED)</span>
+								<%end%>
+							<div class="user-actions-alt collapse" id="user<%=team_profile.id%>-actions">
 
-			<h4>Invitations</h4>
-			<ul class='users'>
-				<% @team.pending_profiles.each do |team_profile| %>
-					<li class="user-alt">
-						<div class="user-head">
-							<a href="#user<%=team_profile.id%>-actions" class="user-image" data-toggle="collapse">
-								<%=image_tag team_profile.profile.profile_image, { alt: "" ,class: 'dimmed'} %>
-							</a>
-							<div class="user-head-placeholder">
-								<span>
-									Drag to the<br>
-									teams menu
-								</span>
-							</div><!-- /.user-head-placeholder -->
-						</div><!-- /.user-head -->
-						<%-if team_profile.profile.user.lastname == '-'%>
-                                <span class='name-label'><%=team_profile.profile.user.email%></span>
-                            <%else%>
-                                <span class='name-label'><%=team_profile.profile.user.name%></span>
-                            <%end%>
-						    <%- if team_profile.invitation_status == 'pending'%>
-							    <span class='pending'>(PENDING)</span>
-							<%end%>
-						    <%- if team_profile.invitation_status == 'declined'%>
-							    <span class='pending'>(DECLINED)</span>
-							<%end%>
-						<div class="user-actions-alt collapse" id="user<%=team_profile.id%>-actions">
-
-					        <%-if @is_current_user_admin%>
-						        <ul class="dropdown-menu-actions">
-						            <li>
-						                <a class='delete' href="<%= canceled_invitation_url(type: 'canceled', by: 'admin', team_profile_id: team_profile.id)%>" data-profile-id="">
-						                    <i class="ico-remove-mobile"></i>
-						                </a>
-						            </li>
-						        </ul>
-						        <span class='undericon hide' id='delete'>CANCEL INVITE</span>
-						    <%end%>
-						</div><!-- /.user-actions-alt -->
-					</li><!-- /.user-alt -->
-				<%end%>
-			</ul>
+						        <%-if @is_current_user_admin%>
+							        <ul class="dropdown-menu-actions">
+							            <li>
+							                <a class='delete' href="<%= canceled_invitation_url(type: 'canceled', by: 'admin', team_profile_id: team_profile.id)%>" data-profile-id="">
+							                    <i class="ico-remove-mobile"></i>
+							                </a>
+							            </li>
+							        </ul>
+							        <span class='undericon hide' id='delete'>CANCEL INVITE</span>
+							    <%end%>
+							</div><!-- /.user-actions-alt -->
+						</li><!-- /.user-alt -->
+					<%end%>
+				</ul>
+			<%end%>
 		</div><!-- /.creatives -->
 	</div><!-- /.main -->
 
-	<div class="modal modal-small fade" id="modal-delete">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
-					<i class="ico-close"></i>
-				</button>
-
-				<div class="modal-body">
-					<div class="form form-action">
-						<form action="?" method="post">
-							<div class="form-inner">
-								<div class="form-head">
-									<h4 class="form-title">Remove users</h4><!-- /.form-title -->
-								</div><!-- /.form-head -->
-
-								<div class="form-body">
-									<div class="form-entry">
-										<p>Are you sure you want to remove these users from the Team?</p>
-									</div><!-- /.form-entry -->
-								</div><!-- /.form-body -->
-
-								<div class="form-actions">
-									<button class="btn btn-blue form-btn" data-dismiss="modal">Cancel</button>
-
-									<button type="submit" class="btn form-btn">Yes</button>
-								</div><!-- /.form-actions -->
-							</div><!-- /.form-inner -->
-						</form>
-					</div><!-- /.form-action -->
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<div class="modal modal-small fade" id="modal-report">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
-					<i class="ico-close"></i>
-				</button>
-
-				<div class="modal-body">
-					<div class="form form-action">
-						<form action="?" method="post">
-							<div class="form-inner">
-								<div class="form-head">
-									<h4 class="form-title">Report Spam</h4><!-- /.form-title -->
-								</div><!-- /.form-head -->
-
-								<div class="form-body">
-									<div class="form-entry">
-										<p>Are you sure you want to report this message as spam?</p>
-									</div><!-- /.form-entry -->
-								</div><!-- /.form-body -->
-
-								<div class="form-actions">
-									<button class="btn btn-blue form-btn" data-dismiss="modal">Cancel</button>
-
-									<button type="submit" class="btn form-btn">Yes</button>
-								</div><!-- /.form-actions -->
-							</div><!-- /.form-inner -->
-						</form>
-					</div><!-- /.form-action -->
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<div class="modal modal-small fade" id="modal-ignore">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
-					<i class="ico-close"></i>
-				</button>
-
-				<div class="modal-body">
-					<div class="form form-action">
-						<form action="?" method="post">
-							<div class="form-inner">
-								<div class="form-head">
-									<h4 class="form-title">Ignore User</h4><!-- /.form-title -->
-								</div><!-- /.form-head -->
-
-								<div class="form-body">
-									<div class="form-entry">
-										<p>
-											Are you sure you want to ignore this user?<br>
-											You won't receive any more messages from this user.
-										</p>
-									</div><!-- /.form-entry -->
-								</div><!-- /.form-body -->
-
-								<div class="form-actions">
-									<button class="btn btn-blue form-btn" data-dismiss="modal">Cancel</button>
-
-									<button type="submit" class="btn form-btn">Yes</button>
-								</div><!-- /.form-actions -->
-							</div><!-- /.form-inner -->
-						</form>
-					</div><!-- /.form-action -->
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<div class="modal modal-medium fade" id="modal-avatar">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
-					<i class="ico-close"></i>
-				</button>
-
-				<div class="modal-body">
-					<div class="form form-avatar">
-						<form action="?" method="post">
-							<div class="form-inner">
-								<div class="form-head">
-									<div class="team team-sortable">
-										<div class="team-inner">
-											<div class="team-image">
-												<img src="/assets/temp/team1.jpg" class="team-image-selected" alt="">
-											</div><!-- /.team-image -->
-										</div>
-									</div><!-- /.team -->
-								</div><!-- /.form-head -->
-
-								<div class="form-body">
-									<ul class="list-avatars">
-										<li>
-											<div class="team">
-												<a href=".team-image-selected" class="team-inner change-image">
-													<div class="team-image">
-														<img src="/assets/temp/team-image1.jpg" alt="">
-													</div><!-- /.team-image -->
-												</a>
-											</div><!-- /.team -->
-										</li>
-
-										<li>
-											<div class="team">
-												<a href=".team-image-selected" class="team-inner change-image">
-													<div class="team-image">
-														<img src="/assets/temp/team-image2.jpg" alt="">
-													</div><!-- /.team-image -->
-												</a>
-											</div><!-- /.team -->
-										</li>
-
-										<li>
-											<div class="team">
-												<a href=".team-image-selected" class="team-inner change-image">
-													<div class="team-image">
-														<img src="/assets/temp/team-image3.jpg" alt="">
-													</div><!-- /.team-image -->
-												</a>
-											</div><!-- /.team -->
-										</li>
-
-										<li>
-											<div class="team">
-												<a href=".team-image-selected" class="team-inner change-image">
-													<div class="team-image">
-														<img src="/assets/temp/team-image4.jpg" alt="">
-													</div><!-- /.team-image -->
-												</a>
-											</div><!-- /.team -->
-										</li>
-
-										<li>
-											<div class="team team-alt">
-												<div class="team-inner">
-													<div class="team-image">
-														<img src="/assets/temp/team-default.jpg" alt="">
-
-														<div class="team-actions">
-															<span class="team-add">
-																<i class="ico-plus"></i>
-															</span>
-														</div><!-- /.team-actions -->
-
-														<input type="file" name="upload-team" id="upload-team">
-
-														<label for="upload-team">Upload</label>
-													</div><!-- /.team-image -->
-												</div>
-											</div><!-- /.team -->
-										</li>
-									</ul><!-- /.list-avatars -->
-
-									<div class="form-hint">choose new image</div><!-- /.form-hint -->
-								</div><!-- /.form-body -->
-							</div><!-- /.form-inner -->
-						</form>
-					</div><!-- /.form-action -->
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<div class="modal modal-profile fade" id="modal-edit-profile">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
-					<i class="ico-close"></i>
-				</button>
-
-				<div class="modal-body">
-					<div class="form form-signup">
-						<form action="?" method="post">
-							<div class="form-inner">
-								<div class="form-head">
-									<div class="dropdown dropdown-avatar">
-										<a href="#" data-toggle="dropdown">
-											<div class="team team-sortable">
-												<div class="team-inner">
-													<div class="team-image">
-														<img src="/assets/temp/team-default.jpg" id="main-image" alt="">
-													</div><!-- /.team-image -->
-												</div>
-											</div><!-- /.team -->
-										</a>
-
-										<div class="dropdown-menu">
-											<ul class="list-avatars">
-												<li>
-													<div class="team">
-														<a href="#main-image" class="team-inner change-image">
-															<div class="team-image">
-																<img src="/assets/temp/team-image1.jpg" alt="">
-															</div><!-- /.team-image -->
-														</a>
-													</div><!-- /.team -->
-												</li>
-
-												<li>
-													<div class="team">
-														<a href="#main-image" class="team-inner change-image">
-															<div class="team-image">
-																<img src="/assets/temp/team-image2.jpg" alt="">
-															</div><!-- /.team-image -->
-														</a>
-													</div><!-- /.team -->
-												</li>
-
-												<li>
-													<div class="team">
-														<a href="#main-image" class="team-inner change-image">
-															<div class="team-image">
-																<img src="/assets/temp/team-image3.jpg" alt="">
-															</div><!-- /.team-image -->
-														</a>
-													</div><!-- /.team -->
-												</li>
-
-												<li>
-													<div class="team">
-														<a href="#main-image" class="team-inner change-image">
-															<div class="team-image">
-																<img src="/assets/temp/team-image4.jpg" alt="">
-															</div><!-- /.team-image -->
-														</a>
-													</div><!-- /.team -->
-												</li>
-
-												<li>
-													<div class="team team-alt">
-														<div class="team-inner">
-															<div class="team-image">
-																<img src="/assets/temp/team-default.jpg" alt="">
-
-																<div class="team-actions">
-																	<span class="team-add">
-																		<i class="ico-plus"></i>
-																	</span>
-																</div><!-- /.team-actions -->
-
-																<input type="file" name="upload-team" id="upload-team">
-
-																<label for="upload-team">Upload</label>
-															</div><!-- /.team-image -->
-														</div>
-													</div><!-- /.team -->
-												</li>
-											</ul><!-- /.list-avatars -->
-										</div><!-- /.dropdown-menu -->
-									</div><!-- /.dropdown -->
-
-									<h4 class="form-title">My Profile</h4><!-- /.form-title -->
-								</div><!-- /.form-head -->
-
-								<div class="form-body">
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-row">
-													<label for="field-freelancer-username" class="form-label">
-														Username <em>(cannot be changed)</em>
-													</label>
-
-													<div class="form-controls">
-														<input type="text" class="form-control" name="field-freelancer-username" id="field-freelancer-username" value="wagtail@gmail.com" placeholder="">
-													</div><!-- /.form-controls -->
-												</div><!-- /.form-row -->
-											</div><!-- /.col-sm-6 -->
-
-											<div class="col-sm-6">
-												<div class="form-row">
-													<label for="field-freelancer-additional-email" class="form-label">Additional Email</label>
-
-													<div class="form-controls">
-														<input type="text" class="form-control" name="field-freelancer-additional-email" id="field-freelancer-additional-email" value="" placeholder="">
-													</div><!-- /.form-controls -->
-												</div><!-- /.form-row -->
-											</div><!-- /.col-sm-6 -->
-										</div><!-- /.row -->
-
-										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-row">
-													<label for="field-freelancer-first-name" class="form-label">First Name</label>
-
-													<div class="form-controls">
-														<input type="text" class="form-control" name="field-freelancer-first-name" id="field-freelancer-first-name" value="" placeholder="">
-													</div><!-- /.form-controls -->
-												</div><!-- /.form-row -->
-											</div><!-- /.col-sm-6 -->
-
-											<div class="col-sm-6">
-												<div class="form-row">
-													<label for="field-freelancer-last-name" class="form-label">Last Name</label>
-
-													<div class="form-controls">
-														<input type="text" class="form-control" name="field-freelancer-last-name" id="field-freelancer-last-name" value="" placeholder="">
-													</div><!-- /.form-controls -->
-												</div><!-- /.form-row -->
-											</div><!-- /.col-sm-6 -->
-										</div><!-- /.row -->
-
-										<div class="form-type">
-											<ul>
-												<li>
-													<div class="radio-type">
-														<input type="radio" name="profile-type" id="field-freelancer" checked>
-
-														<label for="field-freelancer">freelancer</label>
-													</div><!-- /.radio -->
-												</li>
-
-												<li>
-													<div class="radio-type">
-														<input type="radio" name="profile-type" id="field-company">
-
-														<label for="field-company">company</label>
-													</div><!-- /.radio -->
-												</li>
-											</ul><!-- /.list-radios -->
-										</div><!-- /.form-type -->
-
-										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-row">
-													<label for="field-title" class="form-label">Title</label>
-
-													<div class="form-controls">
-														<input type="text" class="form-control" name="field-title" id="field-title" value="" placeholder="">
-													</div><!-- /.form-controls -->
-												</div><!-- /.form-row -->
-											</div><!-- /.col-sm-6 -->
-
-											<div class="col-sm-6">
-												<div class="form-row">
-													<label for="field-company-name" class="form-label">Company Name</label>
-
-													<div class="form-controls">
-														<input type="text" class="form-control" name="field-company-name" id="field-company-name" value="" placeholder="">
-													</div><!-- /.form-controls -->
-												</div><!-- /.form-row -->
-											</div><!-- /.col-sm-6 -->
-										</div><!-- /.row -->
-
-										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-row">
-													<label for="field-freelancer-location" class="form-label">
-														Location <em>(City, State, Country)</em>
-													</label>
-
-													<div class="form-controls">
-														<input type="text" class="form-control" name="field-freelancer-location" id="field-freelancer-location" value="" placeholder="">
-													</div><!-- /.form-controls -->
-												</div><!-- /.form-row -->
-											</div><!-- /.col-sm-6 -->
-
-											<div class="col-sm-6">
-												<div class="form-row">
-													<label for="field-website" class="form-label">Website</label>
-
-													<div class="form-controls">
-														<input type="text" class="form-control" name="field-website" id="field-website" value="" placeholder="">
-													</div><!-- /.form-controls -->
-												</div><!-- /.form-row -->
-											</div><!-- /.col-sm-6 -->
-										</div><!-- /.row -->
-
-										<div class="form-socials">
-											<ul class="list-socials">
-												<li>
-													<i class="ico-linkedin"></i>
-
-													<span>Linkedin</span>
-
-													<div class="checkbox-link">
-														<input type="checkbox" name="field-link1" id="field-link1">
-
-														<label for="field-link1">
-															<span class="checkbox-label">Link</span>
-
-															<span class="checkbox-label-checked">Unlink</span>
-														</label>
-													</div><!-- /.checkbox-link -->
-												</li>
-
-												<li>
-													<i class="ico-vimeo"></i>
-
-													<span>Vimeo</span>
-
-													<div class="checkbox-link">
-														<input type="checkbox" name="field-link2" id="field-link2" checked>
-
-														<label for="field-link2">
-															<span class="checkbox-label">Link</span>
-
-															<span class="checkbox-label-checked">Unlink</span>
-														</label>
-													</div><!-- /.checkbox-link -->
-												</li>
-
-												<li>
-													<i class="ico-behance"></i>
-
-													<span>Behance</span>
-
-													<div class="checkbox-link">
-														<input type="checkbox" name="field-link3" id="field-link3">
-
-														<label for="field-link3">
-															<span class="checkbox-label">Link</span>
-
-															<span class="checkbox-label-checked">Unlink</span>
-														</label>
-													</div><!-- /.checkbox-link -->
-												</li>
-											</ul><!-- /.list-socials -->
-
-											<ul class="list-socials collapse" id="additional-socials">
-												<li>
-													<i class="ico-linkedin"></i>
-
-													<span>Linkedin</span>
-
-													<div class="checkbox-link">
-														<input type="checkbox" name="field-link4" id="field-link4">
-
-														<label for="field-link4">
-															<span class="checkbox-label">Link</span>
-
-															<span class="checkbox-label-checked">Unlink</span>
-														</label>
-													</div><!-- /.checkbox-link -->
-												</li>
-
-												<li>
-													<i class="ico-vimeo"></i>
-
-													<span>Vimeo</span>
-
-													<div class="checkbox-link">
-														<input type="checkbox" name="field-link5" id="field-link5">
-
-														<label for="field-link5">
-															<span class="checkbox-label">Link</span>
-
-															<span class="checkbox-label-checked">Unlink</span>
-														</label>
-													</div><!-- /.checkbox-link -->
-												</li>
-
-												<li>
-													<i class="ico-behance"></i>
-
-													<span>Behance</span>
-
-													<div class="checkbox-link">
-														<input type="checkbox" name="field-link6" id="field-link6">
-
-														<label for="field-link6">
-															<span class="checkbox-label">Link</span>
-
-															<span class="checkbox-label-checked">Unlink</span>
-														</label>
-													</div><!-- /.checkbox-link -->
-												</li>
-											</ul><!-- /.list-socials -->
-
-											<div class="form-socials-expand">
-												<a href="#additional-socials" data-toggle="collapse">
-													<i class="ico-arrow-down-medium"></i>
-
-													<span>Additional Networks</span>
-												</a>
-											</div><!-- /.form-socials-expand -->
-										</div><!-- /.form-socials -->
-
-										<div class="form-row">
-											<label for="field-skills" class="form-label">Skills</label>
-
-											<div class="form-controls">
-												<select name="field-suggest-skills" id="field-suggest-skills" class="select-autocomplete" multiple data-placeholder="">
-													<option value="director">Director</option>
-
-													<option value="motion-graphics">Motion Graphics</option>
-
-													<option value="animation">Animation</option>
-
-													<option value="art-direction">Art Direction</option>
-
-													<option value="design">Design</option>
-
-													<option value="illustrator">Illustrator</option>
-
-													<option value="after-effects">After Effects</option>
-												</select>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.form-group -->
-								</div><!-- /.form-body -->
-
-								<div class="form-actions">
-									<input type="submit" value="Update" class="btn form-btn">
-								</div><!-- /.form-actions -->
-
-								<div class="form-error">
-									<p>This is where error messages go.</p>
-								</div><!-- /.form-error -->
-
-								<div class="form-foot-entry">
-									<p>Please add as many details as possible. Our team reviews all profiles before approving them to appear on our search for recommended creatives. If you are already up there, make sure your details are up to date.</p>
-								</div><!-- /.form-foot-entry -->
-							</div><!-- /.form-inner -->
-
-							<div class="form-foot">
-								<p>Need help? <a href="#">drop us a line</a>.</p>
-							</div><!-- /.form-foot -->
-						</form>
-					</div><!-- /.form-signup -->
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<div class="modal modal-search fade" id="modal-search">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
-					<i class="ico-close"></i>
-				</button>
-
-				<div class="modal-body">
-					<section class="section-search section-search-alt">
-						<div class="section-body">
-							<div class="search">
-								<div class="search-body">
-									<form action="search-results.html" method="get">
-										<label for="q" class="hidden">Search</label>
-
-										<input type="text" class="form-control search-field">
-
-										<button type="submit" class="search-btn">
-											<i class="fa fa-search"></i>
-										</button>
-									</form>
-
-									<div class="dropdown">
-										<a href="#" class="dropdown-btn" data-toggle="dropdown">
-											<span class="btn-icon">
-												<i class="ico-arrow-right-small"></i>
-
-												<span class="btn-icon-alt">
-													<i id="search-icon-popup"></i>
-												</span>
-											</span>
-										</a>
-
-										<ul class="dropdown-menu">
-											<li>
-												<a href="#search-icon-popup" data-change-class="">All</a>
-											</li>
-
-											<li>
-												<a href="#search-icon-popup" data-change-class="ico-location">Location</a>
-											</li>
-
-											<li>
-												<a href="#search-icon-popup" data-change-class="ico-people">People</a>
-											</li>
-
-											<li>
-												<a href="#search-icon-popup" data-change-class="ico-skills">Skill</a>
-											</li>
-										</ul><!-- /.dropdown-menu -->
-									</div><!-- /.dropdown -->
-								</div><!-- /.search-body -->
-
-								<div class="search-foot">
-									<span>Popular Searches:</span>
-
-									<ul>
-										<li>
-											<a href="search-results.html">Motion Graphics</a>
-										</li>
-
-										<li>
-											<a href="search-results.html">2D Animation</a>
-										</li>
-
-										<li>
-											<a href="search-results.html">Art Direction</a>
-										</li>
-
-										<li>
-											<a href="search-results.html">VFX</a>
-										</li>
-
-										<li>
-											<a href="search-results.html">Illustration</a>
-										</li>
-									</ul>
-								</div><!-- /.search-foot -->
-							</div><!-- /.search -->
-						</div><!-- /.section-body -->
-					</section><!-- /.section-search -->
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<footer class="footer">
-		<div class="shell">
-			<nav class="footer-nav">
-				<ul>
-					<li>
-						<a href="#">Home</a>
-					</li>
-
-					<li>
-						<a href="#">About Us</a>
-					</li>
-
-					<li>
-						<a href="#">Blog</a>
-					</li>
-
-					<li>
-						<a href="#">FAQ</a>
-					</li>
-				</ul>
-
-				<ul>
-					<li>
-						<a href="#">Terms And Conditions</a>
-					</li>
-
-					<li>
-						<a href="#">Privacy Statement</a>
-					</li>
-
-					<li>
-						<a href="#">Contact Us</a>
-					</li>
-				</ul>
-			</nav><!-- /.footer-nav -->
-
-			<div class="footer-socials">
-				<ul>
-					<li>
-						<a href="#">
-							<i class="fa fa-linkedin"></i>
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<i class="fa fa-twitter"></i>
-						</a>
-					</li>
-
-					<li>
-						<a href="#">
-							<i class="fa fa-facebook"></i>
-						</a>
-					</li>
-				</ul>
-			</div><!-- /.footer-socials -->
-		</div><!-- /.shell -->
-
-		<div class="footer-bar">
-			<div class="copyright">
-				<p>&copy; Roooster 2015</p>
-			</div><!-- /.copyright -->
-		</div><!-- /.footer-bar -->
-	</footer><!-- /.footer -->
+<%= render :partial => 'pages/footer'%>
 </div><!-- /.wrapper -->
 
