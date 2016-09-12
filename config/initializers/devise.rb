@@ -342,7 +342,7 @@ Devise.setup do |config|
   config.omniauth :vimeo, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] #, scope: 'public private'
   # config.omniauth OmniAuth::Strategies::Vimeo2, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] ,scope: 'public private'
   config.omniauth :behance, OMNI_CONFIG["behance"]["apikey"]
-  config.omniauth :dribbble, OMNI_CONFIG["dribbble"]["apikey"],OMNI_CONFIG["dribbble"]["apisecret"], scope: 'public write'
+  config.omniauth :dribbble, OMNI_CONFIG["dribbble"]["apikey"], OMNI_CONFIG["dribbble"]["apisecret"], scope: 'public write'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

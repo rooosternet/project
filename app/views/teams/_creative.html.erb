@@ -22,9 +22,9 @@
                 <li>
                     <a class="admin" href="<%=set_group_admin_path(user_id: team_user.profile_id, team_id: @team)%>" data-profile-id="<%=team_user.profile_id%>">
                         <%-if team_user.is_admin%>
-                            <i class="ico-badge"></i>
+                            <i class="ico-admin-red"></i>
                         <%else%>
-                            <i class="ico-badge"></i>
+                            <i class="ico-admin"></i>
                         <%end%>
                     </a>
                 </li>

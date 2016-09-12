@@ -188,8 +188,7 @@ class User < ActiveRecord::Base
 
   def self.dribbble_adapter profile
     if profile.dribbble.present?
-      strategy = Devise.omniauth_configs[:dribbble].strategy
-      access_token = strategy.client_id
+      access_token = OMNI_CONFIG["dribbble"]["token"]
       Dribbble::User.find(access_token, profile.dribbble.split('/').last).shots
     end
   end

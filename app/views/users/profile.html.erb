@@ -241,47 +241,62 @@
                         </div><!-- /.section-content-inner -->
                     </div><!-- /.section-content -->
 
-                    <div class="section-media">
-                        <%- if @behance_projects.present?%>
-                            <div class="section-media-inner">
-                                <h5>behance</h5>
+                    <%-if @is_owner%>
+                        <div class="section-media">
+                                <div class="section-media-inner">
+                                    <h5>behance</h5>
+                                        <ul class="list-media">
+                                            <%- if @behance_projects.present?%>
+                                                <%- @behance_projects.each do |item|%>
+                                                    <li>
+                                                        <a href="<%=item['url']%>" >
+                                                            <img src="<%=item['covers'].first[1]%>" width="181" height="135" alt="<%=item['name']%>">
+                                                        </a>
+                                                    </li>
+                                                <%end%>
+                                            <%else%>
+                                                <%- 3.times do |t|%>
+                                                    <li>
+                                                        <%=image_tag "placeholder_img@2x.jpg", :width => "181", :height => "135" %>
+                                                    </li>
+                                                <%end%>
+                                            <%end%>
+                                        </ul><!-- /.list-media -->
+                                </div><!-- /.section-media-inner -->
+                                <div class="section-media-inner">
+                                    <h5>Dribble</h5>
+
                                     <ul class="list-media">
-                                        <%- @behance_projects.each do |item|%>
-                                            <li>
-                                                <a href="<%=item['url']%>" >
-                                                    <img src="<%=item['covers'].first[1]%>" width="181" height="135" alt="<%=item['name']%>">
-                                                </a>
-                                            </li>
+                                        <%- if @dribbble_shots.present?%>
+                                            <%- @dribbble_shots.each do |item|%>
+                                                <li>
+                                                    <a href="<%=item.html_url%>">
+                                                        <img src="<%=item.images['normal']%>" alt="" width="181" height="135">
+                                                    </a>
+                                                </li>
+                                            <%end%>
+                                        <%else%>
+                                            <%- 3.times do |t|%>
+                                                <li>
+                                                    <%=image_tag "placeholder_img@2x.jpg", :width => "181", :height => "135" %>
+                                                </li>
+                                            <%end%>
                                         <%end%>
                                     </ul><!-- /.list-media -->
-                            </div><!-- /.section-media-inner -->
-                        <%end%>
-                        <%- if @dribbble_shots.present?%>
-                            <div class="section-media-inner">
-                                <h5>Dribble</h5>
+                                </div><!-- /.section-media-inner -->
+                                <div class="section-media-inner">
+                                    <h5>Vimeo</h5>
 
-                                <ul class="list-media">
-                                    <%- @dribbble_shots.each do |item|%>
-                                        <li>
-                                            <a href="<%=item.html_url%>">
-                                                <img src="<%=item.images['normal']%>" alt="" width="181" height="135">
-                                            </a>
-                                        </li>
+                                    <%- if @vimeo_video.present?%>
+                                        <div class="video">
+                                                <iframe src="https://player.vimeo.com/video/<%=@vimeo_video['id']%>" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                        </div><!-- /.video -->
+                                    <%else%>
+                                        <%=image_tag "placeholder_video@2x.jpg", :width => "640", :height => "360" %>
                                     <%end%>
-
-                                </ul><!-- /.list-media -->
-                            </div><!-- /.section-media-inner -->
-                        <%end%>
-                        <%- if @vimeo_video.present?%>
-                            <div class="section-media-inner">
-                                <h5>Vimeo</h5>
-
-                                <div class="video">
-                                    <iframe src="https://player.vimeo.com/video/<%=@vimeo_video['id']%>" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                                </div><!-- /.video -->
-                            </div><!-- /.section-media-inner -->
-                        <%end%>
-                    </div><!-- /.section-media -->
+                                </div><!-- /.section-media-inner -->
+                        </div><!-- /.section-media -->
+                    <%end%>
                 </div><!-- /.section-inner -->
             </section><!-- /.section-about -->
         </div><!-- /.shell -->
