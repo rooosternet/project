@@ -34,10 +34,12 @@ class UsersController < ApplicationController
     end
 
     #integrations
+    @is_owner = (current_user == @user)
+
     bh_connect = User.behance_adapter @user.profile
     dr_connect = User.dribbble_adapter @user.profile
     vm_connect = User.vimeo_adapter @user.profile
-    @is_owner = (current_user == @user)
+
     @behance_projects = (bh_connect.present?)? bh_connect[1..3] : nil
     @dribbble_shots = (dr_connect.present?)? dr_connect[1..3] : nil
     @vimeo_video = (vm_connect.present?)? vm_connect.first : nil
@@ -166,6 +168,7 @@ class UsersController < ApplicationController
         begin
           @empty = false
           _user = User.invite!({:email => user[:email] , :firstname =>user[:firstname],:lastname=> user[:lastname]},User.current)
+          _user.invite!
           if params.has_key? :team_id
             unless _user.email == current_user.email
               invite_user = User.find_by_email(user[:email])
@@ -176,8 +179,9 @@ class UsersController < ApplicationController
                 invite_user.profile.update(invitation_hash: hash)
                 @url = accepting_invitation_url(hash: hash, team_id: team.id)
                 @declain_url = canceled_invitation_url(type: 'canceled', by: 'email', team_profile_id: team_profile.id)
-                message = "Hi #{_user.firstname}, you've been invited to team #{team.name.upcase} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>decline</a>"
-                InMessage.create(from_id: team.owner.id, to_id: invite_user.id, note: message)
+                message = 'Invitation send successfully'
+                mail_message = "Hi #{_user.firstname}, you've been invited to team #{team.name.upcase} by #{team.owner.name}! You can <a href='#{@url}'>accept</a> or <a href='#{@declain_url}'>decline</a>"
+                InMessage.create(from_id: team.owner.id, to_id: invite_user.id, note: mail_message)
                 Mailer.add_to_group_mail(hash, invite_user, team, team_profile).deliver_now
               end
             end
@@ -227,7 +231,7 @@ class UsersController < ApplicationController
   end
 
   def secure_params
-    params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname, :profile_page, :image,{avatars: []},:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
+    params.require(:user).permit(:role,:id,:edit_profile,:name,:email,:email2,:firstname,:lastname, :profile_page, :provider, :uid, :image,{avatars: []},:profile_attributes => [:id,:is_company, :is_freelancer,:searchable,:public_email,:location,:job_title,:company_name,:company_website,:online_portfolio,:linkedin_profile,:behance,:vimeo,:social_links,:skills => []])
   end
 
 end

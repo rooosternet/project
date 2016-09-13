@@ -333,16 +333,31 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
+  host = if Rails.env.staging?
+    'roooster.co:8080'
+  elsif Rails.env.production?
+    'roooster.co'
+  else
+    'localhost:3000'
+  end
+
   config.omniauth :linkedin , OMNI_CONFIG["linkedin"]["apikey"],OMNI_CONFIG["linkedin"]["apisecret"] ,
   :scope => 'r_basicprofile r_emailaddress',
   :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location","phone-numbers"]
   # r_fullprofile r_contactinfo
-  config.omniauth :twitter, OMNI_CONFIG["twitter"]["apikey"],OMNI_CONFIG["twitter"]["apisecret"]
 
-  config.omniauth :vimeo, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] #, scope: 'public private'
+  config.omniauth :vimeo, '165c55d648f9887dc72a171048abe7ed63840dc9',
+                          'xVKkYN9lIqQvMjhwEBceOxEbOrBS/LHkLn4TEdT/3C8AIAi7U7j8hc/o7NBfsGSn+xBaiZMLenCAs8zoGKET5a6E7opDMc4qXwu96X0qrkJsXPxhWfNHOhIWnHJzr9th',
+                          callback_url: "http://#{host}/users/auth/vimeo/callback",
+                          scope: 'public private'
+
   # config.omniauth OmniAuth::Strategies::Vimeo2, OMNI_CONFIG["vimeo"]["apikey"],OMNI_CONFIG["vimeo"]["apisecret"] ,scope: 'public private'
   config.omniauth :behance, OMNI_CONFIG["behance"]["apikey"]
-  config.omniauth :dribbble, OMNI_CONFIG["dribbble"]["apikey"], OMNI_CONFIG["dribbble"]["apisecret"], scope: 'public write'
+
+  config.omniauth :dribbble, '0e290886e548bdaaa8ce280973e1006474dd35fb5bd5c1b31b4708f1e20a0ac4',
+                             '30a1d759f7a18342e14a1d098c1c9af190e1cb34298db9d2f43f8298cac0579f',
+                             token: 'b2897a093f9080818e124554132f551a3ff595f71da1fecf0fa96eabf7ce5aca',
+                             callback_url: "http://#{host}/users/auth/dribbble/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

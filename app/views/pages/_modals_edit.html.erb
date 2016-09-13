@@ -313,71 +313,82 @@
 
 									<div class="form-socials">
 										<ul class="list-socials">
-											<li>
-												<i class="ico-linkedin"></i>
+										<li>
+											<i class="ico-linkedin"></i>
 
-												<span>Linkedin</span>
+											<span>Linkedin</span>
 
-												<div class="checkbox-link">
-													<%= profile_connect("linkedin",current_user.profile) %>
+											<div class="checkbox-link">
+												<label for="field-connect-linkedin">
+													<%- if ProfileConnect.where(profile_id: current_user.profile.id, provider: 'linkedin').present?%>
+														<span>UNLINK</span>
+													<%else%>
+														<a href="<%=user_linkedin_omniauth_authorize_path%>">
+															<span class="checkbox-label">LINK</span>
+														</a>
+													<%end%>
+												</label>
+											</div><!-- /.checkbox-link -->
+										</li>
+									</ul><!-- /.list-socials -->
 
-													<label for="field-connect-linkedin">
-														<span class="checkbox-label">Link</span>
+									<ul class="list-socials collapse" id="additional-socials">
 
-														<span class="checkbox-label-checked">Unlink</span>
-													</label>
-												</div><!-- /.checkbox-link -->
-											</li>
-										</ul><!-- /.list-socials -->
+										<li>
+											<i class="ico-vimeo"></i>
 
-										<ul class="list-socials collapse" id="additional-socials">
+											<span>Vimeo</span>
 
-											<li>
-												<i class="ico-vimeo"></i>
+											<div class="checkbox-link">
+												<label for="field-connect-vimeo">
+													<%- if ProfileConnect.where(profile_id: current_user.profile.id, provider: 'vimeo').present?%>
+														<span>UNLINK</span>
+													<%else%>
+														<a href="<%=user_vimeo_omniauth_authorize_path%>">
+															<span class="checkbox-label">LINK</span>
+														</a>
+													<%end%>
+												</label>
+											</div>
+										</li>
 
-												<span>Vimeo</span>
+										<li>
+											<i class="ico-behance"></i>
 
-												<div class="checkbox-link">
-													<%= profile_connect("vimeo",current_user.profile) %>
-													<label for="field-connect-vimeo">
-														<span class="checkbox-label">Link</span>
+											<span>Behance</span>
 
-														<span class="checkbox-label-checked">Unlink</span>
-													</label>
-												</div>
-											</li>
+											<div class="checkbox-link">
+												<label for="field-connect-behance">
+													<%- if ProfileConnect.where(profile_id: current_user.profile.id, provider: 'behance').present?%>
+														<span>UNLINK</span>
+													<%else%>
+														<a href="<%=user_behance_omniauth_authorize_path%>">
+															<span class="checkbox-label">LINK</span>
+														</a>
+													<%end%>
+												</label>
+											</div>
+										</li>
 
-											<li>
-												<i class="ico-behance"></i>
+										<li>
+											<i class="ico-dribbble"></i>
 
-												<span>Behance</span>
+											<span>Dribbble</span>
 
-												<div class="checkbox-link">
-													<%= profile_connect("behance",current_user.profile) %>
-													<label for="field-connect-behance">
-														<span class="checkbox-label">Link</span>
+											<div class="checkbox-link">
+												<label for="field-connect-dribbble">
+													<%- if ProfileConnect.where(profile_id: current_user.profile.id, provider: 'dribbble').present?%>
+														<span>UNLINK</span>
+													<%else%>
+														<a href="<%=user_dribbble_omniauth_authorize_path%>">
+															<span class="checkbox-label">LINK</span>
+														</a>
+													<%end%>
+												</label>
+											</div>
+										</li>
 
-														<span class="checkbox-label-checked">Unlink</span>
-													</label>
-												</div>
-											</li>
-
-											<li>
-												<i class="ico-dribbble"></i>
-
-												<span>Dribbble</span>
-
-												<div class="checkbox-link">
-													<%= profile_connect("dribbble",current_user.profile) %>
-													<label for="field-connect-dribbble">
-														<span class="checkbox-label">Link</span>
-
-														<span class="checkbox-label-checked">Unlink</span>
-													</label>
-												</div>
-											</li>
-
-										</ul><!-- /.list-socials -->
+									</ul><!-- /.list-socials -->
 										<div class="form-socials-expand">
 											<a href="#additional-socials" data-toggle="collapse">
 												<i class="ico-arrow-down-medium"></i>

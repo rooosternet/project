@@ -4,7 +4,7 @@ class Users::InvitationsController < Devise::InvitationsController
     self.resource = invite_resource
     resource_invited = resource.errors.empty?
     yield resource if block_given?
-
+    byebug
     if resource_invited
       if is_flashing_format? && self.resource.invitation_sent_at
         set_flash_message :notice, :send_instructions, :email => self.resource.email

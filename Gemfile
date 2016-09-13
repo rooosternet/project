@@ -29,6 +29,7 @@ gem 'websocket-rails'
 gem 'autosize-rails'
 
 #integrations
+gem "oauth2"
 gem 'behance'
 gem 'dribbble', '~> 1.0', '>= 1.0.4'
 gem 'vimeo'
@@ -36,13 +37,12 @@ gem 'linkedin-scraper'
 gem 'linkedin'
 
 gem 'omniauth'
-gem 'omniauth-twitter'
+gem 'omniauth-oauth2', '1.3.1'
 gem "omniauth-vimeo"
-# gem 'omniauth-vimeo-oauth2'
 gem 'omniauth-linkedin'
-#gem 'omniauth-behance'
 gem 'omniauth-behance', path: "vendor/omniauth_behance"
-gem 'omniauth-dribbble', '~> 0.0.1'
+gem 'omniauth-dribbble'
+gem 'rails-dribbble-oauth'
 
 gem 'redis', '~>3.2'
 

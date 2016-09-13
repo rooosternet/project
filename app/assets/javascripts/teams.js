@@ -152,7 +152,9 @@ $(function() {
 		}
 		setTimeout(function(){
 		    videoEmbed.invoke();
-			$('.chat .messages').scrollTop($('.chat .messages')[0].scrollHeight+600);
+		    if($('.chat .messages').length > 0){
+				$('.chat .messages').scrollTop($('.chat .messages')[0].scrollHeight+600);
+		    }
 		},1000);
 	});
 });
