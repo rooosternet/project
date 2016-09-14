@@ -22,7 +22,10 @@ class UsersController < ApplicationController
     authorize @user || current_user
   end
 
-
+  def unlink_provider
+    ProfileConnect.unlink_provider(current_user.profile.id, params['provider'])
+    redirect_to profile_path(current_user)
+  end
 
   def profile
     @user = User.find(params[:id])

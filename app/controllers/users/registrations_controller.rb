@@ -164,7 +164,7 @@ skip_before_filter :verify_authenticity_token
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) << [:name,:firstname, :lastname ,:edit_profile, :email2 ,:terms_of_service,:subscribe,:image]
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:firstname, :lastname ,:edit_profile, :email2 ,:terms_of_service,:subscribe,:image])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

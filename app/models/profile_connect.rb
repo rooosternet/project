@@ -50,5 +50,17 @@ class ProfileConnect < ActiveRecord::Base
 		self.image
 	end
 
+	def self.unlink_provider profile_id, provider
+		ProfileConnect.where(provider: provider, profile_id: profile_id).first.delete
+		case provider
+	    when 'linkedin'
+	      Profile.find(profile_id).update(linkedin_profile: '')
+	    when 'vimeo'
+	      Profile.find(profile_id).update(vimeo: '')
+	    when 'dribbble'
+	      Profile.find(profile_id).update(dribbble: '')
+	    end
+	end
+
 end
 

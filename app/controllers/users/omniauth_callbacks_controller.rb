@@ -31,7 +31,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def linkedin
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
-    redirect_to root_path(profile: true)
+    current_user.profile.update(linkedin_profile: auth_hash.info.urls.public_profile)
+    redirect_to profile_path(current_user)
   end
 
   def twitter
@@ -43,7 +44,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def vimeo
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
-    redirect_to root_path(profile: true)
+    current_user.profile.update(vimeo: auth_hash.info.link)
+    redirect_to profile_path(current_user)
   end
 
   def behance
@@ -55,7 +57,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def dribbble
     auth_hash = request.env['omniauth.auth']
     ProfileConnect.create_with_auth_hash(auth_hash)
-    redirect_to root_path(profile: true)
+    current_user.profile.update(dribbble: auth_hash.info.urls.dribbble)
+    redirect_to profile_path(current_user)
   end
 
   def passthru
