@@ -189,55 +189,55 @@
 // 			$teamsSlider.trigger('refresh.owl.carousel');
 // 		});
 
-// 		// Team Droppable
-// 		function teamDroppable(that) {
-// 			var accept = $(that).data('accept');
+		// Team Droppable
+		function teamDroppable(that) {
+			var accept = $(that).data('accept');
 
-// 			$(that).droppable({
-// 				accept: accept,
-// 				hoverClass: 'team-highlighted',
-// 				over: function(event, ui) {
-// 					ui.draggable.addClass('user-draggable-over');
-// 				},
-// 				out: function(event, ui) {
-// 					ui.draggable.removeClass('user-draggable-over');
-// 				},
-// 				deactivate: function(event, ui) {
-// 					ui.draggable.removeClass('user-draggable-over');
-// 				},
-// 				drop: function(event, ui) {
-// 					$(that).addClass('team-dropped');
-// 					ui.draggable.addClass('user-dropped');
+			$(that).droppable({
+				accept: accept,
+				hoverClass: 'team-highlighted',
+				over: function(event, ui) {
+					ui.draggable.addClass('user-draggable-over');
+				},
+				out: function(event, ui) {
+					ui.draggable.removeClass('user-draggable-over');
+				},
+				deactivate: function(event, ui) {
+					ui.draggable.removeClass('user-draggable-over');
+				},
+				drop: function(event, ui) {
+					$(that).addClass('team-dropped');
+					ui.draggable.addClass('user-dropped');
 
-// 					setTimeout(function() {
-// 						ui.draggable.removeAttr('style');
-// 					}, 400);
+					setTimeout(function() {
+						ui.draggable.removeAttr('style');
+					}, 400);
 
-// 					setTimeout(function() {
-// 						$(that).removeClass('team-dropped');
-// 						ui.draggable.removeClass('user-dropped');
-// 					}, 1000);
-// 				}
-// 			});
-// 		};
+					setTimeout(function() {
+						$(that).removeClass('team-dropped');
+						ui.draggable.removeClass('user-dropped');
+					}, 1000);
+				}
+			});
+		};
 
-// 		$('.team-droppable').each(function() {
-// 			teamDroppable(this);
-// 		});
+		$('.team-droppable').each(function() {
+			teamDroppable(this);
+		});
 
-// 		$('.teams-create .team-droppable').on('drop', function(event) {
-// 			$(this).find('.team-create').trigger('click');
-// 		});
+		$('.teams-create .team-droppable').on('drop', function(event) {
+			$(this).find('.team-create').trigger('click');
+		});
 
-// 		// User Draggable
-// 		function userDraggable($items) {
-// 			$items.draggable({
-// 				revert: 'invalid',
-// 				stop: function(event, ui) {
-// 					$(this).removeClass('user-draggable-over');
-// 				},
-// 			});
-// 		};
+		// User Draggable
+		function userDraggable($items) {
+			$items.draggable({
+				revert: 'invalid',
+				stop: function(event, ui) {
+					$(this).removeClass('user-draggable-over');
+				},
+			});
+		};
 
 // 		userDraggable($('.user-draggable'));
 

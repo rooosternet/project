@@ -14,7 +14,7 @@ class VisitorsController < ApplicationController
 			@user_avatars = session[:user_avatars]
 			session[:user_avatars] = false
 		end
-
+		@hide_footer = true
 		@blog_intro = generate_blog_posts_intro #Rails.env.development? ? [] : generate_blog_posts_intro
 	end
 

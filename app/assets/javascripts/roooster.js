@@ -882,7 +882,8 @@ var update_user = function(user_id,properties){
 		$('.users').on('change', '.checkbox input[type="checkbox"]', function(event) {
       console.log('change ');
 			// event.preventDefault();
-      var team_id = $(this).data('team');
+      // var team_id = $(this).data('team');
+      var team_id = $(this).parent().find('label').data('team');
 			var profile_id = $(this).data('profile');
 			var action = $(this).is(':checked');
 			var menu_backet = $("#"+$(this).data('backet'));

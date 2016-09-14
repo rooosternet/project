@@ -45,10 +45,15 @@
     <% end %>
   <% else %>
 
-    <div class="wrapper  wrapper-fullpage">
-      <div class="main" id="main-landing">
+    <div class="wrapper">
+      <%= render :partial => 'pages/header' %>
+
+      <div class="main">
+        <div class="shell">
           <%= yield %>
+        </div>
       </div>
+      <%= render :partial => 'pages/footer'%>
       <%= render :partial => 'pages/modals_sign' %>
       <%= render :partial => 'pages/modals_alt' %>
     </div>
