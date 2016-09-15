@@ -75,7 +75,8 @@
 
 .section-blog-secondary { position: relative; height: 100vh; min-height: 700px; }
 .section-blog-secondary .section-body { padding-left: 21px; }
-.section-blog-secondary .article + .article { margin-top: 16px; }
+.section-blog-secondary .article + .article { margin-top: 5px;
+  margin-bottom: 80px; }
 
 @media (max-width: $screen-xs-max) {
 	.section-blog-secondary { min-height: 0; height: auto; padding: 35px 0 50px;

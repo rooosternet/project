@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= content_for?(:title) ? yield(:title) : "Roooster" %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Roooster" %>">
+  <meta name="turbolinks-cache-control" content="no-cache">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700italic,700,500italic,500,400italic,300,300italic">
   <%= csrf_meta_tags %>
   <%= favicon %>
@@ -45,15 +46,12 @@
     <% end %>
   <% else %>
 
-    <div class="wrapper">
-      <%= render :partial => 'pages/header' %>
-
-      <div class="main">
-        <div class="shell">
+    <div class="wrapper" >
+      <%= render :partial => 'pages/header' unless @hide_header%>
+      <div class="main" id='<%="main-landing" unless @hide_fullid%>'>
           <%= yield %>
-        </div>
       </div>
-      <%= render :partial => 'pages/footer'%>
+      <%= render :partial => 'pages/footer' unless  @hide_footer %>
       <%= render :partial => 'pages/modals_sign' %>
       <%= render :partial => 'pages/modals_alt' %>
     </div>
